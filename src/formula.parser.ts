@@ -16,15 +16,6 @@ export namespace Formula {
             return _PLUGIN_VERSION_;
         };
 
-        inArray = function (item, array) {
-            for (var idx in array) if (array[idx] === item) return idx;
-            return -1;
-        };
-
-        isOperand = function (item) {
-            return typeof item === 'object' || this.isNumeric(item);
-        };
-
         getOperatorPriority = function (operator) {
             if (this.inArray(operator, this.Operators) === -1) {
                 return -1;
@@ -38,27 +29,6 @@ export namespace Formula {
                 }
                 return priority;
             }
-        };
-
-        isNumeric = function (n) {
-            return (/\d+(\.\d*)?|\.\d+/).test(n);
-        };
-
-        stringToArray = function (s) {
-            var data = [];
-            var dataSplited = s.split('');
-            var dataSplitedLen = dataSplited.length;
-            for (var idx = 0; idx < dataSplitedLen; idx++) {
-                var item = dataSplited[idx];
-                if (this.inArray(item, this.Units) !== -1 || this.isOperand(item) === true) {
-                    if (idx > 0 && this.isOperand(item) === true && this.isOperand(data[data.length - 1]) === true) {
-                        data[data.length - 1] += item.toString();
-                    } else {
-                        data.push(item);
-                    }
-                }
-            }
-            return data;
         };
     }
 }

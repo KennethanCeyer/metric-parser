@@ -1,6 +1,6 @@
 import { LoggerCode } from './logger.code';
 
-export const LoggerMessage = {
+export const LoggerMessage: { [key: LoggerCode]: string } = {
     Invalid: 'Formula must has characters than {0} times',
     NotSupported: '\'{0}\' operator is not supported.',
     InvalidLeftOperand: 'Left side operand is not valid.',

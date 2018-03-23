@@ -3,9 +3,19 @@ import { ParserProcess } from './parser.process';
 import { LoggerMessage } from './logger.message';
 import { LoggerCode } from './logger.code';
 import { LoggerHelper } from './logger.helper';
+import { Operand, OperandItemValue, OperandValue, OperandWrapper, ParserTree } from './parser.tree';
+import { ParserResult } from './parser.result';
 
 export class ParserBuilder {
     private _formula: FormulaData;
+
+    private static isOperand(data: ParserTree | Operand) {
+        return !!(data as Operand).value;
+    }
+
+    private static isNumeric(value: string | number) {
+        return (/\d+(\.\d*)?|\.\d+/).test(value);
+    };
 
     private isString() {
         return typeof this._formula === 'string';
@@ -123,7 +133,6 @@ export class ParserBuilder {
 
         data = data || [];
         pos = pos || 0;
-        depth = depth || 0;
 
         var cursor = pos;
 
@@ -155,7 +164,7 @@ export class ParserBuilder {
                 for (var idx = 0; idx < data.length; idx++) {
                     cursor = idx + pos;
                     var item = data[idx];
-                    if (this.inArray(item, this.Operators) === -1 && this.isOperand(item) === false) {
+                    if (this.inArray(item, this.Operators) === -1 && ParserBuilder.isOperand(item) === false) {
                         return this.log(0x02, {
                             stack: this.currentParser,
                             col: cursor
@@ -163,14 +172,14 @@ export class ParserBuilder {
                     }
 
                     if (this.inArray(item, operators) !== -1) {
-                        if (this.isOperand(data[idx - 1]) === false) {
+                        if (ParserBuilder.isOperand(data[idx - 1]) === false) {
                             return this.log(0x03, {
                                 stack: this.currentParser,
                                 col: cursor - 1
                             });
                         }
 
-                        if (this.isOperand(data[idx + 1]) === false) {
+                        if (ParserBuilder.isOperand(data[idx + 1]) === false) {
                             return this.log(0x04, {
                                 stack: this.currentParser,
                                 col: cursor + 1
@@ -208,59 +217,51 @@ export class ParserBuilder {
         };
     }
 
-    filterParser (data) {
-        if (typeof data.operand1 === 'object') {
-            this.filterParser(data.operand1);
-        }
-
-        if (typeof data.operand2 === 'object') {
-            this.filterParser(data.operand2);
-        }
-
-        if (typeof data.length !== 'undefined') {
-            delete data.length;
-        }
-
-        if (typeof data === 'object' && data.length === 1) {
-            data = data[0];
-        }
-
-        return data;
+    getOperandValue(operandValue: OperandValue): OperandItemValue | string | number {
+        return (operandValue.type || '').toUpperCase() === 'UNIT'
+            ? operandValue.unit
+            : operandValue.item;
     }
 
-    stringParser(data: FormulaData, depth = 0, pos = 0) {
-        if (typeof data.value === 'undefined' || data.value === null) {
-            if (typeof data.operator === 'undefined' || data.operator === null) {
-                return this.log(0x20, {
-                    stack: this.currentParser,
-                    col: pos,
-                    depth: depth
-                });
-            } else if (typeof data.operand1 === 'undefined' || data.operand1 === null) {
-                return this.log(0x21, {
-                    stack: this.currentParser,
-                    col: pos,
-                    depth: depth
-                });
-            } else if (typeof data.operand2 === 'undefined' || data.operand2 === null) {
-                return this.log(0x22, {
-                    stack: this.currentParser,
-                    col: pos,
-                    depth: depth
-                });
-            }
-        } else {
-            return {
-                status: true,
-                data: ((data.value.type === 'unit') ? data.value.unit : data.value)
-            };
-        }
+    getOperand(operand: OperandWrapper) {
+        const operandObject = operand as Operand;
+        return operandObject.value
+            ? this.getOperandValue(operandObject.value)
+            : operand;
+    }
 
+    validateParseTree(data: OperandWrapper, pos: number, col: number) {
+        if (!ParserBuilder.isOperand(data))
+            return LoggerHelper.getMessage(LoggerCode.Success, {
+                data: this.getOperand(data)
+            });
+
+        if (!data.operator)
+            return this.log(0x20, {
+                code: this.currentParser,
+                col: col
+            });
+
+        if (!data.operand1)
+            return this.log(0x21, {
+                stack: this.currentParser,
+                col: col
+            });
+
+        if (!data.operand2)
+            return LoggerHelper.getMessage(0x22, {
+                col,
+                process: ParserProcess.Filter,
+            });
+    }
+
+    parseTree(data: OperandWrapper, pos = 0,  col = 0): ParserResult<string[]> {
+        this.validateParseTree(data, pos, col);
         var params = ['operand1', 'operator', 'operand2'];
         for (var idx = 0; idx < params.length; idx++) {
             var param = params[idx];
             if (typeof data[param] === 'object') {
-                var result = _this.stringParser(data[param], depth + 1, pos + idx);
+                var result = _this.parseTree(data[param], col + idx);
                 if (result.status === false) {
                     return result;
                 } else {
@@ -284,12 +285,8 @@ export class ParserBuilder {
         };
     }
 
-    parse(data, pos, depth) {
-        var _super = this;
-        pos = pos || 0;
-        depth = depth || 0;
-
-        if (typeof data === 'string' && depth < 1) {
+    parse(data: FormulaData, pos = 0) {
+        if (typeof data === 'string') {
             data = this.stringToArray(data);
         }
 
@@ -304,8 +301,7 @@ export class ParserBuilder {
             return {
                 status: true,
                 data: data,
-                length: depth === 0 ? undefined : parserLength,
-                depth: depth === 0 ? undefined : depth
+                length: depth === 0 ? undefined : parserLength
             };
         };
 
@@ -329,8 +325,8 @@ export class ParserBuilder {
         }
     }
 
-    unparse(data) {
-        const result = this.stringParser(data);
+    unparse(data: ParserTree): ParserResult<> {
+        const result = this.parseTree(data);
         return {
             status: true,
             data: result.data

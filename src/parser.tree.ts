@@ -1,7 +1,9 @@
+export type OperandWrapper = Operand | ParserTree;
+
 export interface ParserTree {
     operator: string;
-    operand1: Operand | ParserTree;
-    operand2: Operand | ParserTree;
+    operand1: OperandWrapper;
+    operand2: OperandWrapper;
 }
 
 export interface Operand {
@@ -11,7 +13,7 @@ export interface Operand {
 export interface OperandValue {
     type: string;
     item?: OperandItemValue;
-    unit?: string | number;
+    unit?: OperandUnitValue;
 }
 
 export interface OperandItemValue {
@@ -20,3 +22,5 @@ export interface OperandItemValue {
     name: string;
     oper: string;
 }
+
+export type OperandUnitValue = string | number;
