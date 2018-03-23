@@ -3,7 +3,7 @@ import { ParserProcess } from './parser.process';
 import { LoggerMessage } from './logger.message';
 import { LoggerCode } from './logger.code';
 import { LoggerHelper } from './logger.helper';
-import { Operand, OperandItemValue, OperandValue, OperandWrapper, ParserTree } from './parser.tree';
+import { Operand, OperandItemValue, OperandUnitValue, OperandValue, OperandWrapper, ParserTree } from './parser.tree';
 import { ParserResult } from './parser.result';
 
 export class ParserBuilder {
@@ -58,6 +58,21 @@ export class ParserBuilder {
 
         if (this.needUnparse())
             return this.collapse();
+    }
+
+    getOperatorPriority(operator) {
+        if (this.inArray(operator, this.Operators) === -1) {
+            return -1;
+        } else {
+            var priority = -1;
+            for (var idx = 0; idx < this.OperandPriority.length; idx++) {
+                if (this.inArray(operator, this.OperandPriority[idx]) !== -1) {
+                    priority = idx;
+                    break;
+                }
+            }
+            return priority;
+        }
     }
 
     layerParser(data, pos, depth) {
@@ -217,7 +232,7 @@ export class ParserBuilder {
         };
     }
 
-    getOperandValue(operandValue: OperandValue): OperandItemValue | string | number {
+    getOperandValue(operandValue: OperandValue): OperandItemValue | OperandUnitValue {
         return (operandValue.type || '').toUpperCase() === 'UNIT'
             ? operandValue.unit
             : operandValue.item;
@@ -230,33 +245,42 @@ export class ParserBuilder {
             : operand;
     }
 
-    validateParseTree(data: OperandWrapper, pos: number, col: number) {
-        if (!ParserBuilder.isOperand(data))
-            return LoggerHelper.getMessage(LoggerCode.Success, {
-                data: this.getOperand(data)
-            });
+    validateParseTree(data: OperandWrapper, line: number, col: number) {
+        if (ParserBuilder.isOperand(data))
+            return LoggerHelper.getMessage();
 
-        if (!data.operator)
-            return this.log(0x20, {
-                code: this.currentParser,
-                col: col
-            });
-
-        if (!data.operand1)
-            return this.log(0x21, {
-                stack: this.currentParser,
-                col: col
-            });
-
-        if (!data.operand2)
-            return LoggerHelper.getMessage(0x22, {
+        const tree = data as ParserTree;
+        if (!tree.operator)
+            return LoggerHelper.getMessage(LoggerCode.InvalidOperatorKey, {
+                line,
                 col,
-                process: ParserProcess.Filter,
+                process: ParserProcess.String
+            });
+
+        if (!tree.operand1)
+            return LoggerHelper.getMessage(LoggerCode.InvalidLeftOperand, {
+                line,
+                col,
+                process: ParserProcess.String
+            });
+
+        if (!tree.operand2)
+            return LoggerHelper.getMessage(LoggerCode.InvalidRightOperand, {
+                line,
+                col,
+                process: ParserProcess.String
             });
     }
 
-    parseTree(data: OperandWrapper, pos = 0,  col = 0): ParserResult<string[]> {
-        this.validateParseTree(data, pos, col);
+    parseTree(data: OperandWrapper, line = 0,  col = 0): ParserResult<(OperandItemValue | OperandUnitValue)[]> {
+        this.validateParseTree(data, line, col);
+
+        if (!ParserBuilder.isOperand(data))
+            return {
+                code: LoggerCode.Success,
+                data: [this.getOperandValue((data as Operand).value)]
+            };
+
         var params = ['operand1', 'operator', 'operand2'];
         for (var idx = 0; idx < params.length; idx++) {
             var param = params[idx];

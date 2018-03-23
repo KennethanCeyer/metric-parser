@@ -5,7 +5,7 @@ import { ParserDefaultResult } from './parser.result';
 import { StringHelper } from './string.helper';
 
 export class LoggerHelper {
-    public static getMessage(code: LoggerCode, trace: LoggerTrace, mapping?: string[]): ParserDefaultResult {
+    public static getMessage(code: LoggerCode = LoggerCode.Success, trace?: LoggerTrace, mapping?: string[]): ParserDefaultResult {
         const message = StringHelper.formatString(LoggerMessage[code] || '', mapping);
 
         return {

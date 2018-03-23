@@ -15,6 +15,7 @@ export class StringHelper {
         return target.replace(new RegExp(`\\\{${idx}\\\}`, 'g'), value);
     }
 
+    // TODO: What the hack is this!?
     private stringToArray(value: string) {
         var splitedValue = value.split('');
         for (var idx = 0; idx < dataSplitedLen; idx++) {

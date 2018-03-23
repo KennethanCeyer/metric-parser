@@ -13,7 +13,8 @@
         "noEmit": true,
         "forceConsistentCasingInFileNames": true
     },
-    "include": [
-        "src/**/*"
+    "outDir": "dist",
+    "files": [
+        "src/formula.parser.ts"
     ]
 } 

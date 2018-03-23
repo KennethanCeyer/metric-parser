@@ -3,8 +3,8 @@ import { LoggerTrace } from './logger.trace';
 
 export interface ParserResult<T> {
     code: LoggerCode;
-    message: string;
-    trace: LoggerTrace;
+    message?: string;
+    trace?: LoggerTrace;
     data?: T;
 }
 

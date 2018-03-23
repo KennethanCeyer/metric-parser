@@ -12,23 +12,8 @@ export namespace Formula {
             return new ParserBuilder(this._formula).build();
         }
 
-        getVersion = function () {
+        getVersion() {
             return _PLUGIN_VERSION_;
-        };
-
-        getOperatorPriority = function (operator) {
-            if (this.inArray(operator, this.Operators) === -1) {
-                return -1;
-            } else {
-                var priority = -1;
-                for (var idx = 0; idx < this.OperandPriority.length; idx++) {
-                    if (this.inArray(operator, this.OperandPriority[idx]) !== -1) {
-                        priority = idx;
-                        break;
-                    }
-                }
-                return priority;
-            }
-        };
+        }
     }
 }
