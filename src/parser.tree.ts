@@ -1,6 +1,19 @@
-export type OperandWrapper = Operand | ParserTree;
+import { Token } from './token';
 
-export interface ParserTree {
+export type OperandWrapper = Operand | ParseTree;
+
+export interface AbstractSyntaxTree {
+    expression: Token.Operator,
+    leftNode: Node;
+    rightNode: Node;
+}
+
+export interface Node {
+    tType: Token.Type;
+    tValue: string;
+}
+
+export interface ParseTree {
     operator: string;
     operand1: OperandWrapper;
     operand2: OperandWrapper;

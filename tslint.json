@@ -1,5 +1,12 @@
 {
+    "extends": "tslint-config-airbnb",
     "rules": {
-        "prefer-for-of": false
+        "indent": [true, 4],
+        "ter-indent": [true, 4],
+        "curly": [true, "as-needed"],
+        "max-line-length": [true, 120],
+        "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"],
+        "prefer-for-of": false,
+        "trailing-comma": false
     }
 }

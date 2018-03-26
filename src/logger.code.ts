@@ -1,6 +1,6 @@
 export enum LoggerCode {
     Success,
-    Invalid,
+    InvalidToken,
     NotSupported,
     InvalidLeftOperand,
     InvalidRightOperand,

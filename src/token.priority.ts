@@ -1,6 +1,6 @@
-import { Token } from './operand.token';
+import { Token } from './token';
 
-export var Priority = [
+export var TokenPriority = [
     [Token.Mod, Token.Pow],
     [Token.Multiplication, Token.Division],
     [Token.Addition, Token.Subtraction]

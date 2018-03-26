@@ -1,15 +1,17 @@
 import { FormulaData } from './types';
-import { Token } from './operand.token';
 import { ParserBuilder } from './parser.builder';
+import { ParserDefaultResult } from './parser.result';
+
+const _PLUGIN_VERSION_ = '1.0.0';
 
 export namespace Formula {
     export class Parser {
-        private _formula: FormulaData;
+        private _builder: ParserBuilder;
+        public result: ParserDefaultResult;
 
         public constructor(formula: FormulaData) {
-            this._formula = formula;
-
-            return new ParserBuilder(this._formula).build();
+            this._builder = new ParserBuilder(formula);
+            this.result = this._builder.build();
         }
 
         getVersion() {
