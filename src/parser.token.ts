@@ -101,7 +101,8 @@ export class ParserToken {
 
     private analyzeOperatorToken(token: Token.Token) {
         const lastToken = this.popStack();
-        if (lastToken && !TokenHelper.isBracketClose(lastToken) && !TokenHelper.isToken(token))
+
+        if (!TokenHelper.isBracketClose(lastToken))
         // Invalid Error: Operator left token is invalid
             console.log('error2', lastToken);
 

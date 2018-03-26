@@ -10,8 +10,8 @@ export class AbstractSyntaxTree {
     private _subType: Token.SubType;
 
     public constructor(value?: Token.Token) {
-        this._type = this.induceType(value);
-        this._value = value;
+        if (value)
+            this.setValue(value);
     }
 
     public findRoot(): AbstractSyntaxTree {
