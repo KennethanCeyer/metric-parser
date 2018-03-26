@@ -4,21 +4,20 @@ import { TokenHelper } from './token.helper';
 import { TokenValidateLevel } from './token.validate';
 import { LoggerCode } from './logger.code';
 import { LoggerHelper } from './logger.helper';
-import { LoggerTrace } from './logger.trace';
 import { ParserProcess } from './parser.process';
 import { Token } from './token';
-import Literal = Token.Literal;
 import { AbstractSyntaxTree } from './parser.ast';
+import Literal = Token.Literal;
 
 export class ParserToken {
-    private _token: string[] = [];
-    private _tokenStack: string[] = [];
+    private _token: Token.Token[] = [];
+    private _tokenStack: Token.Token[] = [];
     private _AST: AbstractSyntaxTree;
     private _currentTree: AbstractSyntaxTree;
     private _index: number = 0;
     private _lastError: ParserDefaultResult;
 
-    constructor(token: string[]) {
+    constructor(token: Token.Token[]) {
         this._token = token;
     }
 
@@ -64,7 +63,7 @@ export class ParserToken {
             : undefined;
     }
 
-    private analyzeToken(token: string) {
+    private analyzeToken(token: Token.Token) {
         if (TokenHelper.isBracket(token)) {
             this.analyzeBracketToken(token);
             return;
@@ -83,7 +82,7 @@ export class ParserToken {
         this._currentTree.setRightNode(this._currentTree.insertNode(token));
     }
 
-    private analyzeBracketToken(token: string) {
+    private analyzeBracketToken(token: Token.Token) {
         const lastToken = this.popStack();
         if (TokenHelper.isBracketOpen(token)) {
             if (lastToken && !TokenHelper.isSymbol(lastToken))
@@ -100,9 +99,9 @@ export class ParserToken {
         }
     }
 
-    private analyzeOperatorToken(token: string) {
+    private analyzeOperatorToken(token: Token.Token) {
         const lastToken = this.popStack();
-        if (lastToken && !TokenHelper.isBracketClose(lastToken) && !TokenHelper.isNumeric(lastToken))
+        if (lastToken && !TokenHelper.isBracketClose(lastToken) && !TokenHelper.isToken(token))
         // Invalid Error: Operator left token is invalid
             console.log('error2', lastToken);
 
@@ -124,12 +123,12 @@ export class ParserToken {
         this._tokenStack.push(newToken);
     }
 
-    private static validateToken(token: any): TokenValidateLevel {
-        if (TokenHelper.isToken(token))
-            return TokenValidateLevel.Pass;
-
+    private static validateToken(token: Token.Token): TokenValidateLevel {
         if (TokenHelper.isWhiteSpace(token))
             return TokenValidateLevel.Escape;
+
+        if (TokenHelper.isToken(token))
+            return TokenValidateLevel.Pass;
 
         return TokenValidateLevel.Fatal;
     }

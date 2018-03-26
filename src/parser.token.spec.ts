@@ -2,6 +2,8 @@ import { expect } from 'chai';
 import { Formula } from './formula.parser';
 import { ParserToken } from './parser.token';
 import { Token } from './token';
+import { ParserAstHelper } from './parser.ast.helper';
+import { TokenHelper } from './token.helper';
 
 describe('basic parse token', () => {
     it('should return ast correctly from `1 + 2`', () => {
@@ -178,5 +180,21 @@ describe('parse token with bracket', () => {
         expect(rightNode.getRightNode().getRightNode().getRightNode().getRightNode().getLeftNode().getRightNode().getRightNode().getLeftNode().getValue()).to.equal('2');
         expect(rightNode.getRightNode().getRightNode().getRightNode().getRightNode().getLeftNode().getRightNode().getRightNode().getRightNode().getType()).to.equal(Token.Type.Value);
         expect(rightNode.getRightNode().getRightNode().getRightNode().getRightNode().getLeftNode().getRightNode().getRightNode().getRightNode().getValue()).to.equal('6');
+    });
+});
+
+describe('parse token with advanced feature', () => {
+    it('should return ast correctly from `{item} * 2`', () => {
+        const customInput = {
+            value: 2,
+            aggregate: 'sum',
+            type: 'number',
+            scope: 'single'
+        };
+        const data = [customInput, '*', 2];
+        const parser = new ParserToken(data);
+        parser.parse();
+        const ast = parser.getAST();
+        console.log(ParserAstHelper.getNodeDisplay(ast));
     });
 });

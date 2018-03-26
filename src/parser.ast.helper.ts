@@ -3,10 +3,7 @@ import { AbstractSyntaxTree } from './parser.ast';
 export type subNodeSide = 'left' | 'right';
 
 export class ParserAstHelper {
-    public static getNodeDisplay(node?: AbstractSyntaxTree, depth: number = 0): string {
-        if (!node && depth > 0)
-            return;
-
+    public static getNodeDisplay(node: AbstractSyntaxTree, depth: number = 0): string {
         const leftNode = node.getLeftNode();
         const rightNode = node.getRightNode();
 

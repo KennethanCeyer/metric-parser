@@ -2,7 +2,6 @@
     "compilerOptions": {
         "baseUrl": "./",
         "rootDir": "./src",
-        "outDir": "./dist",
         "module": "commonjs",
         "lib": [
             "es2017",
@@ -11,11 +10,10 @@
         "noImplicitAny": true,
         "noImplicitThis": true,
         "strictNullChecks": false,
-        "typeRoots": [ "node_modules/@types" ],
         "noEmit": true,
-        "forceConsistentCasingInFileNames": true
+        "typeRoots": [ "node_modules/@types" ]
     },
-    "outDir": "dist",
+    "outDir": "./dist",
     "files": [
         "src/formula.parser.ts"
     ]

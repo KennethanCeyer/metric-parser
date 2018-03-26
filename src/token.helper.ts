@@ -1,65 +1,64 @@
-import { ParserTypeHelper } from './parser.type.helper';
 import { Token } from './token';
 
 export class TokenHelper {
     public static isToken(token: Token.Token): boolean {
-        return this.isNumeric(token) || this.isSymbol(token);
+        return token && (TokenHelper.isNumeric(token) || this.isSymbol(token) || TokenHelper.isObject(token));
     }
 
     public static isWhiteSpace(token: Token.Token): boolean {
         return Token.WhiteSpace.includes(String(token));
     }
 
-    public static isNumeric(value: string | number): boolean {
+    public static isNumeric(value: Token.Token): boolean {
         return (/\d+(\.\d*)?|\.\d+/)
             .test(String(value));
     }
 
-    public static isArray(value: any): boolean {
+    public static isArray(value: Token.Token): boolean {
         return Array.isArray(value);
     }
 
-    public static isString(value: any): boolean {
+    public static isString(value: Token.Token): boolean {
         return typeof value === 'string';
     }
 
-    public static isObject(value: any): boolean {
+    public static isObject(value: Token.Token): boolean {
         return typeof value === 'object';
     }
 
-    public static isAddition(token: string): boolean {
+    public static isAddition(token: Token.Token): boolean {
         return Token.Addition.includes(token);
     }
 
-    public static isSubtraction(token: string): boolean {
+    public static isSubtraction(token: Token.Token): boolean {
         return Token.Subtraction.includes(token);
     }
 
-    public static isMultiplication(token: string): boolean {
+    public static isMultiplication(token: Token.Token): boolean {
         return Token.Multiplication.includes(token);
     }
 
-    public static isDivision(token: string): boolean {
+    public static isDivision(token: Token.Token): boolean {
         return Token.Division.includes(token);
     }
 
-    public static isMod(token: string): boolean {
+    public static isMod(token: Token.Token): boolean {
         return Token.Mod.includes(token);
     }
 
-    public static isPow(token: string): boolean {
+    public static isPow(token: Token.Token): boolean {
         return Token.Pow.includes(token);
     }
 
-    public static isBracket(token: string): boolean {
+    public static isBracket(token: Token.Token): boolean {
         return Token.Bracket.includes(token);
     }
 
-    public static isBracketOpen(token: string): boolean {
+    public static isBracketOpen(token: Token.Token): boolean {
         return token === Token.BracketOpen;
     }
 
-    public static isBracketClose(token: string): boolean {
+    public static isBracketClose(token: Token.Token): boolean {
         return token === Token.BracketClose;
     }
 
@@ -71,7 +70,7 @@ export class TokenHelper {
         return Token.Operators.includes(String(token));
     }
 
-    public static getPrecedence(token: string) {
+    public static getPrecedence(token: Token.Token) {
         return [
             [TokenHelper.isAddition, TokenHelper.isSubtraction],
             [TokenHelper.isMultiplication, TokenHelper.isDivision],

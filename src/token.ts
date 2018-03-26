@@ -1,7 +1,7 @@
 import Literal = Token.Literal;
 
 export namespace Token {
-    export type Token = string | number;
+    export type Token = string | number | any;
     export type Addition = '+';
     export type Subtraction = '-';
     export type Multiplication = '*';
