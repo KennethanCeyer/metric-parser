@@ -2,6 +2,8 @@
 
 [![npm version](https://badge.fury.io/js/pg-formula-parser.svg)](https://badge.fury.io/js/pg-formula-parser) [![Bower version](https://badge.fury.io/bo/pg-formula-parser.svg)](https://badge.fury.io/bo/pg-formula-parser) [![Join the chat at https://gitter.im/KennethanCeyer/PIGNOSE](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/KennethanCeyer/PIGNOSE?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/9ab3eed6a3b758c6d2d9/maintainability)](https://codeclimate.com/github/KennethanCeyer/formula-parser/maintainability) [![CodeFactor](https://www.codefactor.io/repository/github/kennethanceyer/formula-parser/badge)](https://www.codefactor.io/repository/github/kennethanceyer/formula-parser)
+
 ----
 
 **Formula Parser** can helps you make object of the formulas by parsing.
