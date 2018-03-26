@@ -22,6 +22,10 @@ export namespace Token {
         CompareToken
     }
 
+    export enum SubType {
+        Group
+    }
+
     export const Literal = {
         Addition: '+',
         Substraction: '-',
@@ -44,13 +48,13 @@ export namespace Token {
     export const BracketClose = Literal.BracketClose
     export const Bracket = [ Token.BracketOpen, Token.BracketClose ];
     export const Precedence = [
-        ...Token.Bracket,
         ...Token.Addition,
         ...Token.Subtraction,
         ...Token.Multiplication,
         ...Token.Division,
         ...Token.Pow,
         ...Token.Mod,
+        ...Token.Bracket,
     ];
     export const Operators = [
         ...Token.Addition,

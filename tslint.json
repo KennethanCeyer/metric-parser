@@ -4,7 +4,7 @@
         "indent": [true, 4],
         "ter-indent": [true, 4],
         "curly": false,
-        "brace-style": [true, "allman", {
+        "brace-style": [true, "1tbs", {
             "allowSingleLine": true
         }],
         "max-line-length": [true, 120],

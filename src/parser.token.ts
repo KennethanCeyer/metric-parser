@@ -71,12 +71,14 @@ export class ParserToken {
             if (lastToken && !TokenHelper.isSymbol(lastToken))
                 this.insertImplicitMultiplication();
 
-            this._currentTree = this._AST.insertNode(token);
+            this._currentTree = this._currentTree.insertNode(token);
             return;
         }
 
         if (TokenHelper.isBracketClose(token)) {
-
+            this._currentTree = this._currentTree.removeClosestBracket();
+            this._AST = this._currentTree.findRoot();
+            return;
         }
 
         if (TokenHelper.isOperator(token)) {

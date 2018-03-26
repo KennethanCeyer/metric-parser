@@ -7,6 +7,7 @@ export class AbstractSyntaxTree {
     private _rightNode: AbstractSyntaxTree;
     private _parent: AbstractSyntaxTree;
     private _type: Token.Type;
+    private _subType: Token.SubType;
 
     public constructor(value?: string) {
         this._type = this.induceType(value);
@@ -20,11 +21,43 @@ export class AbstractSyntaxTree {
         return this._parent.findRoot();
     }
 
+    private findOpenedBracket(): AbstractSyntaxTree {
+        if (TokenHelper.isBracketOpen(this.getValue()))
+            return this;
+
+        if (!this._parent)
+            return null;
+
+        return this._parent.findOpenedBracket();
+    }
+
+    public removeClosestBracket(): AbstractSyntaxTree {
+        const node = this.findOpenedBracket();
+
+        if (!node)
+            return null;
+
+        const targetNode = node.getLeftNode();
+        targetNode.setSubType(Token.SubType.Group);
+
+        if (!node._parent) {
+            targetNode.removeParent();
+            return targetNode;
+        }
+
+        if (node._parent.getLeftNode() === node)
+            node._parent.setLeftNode(targetNode);
+        else
+            node._parent.setRightNode(targetNode);
+
+        return node._parent;
+    }
+
     private climbUp(token: string): AbstractSyntaxTree {
         const currentPrecedence = TokenHelper.getPrecedence(this._value);
         const tokenPrecedence = TokenHelper.getPrecedence(token);
 
-        if (currentPrecedence - tokenPrecedence <= 0)
+        if (currentPrecedence - tokenPrecedence <= 0 && this.getSubType() !== Token.SubType.Group)
             return this;
 
         if (this.isClimbTop()) {
@@ -75,8 +108,14 @@ export class AbstractSyntaxTree {
     }
 
     public insertNode(value: string): AbstractSyntaxTree {
-        if (TokenHelper.isOperator(value))
+        if (TokenHelper.isSymbol(value)) {
+            if (!this.getValue()) {
+                this.setValue(value);
+                return this;
+            }
+
             return this.insertOperatorNode(value);
+        }
 
         const newNode = this.createChildNode(value);
         if (!this.getLeftNode())
@@ -88,7 +127,7 @@ export class AbstractSyntaxTree {
     }
 
     public insertEmptyNode(numberValue: string): AbstractSyntaxTree {
-        if (!this.getLeftNode()) {
+        if (!this.getLeftNode() && !TokenHelper.isBracket(this.getValue())) {
             const newNode = this.createChildNode(numberValue);
             this.setLeftNode(newNode);
             return this;
@@ -109,6 +148,10 @@ export class AbstractSyntaxTree {
         return this._type;
     }
 
+    public getSubType(): Token.SubType {
+        return this._subType;
+    }
+
     public getValue(): string {
         return this._value;
     }
@@ -122,11 +165,21 @@ export class AbstractSyntaxTree {
     }
 
     public removeLeftNode() {
+        this._leftNode.removeParent();
         this._leftNode = undefined;
     }
 
     public removeRightNode() {
+        this._rightNode.removeParent();
         this._rightNode = undefined;
+    }
+
+    public removeParent() {
+        this._parent = undefined;
+    }
+
+    private setSubType(subType: Token.SubType) {
+        this._subType = subType;
     }
 
     public setValue(value: string) {
@@ -139,11 +192,17 @@ export class AbstractSyntaxTree {
     }
 
     public setLeftNode(node: AbstractSyntaxTree) {
+        if (!node)
+            return;
+
         this._leftNode = node;
         node.setParent(this);
     }
 
     public setRightNode(node: AbstractSyntaxTree) {
+        if (!node)
+            return;
+
         this._rightNode = node;
         node.setParent(this);
     }
@@ -159,17 +218,17 @@ export class AbstractSyntaxTree {
         const tabString = this.getTab(depth);
 
         let display = '';
-        display += `${tabString}* NODE: ${depth}\n`;
+        display += `${tabString}* NODE\n`;
         display += `${tabString}- value: ${currentNode.getValue()}\n`;
 
         if (leftNode) {
             display += `${tabString}- left:\n`;
-            display += `${tabString}${this.getNodeDisplay(leftNode, depth + 1)}\n\n`;
+            display += `${tabString}${this.getNodeDisplay(leftNode, depth + 1)}\n`;
         }
 
         if (rightNode) {
             display += `${tabString}- right:\n`;
-            display += `${tabString}${this.getNodeDisplay(rightNode, depth + 1)}\n\n`;
+            display += `${tabString}${this.getNodeDisplay(rightNode, depth + 1)}\n`;
         }
 
         return display;
