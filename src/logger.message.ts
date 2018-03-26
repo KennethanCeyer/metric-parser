@@ -1,6 +1,6 @@
 import { LoggerCode } from './logger.code';
 
-export const LoggerMessage = {
+export const LoggerMessage: { [key: number]: string } = {
     [LoggerCode.InvalidToken]: '{0} token is invalid type',
     [LoggerCode.NotSupported]: '\'{0}\' operator is not supported.',
     [LoggerCode.InvalidLeftOperand]: 'Left side operand is not valid.',

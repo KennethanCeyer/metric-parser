@@ -1,3 +1,5 @@
+import Literal = Token.Literal;
+
 export namespace Token {
     export type Token = string | number;
     export type Addition = '+';
@@ -20,15 +22,36 @@ export namespace Token {
         CompareToken
     }
 
-    export const Addition = ['+'];
-    export const Subtraction = ['-'];
-    export const Multiplication = ['x', '*'];
-    export const Division = ['/'];
-    export const Mod = ['%'];
-    export const Pow = ['^'];
-    export const BracketOpen = '(';
-    export const BracketClose = ')';
+    export const Literal = {
+        Addition: '+',
+        Substraction: '-',
+        Multiplication: '*',
+        MultiplicationLiteral: 'x',
+        Division: '/',
+        Mod: '%',
+        Pow: '^',
+        BracketOpen: '(',
+        BracketClose: ')'
+    }
+
+    export const Addition = [ Literal.Addition ];
+    export const Subtraction = [ Literal.Substraction ];
+    export const Multiplication = [ Literal.Multiplication, Literal.MultiplicationLiteral ];
+    export const Division = [ Literal.Division ];
+    export const Mod = [ Literal.Mod ];
+    export const Pow = [ Literal.Pow ];
+    export const BracketOpen = Literal.BracketOpen;
+    export const BracketClose = Literal.BracketClose
     export const Bracket = [ Token.BracketOpen, Token.BracketClose ];
+    export const Precedence = [
+        ...Token.Bracket,
+        ...Token.Addition,
+        ...Token.Subtraction,
+        ...Token.Multiplication,
+        ...Token.Division,
+        ...Token.Pow,
+        ...Token.Mod,
+    ];
     export const Operators = [
         ...Token.Addition,
         ...Token.Subtraction,

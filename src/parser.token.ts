@@ -1,16 +1,20 @@
 import { ParserDefaultResult } from './parser.result';
-import { AbstractSyntaxTree, ParseTree } from './parser.tree';
+import { ParseTree } from './parser.tree';
 import { TokenHelper } from './token.helper';
 import { TokenValidateLevel } from './token.validate';
 import { LoggerCode } from './logger.code';
 import { LoggerHelper } from './logger.helper';
 import { LoggerTrace } from './logger.trace';
 import { ParserProcess } from './parser.process';
+import { Token } from './token';
+import Literal = Token.Literal;
+import { AbstractSyntaxTree } from './parser.ast';
 
 export class ParserToken {
     private _token: string[] = [];
     private _tokenStack: string[] = [];
     private _AST: AbstractSyntaxTree;
+    private _currentTree: AbstractSyntaxTree;
     private _index: number = 0;
     private _lastError: ParserDefaultResult;
 
@@ -19,7 +23,8 @@ export class ParserToken {
     }
 
     public parse(): ParseTree {
-        this.retrieveToken();
+        this.initialize();
+        this.makeAST();
         return this.makeTree();
     }
 
@@ -27,16 +32,83 @@ export class ParserToken {
         return this._lastError;
     }
 
-    private retrieveToken() {
+    private initialize() {
+        this._AST = new AbstractSyntaxTree();
+        this._currentTree = this._AST;
+        this._index = 0;
+        this._lastError = null;
+    }
+
+    public getAST(): AbstractSyntaxTree {
+        return this._AST;
+    }
+
+    private makeAST() {
         let token;
-        while(token = this.next()) {
+        while (token = this.next()) {
             const level = ParserToken.validateToken(token);
             if (level === TokenValidateLevel.Fatal) {
                 this.makeError(LoggerCode.InvalidToken);
                 return;
             } else if (level === TokenValidateLevel.Escape)
                 continue;
+
+            this.analyzeToken(token);
+            this._tokenStack.push(token);
         }
+    }
+
+    private popStack(): string | undefined {
+        return this._tokenStack.length
+            ? this._tokenStack[this._tokenStack.length - 1]
+            : undefined;
+    }
+
+    private analyzeToken(token: string) {
+        const lastToken = this.popStack();
+
+        if (TokenHelper.isBracketOpen(token)) {
+            if (lastToken && !TokenHelper.isSymbol(lastToken))
+                this.insertImplicitMultiplication();
+
+            this._currentTree = this._AST.insertNode(token);
+            return;
+        }
+
+        if (TokenHelper.isBracketClose(token)) {
+
+        }
+
+        if (TokenHelper.isOperator(token)) {
+            if (lastToken && !TokenHelper.isBracketClose(lastToken) && !TokenHelper.isNumeric(lastToken))
+                // Invalid Error: Operator left token is invalid
+                console.log('error2', lastToken);
+
+            if (!this._currentTree.getValue())
+                this._currentTree.setValue(token);
+            else {
+                if (!this._currentTree.getRightNode())
+                    // Invalid Error: Duplicated operators
+                    console.log('error3');
+
+                this._currentTree = this._currentTree.insertNode(token);
+                this._AST = this._AST.findRoot();
+            }
+            return;
+        }
+
+        if (!TokenHelper.isOperator(this._currentTree.getValue())) {
+            this._currentTree = this._currentTree.insertEmptyNode(token);
+            return;
+        }
+
+        this._currentTree.setRightNode(this._currentTree.insertNode(token));
+    }
+
+    private insertImplicitMultiplication() {
+        const newToken = Literal.Multiplication;
+        this.analyzeToken(newToken);
+        this._tokenStack.push(newToken);
     }
 
     private static validateToken(token: any): TokenValidateLevel {
@@ -50,10 +122,12 @@ export class ParserToken {
     }
 
     private next() {
-        if (this._token[this._index + 1]) {
-            this._index += 1;
-            return this._token[this._index];
-        }
+        const currentToken = this._token[this._index];
+        this._index += 1;
+
+        if (currentToken)
+            return currentToken;
+
         return undefined;
     }
 
@@ -77,10 +151,11 @@ export class ParserToken {
     }
 
     private makeError(code: LoggerCode, mapping?: string[], process: ParserProcess = ParserProcess.Lexer) {
-        this._lastError = LoggerHelper.getMessage(code, {
+        const trace = {
             process,
             line: 0,
             col: this._index
-        }, mapping);
+        };
+        this._lastError = LoggerHelper.getMessage(code, trace, mapping);
     }
 }

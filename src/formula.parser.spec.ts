@@ -3,7 +3,7 @@ import { Formula } from './formula.parser';
 
 describe('parse method', () => {
     it('should return an array', () => {
-        const data = '1 + 2';
+        const data = '1 + 2 + 3';
         const parser = new Formula.Parser(data);
         expect(parser.result.data).to.deep.equal({
             operator: '+',
