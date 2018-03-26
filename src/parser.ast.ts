@@ -206,40 +206,4 @@ export class AbstractSyntaxTree {
         this._rightNode = node;
         node.setParent(this);
     }
-
-    public getNodeDisplay(node?: AbstractSyntaxTree, depth: number = 0): string {
-        if (!node && depth > 0)
-            return;
-
-        const currentNode = node || this;
-        const leftNode = currentNode.getLeftNode();
-        const rightNode = currentNode.getRightNode();
-
-        const tabString = this.getTab(depth);
-
-        let display = '';
-        display += `${tabString}* NODE\n`;
-        display += `${tabString}- value: ${currentNode.getValue()}\n`;
-
-        if (leftNode) {
-            display += `${tabString}- left:\n`;
-            display += `${tabString}${this.getNodeDisplay(leftNode, depth + 1)}\n`;
-        }
-
-        if (rightNode) {
-            display += `${tabString}- right:\n`;
-            display += `${tabString}${this.getNodeDisplay(rightNode, depth + 1)}\n`;
-        }
-
-        return display;
-    }
-
-    private getTab(depth: number): string {
-        const tab = [];
-        const tabSize = 4;
-        const tabCharacter = ' ';
-        for (let index = 0; index < depth * tabSize; index += 1)
-            tab.push(tabCharacter);
-        return tab.join('');
-    }
 }

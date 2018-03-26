@@ -4,6 +4,8 @@
 
 [![Build Status](https://travis-ci.org/KennethanCeyer/formula-parser.svg?branch=master)](https://travis-ci.org/KennethanCeyer/formula-parser) [![codecov](https://codecov.io/gh/KennethanCeyer/formula-parser/branch/master/graph/badge.svg)](https://codecov.io/gh/KennethanCeyer/formula-parser) [![Maintainability](https://api.codeclimate.com/v1/badges/9ab3eed6a3b758c6d2d9/maintainability)](https://codeclimate.com/github/KennethanCeyer/formula-parser/maintainability) [![CodeFactor](https://www.codefactor.io/repository/github/kennethanceyer/formula-parser/badge)](https://www.codefactor.io/repository/github/kennethanceyer/formula-parser)
 
+[![dependencies Status](https://david-dm.org/KennethanCeyer/formula-parser/status.svg)](https://david-dm.org/KennethanCeyer/formula-parser) [![devDependencies Status](https://david-dm.org/KennethanCeyer/formula-parser/dev-status.svg)](https://david-dm.org/KennethanCeyer/formula-parser?type=dev)
+
 ----
 
 **Formula Parser** can helps you make object of the formulas by parsing.

@@ -65,8 +65,26 @@ export class ParserToken {
     }
 
     private analyzeToken(token: string) {
-        const lastToken = this.popStack();
+        if (TokenHelper.isBracket(token)) {
+            this.analyzeBracketToken(token);
+            return;
+        }
 
+        if (TokenHelper.isOperator(token)) {
+            this.analyzeOperatorToken(token);
+            return;
+        }
+
+        if (!TokenHelper.isOperator(this._currentTree.getValue())) {
+            this._currentTree = this._currentTree.insertEmptyNode(token);
+            return;
+        }
+
+        this._currentTree.setRightNode(this._currentTree.insertNode(token));
+    }
+
+    private analyzeBracketToken(token: string) {
+        const lastToken = this.popStack();
         if (TokenHelper.isBracketOpen(token)) {
             if (lastToken && !TokenHelper.isSymbol(lastToken))
                 this.insertImplicitMultiplication();
@@ -80,31 +98,24 @@ export class ParserToken {
             this._AST = this._currentTree.findRoot();
             return;
         }
+    }
 
-        if (TokenHelper.isOperator(token)) {
-            if (lastToken && !TokenHelper.isBracketClose(lastToken) && !TokenHelper.isNumeric(lastToken))
-                // Invalid Error: Operator left token is invalid
-                console.log('error2', lastToken);
+    private analyzeOperatorToken(token: string) {
+        const lastToken = this.popStack();
+        if (lastToken && !TokenHelper.isBracketClose(lastToken) && !TokenHelper.isNumeric(lastToken))
+        // Invalid Error: Operator left token is invalid
+            console.log('error2', lastToken);
 
-            if (!this._currentTree.getValue())
-                this._currentTree.setValue(token);
-            else {
-                if (!this._currentTree.getRightNode())
-                    // Invalid Error: Duplicated operators
-                    console.log('error3');
+        if (!this._currentTree.getValue())
+            this._currentTree.setValue(token);
+        else {
+            if (!this._currentTree.getRightNode())
+            // Invalid Error: Duplicated operators
+                console.log('error3');
 
-                this._currentTree = this._currentTree.insertNode(token);
-                this._AST = this._AST.findRoot();
-            }
-            return;
+            this._currentTree = this._currentTree.insertNode(token);
+            this._AST = this._AST.findRoot();
         }
-
-        if (!TokenHelper.isOperator(this._currentTree.getValue())) {
-            this._currentTree = this._currentTree.insertEmptyNode(token);
-            return;
-        }
-
-        this._currentTree.setRightNode(this._currentTree.insertNode(token));
     }
 
     private insertImplicitMultiplication() {
@@ -160,4 +171,5 @@ export class ParserToken {
         };
         this._lastError = LoggerHelper.getMessage(code, trace, mapping);
     }
+
 }
