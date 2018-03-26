@@ -4,8 +4,7 @@
   "description": "Formula expression parser and validation library.",
   "main": "index.html",
   "scripts": {
-    "test": "nyc mocha",
-    "coverage": "coveralls"
+    "test": "nyc mocha"
   },
   "nyc": {
     "all": true,
