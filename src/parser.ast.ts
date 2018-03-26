@@ -2,14 +2,14 @@ import { Token } from './token';
 import { TokenHelper } from './token.helper';
 
 export class AbstractSyntaxTree {
-    private _value: string;
+    private _value: Token.Token;
     private _leftNode: AbstractSyntaxTree;
     private _rightNode: AbstractSyntaxTree;
     private _parent: AbstractSyntaxTree;
     private _type: Token.Type;
     private _subType: Token.SubType;
 
-    public constructor(value?: string) {
+    public constructor(value?: Token.Token) {
         this._type = this.induceType(value);
         this._value = value;
     }
@@ -53,7 +53,7 @@ export class AbstractSyntaxTree {
         return node._parent;
     }
 
-    private climbUp(token: string): AbstractSyntaxTree {
+    private climbUp(token: Token.Token): AbstractSyntaxTree {
         const currentPrecedence = TokenHelper.getPrecedence(this._value);
         const tokenPrecedence = TokenHelper.getPrecedence(token);
 
@@ -73,7 +73,7 @@ export class AbstractSyntaxTree {
         return !this._parent || TokenHelper.isBracketOpen(this._parent.getValue());
     }
 
-    private induceType(value: string) {
+    private induceType(value: Token.Token) {
         if (TokenHelper.isOperator(value))
             return Token.Type.Operator;
 
@@ -83,19 +83,19 @@ export class AbstractSyntaxTree {
         return Token.Type.Value;
     }
 
-    private createChildNode(value?: string): AbstractSyntaxTree {
+    private createChildNode(value?: Token.Token): AbstractSyntaxTree {
         const node = new AbstractSyntaxTree(value);
         node.setParent(this);
         return node;
     }
 
-    private createParentNode(value?: string): AbstractSyntaxTree {
+    private createParentNode(value?: Token.Token): AbstractSyntaxTree {
         const node = new AbstractSyntaxTree(value);
         this.setParent(node);
         return node;
     }
 
-    private insertOperatorNode(value: string) {
+    private insertOperatorNode(value: Token.Token) {
         const rootNode = this.climbUp(value);
         if (this === rootNode) {
             const newNode = this.createChildNode(value);
@@ -107,7 +107,7 @@ export class AbstractSyntaxTree {
         return rootNode;
     }
 
-    public insertNode(value: string): AbstractSyntaxTree {
+    public insertNode(value: Token.Token): AbstractSyntaxTree {
         if (TokenHelper.isSymbol(value)) {
             if (!this.getValue()) {
                 this.setValue(value);
@@ -126,15 +126,15 @@ export class AbstractSyntaxTree {
         return newNode;
     }
 
-    public insertEmptyNode(numberValue: string): AbstractSyntaxTree {
+    public insertEmptyNode(value: Token.Token): AbstractSyntaxTree {
         if (!this.getLeftNode() && !TokenHelper.isBracket(this.getValue())) {
-            const newNode = this.createChildNode(numberValue);
+            const newNode = this.createChildNode(value);
             this.setLeftNode(newNode);
             return this;
         }
 
         const newNode = this.createChildNode();
-        const leftNode = newNode.createChildNode(numberValue);
+        const leftNode = newNode.createChildNode(value);
         newNode.setLeftNode(leftNode);
         this.setLeftNode(newNode);
         return newNode;
@@ -152,7 +152,7 @@ export class AbstractSyntaxTree {
         return this._subType;
     }
 
-    public getValue(): string {
+    public getValue(): Token.Token {
         return this._value;
     }
     
@@ -182,7 +182,7 @@ export class AbstractSyntaxTree {
         this._subType = subType;
     }
 
-    public setValue(value: string) {
+    public setValue(value: Token.Token) {
         this._type = this.induceType(value);
         this._value = value;
     }

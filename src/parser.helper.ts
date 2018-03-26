@@ -5,7 +5,6 @@ export class ParserHelper {
         return typeof data === 'string'
             ? this.stringToArray(data as string)
             : data;
-
     }
 
     private static stringToArray(value: string): string[] {
