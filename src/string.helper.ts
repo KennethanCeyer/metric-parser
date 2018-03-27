@@ -2,8 +2,7 @@ export class StringHelper {
     public static format(value: string, ...args: string[]): string {
         let targetValue = value;
         if (args)
-            args
-                .forEach((match, index) => targetValue = StringHelper.replaceArg(index, targetValue, match));
+            args.forEach((match, index) => targetValue = StringHelper.replaceArg(index, targetValue, match));
         return targetValue;
     }
 
