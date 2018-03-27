@@ -1,8 +1,8 @@
 export class StringHelper {
-    public static formatString(value: string, mapping: string[]): string {
+    public static format(value: string, ...args: string[]): string {
         let targetValue = value;
-        if (mapping)
-            mapping
+        if (args)
+            args
                 .forEach((match, index) => targetValue = StringHelper.replaceArg(index, targetValue, match));
         return targetValue;
     }

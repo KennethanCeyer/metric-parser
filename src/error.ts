@@ -13,7 +13,7 @@ export class ParserError extends Error implements ErrorValue {
         Object.setPrototypeOf(this, ParserError.prototype);
 
         if (args.length)
-            this.error = { ...this.error, text: StringHelper.formatString(this.error.text, args) };
+            this.error = { ...this.error, text: StringHelper.format(this.error.text, ...args) };
 
         this.code = this.error.code;
         this.text = this.error.text;
