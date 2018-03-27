@@ -7,7 +7,7 @@
 		<meta property="og:description" content="Formula string parser working in pure javascript." />
 		<title>Metric Parser</title>
 		<link rel="stylesheet" type="text/css" href="demo/css/semantic.ui.min.css">
-		<link rel="stylesheet" type="text/css" href="demo/css/prism.css" />
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/themes/prism.min.css" />
 		<link rel="stylesheet" type="text/css" href="demo/css/style.css" />
 		<style>
 			.formula-expression,
@@ -83,19 +83,14 @@
 				margin-bottom: 0;
 			}
 		</style>
-		<script type="text/javascript" src="demo/js/jquery.latest.min.js"></script>
-		<script type="text/javascript" src="demo/js/semantic.ui.min.js"></script>
-		<script type="text/javascript" src="demo/js/prism.min.js"></script>
-		<script type="text/javascript" src="demo/js/json.parser.js"></script>
-		<script type="text/javascript" src="dist/metric.parser.umd.js"></script>
 	</head>
 
 	<body>
 		<div id="wrapper">
 			<div class="header">
 				<h1>Metric Parser</h1>
-				<a href="https://github.com/KennethanCeyer/FormulaParser" target="_blank" class="ui button primary">View project on Github</a>
-                <a href="https://github.com/KennethanCeyer/FormulaParser/archive/master.zip" target="_blank" class="ui button teal">Download zip</a>
+				<a href="https://github.com/KennethanCeyer/metric-parser" target="_blank" class="ui button primary">View project on Github</a>
+                <a href="https://github.com/KennethanCeyer/metric-parser/archive/master.zip" target="_blank" class="ui button blue">Download zip</a>
                 <a href="docs/index.html" target="_blank" class="ui button teal">Reference docs</a>
 				<h4 class="version">Latest version <strong></strong></h4>
 			</div>
@@ -168,6 +163,13 @@ const isValid2 = metricParser.valid({expression | parseTree});
 </code></pre>
 			</div>
 		</div>
+        <script type="text/javascript" src="demo/js/jquery.latest.min.js"></script>
+        <script type="text/javascript" src="demo/js/semantic.ui.min.js"></script>
+        <script type="text/javascript" src="demo/js/json.parser.js"></script>
+        <script type="text/javascript" src="dist/metric.parser.umd.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/prism.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/components/prism-javascript.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/components/prism-json.min.js"></script>
         <script>
             var expressions = [
                 '12 + 3',                                                     // 01
