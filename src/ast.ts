@@ -42,17 +42,17 @@ export class AbstractSyntaxTree {
         const targetNode = node.getLeftNode();
         targetNode.setSubType(Token.SubType.Group);
 
-        if (!node._parent) {
+        if (!node.getParent()) {
             targetNode.removeParent();
             return targetNode;
         }
 
-        if (node._parent.getLeftNode() === node)
-            node._parent.setLeftNode(targetNode);
+        if (node.getParent().getLeftNode() === node)
+            node.getParent().setLeftNode(targetNode);
         else
-            node._parent.setRightNode(targetNode);
+            node.getParent().setRightNode(targetNode);
 
-        return node._parent;
+        return node.getParent();
     }
 
     private climbUp(token: Token.Token): AbstractSyntaxTree {
@@ -62,17 +62,13 @@ export class AbstractSyntaxTree {
     }
 
     private isClimbTop(token: Token.Token) {
-        return this.isNeedMakeUpperNode(token) ||
+        return this.isTokenHighest(token) ||
             !this.getParent() ||
             TokenHelper.isBracketOpen(this.getValue());
     }
 
-    private isNeedMakeUpperNode(token: Token.Token) {
-        return this.isTokenHigher(this.getValue(), token) && this.getSubType() !== Token.SubType.Group;
-    }
-
-    private isTokenHigher(source: Token.Token, target: Token.Token) {
-        return TokenHelper.getPrecedence(source) - TokenHelper.getPrecedence(target) <= 0;
+    private isTokenHighest(token: Token.Token) {
+        return TokenHelper.isHigher(token, this.getValue()) && this.getSubType() !== Token.SubType.Group;
     }
 
     private createChildNode(value?: Token.Token): AbstractSyntaxTree {
@@ -97,6 +93,13 @@ export class AbstractSyntaxTree {
             rootNode.setLeftNode(midNode);
             midNode.setLeftNode(leftNode);
             midNode.setRightNode(rightNode);
+            return midNode;
+        }
+
+        if (rootNode.isTokenHighest(value) && rootNode.getParent()) {
+            const midNode = rootNode.createChildNode(value);
+            midNode.setLeftNode(rootNode.getRightNode());
+            rootNode.setRightNode(midNode);
             return midNode;
         }
 

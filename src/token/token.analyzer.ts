@@ -22,7 +22,7 @@ export class TokenAnalyzer {
 
     public parse(): TreeModel {
         this.initialize();
-        this.makeAST();
+        this.makeAst();
         return this.makeTree();
     }
 
@@ -38,11 +38,11 @@ export class TokenAnalyzer {
         this.lastError = null;
     }
 
-    public getAST(): AbstractSyntaxTree {
+    public getAst(): AbstractSyntaxTree {
         return this.ast;
     }
 
-    private makeAST() {
+    private makeAst() {
         let token;
         while (token = this.next()) {
             const level = TokenAnalyzer.validateToken(token);

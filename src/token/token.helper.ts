@@ -1,6 +1,7 @@
 import { Token } from './token';
 
 export class TokenHelper {
+
     public static isToken(token: Token.Token): boolean {
         return token && (TokenHelper.isNumeric(token) || this.isSymbol(token) || TokenHelper.isObject(token));
     }
@@ -69,6 +70,10 @@ export class TokenHelper {
         return Token.Operators.includes(String(token));
     }
 
+    public static isHigher(source: Token.Token, target: Token.Token) {
+        return TokenHelper.getPrecedence(source) - TokenHelper.getPrecedence(target) > 0;
+    }
+
     public static induceType(value: Token.Token) {
         if (!value)
             return Token.Type.Unkown;
@@ -84,7 +89,6 @@ export class TokenHelper {
 
         return Token.Type.Value;
     }
-
     public static getPrecedence(token: Token.Token) {
         return [
             [TokenHelper.isAddition, TokenHelper.isSubtraction],
