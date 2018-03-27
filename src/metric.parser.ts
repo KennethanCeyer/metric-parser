@@ -1,9 +1,9 @@
-import { FormulaData } from './types';
+import { ConvertData } from './types';
 import { Builder } from './builder';
 
 const _PLUGIN_VERSION_ = '1.0.0';
 
-export function convert(formula: FormulaData) {
+export function convert(formula: ConvertData) {
     const builder = new Builder(formula);
     return builder.build();
 }

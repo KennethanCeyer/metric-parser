@@ -1,7 +1,7 @@
 import {TreeModel} from "./tree.type";
 
-export type FormulaData = FormulaParseData | FormulaUnparseData;
+export type ConvertData = ParseData | UnparseData;
 
-export type FormulaParseData = string | string[];
+export type ParseData = string | string[];
 
-export type FormulaUnparseData = TreeModel;
+export type UnparseData = TreeModel;

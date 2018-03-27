@@ -4,3 +4,4 @@ ignore:
   - "src/**/*.js"
   - "src"**/*.spec.ts"
   - "src"**/*.d.ts"
+  - "docs/**/*"

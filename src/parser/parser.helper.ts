@@ -1,7 +1,7 @@
-import { FormulaParseData } from '../types';
+import { ParseData } from '../types';
 
 export class ParserHelper {
-    public static getArray(data: FormulaParseData): string[] {
+    public static getArray(data: ParseData): string[] {
         return typeof data === 'string'
             ? this.stringToArray(data as string)
             : data;
