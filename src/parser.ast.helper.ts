@@ -14,7 +14,7 @@ export class ParserAstHelper {
         display += `${tabString}- value: ${node.getValue()}\n`;
 
         if (leftNode)
-            display += this.getSubNodeDisplay('left', tabString, rightNode, depth);
+            display += this.getSubNodeDisplay('left', tabString, leftNode, depth);
 
         if (rightNode)
             display += this.getSubNodeDisplay('right', tabString, rightNode, depth);

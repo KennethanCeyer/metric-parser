@@ -10,8 +10,7 @@ export class TokenHelper {
     }
 
     public static isNumeric(value: Token.Token): boolean {
-        return (/\d+(\.\d*)?|\.\d+/)
-            .test(String(value));
+        return (/\d+(\.\d*)?|\.\d+/).test(String(value));
     }
 
     public static isArray(value: Token.Token): boolean {

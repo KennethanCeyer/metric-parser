@@ -2,7 +2,7 @@ import { FormulaData, FormulaParseData } from './types';
 import { ParserProcess } from './parser.process';
 import { LoggerCode } from './logger.code';
 import { LoggerHelper } from './logger.helper';
-import { Operand, OperandItemValue, OperandUnitValue, OperandValue, OperandWrapper, ParseTree } from './parser.tree';
+import { Operand, OperandItemValue, OperandUnitValue, OperandValue, ParserTreeValueWrapper, ParserTreeModel } from './parser.tree.type';
 import { ParserDefaultResult, ParserResult } from './parser.result';
 import { ParserTypeHelper } from './parser.type.helper';
 import { ParserHelper } from './parser.helper';
@@ -20,11 +20,11 @@ export class ParserBuilder {
             return this.parse(this._formula as FormulaParseData);
 
         if (ParserTypeHelper.needUnparse(this._formula))
-            return this.unparse(this._formula as ParseTree);
+            return this.unparse(this._formula as ParserTreeModel);
     }
 
     /*
-    parseTree(result: OperandWrapper, line = 0,  col = 0): ParserResult<(OperandItemValue | OperandUnitValue)[]> {
+    parseTree(result: ParserTreeValueWrapper, line = 0,  col = 0): ParserResult<(OperandItemValue | OperandUnitValue)[]> {
         this.validateParseTree(result, line, col);
 
         if (!ParserTypeHelper.isOperand(result))
@@ -62,7 +62,7 @@ export class ParserBuilder {
     }
     */
 
-    parse(data: FormulaParseData, pos = 0): ParserResult<ParseTree> {
+    parse(data: FormulaParseData, pos = 0): ParserResult<ParserTreeModel> {
         const parserToken = new ParserToken(ParserHelper.getArray(data));
         const parseData = parserToken.parse();
 
@@ -75,7 +75,7 @@ export class ParserBuilder {
         }
     }
 
-    unparse(data: ParseTree): ParserDefaultResult {
+    unparse(data: ParserTreeModel): ParserDefaultResult {
         // const result = this.parseTree(result);
         return {
             code: LoggerCode.Success,

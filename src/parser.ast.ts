@@ -153,7 +153,9 @@ export class AbstractSyntaxTree {
     }
 
     public getValue(): Token.Token {
-        return this._value;
+        return TokenHelper.isNumeric(this._value)
+            ? Number(this._value)
+            : this._value;
     }
     
     public getLeftNode(): AbstractSyntaxTree {

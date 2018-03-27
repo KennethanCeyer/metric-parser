@@ -1,8 +1,8 @@
-import { Operand, ParseTree } from './parser.tree';
+import { Operand, ParserTreeModel } from './parser.tree.type';
 import { TokenHelper } from './token.helper';
 
 export class ParserTypeHelper {
-    public static isOperand(data: ParseTree | Operand) {
+    public static isOperand(data: ParserTreeModel | Operand) {
         return !!(data as Operand).value;
     }
 

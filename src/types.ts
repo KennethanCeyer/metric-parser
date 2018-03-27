@@ -1,7 +1,7 @@
-import {ParseTree} from "./parser.tree";
+import {ParserTreeModel} from "./parser.tree.type";
 
 export type FormulaData = FormulaParseData | FormulaUnparseData;
 
 export type FormulaParseData = string | string[];
 
-export type FormulaUnparseData = ParseTree;
+export type FormulaUnparseData = ParserTreeModel;

@@ -1,5 +1,5 @@
 import { ParserDefaultResult } from './parser.result';
-import { ParseTree } from './parser.tree';
+import { ParserTreeModel } from './parser.tree.type';
 import { TokenHelper } from './token.helper';
 import { TokenValidateLevel } from './token.validate';
 import { LoggerCode } from './logger.code';
@@ -21,7 +21,7 @@ export class ParserToken {
         this._token = token;
     }
 
-    public parse(): ParseTree {
+    public parse(): ParserTreeModel {
         this.initialize();
         this.makeAST();
         return this.makeTree();
@@ -102,7 +102,7 @@ export class ParserToken {
     private analyzeOperatorToken(token: Token.Token) {
         const lastToken = this.popStack();
 
-        if (!TokenHelper.isBracketClose(lastToken))
+        if (TokenHelper.isOperator(lastToken))
         // Invalid Error: Operator left token is invalid
             console.log('error2', lastToken);
 
@@ -144,7 +144,7 @@ export class ParserToken {
         return undefined;
     }
 
-    private makeTree(): ParseTree {
+    private makeTree(): ParserTreeModel {
         // TODO: make some magic here
         return {
             operator: '+',
