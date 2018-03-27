@@ -1,0 +1,32 @@
+import { Token } from './token/token';
+export declare class AbstractSyntaxTree {
+    private _value;
+    private _leftNode;
+    private _rightNode;
+    private _parent;
+    private _type;
+    private _subType;
+    value: Token.Token;
+    readonly type: Token.Type;
+    subType: Token.SubType;
+    parent: AbstractSyntaxTree;
+    leftNode: AbstractSyntaxTree;
+    rightNode: AbstractSyntaxTree;
+    constructor(value?: Token.Token);
+    findRoot(): AbstractSyntaxTree;
+    private findOpenedBracket();
+    removeClosestBracket(): AbstractSyntaxTree;
+    private climbUp(token);
+    private isClimbTop(token);
+    private isTokenHighest(token);
+    private createChildNode(value?);
+    private createParentNode(value?);
+    private insertOperatorNode(value);
+    private needJointRight(rootNode, value);
+    insertNode(value: Token.Token): AbstractSyntaxTree;
+    private insertJointNodeToLeft(value);
+    insertJointNodeToRight(value: Token.Token): AbstractSyntaxTree;
+    removeLeftNode(): void;
+    removeRightNode(): void;
+    removeParent(): void;
+}

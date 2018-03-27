@@ -390,11 +390,14 @@ var TreeError;
 var StringHelper = /** @class */ (function () {
     function StringHelper() {
     }
-    StringHelper.formatString = function (value, mapping) {
+    StringHelper.format = function (value) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
         var targetValue = value;
-        if (mapping)
-            mapping
-                .forEach(function (match, index) { return targetValue = StringHelper.replaceArg(index, targetValue, match); });
+        if (args)
+            args.forEach(function (match, index) { return targetValue = StringHelper.replaceArg(index, targetValue, match); });
         return targetValue;
     };
     StringHelper.replaceArg = function (match, target, value) {
@@ -414,7 +417,7 @@ var ParserError = /** @class */ (function (_super) {
         _this.error = error;
         Object.setPrototypeOf(_this, ParserError.prototype);
         if (args.length)
-            _this.error = __assign({}, _this.error, { text: StringHelper.formatString(_this.error.text, args) });
+            _this.error = __assign({}, _this.error, { text: StringHelper.format.apply(StringHelper, [_this.error.text].concat(args)) });
         _this.code = _this.error.code;
         _this.text = _this.error.text;
         _this.message = _this.text;
