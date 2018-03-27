@@ -3,6 +3,7 @@
         "baseUrl": "./",
         "rootDir": "./src",
         "module": "commonjs",
+        "target": "es5",
         "lib": [
             "es2017",
             "dom"

@@ -3,13 +3,12 @@ import { AbstractSyntaxTree } from './ast';
 import { Token } from './token/token';
 import { Tree } from './tree';
 import { Operand, TreeModel } from './tree.type';
-import Operator = Chai.Operator;
 
 describe('make tree', () => {
     it('should return parser tree', () => {
         const ast = new AbstractSyntaxTree(Token.Literal.Multiplication);
-        ast.setLeftNode(new AbstractSyntaxTree('2'));
-        ast.setRightNode(new AbstractSyntaxTree('3'));
+        ast.leftNode = new AbstractSyntaxTree('2');
+        ast.rightNode = new AbstractSyntaxTree('3');
         const treeBuilder = new Tree(ast);
         const tree = treeBuilder.makeTree();
         const leftOperand = tree.operand1 as Operand;
@@ -36,11 +35,11 @@ describe('make tree', () => {
             aggregate: 'none'
         };
         const subNode = new AbstractSyntaxTree(Token.Literal.Division);
-        subNode.setLeftNode(new AbstractSyntaxTree('3'));
-        subNode.setRightNode(new AbstractSyntaxTree(customInput2));
+        subNode.leftNode = new AbstractSyntaxTree('3');
+        subNode.rightNode = new AbstractSyntaxTree(customInput2);
         const ast = new AbstractSyntaxTree(Token.Literal.Addition);
-        ast.setLeftNode(new AbstractSyntaxTree(customInput));
-        ast.setRightNode(subNode);
+        ast.leftNode = new AbstractSyntaxTree(customInput);
+        ast.rightNode = subNode;
         const treeBuilder = new Tree(ast);
         const tree = treeBuilder.makeTree();
         const leftOperand = tree.operand1 as Operand;

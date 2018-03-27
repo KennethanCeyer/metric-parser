@@ -4,14 +4,14 @@ export type subNodeSide = 'left' | 'right';
 
 export class AbstractSyntaxTreeHelper {
     public static getNodeDisplay(node: AbstractSyntaxTree, depth: number = 0): string {
-        const leftNode = node.getLeftNode();
-        const rightNode = node.getRightNode();
+        const leftNode = node.leftNode;
+        const rightNode = node.rightNode;
 
         const tabString = this.getTab(depth);
 
         let display = '';
         display += `${tabString}* NODE\n`;
-        display += `${tabString}- value: ${node.getValue()}\n`;
+        display += `${tabString}- value: ${node.value}\n`;
 
         if (leftNode)
             display += this.getSubNodeDisplay('left', tabString, leftNode, depth);

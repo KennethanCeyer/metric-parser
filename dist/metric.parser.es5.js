@@ -114,16 +114,19 @@ var TokenHelper = /** @class */ (function () {
     TokenHelper.isOperator = function (token) {
         return Token.Operators.includes(String(token));
     };
+    TokenHelper.isHigher = function (source, target) {
+        return TokenHelper.getPrecedence(source) - TokenHelper.getPrecedence(target) > 0;
+    };
     TokenHelper.induceType = function (value) {
-        if (!value)
-            return Token.Type.Unkown;
-        if (TokenHelper.isWhiteSpace(value))
-            return Token.Type.WhiteSpace;
-        if (TokenHelper.isOperator(value))
-            return Token.Type.Operator;
-        if (TokenHelper.isBracket(value))
-            return Token.Type.Bracket;
-        return Token.Type.Value;
+        var induceTypes = [
+            { predicate: TokenHelper.isWhiteSpace, type: Token.Type.WhiteSpace },
+            { predicate: TokenHelper.isOperator, type: Token.Type.Operator },
+            { predicate: TokenHelper.isBracket, type: Token.Type.Bracket },
+        ];
+        var extractedToken = induceTypes.find(function (element) { return element.predicate(value); });
+        return extractedToken
+            ? extractedToken.type
+            : Token.Type.Value;
     };
     TokenHelper.getPrecedence = function (token) {
         return [
@@ -221,15 +224,81 @@ var ParserProcess = /** @class */ (function () {
 var AbstractSyntaxTree = /** @class */ (function () {
     function AbstractSyntaxTree(value) {
         if (value)
-            this.setValue(value);
+            this.value = value;
     }
+    Object.defineProperty(AbstractSyntaxTree.prototype, "value", {
+        get: function () {
+            return this._value;
+        },
+        set: function (value) {
+            this._value = TokenHelper.isNumeric(value)
+                ? Number(value)
+                : value;
+            this._type = TokenHelper.induceType(this.value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AbstractSyntaxTree.prototype, "type", {
+        get: function () {
+            return this._type;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AbstractSyntaxTree.prototype, "subType", {
+        get: function () {
+            return this._subType;
+        },
+        set: function (value) {
+            this._subType = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AbstractSyntaxTree.prototype, "parent", {
+        get: function () {
+            return this._parent;
+        },
+        set: function (value) {
+            this._parent = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AbstractSyntaxTree.prototype, "leftNode", {
+        get: function () {
+            return this._leftNode;
+        },
+        set: function (node) {
+            if (!node)
+                return;
+            this._leftNode = node;
+            node.parent = this;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AbstractSyntaxTree.prototype, "rightNode", {
+        get: function () {
+            return this._rightNode;
+        },
+        set: function (node) {
+            if (!node)
+                return;
+            this._rightNode = node;
+            node.parent = this;
+        },
+        enumerable: true,
+        configurable: true
+    });
     AbstractSyntaxTree.prototype.findRoot = function () {
         if (!this._parent)
             return this;
         return this._parent.findRoot();
     };
     AbstractSyntaxTree.prototype.findOpenedBracket = function () {
-        if (TokenHelper.isBracketOpen(this.getValue()))
+        if (TokenHelper.isBracketOpen(this._value))
             return this;
         if (!this._parent)
             return null;
@@ -239,17 +308,17 @@ var AbstractSyntaxTree = /** @class */ (function () {
         var node = this.findOpenedBracket();
         if (!node)
             return null;
-        var targetNode = node.getLeftNode();
-        targetNode.setSubType(Token.SubType.Group);
-        if (!node._parent) {
+        var targetNode = node.leftNode;
+        targetNode.subType = Token.SubType.Group;
+        if (!node.parent) {
             targetNode.removeParent();
             return targetNode;
         }
-        if (node._parent.getLeftNode() === node)
-            node._parent.setLeftNode(targetNode);
+        if (node.parent.leftNode === node)
+            node.parent.leftNode = targetNode;
         else
-            node._parent.setRightNode(targetNode);
-        return node._parent;
+            node.parent.rightNode = targetNode;
+        return node.parent;
     };
     AbstractSyntaxTree.prototype.climbUp = function (token) {
         return this.isClimbTop(token)
@@ -257,81 +326,63 @@ var AbstractSyntaxTree = /** @class */ (function () {
             : this._parent.climbUp(token);
     };
     AbstractSyntaxTree.prototype.isClimbTop = function (token) {
-        return this.isNeedMakeUpperNode(token) ||
-            !this.getParent() ||
-            TokenHelper.isBracketOpen(this.getValue());
+        return this.isTokenHighest(token) ||
+            !this.parent ||
+            TokenHelper.isBracketOpen(this.value);
     };
-    AbstractSyntaxTree.prototype.isNeedMakeUpperNode = function (token) {
-        return this.isTokenHigher(this.getValue(), token) && this.getSubType() !== Token.SubType.Group;
-    };
-    AbstractSyntaxTree.prototype.isTokenHigher = function (source, target) {
-        return TokenHelper.getPrecedence(source) - TokenHelper.getPrecedence(target) <= 0;
+    AbstractSyntaxTree.prototype.isTokenHighest = function (token) {
+        return TokenHelper.isHigher(token, this.value) && this.subType !== Token.SubType.Group;
     };
     AbstractSyntaxTree.prototype.createChildNode = function (value) {
         var node = new AbstractSyntaxTree(value);
-        node.setParent(this);
+        node.parent = this;
         return node;
     };
     AbstractSyntaxTree.prototype.createParentNode = function (value) {
         var node = new AbstractSyntaxTree(value);
-        this.setParent(node);
+        this.parent = node;
         return node;
     };
     AbstractSyntaxTree.prototype.insertOperatorNode = function (value) {
         var rootNode = this.climbUp(value);
-        if (TokenHelper.isBracketOpen(rootNode.getValue())) {
-            var midNode = rootNode.createChildNode(value);
-            var leftNode = rootNode.getLeftNode();
-            var rightNode = rootNode.getRightNode();
-            rootNode.setLeftNode(midNode);
-            midNode.setLeftNode(leftNode);
-            midNode.setRightNode(rightNode);
-            return midNode;
-        }
-        if (this === rootNode) {
-            var newNode_1 = rootNode.createChildNode(value);
-            newNode_1.setLeftNode(rootNode.getRightNode());
-            rootNode.setRightNode(newNode_1);
-            return newNode_1;
-        }
+        if (TokenHelper.isBracketOpen(rootNode.value))
+            return rootNode.insertJointNodeToLeft(value);
+        if (this.needJointRight(rootNode, value))
+            return rootNode.insertJointNodeToRight(value);
         var newNode = rootNode.createParentNode(value);
-        newNode.setLeftNode(rootNode);
+        newNode.leftNode = rootNode;
         return newNode;
+    };
+    AbstractSyntaxTree.prototype.needJointRight = function (rootNode, value) {
+        return rootNode.isTokenHighest(value) && rootNode.parent || this === rootNode;
     };
     AbstractSyntaxTree.prototype.insertNode = function (value) {
         if (TokenHelper.isSymbol(value))
-            if (!this.getValue()) {
-                this.setValue(value);
+            if (!this.value) {
+                this.value = value;
                 return this;
             }
         if (TokenHelper.isOperator(value))
             return this.insertOperatorNode(value);
         var valueNode = this.createChildNode(value);
-        if (!this.getLeftNode())
-            this.setLeftNode(valueNode);
+        if (!this.leftNode)
+            this.leftNode = valueNode;
         else
-            this.setRightNode(valueNode);
+            this.rightNode = valueNode;
         return valueNode;
     };
-    AbstractSyntaxTree.prototype.getParent = function () {
-        return this._parent;
+    AbstractSyntaxTree.prototype.insertJointNodeToLeft = function (value) {
+        var jointNode = this.createChildNode(value);
+        jointNode.leftNode = this.leftNode;
+        jointNode.rightNode = this.rightNode;
+        this.leftNode = jointNode;
+        return jointNode;
     };
-    AbstractSyntaxTree.prototype.getType = function () {
-        return this._type;
-    };
-    AbstractSyntaxTree.prototype.getSubType = function () {
-        return this._subType;
-    };
-    AbstractSyntaxTree.prototype.getValue = function () {
-        return TokenHelper.isNumeric(this._value)
-            ? Number(this._value)
-            : this._value;
-    };
-    AbstractSyntaxTree.prototype.getLeftNode = function () {
-        return this._leftNode;
-    };
-    AbstractSyntaxTree.prototype.getRightNode = function () {
-        return this._rightNode;
+    AbstractSyntaxTree.prototype.insertJointNodeToRight = function (value) {
+        var jointNode = this.createChildNode(value);
+        jointNode.leftNode = this.rightNode;
+        this.rightNode = jointNode;
+        return jointNode;
     };
     AbstractSyntaxTree.prototype.removeLeftNode = function () {
         this._leftNode.removeParent();
@@ -343,28 +394,6 @@ var AbstractSyntaxTree = /** @class */ (function () {
     };
     AbstractSyntaxTree.prototype.removeParent = function () {
         this._parent = undefined;
-    };
-    AbstractSyntaxTree.prototype.setSubType = function (subType) {
-        this._subType = subType;
-    };
-    AbstractSyntaxTree.prototype.setValue = function (value) {
-        this._type = TokenHelper.induceType(value);
-        this._value = value;
-    };
-    AbstractSyntaxTree.prototype.setParent = function (node) {
-        this._parent = node;
-    };
-    AbstractSyntaxTree.prototype.setLeftNode = function (node) {
-        if (!node)
-            return;
-        this._leftNode = node;
-        node.setParent(this);
-    };
-    AbstractSyntaxTree.prototype.setRightNode = function (node) {
-        if (!node)
-            return;
-        this._rightNode = node;
-        node.setParent(this);
     };
     return AbstractSyntaxTree;
 }());
@@ -382,15 +411,15 @@ var Tree = /** @class */ (function () {
         return tree;
     };
     Tree.prototype.makeNode = function (sourceNode) {
-        return sourceNode.getType() === Token.Type.Operator
+        return sourceNode.type === Token.Type.Operator
             ? this.makeOperatorNode(sourceNode)
             : this.makeValueNode(sourceNode);
     };
     Tree.prototype.makeOperatorNode = function (sourceNode) {
         return {
-            operator: sourceNode.getValue(),
-            operand1: this.makeNode(sourceNode.getLeftNode()),
-            operand2: this.makeNode(sourceNode.getRightNode())
+            operator: sourceNode.value,
+            operand1: this.makeNode(sourceNode.leftNode),
+            operand2: this.makeNode(sourceNode.rightNode)
         };
     };
     Tree.prototype.makeValueNode = function (sourceNode) {
@@ -399,12 +428,12 @@ var Tree = /** @class */ (function () {
         };
     };
     Tree.prototype.makeOperandValue = function (sourceNode) {
-        var type = TokenHelper.isObject(sourceNode.getValue())
+        var type = TokenHelper.isObject(sourceNode.value)
             ? 'item'
             : 'unit';
         return _a = {
                 type: type
-            }, _a[type] = sourceNode.getValue(), _a;
+            }, _a[type] = sourceNode.value, _a;
         var _a;
     };
     return Tree;
@@ -419,7 +448,7 @@ var TokenAnalyzer = /** @class */ (function () {
     }
     TokenAnalyzer.prototype.parse = function () {
         this.initialize();
-        this.makeAST();
+        this.makeAst();
         return this.makeTree();
     };
     TokenAnalyzer.prototype.getLastError = function () {
@@ -427,15 +456,15 @@ var TokenAnalyzer = /** @class */ (function () {
     };
     TokenAnalyzer.prototype.initialize = function () {
         this.ast = new AbstractSyntaxTree(Token.Literal.BracketOpen);
-        this.ast.setLeftNode(new AbstractSyntaxTree());
-        this.currentTree = this.ast.getLeftNode();
+        this.ast.leftNode = new AbstractSyntaxTree();
+        this.currentTree = this.ast.leftNode;
         this.index = 0;
         this.lastError = null;
     };
-    TokenAnalyzer.prototype.getAST = function () {
+    TokenAnalyzer.prototype.getAst = function () {
         return this.ast;
     };
-    TokenAnalyzer.prototype.makeAST = function () {
+    TokenAnalyzer.prototype.makeAst = function () {
         var token;
         while (token = this.next()) {
             var level = TokenAnalyzer.validateToken(token);
@@ -485,10 +514,10 @@ var TokenAnalyzer = /** @class */ (function () {
         if (TokenHelper.isOperator(lastToken))
             // Invalid Error: Operator left token is invalid
             console.log('error2', lastToken);
-        if (!this.currentTree.getValue())
-            this.currentTree.setValue(token);
+        if (!this.currentTree.value)
+            this.currentTree.value = token;
         else {
-            if (!TokenHelper.isBracket(this.currentTree.getValue()) && !this.currentTree.getRightNode())
+            if (!TokenHelper.isBracket(this.currentTree.value) && !this.currentTree.rightNode)
                 // Invalid Error: Duplicated operators
                 console.log('error3');
             this.currentTree = this.currentTree.insertNode(token);

@@ -75,20 +75,18 @@ export class TokenHelper {
     }
 
     public static induceType(value: Token.Token) {
-        if (!value)
-            return Token.Type.Unkown;
+        const induceTypes = [
+            { predicate: TokenHelper.isWhiteSpace, type: Token.Type.WhiteSpace },
+            { predicate: TokenHelper.isOperator, type: Token.Type.Operator },
+            { predicate: TokenHelper.isBracket, type: Token.Type.Bracket },
+        ];
 
-        if (TokenHelper.isWhiteSpace(value))
-            return Token.Type.WhiteSpace;
-
-        if (TokenHelper.isOperator(value))
-            return Token.Type.Operator;
-
-        if (TokenHelper.isBracket(value))
-            return Token.Type.Bracket;
-
-        return Token.Type.Value;
+        const extractedToken = induceTypes.find(element => element.predicate(value));
+        return extractedToken
+            ? extractedToken.type
+            : Token.Type.Value;
     }
+    
     public static getPrecedence(token: Token.Token) {
         return [
             [TokenHelper.isAddition, TokenHelper.isSubtraction],

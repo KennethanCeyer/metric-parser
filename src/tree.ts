@@ -20,16 +20,16 @@ export class Tree {
     }
 
     private makeNode(sourceNode: AbstractSyntaxTree): TreeModel | Operand {
-        return sourceNode.getType() === Token.Type.Operator
+        return sourceNode.type === Token.Type.Operator
             ? this.makeOperatorNode(sourceNode)
             : this.makeValueNode(sourceNode);
     }
 
     private makeOperatorNode(sourceNode: AbstractSyntaxTree): TreeModel {
         return {
-            operator: sourceNode.getValue(),
-            operand1: this.makeNode(sourceNode.getLeftNode()),
-            operand2: this.makeNode(sourceNode.getRightNode())
+            operator: sourceNode.value,
+            operand1: this.makeNode(sourceNode.leftNode),
+            operand2: this.makeNode(sourceNode.rightNode)
         };
     }
 
@@ -40,12 +40,12 @@ export class Tree {
     }
 
     private makeOperandValue(sourceNode: AbstractSyntaxTree): OperandValue {
-        const type = TokenHelper.isObject(sourceNode.getValue())
+        const type = TokenHelper.isObject(sourceNode.value)
             ? 'item'
             : 'unit';
         return {
             type,
-            [type]: sourceNode.getValue()
+            [type]: sourceNode.value
         };
     }
 }

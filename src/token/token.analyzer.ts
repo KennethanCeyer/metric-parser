@@ -32,8 +32,8 @@ export class TokenAnalyzer {
 
     private initialize() {
         this.ast = new AbstractSyntaxTree(Token.Literal.BracketOpen);
-        this.ast.setLeftNode(new AbstractSyntaxTree());
-        this.currentTree = this.ast.getLeftNode();
+        this.ast.leftNode = new AbstractSyntaxTree();
+        this.currentTree = this.ast.leftNode;
         this.index = 0;
         this.lastError = null;
     }
@@ -102,10 +102,10 @@ export class TokenAnalyzer {
         // Invalid Error: Operator left token is invalid
             console.log('error2', lastToken);
 
-        if (!this.currentTree.getValue())
-            this.currentTree.setValue(token);
+        if (!this.currentTree.value)
+            this.currentTree.value = token;
         else {
-            if (!TokenHelper.isBracket(this.currentTree.getValue()) && !this.currentTree.getRightNode())
+            if (!TokenHelper.isBracket(this.currentTree.value) && !this.currentTree.rightNode)
             // Invalid Error: Duplicated operators
                 console.log('error3');
 

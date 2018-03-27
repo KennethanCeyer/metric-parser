@@ -970,6 +970,9 @@ img { max-width: 100%; }
 					<a href="tokenhelper.html#isdivision" class="tsd-kind-icon">is<wbr>Division</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="tokenhelper.html#ishigher" class="tsd-kind-icon">is<wbr>Higher</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 					<a href="tokenhelper.html#ismod" class="tsd-kind-icon">is<wbr>Mod</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
@@ -1085,6 +1088,7 @@ img { max-width: 100%; }
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelper.html#isbracketclose" class="tsd-kind-icon">is<wbr>Bracket<wbr>Close</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelper.html#isbracketopen" class="tsd-kind-icon">is<wbr>Bracket<wbr>Open</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelper.html#isdivision" class="tsd-kind-icon">is<wbr>Division</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelper.html#ishigher" class="tsd-kind-icon">is<wbr>Higher</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelper.html#ismod" class="tsd-kind-icon">is<wbr>Mod</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelper.html#ismultiplication" class="tsd-kind-icon">is<wbr>Multiplication</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelper.html#isnumeric" class="tsd-kind-icon">is<wbr>Numeric</a></li>
@@ -1113,7 +1117,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/070e79a/src/token/token.helper.ts#L88">token/token.helper.ts:88</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.helper.ts#L90">token/token.helper.ts:90</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1130,13 +1134,13 @@ img { max-width: 100%; }
 				<a name="inducetype" class="tsd-anchor"></a>
 				<h3><span class="tsd-flag ts-flagStatic">Static</span> induce<wbr>Type</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<li class="tsd-signature tsd-kind-icon">induce<wbr>Type<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../enums/token.type.html#unkown" class="tsd-signature-type">Unkown</a><span class="tsd-signature-symbol"> | </span><a href="../enums/token.type.html#value" class="tsd-signature-type">Value</a><span class="tsd-signature-symbol"> | </span><a href="../enums/token.type.html#operator" class="tsd-signature-type">Operator</a><span class="tsd-signature-symbol"> | </span><a href="../enums/token.type.html#bracket" class="tsd-signature-type">Bracket</a><span class="tsd-signature-symbol"> | </span><a href="../enums/token.type.html#whitespace" class="tsd-signature-type">WhiteSpace</a></li>
+					<li class="tsd-signature tsd-kind-icon">induce<wbr>Type<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../enums/token.type.html" class="tsd-signature-type">Type</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/070e79a/src/token/token.helper.ts#L72">token/token.helper.ts:72</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.helper.ts#L77">token/token.helper.ts:77</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1145,16 +1149,7 @@ img { max-width: 100%; }
 								<h5>value: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="../enums/token.type.html#unkown" class="tsd-signature-type">Unkown</a>
-							<span class="tsd-signature-symbol"> | </span>
-							<a href="../enums/token.type.html#value" class="tsd-signature-type">Value</a>
-							<span class="tsd-signature-symbol"> | </span>
-							<a href="../enums/token.type.html#operator" class="tsd-signature-type">Operator</a>
-							<span class="tsd-signature-symbol"> | </span>
-							<a href="../enums/token.type.html#bracket" class="tsd-signature-type">Bracket</a>
-							<span class="tsd-signature-symbol"> | </span>
-							<a href="../enums/token.type.html#whitespace" class="tsd-signature-type">WhiteSpace</a>
-						</h4>
+						<h4 class="tsd-returns-title">Returns <a href="../enums/token.type.html" class="tsd-signature-type">Type</a></h4>
 					</li>
 				</ul>
 			</section>
@@ -1168,7 +1163,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/070e79a/src/token/token.helper.ts#L28">token/token.helper.ts:28</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.helper.ts#L29">token/token.helper.ts:29</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1191,7 +1186,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/070e79a/src/token/token.helper.ts#L16">token/token.helper.ts:16</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.helper.ts#L17">token/token.helper.ts:17</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1214,7 +1209,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/070e79a/src/token/token.helper.ts#L52">token/token.helper.ts:52</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.helper.ts#L53">token/token.helper.ts:53</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1237,7 +1232,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/070e79a/src/token/token.helper.ts#L60">token/token.helper.ts:60</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.helper.ts#L61">token/token.helper.ts:61</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1260,7 +1255,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/070e79a/src/token/token.helper.ts#L56">token/token.helper.ts:56</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.helper.ts#L57">token/token.helper.ts:57</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1283,13 +1278,39 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/070e79a/src/token/token.helper.ts#L40">token/token.helper.ts:40</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.helper.ts#L41">token/token.helper.ts:41</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
 								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="ishigher" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Higher</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Higher<span class="tsd-signature-symbol">(</span>source<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a>, target<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.helper.ts#L73">token/token.helper.ts:73</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>source: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+							<li>
+								<h5>target: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -1306,7 +1327,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/070e79a/src/token/token.helper.ts#L44">token/token.helper.ts:44</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.helper.ts#L45">token/token.helper.ts:45</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1329,7 +1350,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/070e79a/src/token/token.helper.ts#L36">token/token.helper.ts:36</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.helper.ts#L37">token/token.helper.ts:37</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1352,7 +1373,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/070e79a/src/token/token.helper.ts#L12">token/token.helper.ts:12</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.helper.ts#L13">token/token.helper.ts:13</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1375,7 +1396,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/070e79a/src/token/token.helper.ts#L24">token/token.helper.ts:24</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.helper.ts#L25">token/token.helper.ts:25</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1398,7 +1419,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/070e79a/src/token/token.helper.ts#L68">token/token.helper.ts:68</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.helper.ts#L69">token/token.helper.ts:69</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1421,7 +1442,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/070e79a/src/token/token.helper.ts#L48">token/token.helper.ts:48</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.helper.ts#L49">token/token.helper.ts:49</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1444,7 +1465,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/070e79a/src/token/token.helper.ts#L20">token/token.helper.ts:20</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.helper.ts#L21">token/token.helper.ts:21</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1467,7 +1488,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/070e79a/src/token/token.helper.ts#L32">token/token.helper.ts:32</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.helper.ts#L33">token/token.helper.ts:33</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1490,7 +1511,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/070e79a/src/token/token.helper.ts#L64">token/token.helper.ts:64</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.helper.ts#L65">token/token.helper.ts:65</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1513,7 +1534,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/070e79a/src/token/token.helper.ts#L4">token/token.helper.ts:4</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.helper.ts#L5">token/token.helper.ts:5</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1536,7 +1557,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/070e79a/src/token/token.helper.ts#L8">token/token.helper.ts:8</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.helper.ts#L9">token/token.helper.ts:9</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>

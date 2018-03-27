@@ -1,4 +1,4 @@
-import {TreeModel} from "./tree.type";
+import { TreeModel } from './tree.type';
 
 export type ConvertData = ParseData | UnparseData;
 
