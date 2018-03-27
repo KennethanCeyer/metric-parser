@@ -25,7 +25,13 @@
       "src/**/!(*.spec).ts"
     ],
     "exclude": [
-      "**/*.d.ts"
+      "**/*.spec.ts",
+      "**/*.d.ts",
+      "rollup.config.ts",
+      "coverage",
+      "docs/",
+      "dist/",
+      "demo/"
     ],
     "reporter": [
       "lcov",
