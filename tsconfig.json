@@ -15,6 +15,6 @@
     },
     "outDir": "./dist",
     "files": [
-        "src/formula.parser.ts"
+        "src/metric.parser.ts"
     ]
-} 
+}

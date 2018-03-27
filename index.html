@@ -3,9 +3,9 @@
 		<meta charset="UTF-8" />
 		<meta property="og:url" content="http://www.pigno.se/barn/FormulaParser">
 		<meta property="og:type" content="product" />
-		<meta property="og:title" content="Formula Parser" />
+		<meta property="og:title" content="Metric Parser" />
 		<meta property="og:description" content="Formula string parser working in pure javascript." />
-		<title>Formula Parser</title>
+		<title>Metric Parser</title>
 		<link rel="stylesheet" type="text/css" href="demo/css/semantic.ui.min.css">
 		<link rel="stylesheet" type="text/css" href="demo/css/prism.css" />
 		<link rel="stylesheet" type="text/css" href="demo/css/style.css" />
@@ -87,141 +87,16 @@
 		<script type="text/javascript" src="demo/js/semantic.ui.min.js"></script>
 		<script type="text/javascript" src="demo/js/prism.min.js"></script>
 		<script type="text/javascript" src="demo/js/json.parser.js"></script>
-		<script type="text/javascript" src="src/formula.parser.js"></script>
-		<script>
-		//<![CDATA[
-			var formulaExpression = [
-				'12 + 3',                                                     // 01
-				'6 - 2 * 4',                                                  // 02
-				'6 - 2 * 4 / ( 2 - 4 )',                                      // 03
-				'6 + 2 * (3 + (4 / 2) * 4 * (2 + (4 + 2 * 6)) * 2)',          // 04
-				'6 + 4 ^ 2 ^ (4 + 2) / 5',                                    // 05
-				'((((1) + (2)) + (3)) + (4))',                                // 06
-				{                                                             // |--
-				   "operator":"+",                                            // |
-				   "operand1":12,                                             // - 07
-				   "operand2":3                                               // |
-				},                                                            // |--
-				{                                                             // |--
-				   "operator":"-",                                            // |
-				   "operand1":6,                                              // |
-				   "operand2":{                                               // - 08
-				      "operator":"*",                                         // |
-				      "operand1":2,                                           // |
-				      "operand2":4                                            // |
-				   }                                                          // |
-				},                                                            // |--
-				{                                                             // |--
-				   "operator":"+",                                            // |
-				   "operand1":{                                               // |
-				      "operator":"+",                                         // |
-				      "operand1":"12",                                        // |
-				      "operand2":"3"                                          // |
-				   },                                                         // |
-				   "operand2":{                                               // |
-				      "operator":"/",                                         // |
-				      "operand1":{                                            // |
-				         "operator":"+",                                      // - 09
-				         "operand1":{                                         // |
-				            "operator":"*",                                   // |
-				            "operand1":"2",                                   // |
-				            "operand2":"4"                                    // |
-				         },                                                   // |
-				         "operand2":"5"                                       // |
-				      },                                                      // |
-				      "operand2":"2"                                          // |
-				   }                                                          // |
-				},                                                            // |--
-				{                                                             // |--
-				   "operator":"*",                                            // |
-				   "operand1":{                                               // |
-				      "operator":"/",                                         // |
-				      "operand1":{                                            // |
-				         "value":{                                            // |
-				            "type":"item",                                    // |
-				            "item":{                                          // |
-				               "table":"table-01",                            // |
-				               "key":"col-02",                                // |
-				               "name":"Item1",                                // |
-				               "oper":"sum"                                   // |
-				            }                                                 // |
-				         }                                                    // |
-				      },                                                      // |
-				      "operand2":{                                            // - 10
-				         "value":{                                            // |
-				            "type":"item",                                    // |
-				            "item":{                                          // |
-				               "table":"table-02",                            // |
-				               "key":"col-04",                                // |
-				               "name":"Item2",                                // |
-				               "oper":"sum"                                   // |
-				            }                                                 // |
-				         }                                                    // |
-				      }                                                       // |
-				   },                                                         // |
-				   "operand2":{                                               // |
-				      "value":{                                               // |
-				         "type":"unit",                                       // |
-				         "unit":100                                           // |
-				      }                                                       // |
-				   }                                                          // |
-				},                                                            // |--
-				'(1 + 2) 3',                                                  // 11
-				'((1 + 2',                                                    // 12
-				'2 + 3))',                                                    // 13
-				'1 ! 2',                                                      // 14
-				'1 ++ 4'                                                      // 15
-			];
-
-			$(function() {
-				// This is for demo.
-
-				// Display a plugin version.
-				$('.version strong').text(FormulaParser.getVersion());
-
-				$('.formula-expression').each(function(i) {
-					var $this = $(this);
-					var $parent = $this.closest('.article');
-					if(typeof formulaExpression[i] !== 'undefined') {
-						var $formulaDisplay = $('<div class="formula-display"></div>');
-						var $formulaResult = $('<div class="formula-result"></div>');
-						var formula = new FormulaParser(formulaExpression[i]);
-						var expression = formulaExpression[i];
-						var json = JSON.stringify(formula, null, '/%t/').replace(/\n/g, "/%b/");
-						var jsonHtml = Prism.highlight(json, Prism.languages.json).replace(/\/%b\//mg, '<br />').replace(/\/%t\//mg, '&nbsp;&nbsp;&nbsp;&nbsp;');
-
-						if(typeof expression === 'object') {
-							expression = Prism.highlight(JSON.stringify(expression, null, '/%t/').replace(/\n/g, "/%b/"), Prism.languages.json).replace(/\/%b\//mg, '<br />').replace(/\/%t\//mg, '&nbsp;&nbsp;&nbsp;&nbsp;');
-						}
-
-						$this.html(expression);
-						$formulaDisplay.html(jsonHtml);
-						$formulaDisplay.insertAfter($this);
-						$formulaResult.clone().appendTo($this).text('Expression');
-						var $target = $formulaResult.clone().appendTo($formulaDisplay);
-						$target.append('<span>Result</span><span class="formula-status"></span>');
-
-						if(formula.status === true) {
-							$formulaDisplay.addClass('formula-display-success');
-						} else {
-							$formulaDisplay.addClass('formula-display-error');
-						}
-					}
-				});
-
-				$('.formula-display').each(function() {
-					var $this = $(this);	
-				});
-			});
-		//]]>
-		</script>
+		<script type="text/javascript" src="dist/metric.parser.umd.js"></script>
 	</head>
 
 	<body>
 		<div id="wrapper">
 			<div class="header">
-				<h1>Formula Parser</h1>
-				<a href="https://github.com/KennethanCeyer/FormulaParser" target="_blank" class="ui button primary">View project on Github</a> <a href="https://github.com/KennethanCeyer/FormulaParser/archive/master.zip" target="_blank" class="ui button teal">Download zip</a>
+				<h1>Metric Parser</h1>
+				<a href="https://github.com/KennethanCeyer/FormulaParser" target="_blank" class="ui button primary">View project on Github</a>
+                <a href="https://github.com/KennethanCeyer/FormulaParser/archive/master.zip" target="_blank" class="ui button teal">Download zip</a>
+                <a href="docs/index.html" target="_blank" class="ui button teal">Reference docs</a>
 				<h4 class="version">Latest version <strong></strong></h4>
 			</div>
 			<div class="article formula-parsing">
@@ -242,7 +117,7 @@
 				<h3>
 					<span>Formula Unparsing</span>
 				</h3>
-				
+
 				<div class="formula-expression formula-expression-07"></div>
 				<div class="formula-expression formula-expression-08"></div>
 				<div class="formula-expression formula-expression-09"></div>
@@ -264,12 +139,12 @@
 		<div id="bower" class="article">
 			<h3><span>bower</span></h3>
 			<blockquote><p>If you use bower.</p></blockquote>
-			<pre><code class="language-bash">bower install pg-formula-parser</code></pre>
+			<pre><code class="language-bash">bower install metric-parser</code></pre>
 		</div>
 		<div id="npm" class="article">
 			<h3><span>npm</span></h3>
 			<blockquote><p>If you use npm.</p></blockquote>
-			<pre><code class="language-bash">npm install pg-formula-parser</code></pre>
+			<pre><code class="language-bash">npm install metric-parser</code></pre>
 		</div>
 		<div id="sample" class="article">
 			<h3><span>Example</span></h3>
@@ -278,22 +153,135 @@
 				<a href="#" role="presentation" class="item active" data-tab="javascript">Javascript</a>
 			</ul>
 			<div role="tabpanel" class="ui tab segment active" data-tab="javascript">
-					<pre><code class="language-js">var formulaObject = null;
+					<pre><code class="language-js">// parse
+const parseResult = metricParser.convert({expression});
 
-// Formula Parsing
-var parsing = formulaObject = new FormulaParser('{expression}');
+// unparse
+const unparseResult = metricParser.convert(parseResult);
 
-// Formula Unparsing
-var unparsing = new FormulaParser(formulaObject.data);
+// validation
+const result = metricParser.convert({expression | parseTree});
+const isValid = result.code === 0;
 
-// Formula Validation
-var formula = new FormulaParser('{Some invalid expression}');
-var isValid = formula.status === true;
-
-// true = Validated, false = Syntax Error.
-console.log(isValid);
+// validation only
+const isValid2 = metricParser.valid({expression | parseTree});
 </code></pre>
 			</div>
 		</div>
+        <script>
+            //<![CDATA[
+            var formulaExpression = [
+                '12 + 3',                                                     // 01
+                '6 - 2 * 4',                                                  // 02
+                '6 - 2 * 4 / ( 2 - 4 )',                                      // 03
+                '6 + 2 * (3 + (4 / 2) * 4 * (2 + (4 + 2 * 6)) * 2)',          // 04
+                '6 + 4 ^ 2 ^ (4 + 2) / 5',                                    // 05
+                '((((1) + (2)) + (3)) + (4))',                                // 06
+                {                                                             // |--
+                    "operator":"+",                                            // |
+                    "operand1":12,                                             // - 07
+                    "operand2":3                                               // |
+                },                                                            // |--
+                {                                                             // |--
+                    "operator":"-",                                            // |
+                    "operand1":6,                                              // |
+                    "operand2":{                                               // - 08
+                        "operator":"*",                                         // |
+                        "operand1":2,                                           // |
+                        "operand2":4                                            // |
+                    }                                                          // |
+                },                                                            // |--
+                {                                                             // |--
+                    "operator":"+",                                            // |
+                    "operand1":{                                               // |
+                        "operator":"+",                                         // |
+                        "operand1":"12",                                        // |
+                        "operand2":"3"                                          // |
+                    },                                                         // |
+                    "operand2":{                                               // |
+                        "operator":"/",                                         // |
+                        "operand1":{                                            // |
+                            "operator":"+",                                      // - 09
+                            "operand1":{                                         // |
+                                "operator":"*",                                   // |
+                                "operand1":"2",                                   // |
+                                "operand2":"4"                                    // |
+                            },                                                   // |
+                            "operand2":"5"                                       // |
+                        },                                                      // |
+                        "operand2":"2"                                          // |
+                    }                                                          // |
+                },                                                            // |--
+                {                                                             // |--
+                    "operator":"*",                                            // |
+                    "operand1":{                                               // |
+                        "operator":"/",                                         // |
+                        "operand1":{                                            // |
+                            "value":{                                            // |
+                                "type":"item",                                    // |
+                                "item":{                                          // |
+                                    "table":"table-01",                            // |
+                                    "key":"col-02",                                // |
+                                    "name":"Item1",                                // |
+                                    "oper":"sum"                                   // |
+                                }                                                 // |
+                            }                                                    // |
+                        },                                                      // |
+                        "operand2":{                                            // - 10
+                            "value":{                                            // |
+                                "type":"item",                                    // |
+                                "item":{                                          // |
+                                    "table":"table-02",                            // |
+                                    "key":"col-04",                                // |
+                                    "name":"Item2",                                // |
+                                    "oper":"sum"                                   // |
+                                }                                                 // |
+                            }                                                    // |
+                        }                                                       // |
+                    },                                                         // |
+                    "operand2":{                                               // |
+                        "value":{                                               // |
+                            "type":"unit",                                       // |
+                            "unit":100                                           // |
+                        }                                                       // |
+                    }                                                          // |
+                },                                                            // |--
+                '(1 + 2) 3',                                                  // 11
+                '((1 + 2',                                                    // 12
+                '2 + 3))',                                                    // 13
+                '1 ! 2',                                                      // 14
+                '1 ++ 4'                                                      // 15
+            ];
+
+            $(function() {
+                $('.version strong').text(metricParser.getVersion());
+                $('.formula-expression').each(function(index) {
+                    var $this = $(this);
+                    if(!formulaExpression[index])
+                        return;
+
+                    var $formulaDisplay = $('<div class="formula-display"></div>');
+                    var $formulaResult = $('<div class="formula-result"></div>');
+                    var expression = formulaExpression[index];
+                    var formula = metricParser.convert(expression);
+                    var json = JSON.stringify(formula, null, '/%t/').replace(/\n/g, "/%b/");
+                    var jsonHtml = Prism.highlight(json, Prism.languages.json).replace(/\/%b\//mg, '<br />').replace(/\/%t\//mg, '&nbsp;&nbsp;&nbsp;&nbsp;');
+
+                    if(typeof expression === 'object') {
+                        expression = Prism.highlight(JSON.stringify(expression, null, '/%t/').replace(/\n/g, "/%b/"), Prism.languages.json).replace(/\/%b\//mg, '<br />').replace(/\/%t\//mg, '&nbsp;&nbsp;&nbsp;&nbsp;');
+                    }
+
+                    $this.html(expression);
+                    $formulaDisplay.html(jsonHtml);
+                    $formulaDisplay.insertAfter($this);
+                    $formulaResult.clone().appendTo($this).text('Expression');
+
+                    var $target = $formulaResult.clone().appendTo($formulaDisplay);
+                    $target.append('<span>Result</span><span class="formula-status"></span>');
+                    $formulaDisplay.addClass(formula.code ? 'formula-display-error' : 'formula-display-success');
+                });
+            });
+            //]]>
+        </script>
 	</body>
 </html>
