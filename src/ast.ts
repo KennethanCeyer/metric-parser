@@ -1,6 +1,5 @@
 import { Token } from './token/token';
 import { TokenHelper } from './token/token.helper';
-import { unescape } from 'querystring';
 
 export class AbstractSyntaxTree {
     private _value: Token.Token;

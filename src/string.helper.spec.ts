@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import { convert } from './metric.parser';
 import { StringHelper } from './string.helper';
 
 describe('test method: StringHelper.format()', () => {

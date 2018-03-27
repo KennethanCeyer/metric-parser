@@ -1,0 +1,3 @@
+dist/* linguist-vendored=false
+docs/* linguist-vendored=false
+demo/* linguist-vendored=false
