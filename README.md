@@ -8,21 +8,14 @@
 
 ----
 
-**Formula Parser** can helps you make object of the formulas by parsing.
+### Special lovers
 
-This plugin provides validtor, parser and unparser.
-
-And this feature can be executed on the old browser version like IE 7 or higher version. (Chrome, Firefox also can be used)
-
-And the plugin be made by vanila js (pure javascript).
+- [rhyscitlema.com](http://rhyscitlema.com/algorithms/expression-parsing-algorithm)
+- [Precedence climbing](http://www.engr.mun.ca/~theo/Misc/exp_parsing.htm#climbing)
 
 ----
 
-> This plugin is related with [Formula plugin](https://github.com/KennethanCeyer/Formula).
-
-----
-
-### Exsamples
+### Example
 
 [See demo](http://www.pigno.se/barn/PIGNOSE-FormulaParser/)
 
@@ -30,9 +23,29 @@ And the plugin be made by vanila js (pure javascript).
 
 ----
 
-### Next update logs
+### Roadmap
 
-Advanced expression like `IF()`, `SUM()`, `AVG()`, `_CUSTOM_NAMED_FUNC_()` is in plan for next update.
+**v1.0.0**
+
+- [x] support typescript
+- [x] support UMD and ES5 module
+- [x] support automated test environment
+- [x] support custom value (custom object as value)
+- [x] support implicit patterns (multiplication omitted, operator aliases)
+- [x] support reference docs
+- [ ] guidelines for developers
+- [ ] guidelines for contributors
+- [ ] support validation for many cases
+- [x] improve parser logic based [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree)
+- [x] improve validation error (parserStack, codes)
+- [x] add unit test with coverage rate over 90%
+
+**v1.0.1**
+- [ ] function expression `IF()`, `SUM()`, `AVG()`, `_CUSTOM_NAMED_FUNC_()`
+- [ ] support custom tree model declaration
+
+**v1.0.2**
+- [ ] declare variable (operator and value type)
 
 If you want join the contribution, Fork it and send a pull request.
 
@@ -40,26 +53,26 @@ If you want join the contribution, Fork it and send a pull request.
 
 ### Installation
 
-#### Zip file download
+#### zip
 
 [Latest zip file link](https://github.com/KennethanCeyer/FormulaParser/archive/master.zip)
 
-#### Git
+#### git
 
 ```bash
 git clone git@github.com:KennethanCeyer/FormulaParser.git
 ```
 
-#### Bower
+#### bower
 
 ```bash
-bower install pg-formula-parser
+bower install metric-parser
 ```
 
 #### NPM
 
 ```bash
-npm install pg-formula-parser
+npm install metric-parser
 ```
 
 ----
