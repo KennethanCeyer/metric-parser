@@ -3,6 +3,8 @@ import { Operand, OperandValue, TreeModel } from './tree.type';
 import { TokenHelper } from './token/token.helper';
 import { Token } from './token/token';
 import { AbstractSyntaxTreeHelper } from './ast.helper';
+import { TreeError } from './tree.error';
+import { ParserError } from './error';
 
 export class Tree {
     public constructor(private ast: AbstractSyntaxTree) {
@@ -10,11 +12,11 @@ export class Tree {
 
     public makeTree(): TreeModel {
         if (!this.ast)
-            return undefined;
+            throw new ParserError(TreeError.astIsEmpty);
 
         const tree = this.makeNode(this.ast);
         if ((tree as Operand).value)
-            throw new Error('error: invalid parser tree');
+            throw new ParserError(TreeError.invalidParserTree);
 
         return tree as TreeModel;
     }

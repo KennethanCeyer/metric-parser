@@ -6,7 +6,7 @@ import { Operand, TreeModel } from './tree.type';
 
 describe('make tree', () => {
     it('should return parser tree', () => {
-        const ast = new AbstractSyntaxTree(Token.Literal.Multiplication);
+        const ast = new AbstractSyntaxTree(Token.literal.Multiplication);
         ast.leftNode = new AbstractSyntaxTree('2');
         ast.rightNode = new AbstractSyntaxTree('3');
         const treeBuilder = new Tree(ast);
@@ -34,10 +34,10 @@ describe('make tree', () => {
             type: 'string',
             aggregate: 'none'
         };
-        const subNode = new AbstractSyntaxTree(Token.Literal.Division);
+        const subNode = new AbstractSyntaxTree(Token.literal.Division);
         subNode.leftNode = new AbstractSyntaxTree('3');
         subNode.rightNode = new AbstractSyntaxTree(customInput2);
-        const ast = new AbstractSyntaxTree(Token.Literal.Addition);
+        const ast = new AbstractSyntaxTree(Token.literal.Addition);
         ast.leftNode = new AbstractSyntaxTree(customInput);
         ast.rightNode = subNode;
         const treeBuilder = new Tree(ast);
@@ -47,12 +47,12 @@ describe('make tree', () => {
         const leftOperandOfRightNode = rightOperand.operand1 as Operand;
         const rightOperandOfRightNode = rightOperand.operand2 as Operand;
 
-        expect(tree.operator).to.equal(Token.Literal.Addition);
+        expect(tree.operator).to.equal(Token.literal.Addition);
         expect(leftOperand).to.be.an('object');
         expect(rightOperand).to.be.an('object');
         expect(leftOperand.value.type).to.equal('item');
         expect(leftOperand.value.item).to.deep.equal(customInput);
-        expect(rightOperand.operator).to.equal(Token.Literal.Division);
+        expect(rightOperand.operator).to.equal(Token.literal.Division);
         expect(leftOperandOfRightNode).to.be.an('object');
         expect(rightOperandOfRightNode).to.be.an('object');
         expect(leftOperandOfRightNode.value.type).to.equal('unit');

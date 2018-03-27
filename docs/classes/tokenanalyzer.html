@@ -910,9 +910,6 @@ img { max-width: 100%; }
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class=" tsd-kind-enum">
-			<a href="../enums/loggercode.html" class="tsd-kind-icon">Logger<wbr>Code</a>
-		</li>
-		<li class=" tsd-kind-enum">
 			<a href="../enums/tokenvalidatelevel.html" class="tsd-kind-icon">Token<wbr>Validate<wbr>Level</a>
 		</li>
 		<li class=" tsd-kind-class">
@@ -928,13 +925,13 @@ img { max-width: 100%; }
 			<a href="builderhelper.html" class="tsd-kind-icon">Builder<wbr>Helper</a>
 		</li>
 		<li class=" tsd-kind-class">
-			<a href="loggerhelper.html" class="tsd-kind-icon">Logger<wbr>Helper</a>
+			<a href="buildermessage.html" class="tsd-kind-icon">Builder<wbr>Message</a>
+		</li>
+		<li class=" tsd-kind-class">
+			<a href="parsererror.html" class="tsd-kind-icon">Parser<wbr>Error</a>
 		</li>
 		<li class=" tsd-kind-class">
 			<a href="parserhelper.html" class="tsd-kind-icon">Parser<wbr>Helper</a>
-		</li>
-		<li class=" tsd-kind-class">
-			<a href="parserprocess.html" class="tsd-kind-icon">Parser<wbr>Process</a>
 		</li>
 		<li class=" tsd-kind-class">
 			<a href="stringhelper.html" class="tsd-kind-icon">String<wbr>Helper</a>
@@ -942,7 +939,7 @@ img { max-width: 100%; }
 		<li class="current tsd-kind-class">
 			<a href="tokenanalyzer.html" class="tsd-kind-icon">Token<wbr>Analyzer</a>
 			<ul>
-				<li class=" tsd-kind-constructor tsd-parent-kind-class">
+				<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 					<a href="tokenanalyzer.html#constructor" class="tsd-kind-icon">constructor</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
@@ -951,17 +948,14 @@ img { max-width: 100%; }
 				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a href="tokenanalyzer.html#currenttree" class="tsd-kind-icon">current<wbr>Tree</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a href="tokenanalyzer.html#index" class="tsd-kind-icon">index</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a href="tokenanalyzer.html#lasterror" class="tsd-kind-icon">last<wbr>Error</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 					<a href="tokenanalyzer.html#token" class="tsd-kind-icon">token</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a href="tokenanalyzer.html#tokenstack" class="tsd-kind-icon">token<wbr>Stack</a>
+				<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a href="tokenanalyzer.html#stack" class="tsd-kind-icon">stack</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a href="tokenanalyzer.html#addstack" class="tsd-kind-icon">add<wbr>Stack</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 					<a href="tokenanalyzer.html#analyzebrackettoken" class="tsd-kind-icon">analyze<wbr>Bracket<wbr>Token</a>
@@ -975,9 +969,6 @@ img { max-width: 100%; }
 				<li class=" tsd-kind-method tsd-parent-kind-class">
 					<a href="tokenanalyzer.html#getast" class="tsd-kind-icon">get<wbr>Ast</a>
 				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class">
-					<a href="tokenanalyzer.html#getlasterror" class="tsd-kind-icon">get<wbr>Last<wbr>Error</a>
-				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 					<a href="tokenanalyzer.html#initialize" class="tsd-kind-icon">initialize</a>
 				</li>
@@ -988,39 +979,36 @@ img { max-width: 100%; }
 					<a href="tokenanalyzer.html#makeast" class="tsd-kind-icon">make<wbr>Ast</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a href="tokenanalyzer.html#makeerror" class="tsd-kind-icon">make<wbr>Error</a>
-				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a href="tokenanalyzer.html#maketoken" class="tsd-kind-icon">make<wbr>Token</a>
-				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 					<a href="tokenanalyzer.html#maketree" class="tsd-kind-icon">make<wbr>Tree</a>
 				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a href="tokenanalyzer.html#next" class="tsd-kind-icon">next</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class">
 					<a href="tokenanalyzer.html#parse" class="tsd-kind-icon">parse</a>
 				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 					<a href="tokenanalyzer.html#popstack" class="tsd-kind-icon">pop<wbr>Stack</a>
 				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a href="tokenanalyzer.html#proceednext" class="tsd-kind-icon">proceed<wbr>Next</a>
-				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
-					<a href="tokenanalyzer.html#validatetoken" class="tsd-kind-icon">validate<wbr>Token</a>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a href="tokenanalyzer.html#rewind" class="tsd-kind-icon">rewind</a>
 				</li>
 			</ul>
+		</li>
+		<li class=" tsd-kind-class">
+			<a href="tokenenumerable.html" class="tsd-kind-icon">Token<wbr>Enumerable</a>
 		</li>
 		<li class=" tsd-kind-class">
 			<a href="tokenhelper.html" class="tsd-kind-icon">Token<wbr>Helper</a>
 		</li>
 		<li class=" tsd-kind-class">
+			<a href="tokenvalidator.html" class="tsd-kind-icon">Token<wbr>Validator</a>
+		</li>
+		<li class=" tsd-kind-class">
 			<a href="tree.html" class="tsd-kind-icon">Tree</a>
 		</li>
 		<li class=" tsd-kind-interface">
-			<a href="../interfaces/loggertrace.html" class="tsd-kind-icon">Logger<wbr>Trace</a>
+			<a href="../interfaces/errorvalue.html" class="tsd-kind-icon">Error<wbr>Value</a>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="../interfaces/operand.html" class="tsd-kind-icon">Operand</a>
@@ -1032,10 +1020,13 @@ img { max-width: 100%; }
 			<a href="../interfaces/operandvalue.html" class="tsd-kind-icon">Operand<wbr>Value</a>
 		</li>
 		<li class=" tsd-kind-interface">
-			<a href="../interfaces/parserdefaultresult.html" class="tsd-kind-icon">Parser<wbr>Default<wbr>Result</a>
+			<a href="../interfaces/parsergeneralresult.html" class="tsd-kind-icon">Parser<wbr>General<wbr>Result</a>
 		</li>
 		<li class=" tsd-kind-interface tsd-has-type-parameter">
 			<a href="../interfaces/parserresult.html" class="tsd-kind-icon">Parser<wbr>Result</a>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="../interfaces/parserstack.html" class="tsd-kind-icon">Parser<wbr>Stack</a>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="../interfaces/treemodel.html" class="tsd-kind-icon">Tree<wbr>Model</a>
@@ -1067,9 +1058,6 @@ img { max-width: 100%; }
 		<li class=" tsd-kind-function">
 			<a href="../globals.html#getversion" class="tsd-kind-icon">get<wbr>Version</a>
 		</li>
-		<li class=" tsd-kind-object-literal">
-			<a href="../globals.html#loggermessage" class="tsd-kind-icon">Logger<wbr>Message</a>
-		</li>
 	</ul>
 </nav>
 <div class="container container-main">
@@ -1078,7 +1066,12 @@ img { max-width: 100%; }
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<span class="target">TokenAnalyzer</span>
+					<a href="tokenenumerable.html" class="tsd-signature-type">TokenEnumerable</a>
+					<ul class="tsd-hierarchy">
+						<li>
+							<span class="target">TokenAnalyzer</span>
+						</li>
+					</ul>
 				</li>
 			</ul>
 		</section>
@@ -1089,39 +1082,39 @@ img { max-width: 100%; }
 					<section class="tsd-index-section ">
 						<h3>Constructors</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="tokenanalyzer.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="tokenanalyzer.html#constructor" class="tsd-kind-icon">constructor</a></li>
 						</ul>
 					</section>
-					<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+					<section class="tsd-index-section tsd-is-private-protected">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="tokenanalyzer.html#ast" class="tsd-kind-icon">ast</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="tokenanalyzer.html#currenttree" class="tsd-kind-icon">current<wbr>Tree</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="tokenanalyzer.html#index" class="tsd-kind-icon">index</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="tokenanalyzer.html#lasterror" class="tsd-kind-icon">last<wbr>Error</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="tokenanalyzer.html#token" class="tsd-kind-icon">token</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="tokenanalyzer.html#tokenstack" class="tsd-kind-icon">token<wbr>Stack</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="tokenanalyzer.html#token" class="tsd-kind-icon">token</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section tsd-is-inherited tsd-is-private-protected">
+						<h3>Accessors</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="tokenanalyzer.html#stack" class="tsd-kind-icon">stack</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section ">
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="tokenanalyzer.html#addstack" class="tsd-kind-icon">add<wbr>Stack</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tokenanalyzer.html#analyzebrackettoken" class="tsd-kind-icon">analyze<wbr>Bracket<wbr>Token</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tokenanalyzer.html#analyzeoperatortoken" class="tsd-kind-icon">analyze<wbr>Operator<wbr>Token</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tokenanalyzer.html#analyzetoken" class="tsd-kind-icon">analyze<wbr>Token</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class"><a href="tokenanalyzer.html#getast" class="tsd-kind-icon">get<wbr>Ast</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class"><a href="tokenanalyzer.html#getlasterror" class="tsd-kind-icon">get<wbr>Last<wbr>Error</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tokenanalyzer.html#initialize" class="tsd-kind-icon">initialize</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tokenanalyzer.html#insertimplicitmultiplication" class="tsd-kind-icon">insert<wbr>Implicit<wbr>Multiplication</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tokenanalyzer.html#makeast" class="tsd-kind-icon">make<wbr>Ast</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tokenanalyzer.html#makeerror" class="tsd-kind-icon">make<wbr>Error</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tokenanalyzer.html#maketoken" class="tsd-kind-icon">make<wbr>Token</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tokenanalyzer.html#maketree" class="tsd-kind-icon">make<wbr>Tree</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tokenanalyzer.html#next" class="tsd-kind-icon">next</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="tokenanalyzer.html#next" class="tsd-kind-icon">next</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class"><a href="tokenanalyzer.html#parse" class="tsd-kind-icon">parse</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tokenanalyzer.html#popstack" class="tsd-kind-icon">pop<wbr>Stack</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="tokenanalyzer.html#proceednext" class="tsd-kind-icon">proceed<wbr>Next</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="tokenanalyzer.html#validatetoken" class="tsd-kind-icon">validate<wbr>Token</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="tokenanalyzer.html#popstack" class="tsd-kind-icon">pop<wbr>Stack</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="tokenanalyzer.html#rewind" class="tsd-kind-icon">rewind</a></li>
 						</ul>
 					</section>
 				</div>
@@ -1129,17 +1122,18 @@ img { max-width: 100%; }
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Constructors</h2>
-			<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+			<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 				<a name="constructor" class="tsd-anchor"></a>
 				<h3>constructor</h3>
-				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 					<li class="tsd-signature tsd-kind-icon">new <wbr>Token<wbr>Analyzer<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="tokenanalyzer.html" class="tsd-signature-type">TokenAnalyzer</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
+							<p>Overrides <a href="tokenenumerable.html">TokenEnumerable</a>.<a href="tokenenumerable.html#constructor">constructor</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L18">token/token.analyzer.ts:18</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token/token.analyzer.ts#L12">token/token.analyzer.ts:12</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1153,7 +1147,7 @@ img { max-width: 100%; }
 				</ul>
 			</section>
 		</section>
-		<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+		<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
 			<h2>Properties</h2>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 				<a name="ast" class="tsd-anchor"></a>
@@ -1161,7 +1155,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">ast<span class="tsd-signature-symbol">:</span> <a href="abstractsyntaxtree.html" class="tsd-signature-type">AbstractSyntaxTree</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L15">token/token.analyzer.ts:15</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token/token.analyzer.ts#L11">token/token.analyzer.ts:11</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1171,53 +1165,63 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">current<wbr>Tree<span class="tsd-signature-symbol">:</span> <a href="abstractsyntaxtree.html" class="tsd-signature-type">AbstractSyntaxTree</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L16">token/token.analyzer.ts:16</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token/token.analyzer.ts#L12">token/token.analyzer.ts:12</a></li>
 					</ul>
 				</aside>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-				<a name="index" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> index</h3>
-				<div class="tsd-signature tsd-kind-icon">index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L17">token/token.analyzer.ts:17</a></li>
-					</ul>
-				</aside>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-				<a name="lasterror" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> last<wbr>Error</h3>
-				<div class="tsd-signature tsd-kind-icon">last<wbr>Error<span class="tsd-signature-symbol">:</span> <a href="../interfaces/parserdefaultresult.html" class="tsd-signature-type">ParserDefaultResult</a></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L18">token/token.analyzer.ts:18</a></li>
-					</ul>
-				</aside>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 				<a name="token" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> token</h3>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> token</h3>
 				<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">[]</span></div>
 				<aside class="tsd-sources">
+					<p>Inherited from <a href="tokenenumerable.html">TokenEnumerable</a>.<a href="tokenenumerable.html#token">token</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L20">token/token.analyzer.ts:20</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token/token.enumerable.ts#L26">token/token.enumerable.ts:26</a></li>
 					</ul>
 				</aside>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-				<a name="tokenstack" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> token<wbr>Stack</h3>
-				<div class="tsd-signature tsd-kind-icon">token<wbr>Stack<span class="tsd-signature-symbol">:</span> <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+		</section>
+		<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-private-protected">
+			<h2>Accessors</h2>
+			<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+				<a name="stack" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> stack</h3>
+				<div class="tsd-signature tsd-kind-icon">stack<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
+					<p>Inherited from <a href="tokenenumerable.html">TokenEnumerable</a>.<a href="tokenenumerable.html#stack">stack</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L14">token/token.analyzer.ts:14</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token/token.enumerable.ts#L17">token/token.enumerable.ts:17</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token/token.enumerable.ts#L21">token/token.enumerable.ts:21</a></li>
 					</ul>
 				</aside>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Methods</h2>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+				<a name="addstack" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> add<wbr>Stack</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<li class="tsd-signature tsd-kind-icon">add<wbr>Stack<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="tokenenumerable.html">TokenEnumerable</a>.<a href="tokenenumerable.html#addstack">addStack</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token/token.enumerable.ts#L52">token/token.enumerable.ts:52</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
 				<a name="analyzebrackettoken" class="tsd-anchor"></a>
 				<h3><span class="tsd-flag ts-flagPrivate">Private</span> analyze<wbr>Bracket<wbr>Token</h3>
@@ -1228,7 +1232,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L81">token/token.analyzer.ts:81</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token/token.analyzer.ts#L58">token/token.analyzer.ts:58</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1251,7 +1255,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L98">token/token.analyzer.ts:98</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token/token.analyzer.ts#L75">token/token.analyzer.ts:75</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1274,7 +1278,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L67">token/token.analyzer.ts:67</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token/token.analyzer.ts#L44">token/token.analyzer.ts:44</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1297,27 +1301,10 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L41">token/token.analyzer.ts:41</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token/token.analyzer.ts#L31">token/token.analyzer.ts:31</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <a href="abstractsyntaxtree.html" class="tsd-signature-type">AbstractSyntaxTree</a></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-				<a name="getlasterror" class="tsd-anchor"></a>
-				<h3>get<wbr>Last<wbr>Error</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">get<wbr>Last<wbr>Error<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/parserdefaultresult.html" class="tsd-signature-type">ParserDefaultResult</a></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L29">token/token.analyzer.ts:29</a></li>
-							</ul>
-						</aside>
-						<h4 class="tsd-returns-title">Returns <a href="../interfaces/parserdefaultresult.html" class="tsd-signature-type">ParserDefaultResult</a></h4>
 					</li>
 				</ul>
 			</section>
@@ -1331,7 +1318,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L33">token/token.analyzer.ts:33</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token/token.analyzer.ts#L24">token/token.analyzer.ts:24</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1348,7 +1335,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L117">token/token.analyzer.ts:117</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token/token.analyzer.ts#L92">token/token.analyzer.ts:92</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1365,62 +1352,10 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L45">token/token.analyzer.ts:45</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token/token.analyzer.ts#L35">token/token.analyzer.ts:35</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-				<a name="makeerror" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> make<wbr>Error</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<li class="tsd-signature tsd-kind-icon">make<wbr>Error<span class="tsd-signature-symbol">(</span>code<span class="tsd-signature-symbol">: </span><a href="../enums/loggercode.html" class="tsd-signature-type">LoggerCode</a>, mapping<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, process<span class="tsd-signature-symbol">?: </span><a href="parserprocess.html" class="tsd-signature-type">ParserProcess</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L170">token/token.analyzer.ts:170</a></li>
-							</ul>
-						</aside>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>code: <a href="../enums/loggercode.html" class="tsd-signature-type">LoggerCode</a></h5>
-							</li>
-							<li>
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> mapping: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
-							</li>
-							<li>
-								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> process: <a href="parserprocess.html" class="tsd-signature-type">ParserProcess</a><span class="tsd-signature-symbol"> =&nbsp;ParserProcess.Lexer</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-				<a name="maketoken" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> make<wbr>Token</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<li class="tsd-signature tsd-kind-icon">make<wbr>Token<span class="tsd-signature-symbol">(</span>tokens<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L152">token/token.analyzer.ts:152</a></li>
-							</ul>
-						</aside>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>tokens: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">[]</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h4>
 					</li>
 				</ul>
 			</section>
@@ -1434,24 +1369,25 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L165">token/token.analyzer.ts:165</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token/token.analyzer.ts#L97">token/token.analyzer.ts:97</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <a href="../interfaces/treemodel.html" class="tsd-signature-type">TreeModel</a></h4>
 					</li>
 				</ul>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 				<a name="next" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> next</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+				<h3>next</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<li class="tsd-signature tsd-kind-icon">next<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
+							<p>Inherited from <a href="tokenenumerable.html">TokenEnumerable</a>.<a href="tokenenumerable.html#next">next</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L133">token/token.analyzer.ts:133</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token/token.enumerable.ts#L62">token/token.enumerable.ts:62</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -1468,70 +1404,49 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L23">token/token.analyzer.ts:23</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token/token.analyzer.ts#L18">token/token.analyzer.ts:18</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <a href="../interfaces/treemodel.html" class="tsd-signature-type">TreeModel</a></h4>
 					</li>
 				</ul>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 				<a name="popstack" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> pop<wbr>Stack</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<li class="tsd-signature tsd-kind-icon">pop<wbr>Stack<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> pop<wbr>Stack</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<li class="tsd-signature tsd-kind-icon">pop<wbr>Stack<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
+							<p>Inherited from <a href="tokenenumerable.html">TokenEnumerable</a>.<a href="tokenenumerable.html#popstack">popStack</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L61">token/token.analyzer.ts:61</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token/token.enumerable.ts#L56">token/token.enumerable.ts:56</a></li>
 							</ul>
 						</aside>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span>
+						<h4 class="tsd-returns-title">Returns <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a>
 							<span class="tsd-signature-symbol"> | </span>
 							<span class="tsd-signature-type">undefined</span>
 						</h4>
 					</li>
 				</ul>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-				<a name="proceednext" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> proceed<wbr>Next</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<li class="tsd-signature tsd-kind-icon">proceed<wbr>Next<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+				<a name="rewind" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> rewind</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<li class="tsd-signature tsd-kind-icon">rewind<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
+							<p>Inherited from <a href="tokenenumerable.html">TokenEnumerable</a>.<a href="tokenenumerable.html#rewind">rewind</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L142">token/token.analyzer.ts:142</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token/token.enumerable.ts#L29">token/token.enumerable.ts:29</a></li>
 							</ul>
 						</aside>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
-				<a name="validatetoken" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagPrivate">Private</span> validate<wbr>Token</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
-					<li class="tsd-signature tsd-kind-icon">validate<wbr>Token<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../enums/tokenvalidatelevel.html" class="tsd-signature-type">TokenValidateLevel</a></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/token/token.analyzer.ts#L123">token/token.analyzer.ts:123</a></li>
-							</ul>
-						</aside>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="../enums/tokenvalidatelevel.html" class="tsd-signature-type">TokenValidateLevel</a></h4>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 					</li>
 				</ul>
 			</section>

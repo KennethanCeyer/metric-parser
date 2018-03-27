@@ -1,12 +1,14 @@
-import { LoggerCode } from '../logger/logger.code';
-import { LoggerTrace } from '../logger/logger.trace';
-
 export interface ParserResult<T> {
-    code: LoggerCode;
+    code: number;
     message?: string;
-    trace?: LoggerTrace;
     data?: T;
+    stack?: ParserStack;
 }
 
-export interface ParserDefaultResult extends ParserResult<any> {
+export interface ParserGeneralResult extends ParserResult<any> {
+}
+
+export interface ParserStack {
+    line: number;
+    col: number;
 }

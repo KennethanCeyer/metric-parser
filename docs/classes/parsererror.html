@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>LoggerHelper | metric-parser</title>
+	<title>ParserError | metric-parser</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -910,9 +910,6 @@ img { max-width: 100%; }
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class=" tsd-kind-enum">
-			<a href="../enums/loggercode.html" class="tsd-kind-icon">Logger<wbr>Code</a>
-		</li>
-		<li class=" tsd-kind-enum">
 			<a href="../enums/tokenvalidatelevel.html" class="tsd-kind-icon">Token<wbr>Validate<wbr>Level</a>
 		</li>
 		<li class=" tsd-kind-class">
@@ -927,19 +924,46 @@ img { max-width: 100%; }
 		<li class=" tsd-kind-class">
 			<a href="builderhelper.html" class="tsd-kind-icon">Builder<wbr>Helper</a>
 		</li>
+		<li class=" tsd-kind-class">
+			<a href="buildermessage.html" class="tsd-kind-icon">Builder<wbr>Message</a>
+		</li>
 		<li class="current tsd-kind-class">
-			<a href="loggerhelper.html" class="tsd-kind-icon">Logger<wbr>Helper</a>
+			<a href="parsererror.html" class="tsd-kind-icon">Parser<wbr>Error</a>
 			<ul>
-				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a href="loggerhelper.html#getmessage" class="tsd-kind-icon">get<wbr>Message</a>
+				<li class=" tsd-kind-constructor tsd-parent-kind-class">
+					<a href="parsererror.html#constructor" class="tsd-kind-icon">constructor</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class">
+					<a href="parsererror.html#code" class="tsd-kind-icon">code</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class">
+					<a href="parsererror.html#error" class="tsd-kind-icon">error</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class">
+					<a href="parsererror.html#parserstack" class="tsd-kind-icon">parser<wbr>Stack</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class">
+					<a href="parsererror.html#text" class="tsd-kind-icon">text</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a href="parsererror.html#error-1" class="tsd-kind-icon">Error</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+					<a href="parsererror.html#message" class="tsd-kind-icon">message</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+					<a href="parsererror.html#name" class="tsd-kind-icon">name</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static">
+					<a href="parsererror.html#stack" class="tsd-kind-icon">stack</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="parsererror.html#withstack" class="tsd-kind-icon">with<wbr>Stack</a>
 				</li>
 			</ul>
 		</li>
 		<li class=" tsd-kind-class">
 			<a href="parserhelper.html" class="tsd-kind-icon">Parser<wbr>Helper</a>
-		</li>
-		<li class=" tsd-kind-class">
-			<a href="parserprocess.html" class="tsd-kind-icon">Parser<wbr>Process</a>
 		</li>
 		<li class=" tsd-kind-class">
 			<a href="stringhelper.html" class="tsd-kind-icon">String<wbr>Helper</a>
@@ -948,13 +972,19 @@ img { max-width: 100%; }
 			<a href="tokenanalyzer.html" class="tsd-kind-icon">Token<wbr>Analyzer</a>
 		</li>
 		<li class=" tsd-kind-class">
+			<a href="tokenenumerable.html" class="tsd-kind-icon">Token<wbr>Enumerable</a>
+		</li>
+		<li class=" tsd-kind-class">
 			<a href="tokenhelper.html" class="tsd-kind-icon">Token<wbr>Helper</a>
+		</li>
+		<li class=" tsd-kind-class">
+			<a href="tokenvalidator.html" class="tsd-kind-icon">Token<wbr>Validator</a>
 		</li>
 		<li class=" tsd-kind-class">
 			<a href="tree.html" class="tsd-kind-icon">Tree</a>
 		</li>
 		<li class=" tsd-kind-interface">
-			<a href="../interfaces/loggertrace.html" class="tsd-kind-icon">Logger<wbr>Trace</a>
+			<a href="../interfaces/errorvalue.html" class="tsd-kind-icon">Error<wbr>Value</a>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="../interfaces/operand.html" class="tsd-kind-icon">Operand</a>
@@ -966,10 +996,13 @@ img { max-width: 100%; }
 			<a href="../interfaces/operandvalue.html" class="tsd-kind-icon">Operand<wbr>Value</a>
 		</li>
 		<li class=" tsd-kind-interface">
-			<a href="../interfaces/parserdefaultresult.html" class="tsd-kind-icon">Parser<wbr>Default<wbr>Result</a>
+			<a href="../interfaces/parsergeneralresult.html" class="tsd-kind-icon">Parser<wbr>General<wbr>Result</a>
 		</li>
 		<li class=" tsd-kind-interface tsd-has-type-parameter">
 			<a href="../interfaces/parserresult.html" class="tsd-kind-icon">Parser<wbr>Result</a>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="../interfaces/parserstack.html" class="tsd-kind-icon">Parser<wbr>Stack</a>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="../interfaces/treemodel.html" class="tsd-kind-icon">Tree<wbr>Model</a>
@@ -1001,9 +1034,6 @@ img { max-width: 100%; }
 		<li class=" tsd-kind-function">
 			<a href="../globals.html#getversion" class="tsd-kind-icon">get<wbr>Version</a>
 		</li>
-		<li class=" tsd-kind-object-literal">
-			<a href="../globals.html#loggermessage" class="tsd-kind-icon">Logger<wbr>Message</a>
-		</li>
 	</ul>
 </nav>
 <div class="container container-main">
@@ -1012,8 +1042,19 @@ img { max-width: 100%; }
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<span class="target">LoggerHelper</span>
+					<span class="tsd-signature-type">Error</span>
+					<ul class="tsd-hierarchy">
+						<li>
+							<span class="target">ParserError</span>
+						</li>
+					</ul>
 				</li>
+			</ul>
+		</section>
+		<section class="tsd-panel">
+			<h3>Implements</h3>
+			<ul class="tsd-hierarchy">
+				<li><a href="../interfaces/errorvalue.html" class="tsd-signature-type">ErrorValue</a></li>
 			</ul>
 		</section>
 		<section class="tsd-panel-group tsd-index-group">
@@ -1021,42 +1062,173 @@ img { max-width: 100%; }
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
 					<section class="tsd-index-section ">
+						<h3>Constructors</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="parsererror.html#constructor" class="tsd-kind-icon">constructor</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Properties</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-property tsd-parent-kind-class"><a href="parsererror.html#code" class="tsd-kind-icon">code</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class"><a href="parsererror.html#error" class="tsd-kind-icon">error</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class"><a href="parsererror.html#parserstack" class="tsd-kind-icon">parser<wbr>Stack</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class"><a href="parsererror.html#text" class="tsd-kind-icon">text</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="parsererror.html#error-1" class="tsd-kind-icon">Error</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="parsererror.html#message" class="tsd-kind-icon">message</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="parsererror.html#name" class="tsd-kind-icon">name</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static"><a href="parsererror.html#stack" class="tsd-kind-icon">stack</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="loggerhelper.html#getmessage" class="tsd-kind-icon">get<wbr>Message</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="parsererror.html#withstack" class="tsd-kind-icon">with<wbr>Stack</a></li>
 						</ul>
 					</section>
 				</div>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
-			<h2>Methods</h2>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-				<a name="getmessage" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagStatic">Static</span> get<wbr>Message</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<li class="tsd-signature tsd-kind-icon">get<wbr>Message<span class="tsd-signature-symbol">(</span>code<span class="tsd-signature-symbol">?: </span><a href="../enums/loggercode.html" class="tsd-signature-type">LoggerCode</a>, trace<span class="tsd-signature-symbol">?: </span><a href="../interfaces/loggertrace.html" class="tsd-signature-type">LoggerTrace</a>, mapping<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/parserdefaultresult.html" class="tsd-signature-type">ParserDefaultResult</a></li>
+			<h2>Constructors</h2>
+			<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+				<a name="constructor" class="tsd-anchor"></a>
+				<h3>constructor</h3>
+				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">new <wbr>Parser<wbr>Error<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><a href="../interfaces/errorvalue.html" class="tsd-signature-type">ErrorValue</a>, <span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="parsererror.html" class="tsd-signature-type">ParserError</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/logger/logger.helper.ts#L8">logger/logger.helper.ts:8</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/error.ts#L8">error.ts:8</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> code: <a href="../enums/loggercode.html" class="tsd-signature-type">LoggerCode</a><span class="tsd-signature-symbol"> =&nbsp;LoggerCode.Success</span></h5>
+								<h5>error: <a href="../interfaces/errorvalue.html" class="tsd-signature-type">ErrorValue</a></h5>
 							</li>
 							<li>
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> trace: <a href="../interfaces/loggertrace.html" class="tsd-signature-type">LoggerTrace</a></h5>
-							</li>
-							<li>
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> mapping: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="../interfaces/parserdefaultresult.html" class="tsd-signature-type">ParserDefaultResult</a></h4>
+						<h4 class="tsd-returns-title">Returns <a href="parsererror.html" class="tsd-signature-type">ParserError</a></h4>
+					</li>
+				</ul>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Properties</h2>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<a name="code" class="tsd-anchor"></a>
+				<h3>code</h3>
+				<div class="tsd-signature tsd-kind-icon">code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<aside class="tsd-sources">
+					<p>Implementation of <a href="../interfaces/errorvalue.html">ErrorValue</a>.<a href="../interfaces/errorvalue.html#code">code</a></p>
+					<ul>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/error.ts#L7">error.ts:7</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<a name="error" class="tsd-anchor"></a>
+				<h3>error</h3>
+				<div class="tsd-signature tsd-kind-icon">error<span class="tsd-signature-symbol">:</span> <a href="../interfaces/errorvalue.html" class="tsd-signature-type">ErrorValue</a></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/error.ts#L10">error.ts:10</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<a name="parserstack" class="tsd-anchor"></a>
+				<h3>parser<wbr>Stack</h3>
+				<div class="tsd-signature tsd-kind-icon">parser<wbr>Stack<span class="tsd-signature-symbol">:</span> <a href="../interfaces/parserstack.html" class="tsd-signature-type">ParserStack</a></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/error.ts#L6">error.ts:6</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<a name="text" class="tsd-anchor"></a>
+				<h3>text</h3>
+				<div class="tsd-signature tsd-kind-icon">text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<aside class="tsd-sources">
+					<p>Implementation of <a href="../interfaces/errorvalue.html">ErrorValue</a>.<a href="../interfaces/errorvalue.html#text">text</a></p>
+					<ul>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/error.ts#L8">error.ts:8</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+				<a name="error-1" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> Error</h3>
+				<div class="tsd-signature tsd-kind-icon">Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ErrorConstructor</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in C:/Users/kenneth/Desktop/metric-parser/node_modules/typescript/lib/lib.es5.d.ts:896</li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+				<a name="message" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> message</h3>
+				<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from Error.message</p>
+					<ul>
+						<li>Defined in C:/Users/kenneth/Desktop/metric-parser/node_modules/typescript/lib/lib.es5.d.ts:886</li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+				<a name="name" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> name</h3>
+				<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from Error.name</p>
+					<ul>
+						<li>Defined in C:/Users/kenneth/Desktop/metric-parser/node_modules/typescript/lib/lib.es5.d.ts:885</li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static">
+				<a name="stack" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagOptional">Optional</span> stack</h3>
+				<div class="tsd-signature tsd-kind-icon">stack<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from Error.stack</p>
+					<p>Overrides Error.stack</p>
+					<ul>
+						<li>Defined in C:/Users/kenneth/Desktop/metric-parser/node_modules/typescript/lib/lib.es5.d.ts:887</li>
+					</ul>
+				</aside>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Methods</h2>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="withstack" class="tsd-anchor"></a>
+				<h3>with<wbr>Stack</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">with<wbr>Stack<span class="tsd-signature-symbol">(</span>stack<span class="tsd-signature-symbol">: </span><a href="../interfaces/parserstack.html" class="tsd-signature-type">ParserStack</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="parsererror.html" class="tsd-signature-type">ParserError</a></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/error.ts#L23">error.ts:23</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>stack: <a href="../interfaces/parserstack.html" class="tsd-signature-type">ParserStack</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="parsererror.html" class="tsd-signature-type">ParserError</a></h4>
 					</li>
 				</ul>
 			</section>

@@ -1,20 +1,15 @@
-import { ParserDefaultResult } from '../parser/parser.result';
 import { TreeModel } from '../tree.type';
 import { TokenHelper } from './token.helper';
-import { TokenValidateLevel } from '../token.validate.type';
-import { LoggerCode } from '../logger/logger.code';
-import { LoggerHelper } from '../logger/logger.helper';
-import { ParserProcess } from '../parser/parser.process.type';
 import { Token } from './token';
 import { AbstractSyntaxTree } from '../ast';
 import { Tree } from '../tree';
 import { TokenEnumerable } from './token.enumerable';
-import { TokenValidator } from './token.validator';
+import { ParserError } from '../error';
+import { TokenError } from './token.error';
 
 export class TokenAnalyzer extends TokenEnumerable {
     private ast: AbstractSyntaxTree;
     private currentTree: AbstractSyntaxTree;
-    private lastError: ParserDefaultResult;
 
     constructor(token: Token.Token[]) {
         super(token);
@@ -26,15 +21,10 @@ export class TokenAnalyzer extends TokenEnumerable {
         return this.makeTree();
     }
 
-    public getLastError(): ParserDefaultResult {
-        return this.lastError;
-    }
-
     private initialize() {
-        this.ast = new AbstractSyntaxTree(Token.Literal.BracketOpen);
+        this.ast = new AbstractSyntaxTree(Token.literal.BracketOpen);
         this.ast.leftNode = new AbstractSyntaxTree();
         this.currentTree = this.ast.leftNode;
-        this.lastError = null;
         this.rewind();
     }
 
@@ -45,16 +35,6 @@ export class TokenAnalyzer extends TokenEnumerable {
     private makeAst() {
         let token;
         while (token = this.next()) {
-            const level = TokenValidator.validateToken(token);
-
-            if (level === TokenValidateLevel.Escape)
-                continue;
-
-            if (level === TokenValidateLevel.Fatal) {
-                this.makeError(LoggerCode.InvalidToken);
-                return;
-            }
-
             this.analyzeToken(token);
             this.addStack(token);
         }
@@ -96,15 +76,13 @@ export class TokenAnalyzer extends TokenEnumerable {
         const lastToken = this.popStack();
 
         if (TokenHelper.isOperator(lastToken))
-        // Invalid Error: Operator left token is invalid
-            console.log('error2', lastToken);
+            throw new ParserError(TokenError.invalidTwoOperator, lastToken, token).withStack(this.stack);
 
         if (!this.currentTree.value)
             this.currentTree.value = token;
         else {
             if (!TokenHelper.isBracket(this.currentTree.value) && !this.currentTree.rightNode)
-            // Invalid Error: Duplicated operators
-                console.log('error3');
+                throw new ParserError(TokenError.invalidTwoOperator, lastToken, token).withStack(this.stack);
 
             this.currentTree = this.currentTree.insertNode(token);
             this.ast = this.ast.findRoot();
@@ -112,21 +90,12 @@ export class TokenAnalyzer extends TokenEnumerable {
     }
 
     private insertImplicitMultiplication() {
-        this.analyzeToken(Token.Literal.Multiplication);
-        this.addStack(Token.Literal.Multiplication);
+        this.analyzeToken(Token.literal.Multiplication);
+        this.addStack(Token.literal.Multiplication);
     }
 
     private makeTree(): TreeModel {
         const treeParser = new Tree(this.ast);
         return treeParser.makeTree();
-    }
-
-    private makeError(code: LoggerCode, mapping?: string[], process: ParserProcess = ParserProcess.Lexer) {
-        const trace = {
-            process,
-            line: 0,
-            col: 0
-        };
-        this.lastError = LoggerHelper.getMessage(code, trace, mapping);
     }
 }

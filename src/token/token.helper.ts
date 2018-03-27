@@ -5,8 +5,16 @@ export class TokenHelper {
         return token && (TokenHelper.isNumeric(token) || TokenHelper.isSymbol(token) || TokenHelper.isObject(token));
     }
 
+    public static isUnkown(token: Token.Token): boolean {
+        return token === undefined || token === null;
+    }
+
+    public static isLineEscape(token: Token.Token): boolean {
+        return token === '\n';
+    }
+
     public static isWhiteSpace(token: Token.Token): boolean {
-        return Token.WhiteSpace.includes(String(token));
+        return Token.whiteSpace.includes(String(token));
     }
 
     public static isNumeric(value: Token.Token): boolean {
@@ -25,48 +33,52 @@ export class TokenHelper {
         return typeof value === 'object';
     }
 
+    public static isValue(value: Token.Token): boolean {
+        return TokenHelper.isObject(value) || TokenHelper.isNumeric(value);
+    }
+
     public static isAddition(token: Token.Token): boolean {
-        return Token.Addition.includes(token);
+        return Token.addition.includes(token);
     }
 
     public static isSubtraction(token: Token.Token): boolean {
-        return Token.Subtraction.includes(token);
+        return Token.subtraction.includes(token);
     }
 
     public static isMultiplication(token: Token.Token): boolean {
-        return Token.Multiplication.includes(token);
+        return Token.multiplication.includes(token);
     }
 
     public static isDivision(token: Token.Token): boolean {
-        return Token.Division.includes(token);
+        return Token.division.includes(token);
     }
 
     public static isMod(token: Token.Token): boolean {
-        return Token.Mod.includes(token);
+        return Token.mod.includes(token);
     }
 
     public static isPow(token: Token.Token): boolean {
-        return Token.Pow.includes(token);
+        return Token.pow.includes(token);
     }
 
     public static isBracket(token: Token.Token): boolean {
-        return Token.Bracket.includes(token);
+        return Token.bracket.includes(token);
     }
 
     public static isBracketOpen(token: Token.Token): boolean {
-        return token === Token.BracketOpen;
+        return token === Token.bracketOpen;
     }
 
     public static isBracketClose(token: Token.Token): boolean {
-        return token === Token.BracketClose;
+        return token === Token.bracketClose;
     }
 
     public static isSymbol(token: Token.Token): boolean {
-        return Token.Symbols.includes(String(token));
+        return Token.symbols.includes(String(token));
     }
 
     public static isOperator(token: Token.Token): boolean {
-        return Token.Operators.includes(String(token));
+        return Token.operators.includes(String(token));
     }
 
     public static isHigher(source: Token.Token, target: Token.Token) {
@@ -75,15 +87,17 @@ export class TokenHelper {
 
     public static induceType(value: Token.Token) {
         const typeInducers = [
+            { predicate: TokenHelper.isUnkown, type: Token.Type.Unknown },
             { predicate: TokenHelper.isWhiteSpace, type: Token.Type.WhiteSpace },
             { predicate: TokenHelper.isOperator, type: Token.Type.Operator },
             { predicate: TokenHelper.isBracket, type: Token.Type.Bracket },
+            { predicate: TokenHelper.isValue, type: Token.Type.Value }
         ];
 
         const extractedToken = typeInducers.find(inducer => inducer.predicate(value));
         return extractedToken
             ? extractedToken.type
-            : Token.Type.Value;
+            : Token.Type.Unknown;
     }
 
     public static getPrecedence(token: Token.Token) {

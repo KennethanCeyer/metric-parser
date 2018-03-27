@@ -1,5 +1,6 @@
 import { Token } from './token/token';
 import { TokenHelper } from './token/token.helper';
+import { unescape } from 'querystring';
 
 export class AbstractSyntaxTree {
     private _value: Token.Token;
@@ -79,7 +80,7 @@ export class AbstractSyntaxTree {
             return this;
 
         if (!this._parent)
-            return null;
+            return undefined;
 
         return this._parent.findOpenedBracket();
     }
@@ -88,7 +89,7 @@ export class AbstractSyntaxTree {
         const node = this.findOpenedBracket();
 
         if (!node)
-            return null;
+            return undefined;
 
         const targetNode = node.leftNode;
         targetNode.subType = Token.SubType.Group;

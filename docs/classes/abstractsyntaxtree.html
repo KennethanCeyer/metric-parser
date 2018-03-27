@@ -910,9 +910,6 @@ img { max-width: 100%; }
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class=" tsd-kind-enum">
-			<a href="../enums/loggercode.html" class="tsd-kind-icon">Logger<wbr>Code</a>
-		</li>
-		<li class=" tsd-kind-enum">
 			<a href="../enums/tokenvalidatelevel.html" class="tsd-kind-icon">Token<wbr>Validate<wbr>Level</a>
 		</li>
 		<li class="current tsd-kind-class">
@@ -1017,13 +1014,13 @@ img { max-width: 100%; }
 			<a href="builderhelper.html" class="tsd-kind-icon">Builder<wbr>Helper</a>
 		</li>
 		<li class=" tsd-kind-class">
-			<a href="loggerhelper.html" class="tsd-kind-icon">Logger<wbr>Helper</a>
+			<a href="buildermessage.html" class="tsd-kind-icon">Builder<wbr>Message</a>
+		</li>
+		<li class=" tsd-kind-class">
+			<a href="parsererror.html" class="tsd-kind-icon">Parser<wbr>Error</a>
 		</li>
 		<li class=" tsd-kind-class">
 			<a href="parserhelper.html" class="tsd-kind-icon">Parser<wbr>Helper</a>
-		</li>
-		<li class=" tsd-kind-class">
-			<a href="parserprocess.html" class="tsd-kind-icon">Parser<wbr>Process</a>
 		</li>
 		<li class=" tsd-kind-class">
 			<a href="stringhelper.html" class="tsd-kind-icon">String<wbr>Helper</a>
@@ -1032,13 +1029,19 @@ img { max-width: 100%; }
 			<a href="tokenanalyzer.html" class="tsd-kind-icon">Token<wbr>Analyzer</a>
 		</li>
 		<li class=" tsd-kind-class">
+			<a href="tokenenumerable.html" class="tsd-kind-icon">Token<wbr>Enumerable</a>
+		</li>
+		<li class=" tsd-kind-class">
 			<a href="tokenhelper.html" class="tsd-kind-icon">Token<wbr>Helper</a>
+		</li>
+		<li class=" tsd-kind-class">
+			<a href="tokenvalidator.html" class="tsd-kind-icon">Token<wbr>Validator</a>
 		</li>
 		<li class=" tsd-kind-class">
 			<a href="tree.html" class="tsd-kind-icon">Tree</a>
 		</li>
 		<li class=" tsd-kind-interface">
-			<a href="../interfaces/loggertrace.html" class="tsd-kind-icon">Logger<wbr>Trace</a>
+			<a href="../interfaces/errorvalue.html" class="tsd-kind-icon">Error<wbr>Value</a>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="../interfaces/operand.html" class="tsd-kind-icon">Operand</a>
@@ -1050,10 +1053,13 @@ img { max-width: 100%; }
 			<a href="../interfaces/operandvalue.html" class="tsd-kind-icon">Operand<wbr>Value</a>
 		</li>
 		<li class=" tsd-kind-interface">
-			<a href="../interfaces/parserdefaultresult.html" class="tsd-kind-icon">Parser<wbr>Default<wbr>Result</a>
+			<a href="../interfaces/parsergeneralresult.html" class="tsd-kind-icon">Parser<wbr>General<wbr>Result</a>
 		</li>
 		<li class=" tsd-kind-interface tsd-has-type-parameter">
 			<a href="../interfaces/parserresult.html" class="tsd-kind-icon">Parser<wbr>Result</a>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="../interfaces/parserstack.html" class="tsd-kind-icon">Parser<wbr>Stack</a>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="../interfaces/treemodel.html" class="tsd-kind-icon">Tree<wbr>Model</a>
@@ -1084,9 +1090,6 @@ img { max-width: 100%; }
 		</li>
 		<li class=" tsd-kind-function">
 			<a href="../globals.html#getversion" class="tsd-kind-icon">get<wbr>Version</a>
-		</li>
-		<li class=" tsd-kind-object-literal">
-			<a href="../globals.html#loggermessage" class="tsd-kind-icon">Logger<wbr>Message</a>
 		</li>
 	</ul>
 </nav>
@@ -1168,7 +1171,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L63">ast.ts:63</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L64">ast.ts:64</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1190,7 +1193,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">_left<wbr>Node<span class="tsd-signature-symbol">:</span> <a href="abstractsyntaxtree.html" class="tsd-signature-type">AbstractSyntaxTree</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L6">ast.ts:6</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L7">ast.ts:7</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1200,7 +1203,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">_parent<span class="tsd-signature-symbol">:</span> <a href="abstractsyntaxtree.html" class="tsd-signature-type">AbstractSyntaxTree</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L8">ast.ts:8</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L9">ast.ts:9</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1210,7 +1213,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">_right<wbr>Node<span class="tsd-signature-symbol">:</span> <a href="abstractsyntaxtree.html" class="tsd-signature-type">AbstractSyntaxTree</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L7">ast.ts:7</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L8">ast.ts:8</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1220,7 +1223,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">_sub<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../enums/token.subtype.html" class="tsd-signature-type">SubType</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L10">ast.ts:10</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L11">ast.ts:11</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1230,7 +1233,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">_type<span class="tsd-signature-symbol">:</span> <a href="../enums/token.type.html" class="tsd-signature-type">Type</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L9">ast.ts:9</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L10">ast.ts:10</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1240,7 +1243,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">_value<span class="tsd-signature-symbol">:</span> <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L5">ast.ts:5</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L6">ast.ts:6</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1253,8 +1256,8 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">left<wbr>Node<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L43">ast.ts:43</a></li>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L47">ast.ts:47</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L44">ast.ts:44</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L48">ast.ts:48</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1264,8 +1267,8 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">parent<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L35">ast.ts:35</a></li>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L39">ast.ts:39</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L36">ast.ts:36</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L40">ast.ts:40</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1275,8 +1278,8 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">right<wbr>Node<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L54">ast.ts:54</a></li>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L58">ast.ts:58</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L55">ast.ts:55</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L59">ast.ts:59</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1286,8 +1289,8 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">sub<wbr>Type<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L27">ast.ts:27</a></li>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L31">ast.ts:31</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L28">ast.ts:28</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L32">ast.ts:32</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1297,7 +1300,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L23">ast.ts:23</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L24">ast.ts:24</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1307,8 +1310,8 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L12">ast.ts:12</a></li>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L16">ast.ts:16</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L13">ast.ts:13</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L17">ast.ts:17</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1325,7 +1328,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L109">ast.ts:109</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L110">ast.ts:110</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1348,7 +1351,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L125">ast.ts:125</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L126">ast.ts:126</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1371,7 +1374,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L131">ast.ts:131</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L132">ast.ts:132</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1394,7 +1397,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L77">ast.ts:77</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L78">ast.ts:78</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <a href="abstractsyntaxtree.html" class="tsd-signature-type">AbstractSyntaxTree</a></h4>
@@ -1411,7 +1414,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L70">ast.ts:70</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L71">ast.ts:71</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <a href="abstractsyntaxtree.html" class="tsd-signature-type">AbstractSyntaxTree</a></h4>
@@ -1428,7 +1431,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L174">ast.ts:174</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L175">ast.ts:175</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1451,7 +1454,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L182">ast.ts:182</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L183">ast.ts:183</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1474,7 +1477,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L155">ast.ts:155</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L156">ast.ts:156</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1497,7 +1500,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L137">ast.ts:137</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L138">ast.ts:138</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1520,7 +1523,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L115">ast.ts:115</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L116">ast.ts:116</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1543,7 +1546,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L121">ast.ts:121</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L122">ast.ts:122</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1566,7 +1569,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L151">ast.ts:151</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L152">ast.ts:152</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1597,7 +1600,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L87">ast.ts:87</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L88">ast.ts:88</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <a href="abstractsyntaxtree.html" class="tsd-signature-type">AbstractSyntaxTree</a></h4>
@@ -1614,7 +1617,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L189">ast.ts:189</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L190">ast.ts:190</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1631,7 +1634,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L199">ast.ts:199</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L200">ast.ts:200</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1648,7 +1651,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/ast.ts#L194">ast.ts:194</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/ast.ts#L195">ast.ts:195</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>

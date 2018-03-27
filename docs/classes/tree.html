@@ -910,9 +910,6 @@ img { max-width: 100%; }
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class=" tsd-kind-enum">
-			<a href="../enums/loggercode.html" class="tsd-kind-icon">Logger<wbr>Code</a>
-		</li>
-		<li class=" tsd-kind-enum">
 			<a href="../enums/tokenvalidatelevel.html" class="tsd-kind-icon">Token<wbr>Validate<wbr>Level</a>
 		</li>
 		<li class=" tsd-kind-class">
@@ -928,13 +925,13 @@ img { max-width: 100%; }
 			<a href="builderhelper.html" class="tsd-kind-icon">Builder<wbr>Helper</a>
 		</li>
 		<li class=" tsd-kind-class">
-			<a href="loggerhelper.html" class="tsd-kind-icon">Logger<wbr>Helper</a>
+			<a href="buildermessage.html" class="tsd-kind-icon">Builder<wbr>Message</a>
+		</li>
+		<li class=" tsd-kind-class">
+			<a href="parsererror.html" class="tsd-kind-icon">Parser<wbr>Error</a>
 		</li>
 		<li class=" tsd-kind-class">
 			<a href="parserhelper.html" class="tsd-kind-icon">Parser<wbr>Helper</a>
-		</li>
-		<li class=" tsd-kind-class">
-			<a href="parserprocess.html" class="tsd-kind-icon">Parser<wbr>Process</a>
 		</li>
 		<li class=" tsd-kind-class">
 			<a href="stringhelper.html" class="tsd-kind-icon">String<wbr>Helper</a>
@@ -943,7 +940,13 @@ img { max-width: 100%; }
 			<a href="tokenanalyzer.html" class="tsd-kind-icon">Token<wbr>Analyzer</a>
 		</li>
 		<li class=" tsd-kind-class">
+			<a href="tokenenumerable.html" class="tsd-kind-icon">Token<wbr>Enumerable</a>
+		</li>
+		<li class=" tsd-kind-class">
 			<a href="tokenhelper.html" class="tsd-kind-icon">Token<wbr>Helper</a>
+		</li>
+		<li class=" tsd-kind-class">
+			<a href="tokenvalidator.html" class="tsd-kind-icon">Token<wbr>Validator</a>
 		</li>
 		<li class="current tsd-kind-class">
 			<a href="tree.html" class="tsd-kind-icon">Tree</a>
@@ -972,7 +975,7 @@ img { max-width: 100%; }
 			</ul>
 		</li>
 		<li class=" tsd-kind-interface">
-			<a href="../interfaces/loggertrace.html" class="tsd-kind-icon">Logger<wbr>Trace</a>
+			<a href="../interfaces/errorvalue.html" class="tsd-kind-icon">Error<wbr>Value</a>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="../interfaces/operand.html" class="tsd-kind-icon">Operand</a>
@@ -984,10 +987,13 @@ img { max-width: 100%; }
 			<a href="../interfaces/operandvalue.html" class="tsd-kind-icon">Operand<wbr>Value</a>
 		</li>
 		<li class=" tsd-kind-interface">
-			<a href="../interfaces/parserdefaultresult.html" class="tsd-kind-icon">Parser<wbr>Default<wbr>Result</a>
+			<a href="../interfaces/parsergeneralresult.html" class="tsd-kind-icon">Parser<wbr>General<wbr>Result</a>
 		</li>
 		<li class=" tsd-kind-interface tsd-has-type-parameter">
 			<a href="../interfaces/parserresult.html" class="tsd-kind-icon">Parser<wbr>Result</a>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="../interfaces/parserstack.html" class="tsd-kind-icon">Parser<wbr>Stack</a>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="../interfaces/treemodel.html" class="tsd-kind-icon">Tree<wbr>Model</a>
@@ -1018,9 +1024,6 @@ img { max-width: 100%; }
 		</li>
 		<li class=" tsd-kind-function">
 			<a href="../globals.html#getversion" class="tsd-kind-icon">get<wbr>Version</a>
-		</li>
-		<li class=" tsd-kind-object-literal">
-			<a href="../globals.html#loggermessage" class="tsd-kind-icon">Logger<wbr>Message</a>
 		</li>
 	</ul>
 </nav>
@@ -1075,7 +1078,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/tree.ts#L7">tree.ts:7</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/tree.ts#L9">tree.ts:9</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1097,7 +1100,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">ast<span class="tsd-signature-symbol">:</span> <a href="abstractsyntaxtree.html" class="tsd-signature-type">AbstractSyntaxTree</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/tree.ts#L8">tree.ts:8</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/tree.ts#L10">tree.ts:10</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1114,7 +1117,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/tree.ts#L22">tree.ts:22</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/tree.ts#L24">tree.ts:24</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1140,7 +1143,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/tree.ts#L42">tree.ts:42</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/tree.ts#L44">tree.ts:44</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1163,7 +1166,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/tree.ts#L28">tree.ts:28</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/tree.ts#L30">tree.ts:30</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1186,7 +1189,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/tree.ts#L11">tree.ts:11</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/tree.ts#L13">tree.ts:13</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <a href="../interfaces/treemodel.html" class="tsd-signature-type">TreeModel</a></h4>
@@ -1203,7 +1206,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3c58827/src/tree.ts#L36">tree.ts:36</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/tree.ts#L38">tree.ts:38</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>

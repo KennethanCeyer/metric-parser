@@ -1,23 +1,42 @@
-var LoggerCode;
-(function (LoggerCode) {
-    LoggerCode[LoggerCode["Success"] = 0] = "Success";
-    LoggerCode[LoggerCode["InvalidToken"] = 1] = "InvalidToken";
-    LoggerCode[LoggerCode["NotSupported"] = 2] = "NotSupported";
-    LoggerCode[LoggerCode["InvalidLeftOperand"] = 3] = "InvalidLeftOperand";
-    LoggerCode[LoggerCode["InvalidRightOperand"] = 4] = "InvalidRightOperand";
-    LoggerCode[LoggerCode["OpenBracket"] = 5] = "OpenBracket";
-    LoggerCode[LoggerCode["CloseBracket"] = 6] = "CloseBracket";
-    LoggerCode[LoggerCode["InvalidOperatorKey"] = 7] = "InvalidOperatorKey";
-    LoggerCode[LoggerCode["InvalidLeftOperandKey"] = 8] = "InvalidLeftOperandKey";
-    LoggerCode[LoggerCode["InvalidRightOperandKey"] = 9] = "InvalidRightOperandKey";
-    LoggerCode[LoggerCode["InvalidFormulaExpression"] = 10] = "InvalidFormulaExpression";
-})(LoggerCode || (LoggerCode = {}));
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+/* global Reflect, Promise */
+
+var extendStatics = Object.setPrototypeOf ||
+    ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+    function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+
+function __extends(d, b) {
+    extendStatics(d, b);
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+
+var __assign = Object.assign || function __assign(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+    }
+    return t;
+};
 
 var Token;
 (function (Token) {
     var Type;
     (function (Type) {
-        Type[Type["Unkown"] = 0] = "Unkown";
+        Type[Type["Unknown"] = 0] = "Unknown";
         Type[Type["Value"] = 1] = "Value";
         Type[Type["Operator"] = 2] = "Operator";
         Type[Type["Bracket"] = 3] = "Bracket";
@@ -29,9 +48,9 @@ var Token;
     (function (SubType) {
         SubType[SubType["Group"] = 0] = "Group";
     })(SubType = Token.SubType || (Token.SubType = {}));
-    Token.Literal = {
+    Token.literal = {
         Addition: '+',
-        Substraction: '-',
+        Subtraction: '-',
         Multiplication: '*',
         MultiplicationLiteral: 'x',
         Division: '/',
@@ -40,19 +59,19 @@ var Token;
         BracketOpen: '(',
         BracketClose: ')'
     };
-    Token.Addition = [Token.Literal.Addition];
-    Token.Subtraction = [Token.Literal.Substraction];
-    Token.Multiplication = [Token.Literal.Multiplication, Token.Literal.MultiplicationLiteral];
-    Token.Division = [Token.Literal.Division];
-    Token.Mod = [Token.Literal.Mod];
-    Token.Pow = [Token.Literal.Pow];
-    Token.BracketOpen = Token.Literal.BracketOpen;
-    Token.BracketClose = Token.Literal.BracketClose;
-    Token.Bracket = [Token.BracketOpen, Token.BracketClose];
-    Token.Precedence = Token.Addition.concat(Token.Subtraction, Token.Multiplication, Token.Division, Token.Pow, Token.Mod, Token.Bracket);
-    Token.Operators = Token.Addition.concat(Token.Subtraction, Token.Multiplication, Token.Division, Token.Mod, Token.Pow);
-    Token.Symbols = Token.Operators.concat(Token.Bracket);
-    Token.WhiteSpace = [
+    Token.addition = [Token.literal.Addition];
+    Token.subtraction = [Token.literal.Subtraction];
+    Token.multiplication = [Token.literal.Multiplication, Token.literal.MultiplicationLiteral];
+    Token.division = [Token.literal.Division];
+    Token.mod = [Token.literal.Mod];
+    Token.pow = [Token.literal.Pow];
+    Token.bracketOpen = Token.literal.BracketOpen;
+    Token.bracketClose = Token.literal.BracketClose;
+    Token.bracket = [Token.bracketOpen, Token.bracketClose];
+    Token.precedence = Token.addition.concat(Token.subtraction, Token.multiplication, Token.division, Token.pow, Token.mod, Token.bracket);
+    Token.operators = Token.addition.concat(Token.subtraction, Token.multiplication, Token.division, Token.mod, Token.pow);
+    Token.symbols = Token.operators.concat(Token.bracket);
+    Token.whiteSpace = [
         ' ',
         '',
         null,
@@ -64,10 +83,16 @@ var TokenHelper = /** @class */ (function () {
     function TokenHelper() {
     }
     TokenHelper.isToken = function (token) {
-        return token && (TokenHelper.isNumeric(token) || this.isSymbol(token) || TokenHelper.isObject(token));
+        return token && (TokenHelper.isNumeric(token) || TokenHelper.isSymbol(token) || TokenHelper.isObject(token));
+    };
+    TokenHelper.isUnkown = function (token) {
+        return token === undefined || token === null;
+    };
+    TokenHelper.isLineEscape = function (token) {
+        return token === '\n';
     };
     TokenHelper.isWhiteSpace = function (token) {
-        return Token.WhiteSpace.includes(String(token));
+        return Token.whiteSpace.includes(String(token));
     };
     TokenHelper.isNumeric = function (value) {
         return (/\d+(\.\d*)?|\.\d+/).test(String(value));
@@ -81,52 +106,57 @@ var TokenHelper = /** @class */ (function () {
     TokenHelper.isObject = function (value) {
         return typeof value === 'object';
     };
+    TokenHelper.isValue = function (value) {
+        return TokenHelper.isObject(value) || TokenHelper.isNumeric(value);
+    };
     TokenHelper.isAddition = function (token) {
-        return Token.Addition.includes(token);
+        return Token.addition.includes(token);
     };
     TokenHelper.isSubtraction = function (token) {
-        return Token.Subtraction.includes(token);
+        return Token.subtraction.includes(token);
     };
     TokenHelper.isMultiplication = function (token) {
-        return Token.Multiplication.includes(token);
+        return Token.multiplication.includes(token);
     };
     TokenHelper.isDivision = function (token) {
-        return Token.Division.includes(token);
+        return Token.division.includes(token);
     };
     TokenHelper.isMod = function (token) {
-        return Token.Mod.includes(token);
+        return Token.mod.includes(token);
     };
     TokenHelper.isPow = function (token) {
-        return Token.Pow.includes(token);
+        return Token.pow.includes(token);
     };
     TokenHelper.isBracket = function (token) {
-        return Token.Bracket.includes(token);
+        return Token.bracket.includes(token);
     };
     TokenHelper.isBracketOpen = function (token) {
-        return token === Token.BracketOpen;
+        return token === Token.bracketOpen;
     };
     TokenHelper.isBracketClose = function (token) {
-        return token === Token.BracketClose;
+        return token === Token.bracketClose;
     };
     TokenHelper.isSymbol = function (token) {
-        return Token.Symbols.includes(String(token));
+        return Token.symbols.includes(String(token));
     };
     TokenHelper.isOperator = function (token) {
-        return Token.Operators.includes(String(token));
+        return Token.operators.includes(String(token));
     };
     TokenHelper.isHigher = function (source, target) {
         return TokenHelper.getPrecedence(source) - TokenHelper.getPrecedence(target) > 0;
     };
     TokenHelper.induceType = function (value) {
-        var induceTypes = [
+        var typeInducers = [
+            { predicate: TokenHelper.isUnkown, type: Token.Type.Unknown },
             { predicate: TokenHelper.isWhiteSpace, type: Token.Type.WhiteSpace },
             { predicate: TokenHelper.isOperator, type: Token.Type.Operator },
             { predicate: TokenHelper.isBracket, type: Token.Type.Bracket },
+            { predicate: TokenHelper.isValue, type: Token.Type.Value }
         ];
-        var extractedToken = induceTypes.find(function (element) { return element.predicate(value); });
+        var extractedToken = typeInducers.find(function (inducer) { return inducer.predicate(value); });
         return extractedToken
             ? extractedToken.type
-            : Token.Type.Value;
+            : Token.Type.Unknown;
     };
     TokenHelper.getPrecedence = function (token) {
         return [
@@ -169,56 +199,6 @@ var ParserHelper = /** @class */ (function () {
         return value.split('');
     };
     return ParserHelper;
-}());
-
-var TokenValidateLevel;
-(function (TokenValidateLevel) {
-    TokenValidateLevel[TokenValidateLevel["Pass"] = 0] = "Pass";
-    TokenValidateLevel[TokenValidateLevel["Escape"] = 1] = "Escape";
-    TokenValidateLevel[TokenValidateLevel["Fatal"] = 2] = "Fatal";
-})(TokenValidateLevel || (TokenValidateLevel = {}));
-
-var LoggerMessage = (_a = {}, _a[LoggerCode.InvalidToken] = '{0} token is invalid type', _a[LoggerCode.NotSupported] = '\'{0}\' operator is not supported.', _a[LoggerCode.InvalidLeftOperand] = 'Left side operand is not valid.', _a[LoggerCode.InvalidRightOperand] = 'Right side operand is not valid.', _a[LoggerCode.OpenBracket] = 'Bracket must be opened.', _a[LoggerCode.CloseBracket] = 'Bracket must be closed.', _a[LoggerCode.InvalidOperatorKey] = 'Operator\'s key must be in result.', _a[LoggerCode.InvalidLeftOperandKey] = 'Left operand\'s key must be in result.', _a[LoggerCode.InvalidRightOperandKey] = 'Right operand\'s key must be in result.', _a[LoggerCode.InvalidFormulaExpression] = 'Metric expression is null or undefined.', _a);
-var _a;
-
-var StringHelper = /** @class */ (function () {
-    function StringHelper() {
-    }
-    StringHelper.formatString = function (value, mapping) {
-        var targetValue = value;
-        if (mapping)
-            mapping
-                .forEach(function (match, index) { return targetValue = StringHelper.replaceArg(index, targetValue, match); });
-        return targetValue;
-    };
-    StringHelper.replaceArg = function (match, target, value) {
-        return target.replace(new RegExp("\\{" + match + "\\}", 'g'), value);
-    };
-    return StringHelper;
-}());
-
-var LoggerHelper = /** @class */ (function () {
-    function LoggerHelper() {
-    }
-    LoggerHelper.getMessage = function (code, trace, mapping) {
-        if (code === void 0) { code = LoggerCode.Success; }
-        var message = StringHelper.formatString(LoggerMessage[code] || '', mapping);
-        return {
-            code: code,
-            message: message,
-            trace: trace
-        };
-    };
-    return LoggerHelper;
-}());
-
-var ParserProcess = /** @class */ (function () {
-    function ParserProcess() {
-    }
-    ParserProcess.Lexer = 'Initialize';
-    ParserProcess.Tree = 'Tree';
-    ParserProcess.Unparse = 'Unparse';
-    return ParserProcess;
 }());
 
 var AbstractSyntaxTree = /** @class */ (function () {
@@ -301,13 +281,13 @@ var AbstractSyntaxTree = /** @class */ (function () {
         if (TokenHelper.isBracketOpen(this._value))
             return this;
         if (!this._parent)
-            return null;
+            return undefined;
         return this._parent.findOpenedBracket();
     };
     AbstractSyntaxTree.prototype.removeClosestBracket = function () {
         var node = this.findOpenedBracket();
         if (!node)
-            return null;
+            return undefined;
         var targetNode = node.leftNode;
         targetNode.subType = Token.SubType.Group;
         if (!node.parent) {
@@ -398,16 +378,65 @@ var AbstractSyntaxTree = /** @class */ (function () {
     return AbstractSyntaxTree;
 }());
 
+/* tslint:disable:max-line-length */
+var TreeError;
+(function (TreeError) {
+    TreeError.id = 0x0200;
+    TreeError.astIsEmpty = { code: 0x0200, text: 'AST is empty' };
+    TreeError.invalidParserTree = { code: 0x0201, text: 'invalid parser tree' };
+})(TreeError || (TreeError = {}));
+/* tslint:enable:max-line-length */
+
+var StringHelper = /** @class */ (function () {
+    function StringHelper() {
+    }
+    StringHelper.formatString = function (value, mapping) {
+        var targetValue = value;
+        if (mapping)
+            mapping
+                .forEach(function (match, index) { return targetValue = StringHelper.replaceArg(index, targetValue, match); });
+        return targetValue;
+    };
+    StringHelper.replaceArg = function (match, target, value) {
+        return target.replace(new RegExp("\\{" + match + "\\}", 'g'), value);
+    };
+    return StringHelper;
+}());
+
+var ParserError = /** @class */ (function (_super) {
+    __extends(ParserError, _super);
+    function ParserError(error) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        var _this = _super.call(this) || this;
+        _this.error = error;
+        Object.setPrototypeOf(_this, ParserError.prototype);
+        if (args.length)
+            _this.error = __assign({}, _this.error, { text: StringHelper.formatString(_this.error.text, args) });
+        _this.code = _this.error.code;
+        _this.text = _this.error.text;
+        _this.message = _this.text;
+        return _this;
+    }
+    ParserError.prototype.withStack = function (stack) {
+        this.parserStack = stack;
+        return this;
+    };
+    return ParserError;
+}(Error));
+
 var Tree = /** @class */ (function () {
     function Tree(ast) {
         this.ast = ast;
     }
     Tree.prototype.makeTree = function () {
         if (!this.ast)
-            return undefined;
+            throw new ParserError(TreeError.astIsEmpty);
         var tree = this.makeNode(this.ast);
         if (tree.value)
-            throw new Error('error: invalid parser tree');
+            throw new ParserError(TreeError.invalidParserTree);
         return tree;
     };
     Tree.prototype.makeNode = function (sourceNode) {
@@ -439,27 +468,151 @@ var Tree = /** @class */ (function () {
     return Tree;
 }());
 
-var Literal = Token.Literal;
-var TokenAnalyzer = /** @class */ (function () {
-    function TokenAnalyzer(token) {
+var TokenValidateLevel;
+(function (TokenValidateLevel) {
+    TokenValidateLevel[TokenValidateLevel["Pass"] = 0] = "Pass";
+    TokenValidateLevel[TokenValidateLevel["Escape"] = 1] = "Escape";
+    TokenValidateLevel[TokenValidateLevel["Fatal"] = 2] = "Fatal";
+})(TokenValidateLevel || (TokenValidateLevel = {}));
+
+/* tslint:disable:max-line-length */
+var TokenError;
+(function (TokenError) {
+    TokenError.id = 0x0100;
+    TokenError.invalidToken = { code: 0x0100, text: '`{0}` token is invalid token type' };
+    TokenError.invalidTwoOperator = { code: 0x0101, text: 'two operators `{0}`, `{1}` can not come together' };
+})(TokenError || (TokenError = {}));
+/* tslint:enable:max-line-length */
+
+var TokenValidator = /** @class */ (function () {
+    function TokenValidator() {
+    }
+    TokenValidator.validateToken = function (token) {
+        var level = TokenValidator.extractTokenLevel(token);
+        if (level === TokenValidateLevel.Fatal)
+            return new ParserError(TokenError.invalidToken, token);
+    };
+    TokenValidator.extractTokenLevel = function (token) {
+        var levelExtractors = [
+            { predicate: TokenHelper.isUnkown, level: TokenValidateLevel.Fatal },
+            { predicate: TokenHelper.isToken, level: TokenValidateLevel.Pass }
+        ];
+        var extractedLevel = levelExtractors.find(function (extractor) { return extractor.predicate(token); });
+        return extractedLevel
+            ? extractedLevel.level
+            : TokenValidateLevel.Fatal;
+    };
+    return TokenValidator;
+}());
+
+var TokenEnumerable = /** @class */ (function () {
+    function TokenEnumerable(token) {
         this.token = token;
         this.tokenStack = [];
-        this.index = 0;
+        this.cursor = 0;
+        this._nextStack = {
+            line: 0,
+            col: 0
+        };
+    }
+    Object.defineProperty(TokenEnumerable.prototype, "stack", {
+        get: function () {
+            return this._stack || this._nextStack;
+        },
+        set: function (value) {
+            this._stack = this._nextStack;
+            this._nextStack = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    TokenEnumerable.prototype.rewind = function () {
+        this.cursor = 0;
+        this.currentToken = undefined;
+        this._stack = {
+            col: 0,
+            line: 0
+        };
+    };
+    TokenEnumerable.prototype.calculateStack = function (token) {
+        if (TokenHelper.isLineEscape(token)) {
+            this.stack = {
+                line: this._nextStack.line + 1,
+                col: 0
+            };
+            return;
+        }
+        this.stack = {
+            line: this._nextStack.line,
+            col: this._nextStack.col + 1
+        };
+    };
+    TokenEnumerable.prototype.addStack = function (token) {
+        this.tokenStack.push(token);
+    };
+    TokenEnumerable.prototype.popStack = function () {
+        return this.tokenStack.length
+            ? this.tokenStack[this.tokenStack.length - 1]
+            : undefined;
+    };
+    TokenEnumerable.prototype.next = function () {
+        var tokenStack = [];
+        if (this.cursor >= this.token.length)
+            return undefined;
+        do {
+            this.currentToken = this.findToken();
+            if (!TokenHelper.isUnkown(this.currentToken))
+                tokenStack.push(this.currentToken);
+        } while (this.proceedNext());
+        var token = this.makeToken(tokenStack);
+        var error = TokenValidator.validateToken(token);
+        if (error)
+            throw error.withStack(this.stack);
+        return token;
+    };
+    TokenEnumerable.prototype.proceedNext = function () {
+        var tokenType = TokenHelper.induceType(this.currentToken);
+        var nextTokenType = TokenHelper.induceType(this.token[this.cursor]);
+        return tokenType === Token.Type.Value &&
+            TokenHelper.isNumeric(this.currentToken) &&
+            tokenType === nextTokenType;
+    };
+    TokenEnumerable.prototype.findToken = function () {
+        while (this.cursor < this.token.length) {
+            var token = this.token[this.cursor];
+            this.cursor += 1;
+            this.calculateStack(token);
+            if (!TokenHelper.isWhiteSpace(token))
+                return token;
+        }
+    };
+    TokenEnumerable.prototype.makeToken = function (tokens) {
+        if (!tokens.length)
+            return undefined;
+        if (tokens.every(function (token) { return TokenHelper.isNumeric(token); }))
+            return tokens.join('');
+        if (tokens.length > 1)
+            throw Error('error: non-numeric tokens can not be consecutive.');
+        return tokens[0];
+    };
+    return TokenEnumerable;
+}());
+
+var TokenAnalyzer = /** @class */ (function (_super) {
+    __extends(TokenAnalyzer, _super);
+    function TokenAnalyzer(token) {
+        return _super.call(this, token) || this;
     }
     TokenAnalyzer.prototype.parse = function () {
         this.initialize();
         this.makeAst();
         return this.makeTree();
     };
-    TokenAnalyzer.prototype.getLastError = function () {
-        return this.lastError;
-    };
     TokenAnalyzer.prototype.initialize = function () {
-        this.ast = new AbstractSyntaxTree(Token.Literal.BracketOpen);
+        this.ast = new AbstractSyntaxTree(Token.literal.BracketOpen);
         this.ast.leftNode = new AbstractSyntaxTree();
         this.currentTree = this.ast.leftNode;
-        this.index = 0;
-        this.lastError = null;
+        this.rewind();
     };
     TokenAnalyzer.prototype.getAst = function () {
         return this.ast;
@@ -467,22 +620,10 @@ var TokenAnalyzer = /** @class */ (function () {
     TokenAnalyzer.prototype.makeAst = function () {
         var token;
         while (token = this.next()) {
-            var level = TokenAnalyzer.validateToken(token);
-            if (level === TokenValidateLevel.Fatal) {
-                this.makeError(LoggerCode.InvalidToken);
-                return;
-            }
-            else if (level === TokenValidateLevel.Escape)
-                continue;
             this.analyzeToken(token);
-            this.tokenStack.push(token);
+            this.addStack(token);
         }
         this.ast = this.ast.removeClosestBracket().findRoot();
-    };
-    TokenAnalyzer.prototype.popStack = function () {
-        return this.tokenStack.length
-            ? this.tokenStack[this.tokenStack.length - 1]
-            : undefined;
     };
     TokenAnalyzer.prototype.analyzeToken = function (token) {
         if (TokenHelper.isBracket(token)) {
@@ -512,100 +653,75 @@ var TokenAnalyzer = /** @class */ (function () {
     TokenAnalyzer.prototype.analyzeOperatorToken = function (token) {
         var lastToken = this.popStack();
         if (TokenHelper.isOperator(lastToken))
-            // Invalid Error: Operator left token is invalid
-            console.log('error2', lastToken);
+            throw new ParserError(TokenError.invalidTwoOperator, lastToken, token).withStack(this.stack);
         if (!this.currentTree.value)
             this.currentTree.value = token;
         else {
             if (!TokenHelper.isBracket(this.currentTree.value) && !this.currentTree.rightNode)
-                // Invalid Error: Duplicated operators
-                console.log('error3');
+                throw new ParserError(TokenError.invalidTwoOperator, lastToken, token).withStack(this.stack);
             this.currentTree = this.currentTree.insertNode(token);
             this.ast = this.ast.findRoot();
         }
     };
     TokenAnalyzer.prototype.insertImplicitMultiplication = function () {
-        var newToken = Literal.Multiplication;
-        this.analyzeToken(newToken);
-        this.tokenStack.push(newToken);
-    };
-    TokenAnalyzer.validateToken = function (token) {
-        if (TokenHelper.isWhiteSpace(token))
-            return TokenValidateLevel.Escape;
-        if (TokenHelper.isToken(token))
-            return TokenValidateLevel.Pass;
-        return TokenValidateLevel.Fatal;
-    };
-    TokenAnalyzer.prototype.next = function () {
-        var currentToken = [];
-        do {
-            currentToken.push(this.token[this.index]);
-        } while (this.proceedNext());
-        return this.makeToken(currentToken);
-    };
-    TokenAnalyzer.prototype.proceedNext = function () {
-        var tokenType = TokenHelper.induceType(this.token[this.index]);
-        var nextTokenType = TokenHelper.induceType(this.token[this.index + 1]);
-        this.index += 1;
-        return tokenType === Token.Type.Value &&
-            TokenHelper.isNumeric(this.token[this.index]) &&
-            tokenType === nextTokenType;
-    };
-    TokenAnalyzer.prototype.makeToken = function (tokens) {
-        if (!tokens.length)
-            return undefined;
-        if (tokens.every(function (token) { return TokenHelper.isNumeric(token); }))
-            return tokens.join('');
-        if (tokens.length > 1)
-            throw Error('error: non-numeric tokens can not be consecutive.');
-        return tokens[0];
+        this.analyzeToken(Token.literal.Multiplication);
+        this.addStack(Token.literal.Multiplication);
     };
     TokenAnalyzer.prototype.makeTree = function () {
         var treeParser = new Tree(this.ast);
         return treeParser.makeTree();
     };
-    TokenAnalyzer.prototype.makeError = function (code, mapping, process) {
-        if (process === void 0) { process = ParserProcess.Lexer; }
-        var trace = {
-            process: process,
-            line: 0,
-            col: this.index
-        };
-        this.lastError = LoggerHelper.getMessage(code, trace, mapping);
-    };
     return TokenAnalyzer;
+}(TokenEnumerable));
+
+var BuilderMessage = /** @class */ (function () {
+    function BuilderMessage() {
+    }
+    BuilderMessage.prototype.makeData = function (data, code) {
+        if (code === void 0) { code = 0; }
+        return { code: code, data: data };
+    };
+    BuilderMessage.prototype.makeError = function (error) {
+        return __assign({}, this.makeData(error.text, error.code), { stack: error.parserStack });
+    };
+    return BuilderMessage;
 }());
 
-var Builder = /** @class */ (function () {
+var Builder = /** @class */ (function (_super) {
+    __extends(Builder, _super);
     function Builder(data) {
-        this.data = data;
+        var _this = _super.call(this) || this;
+        _this.data = data;
+        return _this;
     }
     Builder.prototype.build = function () {
+        try {
+            return this.tryBuild();
+        }
+        catch (error) {
+            return this.handleError(error);
+        }
+    };
+    Builder.prototype.parse = function (data, pos) {
+        if (pos === void 0) { pos = 0; }
+        var tokenAnalyzer = new TokenAnalyzer(ParserHelper.getArray(data));
+        var parseData = tokenAnalyzer.parse();
+        return this.makeData(parseData);
+    };
+    Builder.prototype.unparse = function (data) {
+        return this.makeData(null);
+    };
+    Builder.prototype.tryBuild = function () {
         if (BuilderHelper.needParse(this.data))
             return this.parse(this.data);
         if (BuilderHelper.needUnparse(this.data))
             return this.unparse(this.data);
     };
-    Builder.prototype.parse = function (data, pos) {
-        if (pos === void 0) { pos = 0; }
-        var parserToken = new TokenAnalyzer(ParserHelper.getArray(data));
-        var parseData = parserToken.parse();
-        if (!parseData)
-            return parserToken.getLastError();
-        return {
-            code: LoggerCode.Success,
-            data: parseData
-        };
-    };
-    Builder.prototype.unparse = function (data) {
-        // const result = this.parseTree(result);
-        return {
-            code: LoggerCode.Success,
-            data: null // result.result
-        };
+    Builder.prototype.handleError = function (error) {
+        return this.makeError(error);
     };
     return Builder;
-}());
+}(BuilderMessage));
 
 var _PLUGIN_VERSION_ = '1.0.0';
 function convert(formula) {

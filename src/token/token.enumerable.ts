@@ -1,15 +1,52 @@
 import { Token } from './token';
 import { TokenHelper } from './token.helper';
+import { ParserStack } from '../parser/parser.result';
+import { TokenValidator } from './token.validator';
+import { ParserError } from '../error';
 
 export class TokenEnumerable {
     private tokenStack: Token.Token[] = [];
-    private index: number = 0;
+    private cursor: number = 0;
+    private currentToken: Token.Token;
+    private _stack: ParserStack;
+    private _nextStack: ParserStack = {
+        line: 0,
+        col: 0
+    };
+
+    protected get stack(): ParserStack {
+        return this._stack || this._nextStack;
+    }
+
+    protected set stack(value: ParserStack) {
+        this._stack = this._nextStack;
+        this._nextStack = value;
+    }
 
     constructor(protected token: Token.Token[]) {
     }
 
     protected rewind() {
-        this.index = 0;
+        this.cursor = 0;
+        this.currentToken = undefined;
+        this._stack = {
+            col: 0,
+            line: 0
+        };
+    }
+    private calculateStack(token: Token.Token) {
+        if (TokenHelper.isLineEscape(token)) {
+            this.stack = {
+                line: this._nextStack.line + 1,
+                col: 0
+            };
+            return;
+        }
+
+        this.stack = {
+            line: this._nextStack.line,
+            col: this._nextStack.col + 1
+        };
     }
 
     protected addStack(token: Token.Token) {
@@ -22,26 +59,49 @@ export class TokenEnumerable {
             : undefined;
     }
 
-    protected next() {
-        const currentToken: Token.Token = [];
+    public next() {
+        const tokenStack: Token.Token = [];
+
+        if (this.cursor >= this.token.length)
+            return undefined;
+
         do {
-            currentToken.push(this.token[this.index]);
+            this.currentToken = this.findToken();
+            if (!TokenHelper.isUnkown(this.currentToken))
+                tokenStack.push(this.currentToken);
         } while (this.proceedNext());
 
-        return this.makeToken(currentToken);
+        const token = this.makeToken(tokenStack);
+        const error = TokenValidator.validateToken(token);
+
+        if (error)
+            throw error.withStack(this.stack);
+
+        return token;
     }
 
-    protected proceedNext(): boolean {
-        const tokenType = TokenHelper.induceType(this.token[this.index]);
-        const nextTokenType = TokenHelper.induceType(this.token[this.index + 1]);
+    private proceedNext(): boolean {
+        const tokenType = TokenHelper.induceType(this.currentToken);
+        const nextTokenType = TokenHelper.induceType(this.token[this.cursor]);
 
-        this.index += 1;
         return tokenType === Token.Type.Value &&
-            TokenHelper.isNumeric(this.token[this.index]) &&
+            TokenHelper.isNumeric(this.currentToken) &&
             tokenType === nextTokenType;
     }
 
-    protected makeToken(tokens: Token.Token[]): Token.Token {
+    private findToken(): Token.Token {
+        while (this.cursor < this.token.length) {
+            const token = this.token[this.cursor];
+            this.cursor += 1;
+            this.calculateStack(token);
+
+            if (!TokenHelper.isWhiteSpace(token))
+                return token;
+
+        }
+    }
+
+    private makeToken(tokens: Token.Token[]): Token.Token {
         if (!tokens.length)
             return undefined;
 

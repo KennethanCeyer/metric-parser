@@ -1,4 +1,4 @@
-import Literal = Token.Literal;
+import Literal = Token.literal;
 
 export namespace Token {
     export type Token = string | number | any;
@@ -27,7 +27,7 @@ export namespace Token {
         Group
     }
 
-    export const Literal = {
+    export const literal = {
         Addition: '+',
         Subtraction: '-',
         Multiplication: '*',
@@ -39,37 +39,37 @@ export namespace Token {
         BracketClose: ')'
     }
 
-    export const Addition = [ Literal.Addition ];
-    export const Subtraction = [ Literal.Subtraction ];
-    export const Multiplication = [ Literal.Multiplication, Literal.MultiplicationLiteral ];
-    export const Division = [ Literal.Division ];
-    export const Mod = [ Literal.Mod ];
-    export const Pow = [ Literal.Pow ];
-    export const BracketOpen = Literal.BracketOpen;
-    export const BracketClose = Literal.BracketClose
-    export const Bracket = [ Token.BracketOpen, Token.BracketClose ];
-    export const Precedence = [
-        ...Token.Addition,
-        ...Token.Subtraction,
-        ...Token.Multiplication,
-        ...Token.Division,
-        ...Token.Pow,
-        ...Token.Mod,
-        ...Token.Bracket,
+    export const addition = [literal.Addition];
+    export const subtraction = [literal.Subtraction];
+    export const multiplication = [literal.Multiplication, literal.MultiplicationLiteral];
+    export const division = [literal.Division];
+    export const mod = [literal.Mod];
+    export const pow = [literal.Pow];
+    export const bracketOpen = literal.BracketOpen;
+    export const bracketClose = literal.BracketClose
+    export const bracket = [ Token.bracketOpen, Token.bracketClose];
+    export const precedence = [
+        ...Token.addition,
+        ...Token.subtraction,
+        ...Token.multiplication,
+        ...Token.division,
+        ...Token.pow,
+        ...Token.mod,
+        ...Token.bracket,
     ];
-    export const Operators = [
-        ...Token.Addition,
-        ...Token.Subtraction,
-        ...Token.Multiplication,
-        ...Token.Division,
-        ...Token.Mod,
-        ...Token.Pow
+    export const operators = [
+        ...Token.addition,
+        ...Token.subtraction,
+        ...Token.multiplication,
+        ...Token.division,
+        ...Token.mod,
+        ...Token.pow
     ];
-    export const Symbols = [
-        ...Token.Operators,
-        ...Token.Bracket
+    export const symbols = [
+        ...Token.operators,
+        ...Token.bracket
     ];
-    export const WhiteSpace = [
+    export const whiteSpace = [
         ' ',
         '',
         null,
