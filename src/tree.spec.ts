@@ -4,7 +4,7 @@ import { Token } from './token/token';
 import { Tree } from './tree';
 import { Operand, TreeModel } from './tree.type';
 
-describe('make tree', () => {
+describe('case: make tree', () => {
     it('should return parser tree', () => {
         const ast = new AbstractSyntaxTree(Token.literal.Multiplication);
         ast.leftNode = new AbstractSyntaxTree('2');

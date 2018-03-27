@@ -4,7 +4,7 @@ import { Token } from './token';
 import error from 'rollup/dist/typings/utils/error';
 import { ParserError } from '../error';
 
-describe('basic parse token', () => {
+describe('case: basic parse token', () => {
     it('should return ast correctly from `1 + 2`', () => {
         const data = ['1', '+', '2'];
         const tokenAnalyzer = new TokenAnalyzer(data);
@@ -77,7 +77,7 @@ describe('basic parse token', () => {
     });
 });
 
-describe('parse token with bracket', () => {
+describe('case: parse token with bracket', () => {
     it('should return ast correctly from `(1 + 2) * 3`', () => {
         const data = ['(', '1', '+', '2', ')', '*', '3'];
         const tokenAnalyzer = new TokenAnalyzer(data);
@@ -243,7 +243,7 @@ describe('parse token with bracket', () => {
     /* tslint:enable:max-line-length */
 });
 
-describe('parse token with advanced feature', () => {
+describe('case: parse token with advanced feature', () => {
     it('should return implicit multiplication ast from `2(3 + 4)`', () => {
         const data = ['2', '(', '3', '*', '4', ')'];
         const tokenAnalyzer = new TokenAnalyzer(data);
@@ -284,7 +284,7 @@ describe('parse token with advanced feature', () => {
     });
 });
 
-describe('parse with invalid data', () => {
+describe('case: parse with invalid data', () => {
     it('should throws an error with tokenInvalidType ', () => {
         const data = ['1', '!', '2'];
         const tokenAnalyzer = new TokenAnalyzer(data);

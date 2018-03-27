@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { Token } from './token';
 import { TokenHelper } from './token.helper';
 
-describe('TokenHelper.getPrecedence()', () => {
+describe('test method: TokenHelper.getPrecedence()', () => {
     it('should return 0 with addition', () => {
         expect(TokenHelper.getPrecedence(Token.literal.Addition)).to.equal(0);
     });
@@ -35,7 +35,7 @@ describe('TokenHelper.getPrecedence()', () => {
     });
 });
 
-describe('TokenHelper.isHigher(source, target)', () => {
+describe('test method: TokenHelper.isHigher(source, target)', () => {
     it('should return false compare multiplication, division', () => {
         expect(TokenHelper.isHigher(Token.literal.Multiplication, Token.literal.Division)).to.be.false;
     });

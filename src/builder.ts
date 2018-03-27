@@ -21,7 +21,6 @@ export class Builder extends BuilderMessage {
         }
     }
 
-
     parse(data: ParseData, pos = 0): ParserResult<TreeModel> {
         const tokenAnalyzer = new TokenAnalyzer(ParserHelper.getArray(data));
         const parseData = tokenAnalyzer.parse();
