@@ -159,7 +159,7 @@ describe('parse token with bracket', () => {
         const rightNode = ast.rightNode;
 
         expect(ast.type).to.equal(Token.Type.Operator);
-        expect(ast.value).to.equal(Token.Literal.Substraction);
+        expect(ast.value).to.equal(Token.Literal.Subtraction);
         expect(leftNode.type).to.equal(Token.Type.Value);
         expect(leftNode.value).to.equal(6);
         expect(rightNode.type).to.equal(Token.Type.Operator);
@@ -172,7 +172,7 @@ describe('parse token with bracket', () => {
         expect(rightNode.leftNode.rightNode.value).to.equal(4);
         expect(rightNode.rightNode.type).to.equal(Token.Type.Operator);
         expect(rightNode.rightNode.subType).to.equal(Token.SubType.Group);
-        expect(rightNode.rightNode.value).to.equal(Token.Literal.Substraction);
+        expect(rightNode.rightNode.value).to.equal(Token.Literal.Subtraction);
         expect(rightNode.rightNode.leftNode.type).to.equal(Token.Type.Value);
         expect(rightNode.rightNode.leftNode.value).to.equal(2);
         expect(rightNode.rightNode.rightNode.type).to.equal(Token.Type.Value);

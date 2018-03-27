@@ -14,7 +14,7 @@ export namespace Token {
     export type Operator = Addition | Subtraction | Multiplication | MultiplicationLiteral | Division | Mod | Pow;
 
     export enum Type {
-        Unkown,
+        Unknown,
         Value,
         Operator,
         Bracket,
@@ -29,7 +29,7 @@ export namespace Token {
 
     export const Literal = {
         Addition: '+',
-        Substraction: '-',
+        Subtraction: '-',
         Multiplication: '*',
         MultiplicationLiteral: 'x',
         Division: '/',
@@ -40,7 +40,7 @@ export namespace Token {
     }
 
     export const Addition = [ Literal.Addition ];
-    export const Subtraction = [ Literal.Substraction ];
+    export const Subtraction = [ Literal.Subtraction ];
     export const Multiplication = [ Literal.Multiplication, Literal.MultiplicationLiteral ];
     export const Division = [ Literal.Division ];
     export const Mod = [ Literal.Mod ];

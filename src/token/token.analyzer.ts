@@ -7,17 +7,17 @@ import { LoggerHelper } from '../logger/logger.helper';
 import { ParserProcess } from '../parser/parser.process.type';
 import { Token } from './token';
 import { AbstractSyntaxTree } from '../ast';
-import Literal = Token.Literal;
 import { Tree } from '../tree';
+import { TokenEnumerable } from './token.enumerable';
+import { TokenValidator } from './token.validator';
 
-export class TokenAnalyzer {
-    private tokenStack: Token.Token[] = [];
+export class TokenAnalyzer extends TokenEnumerable {
     private ast: AbstractSyntaxTree;
     private currentTree: AbstractSyntaxTree;
-    private index: number = 0;
     private lastError: ParserDefaultResult;
 
-    constructor(private token: Token.Token[]) {
+    constructor(token: Token.Token[]) {
+        super(token);
     }
 
     public parse(): TreeModel {
@@ -34,8 +34,8 @@ export class TokenAnalyzer {
         this.ast = new AbstractSyntaxTree(Token.Literal.BracketOpen);
         this.ast.leftNode = new AbstractSyntaxTree();
         this.currentTree = this.ast.leftNode;
-        this.index = 0;
         this.lastError = null;
+        this.rewind();
     }
 
     public getAst(): AbstractSyntaxTree {
@@ -45,23 +45,20 @@ export class TokenAnalyzer {
     private makeAst() {
         let token;
         while (token = this.next()) {
-            const level = TokenAnalyzer.validateToken(token);
+            const level = TokenValidator.validateToken(token);
+
+            if (level === TokenValidateLevel.Escape)
+                continue;
+
             if (level === TokenValidateLevel.Fatal) {
                 this.makeError(LoggerCode.InvalidToken);
                 return;
-            } else if (level === TokenValidateLevel.Escape)
-                continue;
+            }
 
             this.analyzeToken(token);
-            this.tokenStack.push(token);
+            this.addStack(token);
         }
         this.ast = this.ast.removeClosestBracket().findRoot();
-    }
-
-    private popStack(): string | undefined {
-        return this.tokenStack.length
-            ? this.tokenStack[this.tokenStack.length - 1]
-            : undefined;
     }
 
     private analyzeToken(token: Token.Token) {
@@ -115,51 +112,8 @@ export class TokenAnalyzer {
     }
 
     private insertImplicitMultiplication() {
-        const newToken = Literal.Multiplication;
-        this.analyzeToken(newToken);
-        this.tokenStack.push(newToken);
-    }
-
-    private static validateToken(token: Token.Token): TokenValidateLevel {
-        if (TokenHelper.isWhiteSpace(token))
-            return TokenValidateLevel.Escape;
-
-        if (TokenHelper.isToken(token))
-            return TokenValidateLevel.Pass;
-
-        return TokenValidateLevel.Fatal;
-    }
-
-    private next() {
-        const currentToken: Token.Token = [];
-        do {
-            currentToken.push(this.token[this.index]);
-        } while (this.proceedNext());
-
-        return this.makeToken(currentToken);
-    }
-
-    private proceedNext(): boolean {
-        const tokenType = TokenHelper.induceType(this.token[this.index]);
-        const nextTokenType = TokenHelper.induceType(this.token[this.index + 1]);
-
-        this.index += 1;
-        return tokenType === Token.Type.Value &&
-            TokenHelper.isNumeric(this.token[this.index]) &&
-            tokenType === nextTokenType;
-    }
-
-    private makeToken(tokens: Token.Token[]): Token.Token {
-        if (!tokens.length)
-            return undefined;
-
-        if (tokens.every(token => TokenHelper.isNumeric(token)))
-            return tokens.join('');
-
-        if (tokens.length > 1)
-            throw Error('error: non-numeric tokens can not be consecutive.');
-
-        return tokens[0];
+        this.analyzeToken(Token.Literal.Multiplication);
+        this.addStack(Token.Literal.Multiplication);
     }
 
     private makeTree(): TreeModel {
@@ -171,9 +125,8 @@ export class TokenAnalyzer {
         const trace = {
             process,
             line: 0,
-            col: this.index
+            col: 0
         };
         this.lastError = LoggerHelper.getMessage(code, trace, mapping);
     }
-
 }

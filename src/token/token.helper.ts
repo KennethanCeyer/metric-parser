@@ -1,9 +1,8 @@
 import { Token } from './token';
 
 export class TokenHelper {
-
     public static isToken(token: Token.Token): boolean {
-        return token && (TokenHelper.isNumeric(token) || this.isSymbol(token) || TokenHelper.isObject(token));
+        return token && (TokenHelper.isNumeric(token) || TokenHelper.isSymbol(token) || TokenHelper.isObject(token));
     }
 
     public static isWhiteSpace(token: Token.Token): boolean {
@@ -75,18 +74,18 @@ export class TokenHelper {
     }
 
     public static induceType(value: Token.Token) {
-        const induceTypes = [
+        const typeInducers = [
             { predicate: TokenHelper.isWhiteSpace, type: Token.Type.WhiteSpace },
             { predicate: TokenHelper.isOperator, type: Token.Type.Operator },
             { predicate: TokenHelper.isBracket, type: Token.Type.Bracket },
         ];
 
-        const extractedToken = induceTypes.find(element => element.predicate(value));
+        const extractedToken = typeInducers.find(inducer => inducer.predicate(value));
         return extractedToken
             ? extractedToken.type
             : Token.Type.Value;
     }
-    
+
     public static getPrecedence(token: Token.Token) {
         return [
             [TokenHelper.isAddition, TokenHelper.isSubtraction],

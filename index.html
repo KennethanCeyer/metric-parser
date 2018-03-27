@@ -169,8 +169,7 @@ const isValid2 = metricParser.valid({expression | parseTree});
 			</div>
 		</div>
         <script>
-            //<![CDATA[
-            var formulaExpression = [
+            var expressions = [
                 '12 + 3',                                                     // 01
                 '6 - 2 * 4',                                                  // 02
                 '6 - 2 * 4 / ( 2 - 4 )',                                      // 03
@@ -257,19 +256,18 @@ const isValid2 = metricParser.valid({expression | parseTree});
                 $('.version strong').text(metricParser.getVersion());
                 $('.formula-expression').each(function(index) {
                     var $this = $(this);
-                    if(!formulaExpression[index])
-                        return;
+                    var expression = expressions[index];
+
+                    if(!expression) return;
 
                     var $formulaDisplay = $('<div class="formula-display"></div>');
                     var $formulaResult = $('<div class="formula-result"></div>');
-                    var expression = formulaExpression[index];
                     var formula = metricParser.convert(expression);
                     var json = JSON.stringify(formula, null, '/%t/').replace(/\n/g, "/%b/");
                     var jsonHtml = Prism.highlight(json, Prism.languages.json).replace(/\/%b\//mg, '<br />').replace(/\/%t\//mg, '&nbsp;&nbsp;&nbsp;&nbsp;');
 
-                    if(typeof expression === 'object') {
+                    if(typeof expression === 'object')
                         expression = Prism.highlight(JSON.stringify(expression, null, '/%t/').replace(/\n/g, "/%b/"), Prism.languages.json).replace(/\/%b\//mg, '<br />').replace(/\/%t\//mg, '&nbsp;&nbsp;&nbsp;&nbsp;');
-                    }
 
                     $this.html(expression);
                     $formulaDisplay.html(jsonHtml);
@@ -281,7 +279,6 @@ const isValid2 = metricParser.valid({expression | parseTree});
                     $formulaDisplay.addClass(formula.code ? 'formula-display-error' : 'formula-display-success');
                 });
             });
-            //]]>
         </script>
 	</body>
 </html>

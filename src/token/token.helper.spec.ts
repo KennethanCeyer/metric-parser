@@ -5,7 +5,7 @@ import { TokenHelper } from './token.helper';
 describe('TokenHelper.getPrecedence(token)', () => {
     it('should return 0 with addition, subtraction', () => {
         expect(TokenHelper.getPrecedence(Token.Literal.Addition)).to.equal(0);
-        expect(TokenHelper.getPrecedence(Token.Literal.Substraction)).to.equal(0);
+        expect(TokenHelper.getPrecedence(Token.Literal.Subtraction)).to.equal(0);
     });
 
     it('should return 1 with multiplication, division', () => {
