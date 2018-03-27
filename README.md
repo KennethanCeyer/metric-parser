@@ -55,12 +55,12 @@ If you want join the contribution, Fork it and send a pull request.
 
 #### zip
 
-[Latest zip file link](https://github.com/KennethanCeyer/FormulaParser/archive/master.zip)
+[Latest zip file link](https://github.com/KennethanCeyer/metric-parser/archive/master.zip)
 
 #### git
 
 ```bash
-git clone git@github.com:KennethanCeyer/FormulaParser.git
+git clone git@github.com:KennethanCeyer/metric-parser.git
 ```
 
 #### bower
@@ -81,4 +81,4 @@ Do you have any question?
 
 I'd like to help your issue.
 
-Please contact to me to use either [gitter](https://gitter.im/KennethanCeyer/PIGNOSE) or [GitHub issues page](https://github.com/KennethanCeyer/FormulaParser/issues)
+Please contact to me to use either [gitter](https://gitter.im/KennethanCeyer/PIGNOSE) or [GitHub issues page](https://github.com/KennethanCeyer/metric-parser/issues)
