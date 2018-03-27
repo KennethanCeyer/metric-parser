@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/pg-formula-parser.svg)](https://badge.fury.io/js/pg-formula-parser) [![Bower version](https://badge.fury.io/bo/pg-formula-parser.svg)](https://badge.fury.io/bo/pg-formula-parser) [![Join the chat at https://gitter.im/KennethanCeyer/PIGNOSE](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/KennethanCeyer/PIGNOSE?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-[![Build Status](https://travis-ci.org/KennethanCeyer/formula-parser.svg?branch=master)](https://travis-ci.org/KennethanCeyer/formula-parser) [![codecov](https://codecov.io/gh/KennethanCeyer/formula-parser/branch/master/graph/badge.svg)](https://codecov.io/gh/KennethanCeyer/formula-parser) [![Maintainability](https://api.codeclimate.com/v1/badges/9ab3eed6a3b758c6d2d9/maintainability)](https://codeclimate.com/github/KennethanCeyer/formula-parser/maintainability) [![CodeFactor](https://www.codefactor.io/repository/github/kennethanceyer/formula-parser/badge)](https://www.codefactor.io/repository/github/kennethanceyer/formula-parser)
+[![Build Status](https://travis-ci.org/KennethanCeyer/formula-parser.svg?branch=master)](https://travis-ci.org/KennethanCeyer/formula-parser) [![Coverage Status](https://coveralls.io/repos/github/KennethanCeyer/formula-parser/badge.svg)](https://coveralls.io/github/KennethanCeyer/formula-parser) [![codecov](https://codecov.io/gh/KennethanCeyer/formula-parser/branch/master/graph/badge.svg)](https://codecov.io/gh/KennethanCeyer/formula-parser) [![Maintainability](https://api.codeclimate.com/v1/badges/9ab3eed6a3b758c6d2d9/maintainability)](https://codeclimate.com/github/KennethanCeyer/formula-parser/maintainability) [![CodeFactor](https://www.codefactor.io/repository/github/kennethanceyer/formula-parser/badge)](https://www.codefactor.io/repository/github/kennethanceyer/formula-parser)
 
 [![dependencies Status](https://david-dm.org/KennethanCeyer/formula-parser/status.svg)](https://david-dm.org/KennethanCeyer/formula-parser) [![devDependencies Status](https://david-dm.org/KennethanCeyer/formula-parser/dev-status.svg)](https://david-dm.org/KennethanCeyer/formula-parser?type=dev)
 
@@ -69,7 +69,7 @@ git clone git@github.com:KennethanCeyer/FormulaParser.git
 bower install metric-parser
 ```
 
-#### NPM
+#### npm
 
 ```bash
 npm install metric-parser
