@@ -292,4 +292,12 @@ describe('parse with invalid data', () => {
             .throw('`!` token is invalid token type')
             .and.satisfy((error: ParserError) => error.parserStack.col === 1 && error.parserStack.line === 0);
     });
+
+    it('should throws an error with invalidTwoOperator ', () => {
+        const data = ['1', '+', '+', '4'];
+        const tokenAnalyzer = new TokenAnalyzer(data);
+        expect(() => tokenAnalyzer.parse()).to
+            .throw('two operators `+`, `+` can not come together')
+            .and.satisfy((error: ParserError) => error.parserStack.col === 2 && error.parserStack.line === 0);
+    });
 });
