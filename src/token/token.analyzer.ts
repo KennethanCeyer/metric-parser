@@ -31,8 +31,9 @@ export class TokenAnalyzer {
     }
 
     private initialize() {
-        this.ast = new AbstractSyntaxTree();
-        this.currentTree = this.ast;
+        this.ast = new AbstractSyntaxTree(Token.Literal.BracketOpen);
+        this.ast.setLeftNode(new AbstractSyntaxTree());
+        this.currentTree = this.ast.getLeftNode();
         this.index = 0;
         this.lastError = null;
     }
@@ -54,6 +55,7 @@ export class TokenAnalyzer {
             this.analyzeToken(token);
             this.tokenStack.push(token);
         }
+        this.ast = this.ast.removeClosestBracket().findRoot();
     }
 
     private popStack(): string | undefined {
@@ -73,12 +75,7 @@ export class TokenAnalyzer {
             return;
         }
 
-        if (!TokenHelper.isOperator(this.currentTree.getValue())) {
-            this.currentTree = this.currentTree.insertEmptyNode(token);
-            return;
-        }
-
-        this.currentTree.setRightNode(this.currentTree.insertNode(token));
+        this.currentTree.insertNode(token);
     }
 
     private analyzeBracketToken(token: Token.Token) {
@@ -108,7 +105,7 @@ export class TokenAnalyzer {
         if (!this.currentTree.getValue())
             this.currentTree.setValue(token);
         else {
-            if (!this.currentTree.getRightNode())
+            if (!TokenHelper.isBracket(this.currentTree.getValue()) && !this.currentTree.getRightNode())
             // Invalid Error: Duplicated operators
                 console.log('error3');
 

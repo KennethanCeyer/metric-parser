@@ -2,6 +2,7 @@ import { AbstractSyntaxTree } from './ast';
 import { Operand, OperandValue, TreeModel } from './tree.type';
 import { TokenHelper } from './token/token.helper';
 import { Token } from './token/token';
+import { AbstractSyntaxTreeHelper } from './ast.helper';
 
 export class Tree {
     public constructor(private ast: AbstractSyntaxTree) {

@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import { TokenAnalyzer } from './token.analyzer';
 import { Token } from './token';
+import { AbstractSyntaxTreeHelper } from '../ast.helper';
 
 describe('basic parse token', () => {
     it('should return ast correctly from `1 + 2`', () => {
@@ -119,6 +120,35 @@ describe('parse token with bracket', () => {
         expect(rightNode.getLeftNode().getRightNode().getValue()).to.equal(3);
         expect(rightNode.getRightNode().getType()).to.equal(Token.Type.Value);
         expect(rightNode.getRightNode().getValue()).to.equal(4);
+    });
+
+    it('should return ast correctly from `((((1) + (2)) + (3)) + (4))`', () => {
+        const data = [
+            '(', '(', '(', '(', '1', ')', '+', '(', '2', ')', ')', '+', '(', '3', ')', ')', '+', '(', '4', ')', ')'
+        ];
+        const tokenAnalyzer = new TokenAnalyzer(data);
+        tokenAnalyzer.parse();
+        const ast = tokenAnalyzer.getAST();
+        const leftNode = ast.getLeftNode();
+        const rightNode = ast.getRightNode();
+
+        expect(ast.getType()).to.equal(Token.Type.Operator);
+        expect(ast.getSubType()).to.equal(Token.SubType.Group);
+        expect(ast.getValue()).to.equal('+');
+        expect(leftNode.getType()).to.equal(Token.Type.Operator);
+        expect(leftNode.getSubType()).to.equal(Token.SubType.Group);
+        expect(leftNode.getValue()).to.equal('+');
+        expect(leftNode.getLeftNode().getType()).to.equal(Token.Type.Operator);
+        expect(leftNode.getLeftNode().getValue()).to.equal('+');
+        expect(leftNode.getLeftNode().getSubType()).to.equal(Token.SubType.Group);
+        expect(leftNode.getLeftNode().getLeftNode().getType()).to.equal(Token.Type.Value);
+        expect(leftNode.getLeftNode().getLeftNode().getValue()).to.equal(1);
+        expect(leftNode.getLeftNode().getRightNode().getType()).to.equal(Token.Type.Value);
+        expect(leftNode.getLeftNode().getRightNode().getValue()).to.equal(2);
+        expect(leftNode.getRightNode().getType()).to.equal(Token.Type.Value);
+        expect(leftNode.getRightNode().getValue()).to.equal(3);
+        expect(rightNode.getType()).to.equal(Token.Type.Value);
+        expect(rightNode.getValue()).to.equal(4);
     });
 
     /* tslint:disable */

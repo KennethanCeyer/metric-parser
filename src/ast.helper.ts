@@ -2,7 +2,7 @@ import { AbstractSyntaxTree } from './ast';
 
 export type subNodeSide = 'left' | 'right';
 
-export class ParserAstHelper {
+export class AbstractSyntaxTreeHelper {
     public static getNodeDisplay(node: AbstractSyntaxTree, depth: number = 0): string {
         const leftNode = node.getLeftNode();
         const rightNode = node.getRightNode();

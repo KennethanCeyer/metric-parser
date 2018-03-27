@@ -252,19 +252,20 @@ var AbstractSyntaxTree = /** @class */ (function () {
         return node._parent;
     };
     AbstractSyntaxTree.prototype.climbUp = function (token) {
-        var currentPrecedence = TokenHelper.getPrecedence(this._value);
-        var tokenPrecedence = TokenHelper.getPrecedence(token);
-        if (currentPrecedence - tokenPrecedence <= 0 && this.getSubType() !== Token.SubType.Group)
-            return this;
-        if (this.isClimbTop()) {
-            var newNode = this.createParentNode(token);
-            newNode.setLeftNode(this);
-            return newNode;
-        }
-        return this._parent.climbUp(token);
+        return this.isClimbTop(token)
+            ? this
+            : this._parent.climbUp(token);
     };
-    AbstractSyntaxTree.prototype.isClimbTop = function () {
-        return !this._parent || TokenHelper.isBracketOpen(this._parent.getValue());
+    AbstractSyntaxTree.prototype.isClimbTop = function (token) {
+        return this.isNeedMakeUpperNode(token) ||
+            !this.getParent() ||
+            TokenHelper.isBracketOpen(this.getValue());
+    };
+    AbstractSyntaxTree.prototype.isNeedMakeUpperNode = function (token) {
+        return this.isTokenHigher(this.getValue(), token) && this.getSubType() !== Token.SubType.Group;
+    };
+    AbstractSyntaxTree.prototype.isTokenHigher = function (source, target) {
+        return TokenHelper.getPrecedence(source) - TokenHelper.getPrecedence(target) <= 0;
     };
     AbstractSyntaxTree.prototype.createChildNode = function (value) {
         var node = new AbstractSyntaxTree(value);
@@ -278,40 +279,39 @@ var AbstractSyntaxTree = /** @class */ (function () {
     };
     AbstractSyntaxTree.prototype.insertOperatorNode = function (value) {
         var rootNode = this.climbUp(value);
-        if (this === rootNode) {
-            var newNode = this.createChildNode(value);
-            newNode.setLeftNode(this.getRightNode());
-            this.setRightNode(newNode);
-            return newNode;
+        if (TokenHelper.isBracketOpen(rootNode.getValue())) {
+            var midNode = rootNode.createChildNode(value);
+            var leftNode = rootNode.getLeftNode();
+            var rightNode = rootNode.getRightNode();
+            rootNode.setLeftNode(midNode);
+            midNode.setLeftNode(leftNode);
+            midNode.setRightNode(rightNode);
+            return midNode;
         }
-        return rootNode;
+        if (this === rootNode) {
+            var newNode_1 = rootNode.createChildNode(value);
+            newNode_1.setLeftNode(rootNode.getRightNode());
+            rootNode.setRightNode(newNode_1);
+            return newNode_1;
+        }
+        var newNode = rootNode.createParentNode(value);
+        newNode.setLeftNode(rootNode);
+        return newNode;
     };
     AbstractSyntaxTree.prototype.insertNode = function (value) {
-        if (TokenHelper.isSymbol(value)) {
+        if (TokenHelper.isSymbol(value))
             if (!this.getValue()) {
                 this.setValue(value);
                 return this;
             }
+        if (TokenHelper.isOperator(value))
             return this.insertOperatorNode(value);
-        }
-        var newNode = this.createChildNode(value);
+        var valueNode = this.createChildNode(value);
         if (!this.getLeftNode())
-            this.setLeftNode(newNode);
+            this.setLeftNode(valueNode);
         else
-            this.setRightNode(newNode);
-        return newNode;
-    };
-    AbstractSyntaxTree.prototype.insertEmptyNode = function (value) {
-        if (!this.getLeftNode() && !TokenHelper.isBracket(this.getValue())) {
-            var newNode_1 = this.createChildNode(value);
-            this.setLeftNode(newNode_1);
-            return this;
-        }
-        var newNode = this.createChildNode();
-        var leftNode = newNode.createChildNode(value);
-        newNode.setLeftNode(leftNode);
-        this.setLeftNode(newNode);
-        return newNode;
+            this.setRightNode(valueNode);
+        return valueNode;
     };
     AbstractSyntaxTree.prototype.getParent = function () {
         return this._parent;
@@ -426,8 +426,9 @@ var TokenAnalyzer = /** @class */ (function () {
         return this.lastError;
     };
     TokenAnalyzer.prototype.initialize = function () {
-        this.ast = new AbstractSyntaxTree();
-        this.currentTree = this.ast;
+        this.ast = new AbstractSyntaxTree(Token.Literal.BracketOpen);
+        this.ast.setLeftNode(new AbstractSyntaxTree());
+        this.currentTree = this.ast.getLeftNode();
         this.index = 0;
         this.lastError = null;
     };
@@ -447,6 +448,7 @@ var TokenAnalyzer = /** @class */ (function () {
             this.analyzeToken(token);
             this.tokenStack.push(token);
         }
+        this.ast = this.ast.removeClosestBracket().findRoot();
     };
     TokenAnalyzer.prototype.popStack = function () {
         return this.tokenStack.length
@@ -462,11 +464,7 @@ var TokenAnalyzer = /** @class */ (function () {
             this.analyzeOperatorToken(token);
             return;
         }
-        if (!TokenHelper.isOperator(this.currentTree.getValue())) {
-            this.currentTree = this.currentTree.insertEmptyNode(token);
-            return;
-        }
-        this.currentTree.setRightNode(this.currentTree.insertNode(token));
+        this.currentTree.insertNode(token);
     };
     TokenAnalyzer.prototype.analyzeBracketToken = function (token) {
         var lastToken = this.popStack();
@@ -490,7 +488,7 @@ var TokenAnalyzer = /** @class */ (function () {
         if (!this.currentTree.getValue())
             this.currentTree.setValue(token);
         else {
-            if (!this.currentTree.getRightNode())
+            if (!TokenHelper.isBracket(this.currentTree.getValue()) && !this.currentTree.getRightNode())
                 // Invalid Error: Duplicated operators
                 console.log('error3');
             this.currentTree = this.currentTree.insertNode(token);
@@ -550,53 +548,15 @@ var TokenAnalyzer = /** @class */ (function () {
 }());
 
 var Builder = /** @class */ (function () {
-    function Builder(formula) {
-        this._formula = formula;
+    function Builder(data) {
+        this.data = data;
     }
     Builder.prototype.build = function () {
-        if (BuilderHelper.needParse(this._formula))
-            return this.parse(this._formula);
-        if (BuilderHelper.needUnparse(this._formula))
-            return this.unparse(this._formula);
+        if (BuilderHelper.needParse(this.data))
+            return this.parse(this.data);
+        if (BuilderHelper.needUnparse(this.data))
+            return this.unparse(this.data);
     };
-    /*
-    parseTree(result: TreeWrapper, line = 0,  col = 0): ParserResult<(OperandItemValue | OperandUnitValue)[]> {
-        this.validateParseTree(result, line, col);
-
-        if (!BuilderHelper.isOperand(result))
-            return {
-                code: LoggerCode.Success,
-                result: [this.getOperandValue((result as Operand).value)]
-            };
-
-        var params = ['operand1', 'operator', 'operand2'];
-        for (var idx = 0; idx < params.length; idx++) {
-            var param = params[idx];
-            if (typeof result[param] === 'object') {
-                var result = _this.parseTree(result[param], col + idx);
-                if (result.status === false) {
-                    return result;
-                } else {
-                    formula = formula.concat(result.result);
-                    if (typeof result.operator !== 'undefined' && result.operator !== null && typeof result.operator !== 'undefined' && result.operator !== null) {
-                        if (this.getOperatorPriority(result.operator) < this.getOperatorPriority(result.operator) && this.getOperatorPriority(result.operator) !== -1) {
-                            formula.splice([formula.length - 3], 0, '(');
-                            formula.splice([formula.length], 0, ')');
-                        }
-                    }
-                }
-            } else {
-                formula.push(result[param]);
-            }
-        }
-
-        return {
-            status: true,
-            result: formula,
-            operator: depth > 0 ? result.operator : undefined
-        };
-    }
-    */
     Builder.prototype.parse = function (data, pos) {
         if (pos === void 0) { pos = 0; }
         var parserToken = new TokenAnalyzer(ParserHelper.getArray(data));
