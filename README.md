@@ -1,4 +1,4 @@
-# FormulaParser
+# metric parser
 
 [![npm version](https://badge.fury.io/js/metric-parser.svg)](https://badge.fury.io/js/metric-parser) [![Bower version](https://badge.fury.io/bo/metric-parser.svg)](https://badge.fury.io/bo/metric-parser) [![Join the chat at https://gitter.im/KennethanCeyer/PIGNOSE](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/KennethanCeyer/PIGNOSE?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 

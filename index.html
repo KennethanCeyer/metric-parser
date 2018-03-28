@@ -1,156 +1,161 @@
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-        <meta property="og:url" content="http://www.pigno.se/barn/PIGNOSE-FormulaParser">
-        <meta property="og:type" content="product"/>
-        <meta property="og:title" content="PIGNOSE FormulaParser"/>
-        <meta property="og:description" content="AST-based advanced mathematical parser written by Typescript."/>
-        <meta property="og:image" content="http://www.pigno.se/barn/PIGNOSE-FormulaParser/demo/img/cover@250.png"/>
-        <meta property="og:site_name" content="PIGNOSE"/>
-        <title>Metric Parser</title>
-        <link rel="shortcut icon" type="image/x-icon" href="demo/img/pignose-ico.ico"/>
-		<link rel="stylesheet" type="text/css" href="demo/css/semantic.ui.min.css">
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/themes/prism.min.css" />
-		<link rel="stylesheet" type="text/css" href="demo/css/style.css" />
-		<style>
-			.formula-expression,
-			.formula-display {
-				text-align: left;
-				padding: 2em 2.4em;
-				background-color: #f8f8f8;
-				margin-bottom: 1em;
-				font-family: Consolas, sans-serif;
-				position: relative;
-			}
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="AST-based advanced mathematical parser written by Typescript..">
+    <meta property="og:url" content="http://www.pigno.se/barn/PIGNOSE-FormulaParser">
+    <meta property="og:type" content="product"/>
+    <meta property="og:title" content="PIGNOSE FormulaParser"/>
+    <meta property="og:description" content="AST-based advanced mathematical parser written by Typescript.">
+    <meta property="og:image" content="http://www.pigno.se/barn/PIGNOSE-FormulaParser/demo/img/cover@250.png">
+    <meta property="og:site_name" content="PIGNOSE"/>
+    <title>Metric Parser</title>
+    <link rel="shortcut icon" type="image/x-icon" href="demo/img/pignose-ico.ico">
+    <link rel="stylesheet" type="text/css" href="demo/css/semantic.ui.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/themes/prism.min.css">
+    <link rel="stylesheet" type="text/css" href="demo/css/style.css">
+    <style>
+        .formula-expression,
+        .formula-display {
+            text-align: left;
+            padding: 2em 2.4em;
+            background-color: #f8f8f8;
+            margin-bottom: 1em;
+            font-family: Consolas, sans-serif;
+            position: relative;
+        }
 
-			.formula-expression .formula-result,
-			.formula-display .formula-result {
-				min-width: 10em;
-				text-align: center;
-				display: block;
-				position: absolute;
-				padding: .4em .6em;
-				border: 1px solid #dadada;
-				border-right: 0;
-				border-top: 0;
-				background-color: #f0f0f0;
-				right: 0;
-				top: 0;
-				font-family: 'Raleway', sans-serif;
-				font-size: 85%;
-				font-weight: 600;
-			}
+        .formula-expression .formula-result,
+        .formula-display .formula-result {
+            min-width: 10em;
+            text-align: center;
+            display: block;
+            position: absolute;
+            padding: .4em .6em;
+            border: 1px solid #dadada;
+            border-right: 0;
+            border-top: 0;
+            background-color: #f0f0f0;
+            right: 0;
+            top: 0;
+            font-family: 'Raleway', sans-serif;
+            font-size: 85%;
+            font-weight: 600;
+        }
 
-			.formula-result span {
-				vertical-align: middle;
-			}
+        .formula-result span {
+            vertical-align: middle;
+        }
 
-			.formula-result .formula-status {
-				display: inline-block;
-				*display: inline;
-				*zoom: 1;
-				width: .4em;
-				height: .4em;
-				border-radius: 50%;
-				background-color: #d8d8d8;
-				margin-left: .6em;
-			}
+        .formula-result .formula-status {
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            width: .4em;
+            height: .4em;
+            border-radius: 50%;
+            background-color: #d8d8d8;
+            margin-left: .6em;
+        }
 
-			.formula-expression {
-				font-weight: 600;
-				color: #000000;
-			}
+        .formula-expression {
+            font-weight: 600;
+            color: #000000;
+        }
 
-			.formula-display {
-				margin-bottom: 6em;
-			}
+        .formula-display {
+            margin-bottom: 6em;
+        }
 
-			.formula-display.formula-display-success {
-				background-color: #f5f6f8;
+        .formula-display.formula-display-success {
+            background-color: #f5f6f8;
 
-			}
+        }
 
-			.formula-display.formula-display-success .formula-status {
-				background-color: #60abac;
-			}
+        .formula-display.formula-display-success .formula-status {
+            background-color: #60abac;
+        }
 
-			.formula-display.formula-display-error {
-				background-color: #f9f7f7;
-			}
+        .formula-display.formula-display-error {
+            background-color: #f9f7f7;
+        }
 
-			.formula-display.formula-display-error .formula-status {
-				background-color: #e28080;
-			}
+        .formula-display.formula-display-error .formula-status {
+            background-color: #e28080;
+        }
 
-			.formula-display:last-child {
-				margin-bottom: 0;
-			}
-		</style>
-	</head>
+        .formula-display:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
 
-	<body>
-		<div id="wrapper">
-			<div class="header">
-				<h1>Metric Parser</h1>
-				<a href="https://github.com/KennethanCeyer/metric-parser" target="_blank" class="ui button primary">View project on Github</a>
-                <a href="https://github.com/KennethanCeyer/metric-parser/archive/master.zip" target="_blank" class="ui button blue">Download zip</a>
-                <a href="docs/index.html" target="_blank" class="ui button teal">Reference docs</a>
-				<h4 class="version">Latest version <strong></strong></h4>
-			</div>
-			<div class="article formula-parsing">
-				<h3>
-					<span>Formula Parsing</span>
-				</h3>
+<body>
+<div id="wrapper">
+    <div class="header">
+        <h1>Metric Parser</h1>
+        <a href="https://github.com/KennethanCeyer/metric-parser" target="_blank" class="ui button primary">View project
+            on Github</a>
+        <a href="https://github.com/KennethanCeyer/metric-parser/archive/master.zip" target="_blank"
+           class="ui button blue">Download zip</a>
+        <a href="docs/index.html" target="_blank" class="ui button teal">Reference docs</a>
+        <h4 class="version">Latest version <strong></strong></h4>
+    </div>
+    <div class="article formula-parsing">
+        <h3>
+            <span>Formula Parsing</span>
+        </h3>
 
-				<div class="formula-expression formula-expression-01"></div>
-				<div class="formula-expression formula-expression-02"></div>
-				<div class="formula-expression formula-expression-03"></div>
-				<div class="formula-expression formula-expression-04"></div>
-				<div class="formula-expression formula-expression-05"></div>
-				<div class="formula-expression formula-expression-06"></div>
-			</div>
+        <div class="formula-expression formula-expression-01"></div>
+        <div class="formula-expression formula-expression-02"></div>
+        <div class="formula-expression formula-expression-03"></div>
+        <div class="formula-expression formula-expression-04"></div>
+        <div class="formula-expression formula-expression-05"></div>
+        <div class="formula-expression formula-expression-06"></div>
+    </div>
 
 
-			<div class="article">
-				<h3>
-					<span>Formula Unparsing</span>
-				</h3>
+    <div class="article">
+        <h3>
+            <span>Formula Unparsing</span>
+        </h3>
 
-				<div class="formula-expression formula-expression-07"></div>
-				<div class="formula-expression formula-expression-08"></div>
-				<div class="formula-expression formula-expression-09"></div>
-				<div class="formula-expression formula-expression-10"></div>
-			</div>
+        <div class="formula-expression formula-expression-07"></div>
+        <div class="formula-expression formula-expression-08"></div>
+        <div class="formula-expression formula-expression-09"></div>
+        <div class="formula-expression formula-expression-10"></div>
+    </div>
 
-			<div class="article">
-				<h3>
-					<span>Validation</span>
-				</h3>
+    <div class="article">
+        <h3>
+            <span>Validation</span>
+        </h3>
 
-				<div class="formula-expression formula-expression-11"></div>
-				<div class="formula-expression formula-expression-12"></div>
-				<div class="formula-expression formula-expression-13"></div>
-				<div class="formula-expression formula-expression-14"></div>
-				<div class="formula-expression formula-expression-15"></div>
-			</div>
-		</div>
-		<div id="bower" class="article">
-			<h3><span>bower</span></h3>
-			<blockquote><p>If you use bower.</p></blockquote>
-			<pre><code class="language-bash">bower install metric-parser</code></pre>
-		</div>
-		<div id="npm" class="article">
-			<h3><span>npm</span></h3>
-			<blockquote><p>If you use npm.</p></blockquote>
-			<pre><code class="language-bash">npm install metric-parser</code></pre>
-		</div>
-		<div id="sample" class="article">
-			<h3><span>Example</span></h3>
-			<br />
-			<ul class="ui top pointing secondary menu">
-				<a href="#" role="presentation" class="item active" data-tab="javascript">Javascript</a>
-			</ul>
-			<div role="tabpanel" class="ui tab segment active" data-tab="javascript">
+        <div class="formula-expression formula-expression-11"></div>
+        <div class="formula-expression formula-expression-12"></div>
+        <div class="formula-expression formula-expression-13"></div>
+        <div class="formula-expression formula-expression-14"></div>
+        <div class="formula-expression formula-expression-15"></div>
+    </div>
+</div>
+<div id="bower" class="article">
+    <h3><span>bower</span></h3>
+    <blockquote><p>If you use bower.</p></blockquote>
+    <pre><code class="language-bash">bower install metric-parser</code></pre>
+</div>
+<div id="npm" class="article">
+    <h3><span>npm</span></h3>
+    <blockquote><p>If you use npm.</p></blockquote>
+    <pre><code class="language-bash">npm install metric-parser</code></pre>
+</div>
+<div id="sample" class="article">
+    <h3><span>Example</span></h3>
+    <br/>
+    <ul class="ui top pointing secondary menu">
+        <a href="#" role="presentation" class="item active" data-tab="javascript">Javascript</a>
+    </ul>
+    <div role="tabpanel" class="ui tab segment active" data-tab="javascript">
 					<pre><code class="language-js">// parse
 const parseResult = metricParser.convert({expression});
 
@@ -164,126 +169,128 @@ const isValid = result.code === 0;
 // validation only
 const isValid2 = metricParser.valid({expression | parseTree});
 </code></pre>
-			</div>
-		</div>
-        <script type="text/javascript" src="demo/js/jquery.latest.min.js"></script>
-        <script type="text/javascript" src="demo/js/semantic.ui.min.js"></script>
-        <script type="text/javascript" src="demo/js/json.parser.js"></script>
-        <script type="text/javascript" src="dist/metric.parser.umd.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/prism.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/components/prism-javascript.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/components/prism-json.min.js"></script>
-        <script>
-            var expressions = [
-                '12 + 3',                                                     // 01
-                '6 - 2 * 4',                                                  // 02
-                '6 - 2 * 4 / ( 2 - 4 )',                                      // 03
-                '6 + 2 * (3 + (4 / 2) * 4 * (2 + (4 + 2 * 6)) * 2)',          // 04
-                '6 + 4 ^ 2 ^ (4 + 2) / 5',                                    // 05
-                '((((1) + (2)) + (3)) + (4))',                                // 06
-                {                                                             // |--
-                    "operator":"+",                                            // |
-                    "operand1":12,                                             // - 07
-                    "operand2":3                                               // |
-                },                                                            // |--
-                {                                                             // |--
-                    "operator":"-",                                            // |
-                    "operand1":6,                                              // |
-                    "operand2":{                                               // - 08
-                        "operator":"*",                                         // |
-                        "operand1":2,                                           // |
-                        "operand2":4                                            // |
-                    }                                                          // |
-                },                                                            // |--
-                {                                                             // |--
-                    "operator":"+",                                            // |
-                    "operand1":{                                               // |
-                        "operator":"+",                                         // |
-                        "operand1":"12",                                        // |
-                        "operand2":"3"                                          // |
-                    },                                                         // |
-                    "operand2":{                                               // |
-                        "operator":"/",                                         // |
-                        "operand1":{                                            // |
-                            "operator":"+",                                      // - 09
-                            "operand1":{                                         // |
-                                "operator":"*",                                   // |
-                                "operand1":"2",                                   // |
-                                "operand2":"4"                                    // |
-                            },                                                   // |
-                            "operand2":"5"                                       // |
-                        },                                                      // |
-                        "operand2":"2"                                          // |
-                    }                                                          // |
-                },                                                            // |--
-                {                                                             // |--
-                    "operator":"*",                                            // |
-                    "operand1":{                                               // |
-                        "operator":"/",                                         // |
-                        "operand1":{                                            // |
-                            "value":{                                            // |
-                                "type":"item",                                    // |
-                                "item":{                                          // |
-                                    "table":"table-01",                            // |
-                                    "key":"col-02",                                // |
-                                    "name":"Item1",                                // |
-                                    "oper":"sum"                                   // |
-                                }                                                 // |
-                            }                                                    // |
-                        },                                                      // |
-                        "operand2":{                                            // - 10
-                            "value":{                                            // |
-                                "type":"item",                                    // |
-                                "item":{                                          // |
-                                    "table":"table-02",                            // |
-                                    "key":"col-04",                                // |
-                                    "name":"Item2",                                // |
-                                    "oper":"sum"                                   // |
-                                }                                                 // |
-                            }                                                    // |
-                        }                                                       // |
-                    },                                                         // |
-                    "operand2":{                                               // |
-                        "value":{                                               // |
-                            "type":"unit",                                       // |
-                            "unit":100                                           // |
-                        }                                                       // |
-                    }                                                          // |
-                },                                                            // |--
-                '(1 + 2) 3',                                                  // 11
-                '((1 + 2',                                                    // 12
-                '2 + 3))',                                                    // 13
-                '1 ! 2',                                                      // 14
-                '1 ++ 4'                                                      // 15
-            ];
+    </div>
+</div>
+<script type="text/javascript" src="demo/js/jquery.latest.min.js"></script>
+<script type="text/javascript" src="demo/js/semantic.ui.min.js"></script>
+<script type="text/javascript" src="demo/js/json.parser.js"></script>
+<script type="text/javascript" src="dist/metric.parser.umd.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/prism.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/components/prism-javascript.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/components/prism-json.min.js"></script>
+<script>
+    var expressions = [
+        '12 + 3',                                                     // 01
+        '6 - 2 * 4',                                                  // 02
+        '6 - 2 * 4 / ( 2 - 4 )',                                      // 03
+        '6 + 2 * (3 + (4 / 2) * 4 * (2 + (4 + 2 * 6)) * 2)',          // 04
+        '6 + 4 ^ 2 ^ (4 + 2) / 5',                                    // 05
+        '((((1) + (2)) + (3)) + (4))',                                // 06
+        {                                                             // |--
+            "operator": "+",                                            // |
+            "operand1": 12,                                             // - 07
+            "operand2": 3                                               // |
+        },                                                            // |--
+        {                                                             // |--
+            "operator": "-",                                            // |
+            "operand1": 6,                                              // |
+            "operand2": {                                               // - 08
+                "operator": "*",                                         // |
+                "operand1": 2,                                           // |
+                "operand2": 4                                            // |
+            }                                                          // |
+        },                                                            // |--
+        {                                                             // |--
+            "operator": "+",                                            // |
+            "operand1": {                                               // |
+                "operator": "+",                                         // |
+                "operand1": "12",                                        // |
+                "operand2": "3"                                          // |
+            },                                                         // |
+            "operand2": {                                               // |
+                "operator": "/",                                         // |
+                "operand1": {                                            // |
+                    "operator": "+",                                      // - 09
+                    "operand1": {                                         // |
+                        "operator": "*",                                   // |
+                        "operand1": "2",                                   // |
+                        "operand2": "4"                                    // |
+                    },                                                   // |
+                    "operand2": "5"                                       // |
+                },                                                      // |
+                "operand2": "2"                                          // |
+            }                                                          // |
+        },                                                            // |--
+        {                                                             // |--
+            "operator": "*",                                            // |
+            "operand1": {                                               // |
+                "operator": "/",                                         // |
+                "operand1": {                                            // |
+                    "value": {                                            // |
+                        "type": "item",                                    // |
+                        "item": {                                          // |
+                            "table": "table-01",                            // |
+                            "key": "col-02",                                // |
+                            "name": "Item1",                                // |
+                            "oper": "sum"                                   // |
+                        }                                                 // |
+                    }                                                    // |
+                },                                                      // |
+                "operand2": {                                            // - 10
+                    "value": {                                            // |
+                        "type": "item",                                    // |
+                        "item": {                                          // |
+                            "table": "table-02",                            // |
+                            "key": "col-04",                                // |
+                            "name": "Item2",                                // |
+                            "oper": "sum"                                   // |
+                        }                                                 // |
+                    }                                                    // |
+                }                                                       // |
+            },                                                         // |
+            "operand2": {                                               // |
+                "value": {                                               // |
+                    "type": "unit",                                       // |
+                    "unit": 100                                           // |
+                }                                                       // |
+            }                                                          // |
+        },                                                            // |--
+        '(1 + 2) 3',                                                  // 11
+        '((1 + 2',                                                    // 12
+        '2 + 3))',                                                    // 13
+        '1 ! 2',                                                      // 14
+        '1 ++ 4'                                                      // 15
+    ];
 
-            $(function() {
-                $('.version strong').text(metricParser.getVersion());
-                $('.formula-expression').each(function(index) {
-                    var $this = $(this);
-                    var expression = expressions[index];
+    $(function () {
+        $('.version strong').text(metricParser.getVersion());
+        $('.formula-expression').each(function (index) {
+            var $this = $(this);
+            var expression = expressions[index];
 
-                    if(!expression) return;
+            if (!expression) return;
 
-                    var $formulaDisplay = $('<div class="formula-display"></div>');
-                    var $formulaResult = $('<div class="formula-result"></div>');
-                    var formula = metricParser.convert(expression);
-                    var json = JSON.stringify(formula, null, '/%t/').replace(/\n/g, "/%b/");
-                    var jsonHtml = Prism.highlight(json, Prism.languages.json).replace(/\/%b\//mg, '<br />').replace(/\/%t\//mg, '&nbsp;&nbsp;&nbsp;&nbsp;');
+            var $formulaDisplay = $('<div class="formula-display"></div>');
+            var $formulaResult = $('<div class="formula-result"></div>');
+            var formula = metricParser.convert(expression);
+            var json = JSON.stringify(formula, null, '/%t/').replace(/\n/g, "/%b/");
+            var jsonHtml = Prism.highlight(json, Prism.languages.json).replace(/\/%b\//mg, '<br />').replace(/\/%t\//mg, '&nbsp;&nbsp;&nbsp;&nbsp;');
 
-                    if(typeof expression === 'object')
-                        expression = Prism.highlight(JSON.stringify(expression, null, '/%t/').replace(/\n/g, "/%b/"), Prism.languages.json).replace(/\/%b\//mg, '<br />').replace(/\/%t\//mg, '&nbsp;&nbsp;&nbsp;&nbsp;');
+            if (typeof expression === 'object')
+                expression = Prism.highlight(JSON.stringify(expression, null, '/%t/').replace(/\n/g, "/%b/"), Prism.languages.json).replace(/\/%b\//mg, '<br />').replace(/\/%t\//mg, '&nbsp;&nbsp;&nbsp;&nbsp;');
 
-                    $this.html(expression);
-                    $formulaDisplay.html(jsonHtml);
-                    $formulaDisplay.insertAfter($this);
-                    $formulaResult.clone().appendTo($this).text('Expression');
+            $this.html(expression);
+            $formulaDisplay.html(jsonHtml);
+            $formulaDisplay.insertAfter($this);
+            $formulaResult.clone().appendTo($this).text('Expression');
 
-                    var $target = $formulaResult.clone().appendTo($formulaDisplay);
-                    $target.append('<span>Result</span><span class="formula-status"></span>');
-                    $formulaDisplay.addClass(formula.code ? 'formula-display-error' : 'formula-display-success');
-                });
-            });
-        </script>
-	</body>
+            var $target = $formulaResult.clone().appendTo($formulaDisplay);
+            $target.append('<span>Result</span><span class="formula-status"></span>');
+            $formulaDisplay.addClass(formula.code ? 'formula-display-error' : 'formula-display-success');
+        });
+    });
+</script>
+</body>
 </html>
