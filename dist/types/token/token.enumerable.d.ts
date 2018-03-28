@@ -16,6 +16,9 @@ export declare class TokenEnumerable {
     protected popStack(): Token.Token | undefined;
     next(): any;
     private proceedNext();
+    private isSequentialValue(token, nextToken);
     private findToken();
+    private isTokenArrayNumeric(tokens);
     private makeToken(tokens);
+    private makeTokenString(tokens);
 }

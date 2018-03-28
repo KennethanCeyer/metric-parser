@@ -1008,6 +1008,9 @@ img { max-width: 100%; }
 		<li class=" tsd-kind-variable tsd-is-not-exported">
 			<a href="globals.html#_plugin_version_" class="tsd-kind-icon">_PLUGIN_<wbr>VERSION_</a>
 		</li>
+		<li class=" tsd-kind-variable">
+			<a href="globals.html#success" class="tsd-kind-icon">success</a>
+		</li>
 		<li class=" tsd-kind-function">
 			<a href="globals.html#convert" class="tsd-kind-icon">convert</a>
 		</li>
@@ -1020,11 +1023,12 @@ img { max-width: 100%; }
 	<div class="content-wrap">
 		<div class="tsd-panel tsd-typography">
 			<h1 id="metric-parser">metric parser</h1>
+			<p><a href="https://nodei.co/npm/metric-parser/"><img src="https://nodei.co/npm/metric-parser.png" alt="NPM"></a></p>
 			<p><a href="https://badge.fury.io/js/metric-parser"><img src="https://badge.fury.io/js/metric-parser.svg" alt="npm version"></a> <a href="https://badge.fury.io/bo/metric-parser"><img src="https://badge.fury.io/bo/metric-parser.svg" alt="Bower version"></a> <a href="https://gitter.im/KennethanCeyer/PIGNOSE?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/KennethanCeyer/PIGNOSE"></a></p>
-			<p><a href="https://travis-ci.org/KennethanCeyer/metric-parser"><img src="https://travis-ci.org/KennethanCeyer/metric-parser.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/KennethanCeyer/metric-parser"><img src="https://coveralls.io/repos/github/KennethanCeyer/metric-parser/badge.svg" alt="Coverage Status"></a> <a href="https://codecov.io/gh/KennethanCeyer/metric-parser"><img src="https://codecov.io/gh/KennethanCeyer/metric-parser/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://codeclimate.com/github/KennethanCeyer/metric-parser/maintainability"><img src="https://api.codeclimate.com/v1/badges/9ab3eed6a3b758c6d2d9/maintainability" alt="Maintainability"></a> <a href="https://www.codefactor.io/repository/github/kennethanceyer/metric-parser"><img src="https://www.codefactor.io/repository/github/kennethanceyer/metric-parser/badge" alt="CodeFactor"></a></p>
+			<p><a href="https://travis-ci.org/KennethanCeyer/metric-parser"><img src="https://travis-ci.org/KennethanCeyer/metric-parser.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/KennethanCeyer/metric-parser"><img src="https://coveralls.io/repos/github/KennethanCeyer/metric-parser/badge.svg" alt="Coverage Status"></a> <a href="https://codecov.io/gh/KennethanCeyer/metric-parser"><img src="https://codecov.io/gh/KennethanCeyer/metric-parser/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://codeclimate.com/github/KennethanCeyer/metric-parser/maintainability"><img src="https://api.codeclimate.com/v1/badges/c69ae53f077a68618867/maintainability" alt="Maintainability"></a> <a href="https://codeclimate.com/github/KennethanCeyer/metric-parser/test_coverage"><img src="https://api.codeclimate.com/v1/badges/c69ae53f077a68618867/test_coverage" alt="Test Coverage"></a> <a href="https://www.codefactor.io/repository/github/kennethanceyer/metric-parser"><img src="https://www.codefactor.io/repository/github/kennethanceyer/metric-parser/badge" alt="CodeFactor"></a></p>
 			<p><a href="https://david-dm.org/KennethanCeyer/metric-parser"><img src="https://david-dm.org/KennethanCeyer/metric-parser/status.svg" alt="dependencies Status"></a> <a href="https://david-dm.org/KennethanCeyer/metric-parser?type=dev"><img src="https://david-dm.org/KennethanCeyer/metric-parser/dev-status.svg" alt="devDependencies Status"></a></p>
 			<hr>
-			<h3 id="special-lovers">Special lovers</h3>
+			<h3 id="special-lovers-heart-">Special lovers :heart:</h3>
 			<ul>
 				<li><a href="http://rhyscitlema.com/algorithms/expression-parsing-algorithm">rhyscitlema.com</a></li>
 				<li><a href="http://www.engr.mun.ca/~theo/Misc/exp_parsing.htm#climbing">Precedence climbing</a></li>
@@ -1035,7 +1039,7 @@ img { max-width: 100%; }
 			<p><img src="http://www.pigno.se/barn/PIGNOSE-FormulaParser/demo/img/screenshot_main.png" alt="Screen Shot"></p>
 			<hr>
 			<h3 id="roadmap">Roadmap</h3>
-			<p><strong>v1.0.0</strong></p>
+			<p><strong>v0.0.1</strong></p>
 			<ul>
 				<li>[x] support typescript</li>
 				<li>[x] support UMD and ES5 module</li>
@@ -1043,23 +1047,25 @@ img { max-width: 100%; }
 				<li>[x] support custom value (custom object as value)</li>
 				<li>[x] support implicit patterns (multiplication omitted, operator aliases)</li>
 				<li>[x] support reference docs</li>
-				<li>[ ] guidelines for developers</li>
-				<li>[ ] guidelines for contributors</li>
-				<li>[ ] support validation for many cases</li>
 				<li>[x] improve parser logic based <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">AST</a></li>
 				<li>[x] improve validation error (parserStack, codes)</li>
 				<li>[x] add unit test with coverage rate over 90%</li>
+				<li>[x] support validation for many cases</li>
 			</ul>
-			<p><strong>v1.0.1</strong></p>
+			<p><strong>v0.1.0</strong></p>
+			<ul>
+				<li>[ ] guidelines for developers</li>
+				<li>[ ] guidelines for contributors</li>
+			</ul>
+			<p><strong>v0.2.0</strong></p>
 			<ul>
 				<li>[ ] function expression <code>IF()</code>, <code>SUM()</code>, <code>AVG()</code>, <code>_CUSTOM_NAMED_FUNC_()</code></li>
 				<li>[ ] support custom tree model declaration</li>
 			</ul>
-			<p><strong>v1.0.2</strong></p>
+			<p><strong>v0.3.0</strong></p>
 			<ul>
 				<li>[ ] declare variable (operator and value type)</li>
 			</ul>
-			<p>If you want join the contribution, Fork it and send a pull request.</p>
 			<hr>
 			<h3 id="installation">Installation</h3>
 			<h4 id="zip">zip</h4>
@@ -1086,6 +1092,8 @@ img { max-width: 100%; }
 					<section class="tsd-index-section ">
 						<h3>Modules</h3>
 						<ul class="tsd-index-list">
+							<li class="tsd-kind-module"><a href="modules/buildererror.html" class="tsd-kind-icon">Builder<wbr>Error</a></li>
+							<li class="tsd-kind-module"><a href="modules/generalerror.html" class="tsd-kind-icon">General<wbr>Error</a></li>
 							<li class="tsd-kind-module"><a href="modules/token.html" class="tsd-kind-icon">Token</a></li>
 							<li class="tsd-kind-module"><a href="modules/tokenerror.html" class="tsd-kind-icon">Token<wbr>Error</a></li>
 							<li class="tsd-kind-module"><a href="modules/treeerror.html" class="tsd-kind-icon">Tree<wbr>Error</a></li>
@@ -1143,10 +1151,11 @@ img { max-width: 100%; }
 							<li class="tsd-kind-type-alias"><a href="globals.html#subnodeside" class="tsd-kind-icon">sub<wbr>Node<wbr>Side</a></li>
 						</ul>
 					</section>
-					<section class="tsd-index-section tsd-is-not-exported">
+					<section class="tsd-index-section ">
 						<h3>Variables</h3>
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#_plugin_version_" class="tsd-kind-icon">_PLUGIN_<wbr>VERSION_</a></li>
+							<li class="tsd-kind-variable"><a href="globals.html#success" class="tsd-kind-icon">success</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section ">
@@ -1167,7 +1176,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">Convert<wbr>Data<span class="tsd-signature-symbol">:</span> <a href="globals.html#parsedata" class="tsd-signature-type">ParseData</a><span class="tsd-signature-symbol"> | </span><a href="globals.html#unparsedata" class="tsd-signature-type">UnparseData</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/types.ts#L3">types.ts:3</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/78c28c6/src/metric.parser.ts#L6">metric.parser.ts:6</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1177,7 +1186,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">Node<span class="tsd-signature-symbol">:</span> <a href="interfaces/tree.html" class="tsd-signature-type">Tree</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/operand.html" class="tsd-signature-type">Operand</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/tree/simple.tree/type.ts#L1">tree/simple.tree/type.ts:1</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/78c28c6/src/tree/simple.tree/type.ts#L1">tree/simple.tree/type.ts:1</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1187,7 +1196,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">Parse<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/types.ts#L5">types.ts:5</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/78c28c6/src/metric.parser.ts#L8">metric.parser.ts:8</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1197,7 +1206,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">Unit<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/tree/simple.tree/type.ts#L28">tree/simple.tree/type.ts:28</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/78c28c6/src/tree/simple.tree/type.ts#L28">tree/simple.tree/type.ts:28</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1207,7 +1216,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">Unparse<wbr>Data<span class="tsd-signature-symbol">:</span> <a href="interfaces/tree.html" class="tsd-signature-type">Tree</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/types.ts#L7">types.ts:7</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/78c28c6/src/metric.parser.ts#L10">metric.parser.ts:10</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1217,7 +1226,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">Value<span class="tsd-signature-symbol">:</span> <a href="interfaces/itemvalue.html" class="tsd-signature-type">ItemValue</a><span class="tsd-signature-symbol"> | </span><a href="globals.html#unitvalue" class="tsd-signature-type">UnitValue</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/tree/simple.tree/type.ts#L19">tree/simple.tree/type.ts:19</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/78c28c6/src/tree/simple.tree/type.ts#L19">tree/simple.tree/type.ts:19</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1227,20 +1236,30 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">sub<wbr>Node<wbr>Side<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"left"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"right"</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.helper.ts#L3">ast.helper.ts:3</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/78c28c6/src/ast/ast.helper.ts#L3">ast/ast.helper.ts:3</a></li>
 					</ul>
 				</aside>
 			</section>
 		</section>
-		<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Variables</h2>
 			<section class="tsd-panel tsd-member tsd-kind-variable tsd-is-not-exported">
 				<a name="_plugin_version_" class="tsd-anchor"></a>
 				<h3><span class="tsd-flag ts-flagConst">Const</span> _PLUGIN_<wbr>VERSION_</h3>
-				<div class="tsd-signature tsd-kind-icon">_PLUGIN_<wbr>VERSION_<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"0.0.1"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;0.0.1&quot;</span></div>
+				<div class="tsd-signature tsd-kind-icon">_PLUGIN_<wbr>VERSION_<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"0.0.2"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;0.0.2&quot;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/metric.parser.ts#L5">metric.parser.ts:5</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/78c28c6/src/metric.parser.ts#L4">metric.parser.ts:4</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-variable">
+				<a name="success" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagConst">Const</span> success</h3>
+				<div class="tsd-signature tsd-kind-icon">success<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">0</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/78c28c6/src/error.ts#L5">error.ts:5</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1257,7 +1276,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/metric.parser.ts#L7">metric.parser.ts:7</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/78c28c6/src/metric.parser.ts#L12">metric.parser.ts:12</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1280,7 +1299,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/metric.parser.ts#L12">metric.parser.ts:12</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/78c28c6/src/metric.parser.ts#L17">metric.parser.ts:17</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>

@@ -9,6 +9,7 @@ export declare class TokenHelper {
     static isString(value: Token.Token): boolean;
     static isObject(value: Token.Token): boolean;
     static isValue(value: Token.Token): boolean;
+    static isDot(value: Token.Token): boolean;
     static isAddition(token: Token.Token): boolean;
     static isSubtraction(token: Token.Token): boolean;
     static isMultiplication(token: Token.Token): boolean;

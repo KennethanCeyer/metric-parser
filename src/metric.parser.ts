@@ -1,7 +1,7 @@
 import { Builder } from './builder';
 import { ParserGeneralResult } from './parser/parser.result';
 
-const _PLUGIN_VERSION_ = '0.0.1';import { Tree } from './tree/simple.tree/type';
+const _PLUGIN_VERSION_ = '0.0.2';import { Tree } from './tree/simple.tree/type';
 
 export type ConvertData = ParseData | UnparseData;
 

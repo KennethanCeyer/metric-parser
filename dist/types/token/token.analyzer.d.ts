@@ -1,6 +1,6 @@
 import { Tree } from '../tree/simple.tree/type';
 import { Token } from './token';
-import { AbstractSyntaxTree } from '../ast';
+import { AbstractSyntaxTree } from '../ast/ast';
 import { TokenEnumerable } from './token.enumerable';
 export declare class TokenAnalyzer extends TokenEnumerable {
     private ast;
@@ -11,6 +11,8 @@ export declare class TokenAnalyzer extends TokenEnumerable {
     getAst(): AbstractSyntaxTree;
     private makeAst();
     private try<T>(tryFunction);
+    private preValidate();
+    private postValidate();
     private handleError(error);
     private doAnalyzeToken(token);
     private analyzeToken(token);

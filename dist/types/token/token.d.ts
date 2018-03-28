@@ -13,11 +13,12 @@ export declare namespace Token {
     enum Type {
         Unknown = 0,
         Value = 1,
-        Operator = 2,
-        Bracket = 3,
-        Function = 4,
-        WhiteSpace = 5,
-        CompareToken = 6,
+        Dot = 2,
+        Operator = 3,
+        Bracket = 4,
+        Function = 5,
+        WhiteSpace = 6,
+        CompareToken = 7,
     }
     enum SubType {
         Group = 0,
@@ -32,6 +33,7 @@ export declare namespace Token {
         Pow: string;
         BracketOpen: string;
         BracketClose: string;
+        Dot: string;
     };
     const addition: string[];
     const subtraction: string[];

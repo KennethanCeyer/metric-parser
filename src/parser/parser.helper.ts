@@ -1,4 +1,4 @@
-import { ParseData } from '../types';
+import { ParseData } from '../metric.parser';
 
 export class ParserHelper {
     public static getArray(data: ParseData): string[] {

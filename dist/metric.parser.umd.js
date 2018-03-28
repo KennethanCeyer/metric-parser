@@ -44,11 +44,12 @@
         (function (Type) {
             Type[Type["Unknown"] = 0] = "Unknown";
             Type[Type["Value"] = 1] = "Value";
-            Type[Type["Operator"] = 2] = "Operator";
-            Type[Type["Bracket"] = 3] = "Bracket";
-            Type[Type["Function"] = 4] = "Function";
-            Type[Type["WhiteSpace"] = 5] = "WhiteSpace";
-            Type[Type["CompareToken"] = 6] = "CompareToken";
+            Type[Type["Dot"] = 2] = "Dot";
+            Type[Type["Operator"] = 3] = "Operator";
+            Type[Type["Bracket"] = 4] = "Bracket";
+            Type[Type["Function"] = 5] = "Function";
+            Type[Type["WhiteSpace"] = 6] = "WhiteSpace";
+            Type[Type["CompareToken"] = 7] = "CompareToken";
         })(Type = Token.Type || (Token.Type = {}));
         var SubType;
         (function (SubType) {
@@ -63,7 +64,8 @@
             Mod: '%',
             Pow: '^',
             BracketOpen: '(',
-            BracketClose: ')'
+            BracketClose: ')',
+            Dot: '.'
         };
         Token.addition = [Token.literal.Addition];
         Token.subtraction = [Token.literal.Subtraction];
@@ -101,7 +103,7 @@
             return Token.whiteSpace.includes(String(token));
         };
         TokenHelper.isNumeric = function (value) {
-            return (/\d+(\.\d*)?|\.\d+/).test(String(value));
+            return (/^[\+\-]?\d*\.?\d+(?:[Ee][\+\-]?\d+)?$/).test(String(value));
         };
         TokenHelper.isArray = function (value) {
             return Array.isArray(value);
@@ -114,6 +116,9 @@
         };
         TokenHelper.isValue = function (value) {
             return TokenHelper.isObject(value) || TokenHelper.isNumeric(value);
+        };
+        TokenHelper.isDot = function (value) {
+            return value === Token.literal.Dot;
         };
         TokenHelper.isAddition = function (token) {
             return Token.addition.includes(token);
@@ -157,6 +162,7 @@
                 { predicate: TokenHelper.isWhiteSpace, type: Token.Type.WhiteSpace },
                 { predicate: TokenHelper.isOperator, type: Token.Type.Operator },
                 { predicate: TokenHelper.isBracket, type: Token.Type.Bracket },
+                { predicate: TokenHelper.isDot, type: Token.Type.Dot },
                 { predicate: TokenHelper.isValue, type: Token.Type.Value }
             ];
             var extractedToken = typeInducers.find(function (inducer) { return inducer.predicate(value); });
@@ -226,6 +232,7 @@
         return StringHelper;
     }());
 
+    var success = 0;
     var ParserError = /** @class */ (function (_super) {
         __extends(ParserError, _super);
         function ParserError(error) {
@@ -247,6 +254,7 @@
             this.parserStack = stack;
             return this;
         };
+        ParserError.defaultParserStack = { line: 0, col: 0 };
         return ParserError;
     }(Error));
 
@@ -256,9 +264,11 @@
         TokenError.id = 0x0100;
         TokenError.invalidToken = { code: 0x0100, text: '`{0}` token is invalid token type' };
         TokenError.invalidTwoOperator = { code: 0x0101, text: 'two operators `{0}`, `{1}` can not come together' };
+        TokenError.invalidNonNumericValue = { code: 0x0102, text: 'non-numeric token `{0}` can not be consecutive' };
         TokenError.missingOperator = { code: 0x0112, text: 'the operator is missing after `{0}`' };
         TokenError.missingOpenBracket = { code: 0x0120, text: 'missing open bracket, you cannot close the bracket' };
         TokenError.missingCloseBracket = { code: 0x0121, text: 'missing close bracket, the bracket must be closed' };
+        TokenError.emptyToken = { code: 0x0150, text: 'token is empty' };
     })(TokenError || (TokenError = {}));
     /* tslint:enable:max-line-length */
 
@@ -335,7 +345,9 @@
         });
         AbstractSyntaxTreeBase.prototype.findRoot = function () {
             if (this.isRoot())
-                return this;
+                return this.value !== undefined || !this.leftNode
+                    ? this
+                    : this.leftNode;
             return this._parent.findRoot();
         };
         AbstractSyntaxTreeBase.prototype.isRoot = function () {
@@ -563,6 +575,7 @@
                 col: 0,
                 line: 0
             };
+            this.tokenStack = [];
         };
         TokenEnumerable.prototype.calculateStack = function (token) {
             if (TokenHelper.isLineEscape(token)) {
@@ -600,15 +613,20 @@
             var token = this.makeToken(tokenStack);
             var error = TokenValidator.validateToken(token);
             if (error)
-                throw error.withStack(this.stack);
+                throw error;
             return token;
         };
         TokenEnumerable.prototype.proceedNext = function () {
-            var tokenType = TokenHelper.induceType(this.currentToken);
-            var nextTokenType = TokenHelper.induceType(this.token[this.cursor]);
-            return tokenType === Token.Type.Value &&
-                TokenHelper.isNumeric(this.currentToken) &&
-                tokenType === nextTokenType;
+            var token = this.currentToken;
+            var nextToken = this.token[this.cursor];
+            return this.isSequentialValue(token, nextToken);
+        };
+        TokenEnumerable.prototype.isSequentialValue = function (token, nextToken) {
+            var tokenType = TokenHelper.induceType(token);
+            var nextTokenType = TokenHelper.induceType(nextToken);
+            return tokenType === Token.Type.Value && TokenHelper.isNumeric(token) && tokenType === nextTokenType ||
+                tokenType === Token.Type.Value && TokenHelper.isNumeric(token) && nextTokenType === Token.Type.Dot ||
+                tokenType === Token.Type.Dot && TokenHelper.isNumeric(nextToken) && nextTokenType === Token.Type.Value;
         };
         TokenEnumerable.prototype.findToken = function () {
             while (this.cursor < this.token.length) {
@@ -619,14 +637,20 @@
                     return token;
             }
         };
+        TokenEnumerable.prototype.isTokenArrayNumeric = function (tokens) {
+            return tokens.every(function (token) { return TokenHelper.isNumeric(token) || TokenHelper.isDot(token); });
+        };
         TokenEnumerable.prototype.makeToken = function (tokens) {
             if (!tokens.length)
                 return undefined;
-            if (tokens.every(function (token) { return TokenHelper.isNumeric(token); }))
+            if (this.isTokenArrayNumeric(tokens))
                 return tokens.join('');
             if (tokens.length > 1)
-                throw Error('error: non-numeric tokens can not be consecutive.');
+                throw new ParserError(TokenError.invalidNonNumericValue, this.makeTokenString(tokens));
             return tokens[0];
+        };
+        TokenEnumerable.prototype.makeTokenString = function (tokens) {
+            return tokens.map(function (token) { return typeof token === 'object' ? JSON.stringify(token) : token; }).join('');
         };
         return TokenEnumerable;
     }());
@@ -635,19 +659,27 @@
     var TreeError;
     (function (TreeError) {
         TreeError.id = 0x0200;
-        TreeError.astIsEmpty = { code: 0x0200, text: 'AST is empty' };
-        TreeError.invalidParserTree = { code: 0x0201, text: 'invalid parser tree' };
+        TreeError.emptyAst = { code: 0x0200, text: 'AST is empty' };
+        TreeError.emptyTree = { code: 0x0201, text: 'tree is empty' };
+        TreeError.invalidParserTree = { code: 0x0220, text: 'invalid parser tree' };
     })(TreeError || (TreeError = {}));
     /* tslint:enable:max-line-length */
+
+    var GeneralError;
+    (function (GeneralError) {
+        GeneralError.id = 0x1000;
+        GeneralError.unknownError = { code: 0x1000, text: 'unknown error is occurred' };
+        GeneralError.methodNotImplemented = { code: 0x1001, text: 'method not implemented' };
+    })(GeneralError || (GeneralError = {}));
 
     var TreeBuilderBase = /** @class */ (function () {
         function TreeBuilderBase() {
         }
         TreeBuilderBase.prototype.makeTree = function (ast) {
-            throw new Error('method not implemented.');
+            throw new ParserError(GeneralError.methodNotImplemented);
         };
         TreeBuilderBase.prototype.makeAst = function (tree) {
-            throw new Error('method not implemented.');
+            throw new ParserError(GeneralError.methodNotImplemented);
         };
         return TreeBuilderBase;
     }());
@@ -659,19 +691,23 @@
         }
         TreeBuilder.prototype.makeTree = function (ast) {
             if (!ast)
-                throw new ParserError(TreeError.astIsEmpty);
+                throw new ParserError(TreeError.emptyAst);
             var tree = this.makeNode(ast);
-            if (tree.value)
+            if (!TreeBuilder.isValid(tree))
                 throw new ParserError(TreeError.invalidParserTree);
             return tree;
         };
         TreeBuilder.prototype.makeAst = function (tree) {
+            if (!tree)
+                throw new ParserError(TreeError.emptyTree);
             return this.makeAstNode(tree);
         };
-        TreeBuilder.prototype.makeNode = function (sourceNode) {
-            return sourceNode.type === Token.Type.Operator
-                ? this.makeOperatorNode(sourceNode)
-                : this.makeValueNode(sourceNode);
+        TreeBuilder.prototype.makeNode = function (node) {
+            if (!node)
+                return undefined;
+            return node.type === Token.Type.Operator
+                ? this.makeOperatorNode(node)
+                : this.makeValueNode(node);
         };
         TreeBuilder.prototype.makeOperatorNode = function (sourceNode) {
             return {
@@ -696,7 +732,7 @@
         };
         TreeBuilder.prototype.makeAstNode = function (node) {
             if (!node)
-                return;
+                return undefined;
             if (TreeBuilder.isTree(node)) {
                 var tree = node;
                 var ast = new AbstractSyntaxTree(tree.operator);
@@ -711,9 +747,19 @@
             return !!node.operator;
         };
         TreeBuilder.getValue = function (operand) {
+            if (!TreeBuilder.isValidOperand(operand))
+                throw new ParserError(TreeError.invalidParserTree);
             return operand.value.type === 'item'
                 ? operand.value.item
                 : operand.value.unit;
+        };
+        TreeBuilder.isValid = function (node) {
+            var tree = node;
+            var operand = node;
+            return !!(tree.operator && tree.operand1 && tree.operand2) || operand.value !== undefined;
+        };
+        TreeBuilder.isValidOperand = function (operand) {
+            return operand && operand.value && operand.value.type && operand.value[operand.value.type];
         };
         return TreeBuilder;
     }(TreeBuilderBase));
@@ -725,8 +771,10 @@
         }
         TokenAnalyzer.prototype.parse = function () {
             var _this = this;
+            this.try(function () { return _this.preValidate(); });
             this.initialize();
-            this.makeAst();
+            this.try(function () { return _this.makeAst(); });
+            this.try(function () { return _this.postValidate(); });
             return this.try(function () { return _this.makeTree(); });
         };
         TokenAnalyzer.prototype.initialize = function () {
@@ -746,8 +794,6 @@
             }
             this.finalizeStack();
             this.ast = this.ast.removeRootBracket().findRoot();
-            if (this.ast.hasOpenBracket())
-                this.handleError(new ParserError(TokenError.missingCloseBracket));
         };
         TokenAnalyzer.prototype.try = function (tryFunction) {
             try {
@@ -757,8 +803,19 @@
                 this.handleError(error);
             }
         };
+        TokenAnalyzer.prototype.preValidate = function () {
+            if (!this.token || !this.token.length)
+                throw new ParserError(TokenError.emptyToken);
+        };
+        TokenAnalyzer.prototype.postValidate = function () {
+            if (this.ast.hasOpenBracket())
+                throw new ParserError(TokenError.missingCloseBracket);
+        };
         TokenAnalyzer.prototype.handleError = function (error) {
-            throw error.withStack(this.stack);
+            if (error instanceof ParserError)
+                throw error.withStack(this.stack);
+            console.log(error);
+            throw new ParserError(GeneralError.unknownError).withStack(this.stack);
         };
         TokenAnalyzer.prototype.doAnalyzeToken = function (token) {
             this.analyzeToken(token);
@@ -821,14 +878,22 @@
         function BuilderMessage() {
         }
         BuilderMessage.prototype.makeData = function (data, code) {
-            if (code === void 0) { code = 0; }
+            if (code === void 0) { code = success; }
             return { code: code, data: data };
         };
         BuilderMessage.prototype.makeError = function (error) {
-            return __assign({}, this.makeData(error.text, error.code), { stack: error.parserStack });
+            return __assign({}, this.makeData(error.text, error.code), { stack: error.parserStack || __assign({}, ParserError.defaultParserStack) });
         };
         return BuilderMessage;
     }());
+
+    /* tslint:disable:max-line-length */
+    var BuilderError;
+    (function (BuilderError) {
+        BuilderError.id = 0x0300;
+        BuilderError.emptyData = { code: 0x0300, text: 'data is empty' };
+    })(BuilderError || (BuilderError = {}));
+    /* tslint:enable:max-line-length */
 
     var Builder = /** @class */ (function (_super) {
         __extends(Builder, _super);
@@ -845,8 +910,7 @@
                 return this.handleError(error);
             }
         };
-        Builder.prototype.parse = function (data, pos) {
-            if (pos === void 0) { pos = 0; }
+        Builder.prototype.parse = function (data) {
             var tokenAnalyzer = new TokenAnalyzer(ParserHelper.getArray(data));
             var parseData = tokenAnalyzer.parse();
             return this.makeData(parseData);
@@ -857,6 +921,8 @@
             return this.makeData(ast.expression);
         };
         Builder.prototype.tryBuild = function () {
+            if (!this.data)
+                throw new ParserError(BuilderError.emptyData);
             if (BuilderHelper.needParse(this.data))
                 return this.parse(this.data);
             if (BuilderHelper.needUnparse(this.data))
@@ -868,7 +934,7 @@
         return Builder;
     }(BuilderMessage));
 
-    var _PLUGIN_VERSION_ = '0.0.1';
+    var _PLUGIN_VERSION_ = '0.0.2';
     function convert(formula) {
         var builder = new Builder(formula);
         return builder.build();
