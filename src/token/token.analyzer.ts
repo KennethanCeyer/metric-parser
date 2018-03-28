@@ -19,7 +19,7 @@ export class TokenAnalyzer extends TokenEnumerable {
     public parse(): Tree {
         this.initialize();
         this.makeAst();
-        return this.makeTree();
+        return this.try(() => this.makeTree());
     }
 
     private initialize() {
@@ -34,9 +34,9 @@ export class TokenAnalyzer extends TokenEnumerable {
     }
 
     private makeAst() {
-        let token;
+        let token: Token.Token;
         while (token = this.next()) {
-            this.tryAnalyzeToken(token);
+            this.try(() => this.doAnalyzeToken(token));
         }
         this.finalizeStack();
         this.ast = this.ast.removeRootBracket().findRoot();
@@ -45,9 +45,9 @@ export class TokenAnalyzer extends TokenEnumerable {
             this.handleError(new ParserError(TokenError.missingCloseBracket));
     }
 
-    private tryAnalyzeToken(token: Token.Token) {
+    private try<T>(tryFunction: Function): T {
         try {
-            this.doAnalyzeToken(token);
+            return tryFunction();
         } catch (error) {
             this.handleError(error);
         }
@@ -121,7 +121,7 @@ export class TokenAnalyzer extends TokenEnumerable {
     }
 
     private makeTree(): Tree {
-        const treeParser = new TreeBuilder(this.ast);
-        return treeParser.makeTree();
+        const treeParser = new TreeBuilder();
+        return treeParser.makeTree(this.ast);
     }
 }

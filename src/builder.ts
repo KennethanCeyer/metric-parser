@@ -7,6 +7,7 @@ import { TokenAnalyzer } from './token/token.analyzer';
 import { ErrorValue } from './error.value';
 import { BuilderMessage } from './builder.message';
 import { ParserError } from './error';
+import { TreeBuilder } from './tree/simple.tree/builder';
 
 export class Builder extends BuilderMessage {
     public constructor(private data: ConvertData) {
@@ -29,7 +30,9 @@ export class Builder extends BuilderMessage {
     }
 
     unparse(data: Tree): ParserGeneralResult {
-        return this.makeData(null);
+        const treeBuilder = new TreeBuilder();
+        const ast = treeBuilder.makeAst(data);
+        return this.makeData(ast.expression);
     }
 
     private tryBuild() {

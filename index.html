@@ -182,86 +182,139 @@ const isValid2 = metricParser.valid({expression | parseTree});
         src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/components/prism-json.min.js"></script>
 <script>
     var expressions = [
-        '12 + 3',                                                     // 01
-        '6 - 2 * 4',                                                  // 02
-        '6 - 2 * 4 / ( 2 - 4 )',                                      // 03
-        '6 + 2 * (3 + (4 / 2) * 4 * (2 + (4 + 2 * 6)) * 2)',          // 04
-        '6 + 4 ^ 2 ^ (4 + 2) / 5',                                    // 05
-        '((((1) + (2)) + (3)) + (4))',                                // 06
-        {                                                             // |--
-            "operator": "+",                                            // |
-            "operand1": 12,                                             // - 07
-            "operand2": 3                                               // |
-        },                                                            // |--
-        {                                                             // |--
-            "operator": "-",                                            // |
-            "operand1": 6,                                              // |
-            "operand2": {                                               // - 08
-                "operator": "*",                                         // |
-                "operand1": 2,                                           // |
-                "operand2": 4                                            // |
-            }                                                          // |
-        },                                                            // |--
-        {                                                             // |--
-            "operator": "+",                                            // |
-            "operand1": {                                               // |
-                "operator": "+",                                         // |
-                "operand1": "12",                                        // |
-                "operand2": "3"                                          // |
-            },                                                         // |
-            "operand2": {                                               // |
-                "operator": "/",                                         // |
-                "operand1": {                                            // |
-                    "operator": "+",                                      // - 09
-                    "operand1": {                                         // |
-                        "operator": "*",                                   // |
-                        "operand1": "2",                                   // |
-                        "operand2": "4"                                    // |
-                    },                                                   // |
-                    "operand2": "5"                                       // |
-                },                                                      // |
-                "operand2": "2"                                          // |
-            }                                                          // |
-        },                                                            // |--
-        {                                                             // |--
-            "operator": "*",                                            // |
-            "operand1": {                                               // |
-                "operator": "/",                                         // |
-                "operand1": {                                            // |
-                    "value": {                                            // |
-                        "type": "item",                                    // |
-                        "item": {                                          // |
-                            "table": "table-01",                            // |
-                            "key": "col-02",                                // |
-                            "name": "Item1",                                // |
-                            "oper": "sum"                                   // |
-                        }                                                 // |
-                    }                                                    // |
-                },                                                      // |
-                "operand2": {                                            // - 10
-                    "value": {                                            // |
-                        "type": "item",                                    // |
-                        "item": {                                          // |
-                            "table": "table-02",                            // |
-                            "key": "col-04",                                // |
-                            "name": "Item2",                                // |
-                            "oper": "sum"                                   // |
-                        }                                                 // |
-                    }                                                    // |
-                }                                                       // |
-            },                                                         // |
-            "operand2": {                                               // |
-                "value": {                                               // |
-                    "type": "unit",                                       // |
-                    "unit": 100                                           // |
-                }                                                       // |
-            }                                                          // |
-        },                                                            // |--
-        '(1 + 2) 3',                                                  // 11
-        '((1 + 2',                                                    // 12
-        '2 + 3))',                                                    // 13
-        '1 ! 2',                                                      // 14
-        '1 ++ 4'                                                      // 15
+        '12 + 3',
+        '6 - 2 * 4',
+        '6 - 2 * 4 / ( 2 - 4 )',
+        '6 + 2 * (3 + (4 / 2) * 4 * (2 + (4 + 2 * 6)) * 2)',
+        '6 + 4 ^ 2 ^ (4 + 2) / 5',
+        '((((1) + (2)) + (3)) + (4))',
+        {
+            operator: '+',
+            operand1: {
+                value: {
+                    type: 'unit',
+                    unit: 12
+                }
+            },
+            operand2: {
+                type: 'unit',
+                unit: 1
+            }
+        },
+        {
+            operator: '-',
+            operand1: {
+                value: {
+                    type: 'unit',
+                    unit: 6
+                }
+            },
+            operand2: {
+                operator: '*',
+                operand1: {
+                    value: {
+                        type: 'unit',
+                        unit: 2
+                    }
+                },
+                operand2: {
+                    value: {
+                        type: 'unit',
+                        unit: 4
+                    }
+                }
+            }
+        },
+        {
+            operator: '+',
+            operand1: {
+                operator: '+',
+                operand1: {
+                    value: {
+                        type: 'unit',
+                        unit: 12
+                    }
+                },
+                operand2: {
+                    value: {
+                        type: 'unit',
+                        unit: 3
+                    }
+                }
+            },
+            operand2: {
+                operator: '/',
+                operand1: {
+                    operator: '+',
+                    operand1: {
+                        operator: '*',
+                        operand1: {
+                            value: {
+                                type: 'unit',
+                                unit: 2
+                            }
+                        },
+                        operand2: {
+                            value: {
+                                type: 'unit',
+                                unit: 4
+                            }
+                        }
+                    },
+                    operand2: {
+                        value: {
+                            type: 'unit',
+                            unit: 5
+                        }
+                    }
+                },
+                operand2: {
+                    value: {
+                        type: 'unit',
+                        unit: 2
+                    }
+                }
+            }
+        },
+        {
+            operator: '*',
+            operand1: {
+                operator: '/',
+                operand1: {
+                    value: {
+                        type: 'item',
+                        item: {
+                            table: 'table-01',
+                            key: 'col-02',
+                            name: 'Item1',
+                            oper: 'sum'
+                        }
+                    }
+                },
+                operand2: {
+                    value: {
+                        type: 'item',
+                        item: {
+                            table: 'table-02',
+                            key: 'col-04',
+                            name: 'Item2',
+                            oper: 'sum'
+                        }
+                    }
+                }
+            },
+            operand2: {
+                value: {
+                    type: 'unit',
+                    unit: 100
+                }
+            }
+        },
+        '(1 + 2) 3',
+        '((1 + 2',
+        '2 + 3))',
+        '1 ! 2',
+        '1 ++ 4'
     ];
 
     $(function () {

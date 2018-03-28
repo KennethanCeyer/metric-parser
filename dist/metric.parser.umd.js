@@ -262,12 +262,12 @@
     })(TokenError || (TokenError = {}));
     /* tslint:enable:max-line-length */
 
-    var AbstractSyntaxTree = /** @class */ (function () {
-        function AbstractSyntaxTree(value) {
+    var AbstractSyntaxTreeBase = /** @class */ (function () {
+        function AbstractSyntaxTreeBase(value) {
             if (value)
                 this.value = value;
         }
-        Object.defineProperty(AbstractSyntaxTree.prototype, "value", {
+        Object.defineProperty(AbstractSyntaxTreeBase.prototype, "value", {
             get: function () {
                 return this._value;
             },
@@ -280,14 +280,14 @@
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(AbstractSyntaxTree.prototype, "type", {
+        Object.defineProperty(AbstractSyntaxTreeBase.prototype, "type", {
             get: function () {
                 return this._type;
             },
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(AbstractSyntaxTree.prototype, "subType", {
+        Object.defineProperty(AbstractSyntaxTreeBase.prototype, "subType", {
             get: function () {
                 return this._subType;
             },
@@ -297,7 +297,7 @@
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(AbstractSyntaxTree.prototype, "parent", {
+        Object.defineProperty(AbstractSyntaxTreeBase.prototype, "parent", {
             get: function () {
                 return this._parent;
             },
@@ -307,7 +307,7 @@
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(AbstractSyntaxTree.prototype, "leftNode", {
+        Object.defineProperty(AbstractSyntaxTreeBase.prototype, "leftNode", {
             get: function () {
                 return this._leftNode;
             },
@@ -320,7 +320,7 @@
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(AbstractSyntaxTree.prototype, "rightNode", {
+        Object.defineProperty(AbstractSyntaxTreeBase.prototype, "rightNode", {
             get: function () {
                 return this._rightNode;
             },
@@ -333,29 +333,29 @@
             enumerable: true,
             configurable: true
         });
-        AbstractSyntaxTree.prototype.findRoot = function () {
+        AbstractSyntaxTreeBase.prototype.findRoot = function () {
             if (this.isRoot())
                 return this;
             return this._parent.findRoot();
         };
-        AbstractSyntaxTree.prototype.isRoot = function () {
+        AbstractSyntaxTreeBase.prototype.isRoot = function () {
             return !this._parent;
         };
-        AbstractSyntaxTree.prototype.hasOpenBracket = function () {
+        AbstractSyntaxTreeBase.prototype.hasOpenBracket = function () {
             if (TokenHelper.isBracketOpen(this.value))
                 return true;
             var leftNodeHasOpenBracket = this.leftNode ? this.leftNode.hasOpenBracket() : false;
             var rightNodeHasOpenBracket = this.rightNode ? this.rightNode.hasOpenBracket() : false;
             return leftNodeHasOpenBracket || rightNodeHasOpenBracket;
         };
-        AbstractSyntaxTree.prototype.findOpenedBracket = function () {
+        AbstractSyntaxTreeBase.prototype.findOpenedBracket = function () {
             if (this.isRoot())
                 return undefined;
             if (TokenHelper.isBracketOpen(this._value))
                 return this;
             return this._parent.findOpenedBracket();
         };
-        AbstractSyntaxTree.prototype.removeRootBracket = function () {
+        AbstractSyntaxTreeBase.prototype.removeRootBracket = function () {
             var rootNode = this.findRoot();
             if (TokenHelper.isBracketOpen(rootNode.value))
                 rootNode.leftNode.removeParent();
@@ -363,7 +363,7 @@
                 ? rootNode.leftNode
                 : this;
         };
-        AbstractSyntaxTree.prototype.removeClosestBracket = function () {
+        AbstractSyntaxTreeBase.prototype.removeClosestBracket = function () {
             var node = this.findOpenedBracket();
             if (!node)
                 throw new ParserError(TokenError.missingOpenBracket);
@@ -379,30 +379,30 @@
                 node.parent.rightNode = targetNode;
             return node.parent;
         };
-        AbstractSyntaxTree.prototype.climbUp = function (token) {
+        AbstractSyntaxTreeBase.prototype.climbUp = function (token) {
             return this.isClimbTop(token)
                 ? this
                 : this._parent.climbUp(token);
         };
-        AbstractSyntaxTree.prototype.isClimbTop = function (token) {
+        AbstractSyntaxTreeBase.prototype.isClimbTop = function (token) {
             return this.isTokenHighest(token) ||
                 !this.parent ||
                 TokenHelper.isBracketOpen(this.value);
         };
-        AbstractSyntaxTree.prototype.isTokenHighest = function (token) {
+        AbstractSyntaxTreeBase.prototype.isTokenHighest = function (token) {
             return TokenHelper.isHigher(token, this.value) && this.subType !== Token.SubType.Group;
         };
-        AbstractSyntaxTree.prototype.createChildNode = function (value) {
-            var node = new AbstractSyntaxTree(value);
+        AbstractSyntaxTreeBase.prototype.createChildNode = function (value) {
+            var node = new this.constructor(value);
             node.parent = this;
             return node;
         };
-        AbstractSyntaxTree.prototype.createParentNode = function (value) {
-            var node = new AbstractSyntaxTree(value);
+        AbstractSyntaxTreeBase.prototype.createParentNode = function (value) {
+            var node = new this.constructor(value);
             this.parent = node;
             return node;
         };
-        AbstractSyntaxTree.prototype.insertOperatorNode = function (value) {
+        AbstractSyntaxTreeBase.prototype.insertOperatorNode = function (value) {
             var rootNode = this.climbUp(value);
             if (TokenHelper.isBracketOpen(rootNode.value))
                 return rootNode.insertJointNodeToLeft(value);
@@ -412,10 +412,10 @@
             newNode.leftNode = rootNode;
             return newNode;
         };
-        AbstractSyntaxTree.prototype.needJointRight = function (rootNode, value) {
+        AbstractSyntaxTreeBase.prototype.needJointRight = function (rootNode, value) {
             return rootNode.isTokenHighest(value) && rootNode.parent || this === rootNode;
         };
-        AbstractSyntaxTree.prototype.insertNode = function (value) {
+        AbstractSyntaxTreeBase.prototype.insertNode = function (value) {
             if (TokenHelper.isSymbol(value))
                 if (!this.value) {
                     this.value = value;
@@ -430,32 +430,73 @@
                 this.rightNode = valueNode;
             return valueNode;
         };
-        AbstractSyntaxTree.prototype.insertJointNodeToLeft = function (value) {
+        AbstractSyntaxTreeBase.prototype.insertJointNodeToLeft = function (value) {
             var jointNode = this.createChildNode(value);
             jointNode.leftNode = this.leftNode;
             jointNode.rightNode = this.rightNode;
             this.leftNode = jointNode;
             return jointNode;
         };
-        AbstractSyntaxTree.prototype.insertJointNodeToRight = function (value) {
+        AbstractSyntaxTreeBase.prototype.insertJointNodeToRight = function (value) {
             var jointNode = this.createChildNode(value);
             jointNode.leftNode = this.rightNode;
             this.rightNode = jointNode;
             return jointNode;
         };
-        AbstractSyntaxTree.prototype.removeLeftNode = function () {
+        AbstractSyntaxTreeBase.prototype.removeLeftNode = function () {
             this._leftNode.removeParent();
             this._leftNode = undefined;
         };
-        AbstractSyntaxTree.prototype.removeRightNode = function () {
+        AbstractSyntaxTreeBase.prototype.removeRightNode = function () {
             this._rightNode.removeParent();
             this._rightNode = undefined;
         };
-        AbstractSyntaxTree.prototype.removeParent = function () {
+        AbstractSyntaxTreeBase.prototype.removeParent = function () {
             this._parent = undefined;
         };
-        return AbstractSyntaxTree;
+        return AbstractSyntaxTreeBase;
     }());
+
+    var AbstractSyntaxTree = /** @class */ (function (_super) {
+        __extends(AbstractSyntaxTree, _super);
+        function AbstractSyntaxTree() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        Object.defineProperty(AbstractSyntaxTree.prototype, "expression", {
+            get: function () {
+                return this.makeExpression();
+            },
+            enumerable: true,
+            configurable: true
+        });
+        AbstractSyntaxTree.prototype.getParentOperator = function () {
+            if (this.isRoot())
+                return undefined;
+            return this.parent.findOperator();
+        };
+        AbstractSyntaxTree.prototype.findOperator = function () {
+            if (this.type === Token.Type.Operator)
+                return this;
+            return this.parent.findOperator();
+        };
+        AbstractSyntaxTree.prototype.makeExpression = function () {
+            return this.type === Token.Type.Operator
+                ? this.makeOperatorExpression()
+                : this.makeValueExpression();
+        };
+        AbstractSyntaxTree.prototype.makeOperatorExpression = function () {
+            var expression = (this.leftNode ? this.leftNode.expression : []).concat([
+                this.value
+            ], this.rightNode ? this.rightNode.expression : []);
+            var parentOperator = this.getParentOperator();
+            return parentOperator && TokenHelper.isHigher(parentOperator.value, this.value)
+                ? [Token.literal.BracketOpen].concat(expression, [Token.literal.BracketClose]) : expression;
+        };
+        AbstractSyntaxTree.prototype.makeValueExpression = function () {
+            return [this.value];
+        };
+        return AbstractSyntaxTree;
+    }(AbstractSyntaxTreeBase));
 
     var TokenValidateLevel;
     (function (TokenValidateLevel) {
@@ -600,10 +641,12 @@
     /* tslint:enable:max-line-length */
 
     var TreeBuilderBase = /** @class */ (function () {
-        function TreeBuilderBase(ast) {
-            this.ast = ast;
+        function TreeBuilderBase() {
         }
         TreeBuilderBase.prototype.makeTree = function (ast) {
+            throw new Error('method not implemented.');
+        };
+        TreeBuilderBase.prototype.makeAst = function (tree) {
             throw new Error('method not implemented.');
         };
         return TreeBuilderBase;
@@ -614,13 +657,16 @@
         function TreeBuilder() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        TreeBuilder.prototype.makeTree = function () {
-            if (!this.ast)
+        TreeBuilder.prototype.makeTree = function (ast) {
+            if (!ast)
                 throw new ParserError(TreeError.astIsEmpty);
-            var tree = this.makeNode(this.ast);
+            var tree = this.makeNode(ast);
             if (tree.value)
                 throw new ParserError(TreeError.invalidParserTree);
             return tree;
+        };
+        TreeBuilder.prototype.makeAst = function (tree) {
+            return this.makeAstNode(tree);
         };
         TreeBuilder.prototype.makeNode = function (sourceNode) {
             return sourceNode.type === Token.Type.Operator
@@ -648,6 +694,27 @@
                 }, _a[type] = sourceNode.value, _a;
             var _a;
         };
+        TreeBuilder.prototype.makeAstNode = function (node) {
+            if (!node)
+                return;
+            if (TreeBuilder.isTree(node)) {
+                var tree = node;
+                var ast = new AbstractSyntaxTree(tree.operator);
+                ast.leftNode = this.makeAstNode(tree.operand1);
+                ast.rightNode = this.makeAstNode(tree.operand2);
+                return ast;
+            }
+            var operand = node;
+            return new AbstractSyntaxTree(TreeBuilder.getValue(operand));
+        };
+        TreeBuilder.isTree = function (node) {
+            return !!node.operator;
+        };
+        TreeBuilder.getValue = function (operand) {
+            return operand.value.type === 'item'
+                ? operand.value.item
+                : operand.value.unit;
+        };
         return TreeBuilder;
     }(TreeBuilderBase));
 
@@ -657,9 +724,10 @@
             return _super.call(this, token) || this;
         }
         TokenAnalyzer.prototype.parse = function () {
+            var _this = this;
             this.initialize();
             this.makeAst();
-            return this.makeTree();
+            return this.try(function () { return _this.makeTree(); });
         };
         TokenAnalyzer.prototype.initialize = function () {
             this.ast = new AbstractSyntaxTree(Token.literal.BracketOpen);
@@ -671,18 +739,19 @@
             return this.ast;
         };
         TokenAnalyzer.prototype.makeAst = function () {
+            var _this = this;
             var token;
             while (token = this.next()) {
-                this.tryAnalyzeToken(token);
+                this.try(function () { return _this.doAnalyzeToken(token); });
             }
             this.finalizeStack();
             this.ast = this.ast.removeRootBracket().findRoot();
             if (this.ast.hasOpenBracket())
                 this.handleError(new ParserError(TokenError.missingCloseBracket));
         };
-        TokenAnalyzer.prototype.tryAnalyzeToken = function (token) {
+        TokenAnalyzer.prototype.try = function (tryFunction) {
             try {
-                this.doAnalyzeToken(token);
+                return tryFunction();
             }
             catch (error) {
                 this.handleError(error);
@@ -742,8 +811,8 @@
             this.addStack(Token.literal.Multiplication);
         };
         TokenAnalyzer.prototype.makeTree = function () {
-            var treeParser = new TreeBuilder(this.ast);
-            return treeParser.makeTree();
+            var treeParser = new TreeBuilder();
+            return treeParser.makeTree(this.ast);
         };
         return TokenAnalyzer;
     }(TokenEnumerable));
@@ -783,7 +852,9 @@
             return this.makeData(parseData);
         };
         Builder.prototype.unparse = function (data) {
-            return this.makeData(null);
+            var treeBuilder = new TreeBuilder();
+            var ast = treeBuilder.makeAst(data);
+            return this.makeData(ast.expression);
         };
         Builder.prototype.tryBuild = function () {
             if (BuilderHelper.needParse(this.data))
@@ -797,7 +868,7 @@
         return Builder;
     }(BuilderMessage));
 
-    var _PLUGIN_VERSION_ = '1.0.0';
+    var _PLUGIN_VERSION_ = '0.0.1';
     function convert(formula) {
         var builder = new Builder(formula);
         return builder.build();

@@ -1,9 +1,14 @@
+import { AbstractSyntaxTree } from '../../ast';
 import { TreeBuilderBase } from '../tree.base';
 import { Tree } from './type';
 export declare class TreeBuilder extends TreeBuilderBase<Tree> {
-    makeTree(): Tree;
+    makeTree(ast: AbstractSyntaxTree): Tree;
+    makeAst(tree: Tree): AbstractSyntaxTree;
     private makeNode(sourceNode);
     private makeOperatorNode(sourceNode);
     private makeValueNode(sourceNode);
     private makeOperandValue(sourceNode);
+    private makeAstNode(node);
+    private static isTree(node);
+    private static getValue(operand);
 }

@@ -7,14 +7,16 @@ export interface Tree {
 }
 
 export interface Operand {
-    value: Value;
+    value: ValueObject;
 }
 
-export interface Value {
+export interface ValueObject {
     type: string;
     item?: ItemValue;
     unit?: UnitValue;
 }
+
+export type Value  = ItemValue | UnitValue;
 
 export interface ItemValue {
     table: string;
