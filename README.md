@@ -25,7 +25,7 @@
 
 ### Roadmap
 
-**v1.0.0**
+**v0.0.1**
 
 - [x] support typescript
 - [x] support UMD and ES5 module
