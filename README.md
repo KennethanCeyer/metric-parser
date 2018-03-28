@@ -10,7 +10,7 @@
 
 ----
 
-### Special lovers
+### Special lovers :heart:
 
 - [rhyscitlema.com](http://rhyscitlema.com/algorithms/expression-parsing-algorithm)
 - [Precedence climbing](http://www.engr.mun.ca/~theo/Misc/exp_parsing.htm#climbing)
@@ -53,8 +53,6 @@
 **v0.3.0**
 
 - [ ] declare variable (operator and value type)
-
-If you want join the contribution, Fork it and send a pull request.
 
 ----
 
