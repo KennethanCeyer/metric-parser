@@ -916,6 +916,9 @@ img { max-width: 100%; }
 			<a href="abstractsyntaxtree.html" class="tsd-kind-icon">Abstract<wbr>Syntax<wbr>Tree</a>
 		</li>
 		<li class=" tsd-kind-class">
+			<a href="abstractsyntaxtreebase.html" class="tsd-kind-icon">Abstract<wbr>Syntax<wbr>Tree<wbr>Base</a>
+		</li>
+		<li class=" tsd-kind-class">
 			<a href="abstractsyntaxtreehelper.html" class="tsd-kind-icon">Abstract<wbr>Syntax<wbr>Tree<wbr>Helper</a>
 		</li>
 		<li class="current tsd-kind-class">
@@ -978,19 +981,19 @@ img { max-width: 100%; }
 			<a href="tokenvalidator.html" class="tsd-kind-icon">Token<wbr>Validator</a>
 		</li>
 		<li class=" tsd-kind-class">
-			<a href="tree.html" class="tsd-kind-icon">Tree</a>
+			<a href="treebuilder.html" class="tsd-kind-icon">Tree<wbr>Builder</a>
+		</li>
+		<li class=" tsd-kind-class tsd-has-type-parameter">
+			<a href="treebuilderbase.html" class="tsd-kind-icon">Tree<wbr>Builder<wbr>Base</a>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="../interfaces/errorvalue.html" class="tsd-kind-icon">Error<wbr>Value</a>
 		</li>
 		<li class=" tsd-kind-interface">
+			<a href="../interfaces/itemvalue.html" class="tsd-kind-icon">Item<wbr>Value</a>
+		</li>
+		<li class=" tsd-kind-interface">
 			<a href="../interfaces/operand.html" class="tsd-kind-icon">Operand</a>
-		</li>
-		<li class=" tsd-kind-interface">
-			<a href="../interfaces/operanditemvalue.html" class="tsd-kind-icon">Operand<wbr>Item<wbr>Value</a>
-		</li>
-		<li class=" tsd-kind-interface">
-			<a href="../interfaces/operandvalue.html" class="tsd-kind-icon">Operand<wbr>Value</a>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="../interfaces/parsergeneralresult.html" class="tsd-kind-icon">Parser<wbr>General<wbr>Result</a>
@@ -1002,22 +1005,31 @@ img { max-width: 100%; }
 			<a href="../interfaces/parserstack.html" class="tsd-kind-icon">Parser<wbr>Stack</a>
 		</li>
 		<li class=" tsd-kind-interface">
-			<a href="../interfaces/treemodel.html" class="tsd-kind-icon">Tree<wbr>Model</a>
+			<a href="../interfaces/tree.html" class="tsd-kind-icon">Tree</a>
+		</li>
+		<li class=" tsd-kind-interface tsd-has-type-parameter">
+			<a href="../interfaces/treebuilderinterface.html" class="tsd-kind-icon">Tree<wbr>Builder<wbr>Interface</a>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="../interfaces/valueobject.html" class="tsd-kind-icon">Value<wbr>Object</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
 			<a href="../globals.html#convertdata" class="tsd-kind-icon">Convert<wbr>Data</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
-			<a href="../globals.html#operandunitvalue" class="tsd-kind-icon">Operand<wbr>Unit<wbr>Value</a>
+			<a href="../globals.html#node" class="tsd-kind-icon">Node</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
 			<a href="../globals.html#parsedata" class="tsd-kind-icon">Parse<wbr>Data</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
-			<a href="../globals.html#treewrapper" class="tsd-kind-icon">Tree<wbr>Wrapper</a>
+			<a href="../globals.html#unitvalue" class="tsd-kind-icon">Unit<wbr>Value</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
 			<a href="../globals.html#unparsedata" class="tsd-kind-icon">Unparse<wbr>Data</a>
+		</li>
+		<li class=" tsd-kind-type-alias">
+			<a href="../globals.html#value" class="tsd-kind-icon">Value</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
 			<a href="../globals.html#subnodeside" class="tsd-kind-icon">sub<wbr>Node<wbr>Side</a>
@@ -1091,7 +1103,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/builder.ts#L11">builder.ts:11</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/builder.ts#L12">builder.ts:12</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1113,7 +1125,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <a href="../globals.html#convertdata" class="tsd-signature-type">ConvertData</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/builder.ts#L12">builder.ts:12</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/builder.ts#L13">builder.ts:13</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1130,7 +1142,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/builder.ts#L16">builder.ts:16</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/builder.ts#L17">builder.ts:17</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <a href="../interfaces/parsergeneralresult.html" class="tsd-signature-type">ParserGeneralResult</a></h4>
@@ -1147,7 +1159,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/builder.ts#L44">builder.ts:44</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/builder.ts#L46">builder.ts:46</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1171,7 +1183,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="buildermessage.html">BuilderMessage</a>.<a href="buildermessage.html#makedata">makeData</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/builder.message.ts#L5">builder.message.ts:5</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/builder.message.ts#L5">builder.message.ts:5</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1204,7 +1216,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="buildermessage.html">BuilderMessage</a>.<a href="buildermessage.html#makeerror">makeError</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/builder.message.ts#L9">builder.message.ts:9</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/builder.message.ts#L9">builder.message.ts:9</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1221,13 +1233,13 @@ img { max-width: 100%; }
 				<a name="parse" class="tsd-anchor"></a>
 				<h3>parse</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">parse<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><a href="../globals.html#parsedata" class="tsd-signature-type">ParseData</a>, pos<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/parserresult.html" class="tsd-signature-type">ParserResult</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/treemodel.html" class="tsd-signature-type">TreeModel</a><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">parse<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><a href="../globals.html#parsedata" class="tsd-signature-type">ParseData</a>, pos<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/parserresult.html" class="tsd-signature-type">ParserResult</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/tree.html" class="tsd-signature-type">Tree</a><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/builder.ts#L25">builder.ts:25</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/builder.ts#L25">builder.ts:25</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1239,7 +1251,7 @@ img { max-width: 100%; }
 								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> pos: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="../interfaces/parserresult.html" class="tsd-signature-type">ParserResult</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/treemodel.html" class="tsd-signature-type">TreeModel</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						<h4 class="tsd-returns-title">Returns <a href="../interfaces/parserresult.html" class="tsd-signature-type">ParserResult</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/tree.html" class="tsd-signature-type">Tree</a><span class="tsd-signature-symbol">&gt;</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -1253,7 +1265,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/builder.ts#L36">builder.ts:36</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/builder.ts#L38">builder.ts:38</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <a href="../interfaces/parsergeneralresult.html" class="tsd-signature-type">ParserGeneralResult</a></h4>
@@ -1264,19 +1276,19 @@ img { max-width: 100%; }
 				<a name="unparse" class="tsd-anchor"></a>
 				<h3>unparse</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">unparse<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><a href="../interfaces/treemodel.html" class="tsd-signature-type">TreeModel</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/parsergeneralresult.html" class="tsd-signature-type">ParserGeneralResult</a></li>
+					<li class="tsd-signature tsd-kind-icon">unparse<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><a href="../interfaces/tree.html" class="tsd-signature-type">Tree</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/parsergeneralresult.html" class="tsd-signature-type">ParserGeneralResult</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/builder.ts#L32">builder.ts:32</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/builder.ts#L32">builder.ts:32</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>data: <a href="../interfaces/treemodel.html" class="tsd-signature-type">TreeModel</a></h5>
+								<h5>data: <a href="../interfaces/tree.html" class="tsd-signature-type">Tree</a></h5>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <a href="../interfaces/parsergeneralresult.html" class="tsd-signature-type">ParserGeneralResult</a></h4>

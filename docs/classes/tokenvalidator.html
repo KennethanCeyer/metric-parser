@@ -916,6 +916,9 @@ img { max-width: 100%; }
 			<a href="abstractsyntaxtree.html" class="tsd-kind-icon">Abstract<wbr>Syntax<wbr>Tree</a>
 		</li>
 		<li class=" tsd-kind-class">
+			<a href="abstractsyntaxtreebase.html" class="tsd-kind-icon">Abstract<wbr>Syntax<wbr>Tree<wbr>Base</a>
+		</li>
+		<li class=" tsd-kind-class">
 			<a href="abstractsyntaxtreehelper.html" class="tsd-kind-icon">Abstract<wbr>Syntax<wbr>Tree<wbr>Helper</a>
 		</li>
 		<li class=" tsd-kind-class">
@@ -954,22 +957,25 @@ img { max-width: 100%; }
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 					<a href="tokenvalidator.html#validatetoken" class="tsd-kind-icon">validate<wbr>Token</a>
 				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="tokenvalidator.html#validatevaluetoken" class="tsd-kind-icon">validate<wbr>Value<wbr>Token</a>
+				</li>
 			</ul>
 		</li>
 		<li class=" tsd-kind-class">
-			<a href="tree.html" class="tsd-kind-icon">Tree</a>
+			<a href="treebuilder.html" class="tsd-kind-icon">Tree<wbr>Builder</a>
+		</li>
+		<li class=" tsd-kind-class tsd-has-type-parameter">
+			<a href="treebuilderbase.html" class="tsd-kind-icon">Tree<wbr>Builder<wbr>Base</a>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="../interfaces/errorvalue.html" class="tsd-kind-icon">Error<wbr>Value</a>
 		</li>
 		<li class=" tsd-kind-interface">
+			<a href="../interfaces/itemvalue.html" class="tsd-kind-icon">Item<wbr>Value</a>
+		</li>
+		<li class=" tsd-kind-interface">
 			<a href="../interfaces/operand.html" class="tsd-kind-icon">Operand</a>
-		</li>
-		<li class=" tsd-kind-interface">
-			<a href="../interfaces/operanditemvalue.html" class="tsd-kind-icon">Operand<wbr>Item<wbr>Value</a>
-		</li>
-		<li class=" tsd-kind-interface">
-			<a href="../interfaces/operandvalue.html" class="tsd-kind-icon">Operand<wbr>Value</a>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="../interfaces/parsergeneralresult.html" class="tsd-kind-icon">Parser<wbr>General<wbr>Result</a>
@@ -981,22 +987,31 @@ img { max-width: 100%; }
 			<a href="../interfaces/parserstack.html" class="tsd-kind-icon">Parser<wbr>Stack</a>
 		</li>
 		<li class=" tsd-kind-interface">
-			<a href="../interfaces/treemodel.html" class="tsd-kind-icon">Tree<wbr>Model</a>
+			<a href="../interfaces/tree.html" class="tsd-kind-icon">Tree</a>
+		</li>
+		<li class=" tsd-kind-interface tsd-has-type-parameter">
+			<a href="../interfaces/treebuilderinterface.html" class="tsd-kind-icon">Tree<wbr>Builder<wbr>Interface</a>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="../interfaces/valueobject.html" class="tsd-kind-icon">Value<wbr>Object</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
 			<a href="../globals.html#convertdata" class="tsd-kind-icon">Convert<wbr>Data</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
-			<a href="../globals.html#operandunitvalue" class="tsd-kind-icon">Operand<wbr>Unit<wbr>Value</a>
+			<a href="../globals.html#node" class="tsd-kind-icon">Node</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
 			<a href="../globals.html#parsedata" class="tsd-kind-icon">Parse<wbr>Data</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
-			<a href="../globals.html#treewrapper" class="tsd-kind-icon">Tree<wbr>Wrapper</a>
+			<a href="../globals.html#unitvalue" class="tsd-kind-icon">Unit<wbr>Value</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
 			<a href="../globals.html#unparsedata" class="tsd-kind-icon">Unparse<wbr>Data</a>
+		</li>
+		<li class=" tsd-kind-type-alias">
+			<a href="../globals.html#value" class="tsd-kind-icon">Value</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
 			<a href="../globals.html#subnodeside" class="tsd-kind-icon">sub<wbr>Node<wbr>Side</a>
@@ -1031,6 +1046,7 @@ img { max-width: 100%; }
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="tokenvalidator.html#extracttokenlevel" class="tsd-kind-icon">extract<wbr>Token<wbr>Level</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenvalidator.html#validatetoken" class="tsd-kind-icon">validate<wbr>Token</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenvalidator.html#validatevaluetoken" class="tsd-kind-icon">validate<wbr>Value<wbr>Token</a></li>
 						</ul>
 					</section>
 				</div>
@@ -1048,7 +1064,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token/token.validator.ts#L15">token/token.validator.ts:15</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/token/token.validator.ts#L26">token/token.validator.ts:26</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1071,13 +1087,42 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token/token.validator.ts#L8">token/token.validator.ts:8</a></li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/token/token.validator.ts#L8">token/token.validator.ts:8</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
 								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="parsererror.html" class="tsd-signature-type">ParserError</a>
+							<span class="tsd-signature-symbol"> | </span>
+							<span class="tsd-signature-type">undefined</span>
+						</h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="validatevaluetoken" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> validate<wbr>Value<wbr>Token</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">validate<wbr>Value<wbr>Token<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a>, prevToken<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="parsererror.html" class="tsd-signature-type">ParserError</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/token/token.validator.ts#L15">token/token.validator.ts:15</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+							<li>
+								<h5>prevToken: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <a href="parsererror.html" class="tsd-signature-type">ParserError</a>

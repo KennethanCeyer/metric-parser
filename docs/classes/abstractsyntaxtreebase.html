@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TreeModel | metric-parser</title>
+	<title>AbstractSyntaxTreeBase | metric-parser</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -913,93 +913,192 @@ img { max-width: 100%; }
 			<a href="../enums/tokenvalidatelevel.html" class="tsd-kind-icon">Token<wbr>Validate<wbr>Level</a>
 		</li>
 		<li class=" tsd-kind-class">
-			<a href="../classes/abstractsyntaxtree.html" class="tsd-kind-icon">Abstract<wbr>Syntax<wbr>Tree</a>
+			<a href="abstractsyntaxtree.html" class="tsd-kind-icon">Abstract<wbr>Syntax<wbr>Tree</a>
 		</li>
-		<li class=" tsd-kind-class">
-			<a href="../classes/abstractsyntaxtreehelper.html" class="tsd-kind-icon">Abstract<wbr>Syntax<wbr>Tree<wbr>Helper</a>
-		</li>
-		<li class=" tsd-kind-class">
-			<a href="../classes/builder.html" class="tsd-kind-icon">Builder</a>
-		</li>
-		<li class=" tsd-kind-class">
-			<a href="../classes/builderhelper.html" class="tsd-kind-icon">Builder<wbr>Helper</a>
-		</li>
-		<li class=" tsd-kind-class">
-			<a href="../classes/buildermessage.html" class="tsd-kind-icon">Builder<wbr>Message</a>
-		</li>
-		<li class=" tsd-kind-class">
-			<a href="../classes/parsererror.html" class="tsd-kind-icon">Parser<wbr>Error</a>
-		</li>
-		<li class=" tsd-kind-class">
-			<a href="../classes/parserhelper.html" class="tsd-kind-icon">Parser<wbr>Helper</a>
-		</li>
-		<li class=" tsd-kind-class">
-			<a href="../classes/stringhelper.html" class="tsd-kind-icon">String<wbr>Helper</a>
-		</li>
-		<li class=" tsd-kind-class">
-			<a href="../classes/tokenanalyzer.html" class="tsd-kind-icon">Token<wbr>Analyzer</a>
-		</li>
-		<li class=" tsd-kind-class">
-			<a href="../classes/tokenenumerable.html" class="tsd-kind-icon">Token<wbr>Enumerable</a>
-		</li>
-		<li class=" tsd-kind-class">
-			<a href="../classes/tokenhelper.html" class="tsd-kind-icon">Token<wbr>Helper</a>
-		</li>
-		<li class=" tsd-kind-class">
-			<a href="../classes/tokenvalidator.html" class="tsd-kind-icon">Token<wbr>Validator</a>
-		</li>
-		<li class=" tsd-kind-class">
-			<a href="../classes/tree.html" class="tsd-kind-icon">Tree</a>
-		</li>
-		<li class=" tsd-kind-interface">
-			<a href="errorvalue.html" class="tsd-kind-icon">Error<wbr>Value</a>
-		</li>
-		<li class=" tsd-kind-interface">
-			<a href="operand.html" class="tsd-kind-icon">Operand</a>
-		</li>
-		<li class=" tsd-kind-interface">
-			<a href="operanditemvalue.html" class="tsd-kind-icon">Operand<wbr>Item<wbr>Value</a>
-		</li>
-		<li class=" tsd-kind-interface">
-			<a href="operandvalue.html" class="tsd-kind-icon">Operand<wbr>Value</a>
-		</li>
-		<li class=" tsd-kind-interface">
-			<a href="parsergeneralresult.html" class="tsd-kind-icon">Parser<wbr>General<wbr>Result</a>
-		</li>
-		<li class=" tsd-kind-interface tsd-has-type-parameter">
-			<a href="parserresult.html" class="tsd-kind-icon">Parser<wbr>Result</a>
-		</li>
-		<li class=" tsd-kind-interface">
-			<a href="parserstack.html" class="tsd-kind-icon">Parser<wbr>Stack</a>
-		</li>
-		<li class="current tsd-kind-interface">
-			<a href="treemodel.html" class="tsd-kind-icon">Tree<wbr>Model</a>
+		<li class="current tsd-kind-class">
+			<a href="abstractsyntaxtreebase.html" class="tsd-kind-icon">Abstract<wbr>Syntax<wbr>Tree<wbr>Base</a>
 			<ul>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="treemodel.html#operand1" class="tsd-kind-icon">operand1</a>
+				<li class=" tsd-kind-constructor tsd-parent-kind-class">
+					<a href="abstractsyntaxtreebase.html#constructor" class="tsd-kind-icon">constructor</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="treemodel.html#operand2" class="tsd-kind-icon">operand2</a>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a href="abstractsyntaxtreebase.html#_leftnode" class="tsd-kind-icon">_left<wbr>Node</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="treemodel.html#operator" class="tsd-kind-icon">operator</a>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a href="abstractsyntaxtreebase.html#_parent" class="tsd-kind-icon">_parent</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a href="abstractsyntaxtreebase.html#_rightnode" class="tsd-kind-icon">_right<wbr>Node</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a href="abstractsyntaxtreebase.html#_subtype" class="tsd-kind-icon">_sub<wbr>Type</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a href="abstractsyntaxtreebase.html#_type" class="tsd-kind-icon">_type</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a href="abstractsyntaxtreebase.html#_value" class="tsd-kind-icon">_value</a>
+				</li>
+				<li class=" tsd-kind-accessor tsd-parent-kind-class">
+					<a href="abstractsyntaxtreebase.html#leftnode" class="tsd-kind-icon">left<wbr>Node</a>
+				</li>
+				<li class=" tsd-kind-accessor tsd-parent-kind-class">
+					<a href="abstractsyntaxtreebase.html#parent" class="tsd-kind-icon">parent</a>
+				</li>
+				<li class=" tsd-kind-accessor tsd-parent-kind-class">
+					<a href="abstractsyntaxtreebase.html#rightnode" class="tsd-kind-icon">right<wbr>Node</a>
+				</li>
+				<li class=" tsd-kind-accessor tsd-parent-kind-class">
+					<a href="abstractsyntaxtreebase.html#subtype" class="tsd-kind-icon">sub<wbr>Type</a>
+				</li>
+				<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+					<a href="abstractsyntaxtreebase.html#type" class="tsd-kind-icon">type</a>
+				</li>
+				<li class=" tsd-kind-accessor tsd-parent-kind-class">
+					<a href="abstractsyntaxtreebase.html#value" class="tsd-kind-icon">value</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a href="abstractsyntaxtreebase.html#climbup" class="tsd-kind-icon">climb<wbr>Up</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a href="abstractsyntaxtreebase.html#createchildnode" class="tsd-kind-icon">create<wbr>Child<wbr>Node</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a href="abstractsyntaxtreebase.html#createparentnode" class="tsd-kind-icon">create<wbr>Parent<wbr>Node</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a href="abstractsyntaxtreebase.html#findopenedbracket" class="tsd-kind-icon">find<wbr>Opened<wbr>Bracket</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="abstractsyntaxtreebase.html#findroot" class="tsd-kind-icon">find<wbr>Root</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="abstractsyntaxtreebase.html#hasopenbracket" class="tsd-kind-icon">has<wbr>Open<wbr>Bracket</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a href="abstractsyntaxtreebase.html#insertjointnodetoleft" class="tsd-kind-icon">insert<wbr>Joint<wbr>Node<wbr>ToLeft</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="abstractsyntaxtreebase.html#insertjointnodetoright" class="tsd-kind-icon">insert<wbr>Joint<wbr>Node<wbr>ToRight</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="abstractsyntaxtreebase.html#insertnode" class="tsd-kind-icon">insert<wbr>Node</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a href="abstractsyntaxtreebase.html#insertoperatornode" class="tsd-kind-icon">insert<wbr>Operator<wbr>Node</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a href="abstractsyntaxtreebase.html#isclimbtop" class="tsd-kind-icon">is<wbr>Climb<wbr>Top</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="abstractsyntaxtreebase.html#isroot" class="tsd-kind-icon">is<wbr>Root</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a href="abstractsyntaxtreebase.html#istokenhighest" class="tsd-kind-icon">is<wbr>Token<wbr>Highest</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a href="abstractsyntaxtreebase.html#needjointright" class="tsd-kind-icon">need<wbr>Joint<wbr>Right</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="abstractsyntaxtreebase.html#removeclosestbracket" class="tsd-kind-icon">remove<wbr>Closest<wbr>Bracket</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="abstractsyntaxtreebase.html#removeleftnode" class="tsd-kind-icon">remove<wbr>Left<wbr>Node</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="abstractsyntaxtreebase.html#removeparent" class="tsd-kind-icon">remove<wbr>Parent</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="abstractsyntaxtreebase.html#removerightnode" class="tsd-kind-icon">remove<wbr>Right<wbr>Node</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="abstractsyntaxtreebase.html#removerootbracket" class="tsd-kind-icon">remove<wbr>Root<wbr>Bracket</a>
 				</li>
 			</ul>
+		</li>
+		<li class=" tsd-kind-class">
+			<a href="abstractsyntaxtreehelper.html" class="tsd-kind-icon">Abstract<wbr>Syntax<wbr>Tree<wbr>Helper</a>
+		</li>
+		<li class=" tsd-kind-class">
+			<a href="builder.html" class="tsd-kind-icon">Builder</a>
+		</li>
+		<li class=" tsd-kind-class">
+			<a href="builderhelper.html" class="tsd-kind-icon">Builder<wbr>Helper</a>
+		</li>
+		<li class=" tsd-kind-class">
+			<a href="buildermessage.html" class="tsd-kind-icon">Builder<wbr>Message</a>
+		</li>
+		<li class=" tsd-kind-class">
+			<a href="parsererror.html" class="tsd-kind-icon">Parser<wbr>Error</a>
+		</li>
+		<li class=" tsd-kind-class">
+			<a href="parserhelper.html" class="tsd-kind-icon">Parser<wbr>Helper</a>
+		</li>
+		<li class=" tsd-kind-class">
+			<a href="stringhelper.html" class="tsd-kind-icon">String<wbr>Helper</a>
+		</li>
+		<li class=" tsd-kind-class">
+			<a href="tokenanalyzer.html" class="tsd-kind-icon">Token<wbr>Analyzer</a>
+		</li>
+		<li class=" tsd-kind-class">
+			<a href="tokenenumerable.html" class="tsd-kind-icon">Token<wbr>Enumerable</a>
+		</li>
+		<li class=" tsd-kind-class">
+			<a href="tokenhelper.html" class="tsd-kind-icon">Token<wbr>Helper</a>
+		</li>
+		<li class=" tsd-kind-class">
+			<a href="tokenvalidator.html" class="tsd-kind-icon">Token<wbr>Validator</a>
+		</li>
+		<li class=" tsd-kind-class">
+			<a href="treebuilder.html" class="tsd-kind-icon">Tree<wbr>Builder</a>
+		</li>
+		<li class=" tsd-kind-class tsd-has-type-parameter">
+			<a href="treebuilderbase.html" class="tsd-kind-icon">Tree<wbr>Builder<wbr>Base</a>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="../interfaces/errorvalue.html" class="tsd-kind-icon">Error<wbr>Value</a>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="../interfaces/itemvalue.html" class="tsd-kind-icon">Item<wbr>Value</a>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="../interfaces/operand.html" class="tsd-kind-icon">Operand</a>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="../interfaces/parsergeneralresult.html" class="tsd-kind-icon">Parser<wbr>General<wbr>Result</a>
+		</li>
+		<li class=" tsd-kind-interface tsd-has-type-parameter">
+			<a href="../interfaces/parserresult.html" class="tsd-kind-icon">Parser<wbr>Result</a>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="../interfaces/parserstack.html" class="tsd-kind-icon">Parser<wbr>Stack</a>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="../interfaces/tree.html" class="tsd-kind-icon">Tree</a>
+		</li>
+		<li class=" tsd-kind-interface tsd-has-type-parameter">
+			<a href="../interfaces/treebuilderinterface.html" class="tsd-kind-icon">Tree<wbr>Builder<wbr>Interface</a>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="../interfaces/valueobject.html" class="tsd-kind-icon">Value<wbr>Object</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
 			<a href="../globals.html#convertdata" class="tsd-kind-icon">Convert<wbr>Data</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
-			<a href="../globals.html#operandunitvalue" class="tsd-kind-icon">Operand<wbr>Unit<wbr>Value</a>
+			<a href="../globals.html#node" class="tsd-kind-icon">Node</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
 			<a href="../globals.html#parsedata" class="tsd-kind-icon">Parse<wbr>Data</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
-			<a href="../globals.html#treewrapper" class="tsd-kind-icon">Tree<wbr>Wrapper</a>
+			<a href="../globals.html#unitvalue" class="tsd-kind-icon">Unit<wbr>Value</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
 			<a href="../globals.html#unparsedata" class="tsd-kind-icon">Unparse<wbr>Data</a>
+		</li>
+		<li class=" tsd-kind-type-alias">
+			<a href="../globals.html#value" class="tsd-kind-icon">Value</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
 			<a href="../globals.html#subnodeside" class="tsd-kind-icon">sub<wbr>Node<wbr>Side</a>
@@ -1021,7 +1120,12 @@ img { max-width: 100%; }
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<span class="target">TreeModel</span>
+					<span class="target">AbstractSyntaxTreeBase</span>
+					<ul class="tsd-hierarchy">
+						<li>
+							<a href="abstractsyntaxtree.html" class="tsd-signature-type">AbstractSyntaxTree</a>
+						</li>
+					</ul>
 				</li>
 			</ul>
 		</section>
@@ -1030,47 +1134,609 @@ img { max-width: 100%; }
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
 					<section class="tsd-index-section ">
+						<h3>Constructors</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="abstractsyntaxtreebase.html#constructor" class="tsd-kind-icon">constructor</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="treemodel.html#operand1" class="tsd-kind-icon">operand1</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="treemodel.html#operand2" class="tsd-kind-icon">operand2</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="treemodel.html#operator" class="tsd-kind-icon">operator</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="abstractsyntaxtreebase.html#_leftnode" class="tsd-kind-icon">_left<wbr>Node</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="abstractsyntaxtreebase.html#_parent" class="tsd-kind-icon">_parent</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="abstractsyntaxtreebase.html#_rightnode" class="tsd-kind-icon">_right<wbr>Node</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="abstractsyntaxtreebase.html#_subtype" class="tsd-kind-icon">_sub<wbr>Type</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="abstractsyntaxtreebase.html#_type" class="tsd-kind-icon">_type</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="abstractsyntaxtreebase.html#_value" class="tsd-kind-icon">_value</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Accessors</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="abstractsyntaxtreebase.html#leftnode" class="tsd-kind-icon">left<wbr>Node</a></li>
+							<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="abstractsyntaxtreebase.html#parent" class="tsd-kind-icon">parent</a></li>
+							<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="abstractsyntaxtreebase.html#rightnode" class="tsd-kind-icon">right<wbr>Node</a></li>
+							<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="abstractsyntaxtreebase.html#subtype" class="tsd-kind-icon">sub<wbr>Type</a></li>
+							<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="abstractsyntaxtreebase.html#type" class="tsd-kind-icon">type</a></li>
+							<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="abstractsyntaxtreebase.html#value" class="tsd-kind-icon">value</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Methods</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="abstractsyntaxtreebase.html#climbup" class="tsd-kind-icon">climb<wbr>Up</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="abstractsyntaxtreebase.html#createchildnode" class="tsd-kind-icon">create<wbr>Child<wbr>Node</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="abstractsyntaxtreebase.html#createparentnode" class="tsd-kind-icon">create<wbr>Parent<wbr>Node</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="abstractsyntaxtreebase.html#findopenedbracket" class="tsd-kind-icon">find<wbr>Opened<wbr>Bracket</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="abstractsyntaxtreebase.html#findroot" class="tsd-kind-icon">find<wbr>Root</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="abstractsyntaxtreebase.html#hasopenbracket" class="tsd-kind-icon">has<wbr>Open<wbr>Bracket</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="abstractsyntaxtreebase.html#insertjointnodetoleft" class="tsd-kind-icon">insert<wbr>Joint<wbr>Node<wbr>ToLeft</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="abstractsyntaxtreebase.html#insertjointnodetoright" class="tsd-kind-icon">insert<wbr>Joint<wbr>Node<wbr>ToRight</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="abstractsyntaxtreebase.html#insertnode" class="tsd-kind-icon">insert<wbr>Node</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="abstractsyntaxtreebase.html#insertoperatornode" class="tsd-kind-icon">insert<wbr>Operator<wbr>Node</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="abstractsyntaxtreebase.html#isclimbtop" class="tsd-kind-icon">is<wbr>Climb<wbr>Top</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="abstractsyntaxtreebase.html#isroot" class="tsd-kind-icon">is<wbr>Root</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="abstractsyntaxtreebase.html#istokenhighest" class="tsd-kind-icon">is<wbr>Token<wbr>Highest</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="abstractsyntaxtreebase.html#needjointright" class="tsd-kind-icon">need<wbr>Joint<wbr>Right</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="abstractsyntaxtreebase.html#removeclosestbracket" class="tsd-kind-icon">remove<wbr>Closest<wbr>Bracket</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="abstractsyntaxtreebase.html#removeleftnode" class="tsd-kind-icon">remove<wbr>Left<wbr>Node</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="abstractsyntaxtreebase.html#removeparent" class="tsd-kind-icon">remove<wbr>Parent</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="abstractsyntaxtreebase.html#removerightnode" class="tsd-kind-icon">remove<wbr>Right<wbr>Node</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="abstractsyntaxtreebase.html#removerootbracket" class="tsd-kind-icon">remove<wbr>Root<wbr>Bracket</a></li>
 						</ul>
 					</section>
 				</div>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Constructors</h2>
+			<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+				<a name="constructor" class="tsd-anchor"></a>
+				<h3>constructor</h3>
+				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">new <wbr>Abstract<wbr>Syntax<wbr>Tree<wbr>Base<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">?: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="abstractsyntaxtreebase.html" class="tsd-signature-type">AbstractSyntaxTreeBase</a></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L65">ast.base.ts:65</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> value: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="abstractsyntaxtreebase.html" class="tsd-signature-type">AbstractSyntaxTreeBase</a></h4>
+					</li>
+				</ul>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 			<h2>Properties</h2>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="operand1" class="tsd-anchor"></a>
-				<h3>operand1</h3>
-				<div class="tsd-signature tsd-kind-icon">operand1<span class="tsd-signature-symbol">:</span> <a href="../globals.html#treewrapper" class="tsd-signature-type">TreeWrapper</a></div>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+				<a name="_leftnode" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> _left<wbr>Node</h3>
+				<div class="tsd-signature tsd-kind-icon">_left<wbr>Node<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">this</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/tree.type.ts#L5">type.ts:5</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L8">ast.base.ts:8</a></li>
 					</ul>
 				</aside>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="operand2" class="tsd-anchor"></a>
-				<h3>operand2</h3>
-				<div class="tsd-signature tsd-kind-icon">operand2<span class="tsd-signature-symbol">:</span> <a href="../globals.html#treewrapper" class="tsd-signature-type">TreeWrapper</a></div>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+				<a name="_parent" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> _parent</h3>
+				<div class="tsd-signature tsd-kind-icon">_parent<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">this</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/tree.type.ts#L6">type.ts:6</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L10">ast.base.ts:10</a></li>
 					</ul>
 				</aside>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="operator" class="tsd-anchor"></a>
-				<h3>operator</h3>
-				<div class="tsd-signature tsd-kind-icon">operator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+				<a name="_rightnode" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> _right<wbr>Node</h3>
+				<div class="tsd-signature tsd-kind-icon">_right<wbr>Node<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">this</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/tree.type.ts#L4">type.ts:4</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L9">ast.base.ts:9</a></li>
 					</ul>
 				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+				<a name="_subtype" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> _sub<wbr>Type</h3>
+				<div class="tsd-signature tsd-kind-icon">_sub<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../enums/token.subtype.html" class="tsd-signature-type">SubType</a></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L12">ast.base.ts:12</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+				<a name="_type" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> _type</h3>
+				<div class="tsd-signature tsd-kind-icon">_type<span class="tsd-signature-symbol">:</span> <a href="../enums/token.type.html" class="tsd-signature-type">Type</a></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L11">ast.base.ts:11</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+				<a name="_value" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> _value</h3>
+				<div class="tsd-signature tsd-kind-icon">_value<span class="tsd-signature-symbol">:</span> <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L7">ast.base.ts:7</a></li>
+					</ul>
+				</aside>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Accessors</h2>
+			<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
+				<a name="leftnode" class="tsd-anchor"></a>
+				<h3>left<wbr>Node</h3>
+				<div class="tsd-signature tsd-kind-icon">left<wbr>Node<span class="tsd-signature-symbol">:</span> </div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L45">ast.base.ts:45</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L49">ast.base.ts:49</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
+				<a name="parent" class="tsd-anchor"></a>
+				<h3>parent</h3>
+				<div class="tsd-signature tsd-kind-icon">parent<span class="tsd-signature-symbol">:</span> </div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L37">ast.base.ts:37</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L41">ast.base.ts:41</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
+				<a name="rightnode" class="tsd-anchor"></a>
+				<h3>right<wbr>Node</h3>
+				<div class="tsd-signature tsd-kind-icon">right<wbr>Node<span class="tsd-signature-symbol">:</span> </div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L56">ast.base.ts:56</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L60">ast.base.ts:60</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
+				<a name="subtype" class="tsd-anchor"></a>
+				<h3>sub<wbr>Type</h3>
+				<div class="tsd-signature tsd-kind-icon">sub<wbr>Type<span class="tsd-signature-symbol">:</span> </div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L29">ast.base.ts:29</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L33">ast.base.ts:33</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+				<a name="type" class="tsd-anchor"></a>
+				<h3>type</h3>
+				<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> </div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L25">ast.base.ts:25</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
+				<a name="value" class="tsd-anchor"></a>
+				<h3>value</h3>
+				<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> </div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L14">ast.base.ts:14</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L18">ast.base.ts:18</a></li>
+					</ul>
+				</aside>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Methods</h2>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+				<a name="climbup" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> climb<wbr>Up</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<li class="tsd-signature tsd-kind-icon">climb<wbr>Up<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L137">ast.base.ts:137</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+				<a name="createchildnode" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> create<wbr>Child<wbr>Node</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<li class="tsd-signature tsd-kind-icon">create<wbr>Child<wbr>Node<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">?: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L153">ast.base.ts:153</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> value: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+				<a name="createparentnode" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> create<wbr>Parent<wbr>Node</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<li class="tsd-signature tsd-kind-icon">create<wbr>Parent<wbr>Node<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">?: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L159">ast.base.ts:159</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> value: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+				<a name="findopenedbracket" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> find<wbr>Opened<wbr>Bracket</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<li class="tsd-signature tsd-kind-icon">find<wbr>Opened<wbr>Bracket<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L93">ast.base.ts:93</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="findroot" class="tsd-anchor"></a>
+				<h3>find<wbr>Root</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">find<wbr>Root<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L72">ast.base.ts:72</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="hasopenbracket" class="tsd-anchor"></a>
+				<h3>has<wbr>Open<wbr>Bracket</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">has<wbr>Open<wbr>Bracket<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L83">ast.base.ts:83</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+				<a name="insertjointnodetoleft" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> insert<wbr>Joint<wbr>Node<wbr>ToLeft</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<li class="tsd-signature tsd-kind-icon">insert<wbr>Joint<wbr>Node<wbr>ToLeft<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L202">ast.base.ts:202</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>value: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="insertjointnodetoright" class="tsd-anchor"></a>
+				<h3>insert<wbr>Joint<wbr>Node<wbr>ToRight</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">insert<wbr>Joint<wbr>Node<wbr>ToRight<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L210">ast.base.ts:210</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>value: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="insertnode" class="tsd-anchor"></a>
+				<h3>insert<wbr>Node</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">insert<wbr>Node<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L183">ast.base.ts:183</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>value: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+				<a name="insertoperatornode" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> insert<wbr>Operator<wbr>Node</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<li class="tsd-signature tsd-kind-icon">insert<wbr>Operator<wbr>Node<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L165">ast.base.ts:165</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>value: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+				<a name="isclimbtop" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> is<wbr>Climb<wbr>Top</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Climb<wbr>Top<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L143">ast.base.ts:143</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="isroot" class="tsd-anchor"></a>
+				<h3>is<wbr>Root</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Root<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L79">ast.base.ts:79</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+				<a name="istokenhighest" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> is<wbr>Token<wbr>Highest</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Token<wbr>Highest<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L149">ast.base.ts:149</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+				<a name="needjointright" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> need<wbr>Joint<wbr>Right</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<li class="tsd-signature tsd-kind-icon">need<wbr>Joint<wbr>Right<span class="tsd-signature-symbol">(</span>rootNode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span>, value<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">this</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L179">ast.base.ts:179</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>rootNode: <span class="tsd-signature-type">this</span></h5>
+							</li>
+							<li>
+								<h5>value: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">true</span>
+							<span class="tsd-signature-symbol"> | </span>
+							<span class="tsd-signature-type">false</span>
+							<span class="tsd-signature-symbol"> | </span>
+							<span class="tsd-signature-type">this</span>
+						</h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="removeclosestbracket" class="tsd-anchor"></a>
+				<h3>remove<wbr>Closest<wbr>Bracket</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">remove<wbr>Closest<wbr>Bracket<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L115">ast.base.ts:115</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="removeleftnode" class="tsd-anchor"></a>
+				<h3>remove<wbr>Left<wbr>Node</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">remove<wbr>Left<wbr>Node<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L217">ast.base.ts:217</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="removeparent" class="tsd-anchor"></a>
+				<h3>remove<wbr>Parent</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">remove<wbr>Parent<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L227">ast.base.ts:227</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="removerightnode" class="tsd-anchor"></a>
+				<h3>remove<wbr>Right<wbr>Node</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">remove<wbr>Right<wbr>Node<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L222">ast.base.ts:222</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="removerootbracket" class="tsd-anchor"></a>
+				<h3>remove<wbr>Root<wbr>Bracket</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">remove<wbr>Root<wbr>Bracket<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/ast.base.ts#L103">ast.base.ts:103</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+					</li>
+				</ul>
 			</section>
 		</section>
 		<footer class="with-border-bottom">

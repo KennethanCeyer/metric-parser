@@ -927,6 +927,9 @@ img { max-width: 100%; }
 			<a href="../classes/abstractsyntaxtree.html" class="tsd-kind-icon">Abstract<wbr>Syntax<wbr>Tree</a>
 		</li>
 		<li class=" tsd-kind-class">
+			<a href="../classes/abstractsyntaxtreebase.html" class="tsd-kind-icon">Abstract<wbr>Syntax<wbr>Tree<wbr>Base</a>
+		</li>
+		<li class=" tsd-kind-class">
 			<a href="../classes/abstractsyntaxtreehelper.html" class="tsd-kind-icon">Abstract<wbr>Syntax<wbr>Tree<wbr>Helper</a>
 		</li>
 		<li class=" tsd-kind-class">
@@ -960,19 +963,19 @@ img { max-width: 100%; }
 			<a href="../classes/tokenvalidator.html" class="tsd-kind-icon">Token<wbr>Validator</a>
 		</li>
 		<li class=" tsd-kind-class">
-			<a href="../classes/tree.html" class="tsd-kind-icon">Tree</a>
+			<a href="../classes/treebuilder.html" class="tsd-kind-icon">Tree<wbr>Builder</a>
+		</li>
+		<li class=" tsd-kind-class tsd-has-type-parameter">
+			<a href="../classes/treebuilderbase.html" class="tsd-kind-icon">Tree<wbr>Builder<wbr>Base</a>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="../interfaces/errorvalue.html" class="tsd-kind-icon">Error<wbr>Value</a>
 		</li>
 		<li class=" tsd-kind-interface">
+			<a href="../interfaces/itemvalue.html" class="tsd-kind-icon">Item<wbr>Value</a>
+		</li>
+		<li class=" tsd-kind-interface">
 			<a href="../interfaces/operand.html" class="tsd-kind-icon">Operand</a>
-		</li>
-		<li class=" tsd-kind-interface">
-			<a href="../interfaces/operanditemvalue.html" class="tsd-kind-icon">Operand<wbr>Item<wbr>Value</a>
-		</li>
-		<li class=" tsd-kind-interface">
-			<a href="../interfaces/operandvalue.html" class="tsd-kind-icon">Operand<wbr>Value</a>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="../interfaces/parsergeneralresult.html" class="tsd-kind-icon">Parser<wbr>General<wbr>Result</a>
@@ -984,22 +987,31 @@ img { max-width: 100%; }
 			<a href="../interfaces/parserstack.html" class="tsd-kind-icon">Parser<wbr>Stack</a>
 		</li>
 		<li class=" tsd-kind-interface">
-			<a href="../interfaces/treemodel.html" class="tsd-kind-icon">Tree<wbr>Model</a>
+			<a href="../interfaces/tree.html" class="tsd-kind-icon">Tree</a>
+		</li>
+		<li class=" tsd-kind-interface tsd-has-type-parameter">
+			<a href="../interfaces/treebuilderinterface.html" class="tsd-kind-icon">Tree<wbr>Builder<wbr>Interface</a>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="../interfaces/valueobject.html" class="tsd-kind-icon">Value<wbr>Object</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
 			<a href="../globals.html#convertdata" class="tsd-kind-icon">Convert<wbr>Data</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
-			<a href="../globals.html#operandunitvalue" class="tsd-kind-icon">Operand<wbr>Unit<wbr>Value</a>
+			<a href="../globals.html#node" class="tsd-kind-icon">Node</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
 			<a href="../globals.html#parsedata" class="tsd-kind-icon">Parse<wbr>Data</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
-			<a href="../globals.html#treewrapper" class="tsd-kind-icon">Tree<wbr>Wrapper</a>
+			<a href="../globals.html#unitvalue" class="tsd-kind-icon">Unit<wbr>Value</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
 			<a href="../globals.html#unparsedata" class="tsd-kind-icon">Unparse<wbr>Data</a>
+		</li>
+		<li class=" tsd-kind-type-alias">
+			<a href="../globals.html#value" class="tsd-kind-icon">Value</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
 			<a href="../globals.html#subnodeside" class="tsd-kind-icon">sub<wbr>Node<wbr>Side</a>
@@ -1040,7 +1052,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">Escape<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token.validate.type.ts#L3">token.validate.type.ts:3</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/token.validate.type.ts#L3">token.validate.type.ts:3</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1050,7 +1062,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">Fatal<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token.validate.type.ts#L4">token.validate.type.ts:4</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/token.validate.type.ts#L4">token.validate.type.ts:4</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1060,7 +1072,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">Pass<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/14ec982/src/token.validate.type.ts#L2">token.validate.type.ts:2</a></li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/3817c9f/src/token.validate.type.ts#L2">token.validate.type.ts:2</a></li>
 					</ul>
 				</aside>
 			</section>
