@@ -18,7 +18,7 @@ export class TokenHelper {
     }
 
     public static isNumeric(value: Token.Token): boolean {
-        return (/\d+(\.\d*)?|\.\d+/).test(String(value));
+        return (/^[\+\-]?\d*\.?\d+(?:[Ee][\+\-]?\d+)?$/).test(String(value));
     }
 
     public static isArray(value: Token.Token): boolean {
@@ -35,6 +35,10 @@ export class TokenHelper {
 
     public static isValue(value: Token.Token): boolean {
         return TokenHelper.isObject(value) || TokenHelper.isNumeric(value);
+    }
+
+    public static isDot(value: Token.Token): boolean {
+        return value === Token.literal.Dot;
     }
 
     public static isAddition(token: Token.Token): boolean {
@@ -91,6 +95,7 @@ export class TokenHelper {
             { predicate: TokenHelper.isWhiteSpace, type: Token.Type.WhiteSpace },
             { predicate: TokenHelper.isOperator, type: Token.Type.Operator },
             { predicate: TokenHelper.isBracket, type: Token.Type.Bracket },
+            { predicate: TokenHelper.isDot, type: Token.Type.Dot },
             { predicate: TokenHelper.isValue, type: Token.Type.Value }
         ];
 

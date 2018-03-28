@@ -71,7 +71,9 @@ export class AbstractSyntaxTreeBase {
 
     public findRoot(): this {
         if (this.isRoot())
-            return this;
+            return this.value !== undefined || !this.leftNode
+                ? this
+                : this.leftNode;
 
         return this._parent.findRoot();
     }

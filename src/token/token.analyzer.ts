@@ -7,6 +7,7 @@ import { ParserError } from '../error';
 import { TokenError } from './token.error';
 import { TreeBuilder } from '../tree/simple.tree/builder';
 import { TokenValidator } from './token.validator';
+import { GeneralError } from '../error.value';
 
 export class TokenAnalyzer extends TokenEnumerable {
     private ast: AbstractSyntaxTree;
@@ -17,8 +18,10 @@ export class TokenAnalyzer extends TokenEnumerable {
     }
 
     public parse(): Tree {
+        this.try(() => this.preValidate());
         this.initialize();
-        this.makeAst();
+        this.try(() => this.makeAst());
+        this.try(() => this.postValidate());
         return this.try(() => this.makeTree());
     }
 
@@ -35,14 +38,12 @@ export class TokenAnalyzer extends TokenEnumerable {
 
     private makeAst() {
         let token: Token.Token;
+
         while (token = this.next()) {
             this.try(() => this.doAnalyzeToken(token));
         }
         this.finalizeStack();
         this.ast = this.ast.removeRootBracket().findRoot();
-
-        if (this.ast.hasOpenBracket())
-            this.handleError(new ParserError(TokenError.missingCloseBracket));
     }
 
     private try<T>(tryFunction: Function): T {
@@ -53,8 +54,22 @@ export class TokenAnalyzer extends TokenEnumerable {
         }
     }
 
+    private preValidate() {
+        if (!this.token || !this.token.length)
+            throw new ParserError(TokenError.emptyToken);
+    }
+
+    private postValidate() {
+        if (this.ast.hasOpenBracket())
+            throw new ParserError(TokenError.missingCloseBracket);
+    }
+
     private handleError(error: ParserError) {
-        throw error.withStack(this.stack);
+        if (error instanceof  ParserError)
+            throw error.withStack(this.stack);
+
+        console.log(error);
+        throw new ParserError(GeneralError.unknownError).withStack(this.stack);
     }
 
     private doAnalyzeToken(token: Token.Token) {

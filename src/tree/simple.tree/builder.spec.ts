@@ -4,6 +4,7 @@ import { Token } from '../../token/token';
 import { Operand, Tree } from './type';
 import { TreeBuilder } from './builder';
 import { AbstractSyntaxTreeHelper } from '../../ast.helper';
+import { TreeError } from '../tree.error';
 
 describe('test method: SimpleTree.makeTree()', () => {
     it('should return parser tree', () => {
@@ -61,6 +62,24 @@ describe('test method: SimpleTree.makeTree()', () => {
         expect(rightOperandOfRightNode.value.type).to.equal('item');
         expect(rightOperandOfRightNode.value.item).to.deep.equal(customInput2);
     });
+
+    it('should throws an emptyAst error with empty ast', () => {
+        const treeBuilder = new TreeBuilder();
+
+        expect(() => treeBuilder.makeTree(undefined))
+            .to.throw('AST is empty')
+            .and.that.have.property('code', TreeError.emptyAst.code);
+    });
+
+    it('should throws an invalidParserTree error with invalid ast', () => {
+        const ast = new AbstractSyntaxTree(Token.literal.Addition);
+        const treeBuilder = new TreeBuilder();
+        ast.leftNode = new AbstractSyntaxTree(1);
+
+        expect(() => treeBuilder.makeTree(ast))
+            .to.throw('invalid parser tree')
+            .and.that.have.property('code', TreeError.invalidParserTree.code);
+    });
 });
 
 describe('test method: SimpleTree.makeAst()', () => {
@@ -69,25 +88,10 @@ describe('test method: SimpleTree.makeAst()', () => {
             operator: '*',
             operand1: {
                 operator: '-',
-                operand1: {
-                    value: {
-                        type: 'unit',
-                        unit: 2
-                    }
-                },
-                operand2: {
-                    value: {
-                        type: 'unit',
-                        unit: 1
-                    }
-                }
+                operand1: { value: { type: 'unit', unit: 2 } },
+                operand2: { value: { type: 'unit', unit: 1 } }
             },
-            operand2: {
-                value: {
-                    type: 'unit',
-                    unit: 3
-                }
-            }
+            operand2: { value: { type: 'unit', unit: 3 } }
         };
         const treeBuilder = new TreeBuilder();
         const ast = treeBuilder.makeAst(data);
@@ -102,5 +106,13 @@ describe('test method: SimpleTree.makeAst()', () => {
         expect(ast.leftNode.rightNode.value).to.equal(1);
         expect(ast.rightNode.type).to.equal(Token.Type.Value);
         expect(ast.rightNode.value).to.equal(3);
+    });
+
+    it('should throws an emptyTree error with empty tree', () => {
+        const treeBuilder = new TreeBuilder();
+
+        expect(() => treeBuilder.makeAst(undefined))
+            .to.throw('tree is empty')
+            .and.that.have.property('code', TreeError.emptyTree.code);
     });
 });

@@ -3,6 +3,7 @@ import { TokenHelper } from './token.helper';
 import { ParserStack } from '../parser/parser.result';
 import { TokenValidator } from './token.validator';
 import { ParserError } from '../error';
+import { TokenError } from './token.error';
 
 export class TokenEnumerable {
     private tokenStack: Token.Token[] = [];
@@ -34,6 +35,7 @@ export class TokenEnumerable {
             col: 0,
             line: 0
         };
+        this.tokenStack = [];
     }
 
     private calculateStack(token: Token.Token) {
@@ -81,18 +83,25 @@ export class TokenEnumerable {
         const error = TokenValidator.validateToken(token);
 
         if (error)
-            throw error.withStack(this.stack);
+            throw error;
 
         return token;
     }
 
     private proceedNext(): boolean {
-        const tokenType = TokenHelper.induceType(this.currentToken);
-        const nextTokenType = TokenHelper.induceType(this.token[this.cursor]);
+        const token = this.currentToken;
+        const nextToken = this.token[this.cursor];
 
-        return tokenType === Token.Type.Value &&
-            TokenHelper.isNumeric(this.currentToken) &&
-            tokenType === nextTokenType;
+        return this.isSequentialValue(token, nextToken);
+    }
+
+    private isSequentialValue(token: Token.Token, nextToken: Token.Token) {
+        const tokenType = TokenHelper.induceType(token);
+        const nextTokenType = TokenHelper.induceType(nextToken);
+
+        return tokenType === Token.Type.Value && TokenHelper.isNumeric(token) && tokenType === nextTokenType ||
+            tokenType === Token.Type.Value && TokenHelper.isNumeric(token) && nextTokenType === Token.Type.Dot ||
+            tokenType === Token.Type.Dot && TokenHelper.isNumeric(nextToken) && nextTokenType === Token.Type.Value;
     }
 
     private findToken(): Token.Token {
@@ -103,7 +112,6 @@ export class TokenEnumerable {
 
             if (!TokenHelper.isWhiteSpace(token))
                 return token;
-
         }
     }
 
@@ -111,11 +119,13 @@ export class TokenEnumerable {
         if (!tokens.length)
             return undefined;
 
-        if (tokens.every(token => TokenHelper.isNumeric(token)))
+        if (tokens.every(token => TokenHelper.isNumeric(token) || TokenHelper.isDot(token)))
             return tokens.join('');
 
-        if (tokens.length > 1)
-            throw Error('error: non-numeric tokens can not be consecutive.');
+        if (tokens.length > 1) {
+            const args = tokens.map(token => typeof token === 'object' ? JSON.stringify(token) : token);
+            throw new ParserError(TokenError.invalidNonNumericValue, args.join(''));
+        }
 
         return tokens[0];
     }

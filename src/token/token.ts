@@ -16,6 +16,7 @@ export namespace Token {
     export enum Type {
         Unknown,
         Value,
+        Dot,
         Operator,
         Bracket,
         Function,
@@ -36,7 +37,8 @@ export namespace Token {
         Mod: '%',
         Pow: '^',
         BracketOpen: '(',
-        BracketClose: ')'
+        BracketClose: ')',
+        Dot: '.'
     }
 
     export const addition = [literal.Addition];

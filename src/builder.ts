@@ -8,6 +8,7 @@ import { ErrorValue } from './error.value';
 import { BuilderMessage } from './builder.message';
 import { ParserError } from './error';
 import { TreeBuilder } from './tree/simple.tree/builder';
+import { BuilderError } from './builder.error';
 
 export class Builder extends BuilderMessage {
     public constructor(private data: ConvertData) {
@@ -22,7 +23,10 @@ export class Builder extends BuilderMessage {
         }
     }
 
-    parse(data: ParseData, pos = 0): ParserResult<Tree> {
+    parse(data: ParseData): ParserResult<Tree> {
+        if (!data || !data.length)
+            throw new ParserError(BuilderError.emptyData);
+
         const tokenAnalyzer = new TokenAnalyzer(ParserHelper.getArray(data));
         const parseData = tokenAnalyzer.parse();
 
@@ -30,6 +34,9 @@ export class Builder extends BuilderMessage {
     }
 
     unparse(data: Tree): ParserGeneralResult {
+        if (!data)
+            throw new ParserError(BuilderError.emptyData);
+
         const treeBuilder = new TreeBuilder();
         const ast = treeBuilder.makeAst(data);
         return this.makeData(ast.expression);

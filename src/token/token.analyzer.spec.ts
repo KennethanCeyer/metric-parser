@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import { TokenAnalyzer } from './token.analyzer';
 import { Token } from './token';
-import error from 'rollup/dist/typings/utils/error';
 import { ParserError } from '../error';
+import { TokenError } from './token.error';
 
 describe('case: basic parse token', () => {
     it('should return ast correctly from `1 + 2`', () => {
@@ -285,46 +285,80 @@ describe('case: parse token with advanced feature', () => {
 });
 
 describe('case: parse with invalid data', () => {
-    it('should throws an error with tokenInvalidType ', () => {
+    it('should throws an invalidToken error with invalid operator', () => {
         const data = ['1', '!', '2'];
         const tokenAnalyzer = new TokenAnalyzer(data);
-        expect(() => tokenAnalyzer.parse()).to
-            .throw('`!` token is invalid token type')
-            .and.satisfy((error: ParserError) => error.parserStack.col === 1 && error.parserStack.line === 0);
+        expect(() => tokenAnalyzer.parse())
+            .to.throw('`!` token is invalid token type')
+            .and.satisfy((error: ParserError) => error.parserStack.col === 1 && error.parserStack.line === 0)
+            .and.to.have.property('code', TokenError.invalidToken.code);
     });
 
-    it('should throws an error with invalidTwoOperator ', () => {
+    it('should throws an invalidToken error with invalid number value', () => {
+        const data = ['1', '.', '2', '3', '.', '4'];
+        const tokenAnalyzer = new TokenAnalyzer(data);
+
+        expect(() => tokenAnalyzer.parse())
+            .to.throw('`1.23.4` token is invalid token type')
+            .and.satisfy((error: ParserError) => error.parserStack.col === 5 && error.parserStack.line === 0)
+            .and.to.have.property('code', TokenError.invalidToken.code);
+    });
+
+    it('should throws an invalidTwoOperator error with duplicated operator expression', () => {
         const data = ['1', '+', '+', '4'];
         const tokenAnalyzer = new TokenAnalyzer(data);
-        expect(() => tokenAnalyzer.parse()).to
-            .throw('two operators `+`, `+` can not come together')
-            .and.satisfy((error: ParserError) => error.parserStack.col === 2 && error.parserStack.line === 0);
+        expect(() => tokenAnalyzer.parse())
+            .to.throw('two operators `+`, `+` can not come together')
+            .and.satisfy((error: ParserError) => error.parserStack.col === 2 && error.parserStack.line === 0)
+            .and.to.have.property('code', TokenError.invalidTwoOperator.code);
     });
 
-    it('should throws an error with missingOperator ', () => {
+    it('should throws an missingOperator error', () => {
         const data = ['(', '1', '+', '2', ')', '3'];
         const tokenAnalyzer = new TokenAnalyzer(data);
 
-        expect(() => tokenAnalyzer.parse()).to
-            .throw('the operator is missing after `)`')
-            .and.satisfy((error: ParserError) => error.parserStack.col === 5 && error.parserStack.line === 0);
+        expect(() => tokenAnalyzer.parse())
+            .to.throw('the operator is missing after `)`')
+            .and.satisfy((error: ParserError) => error.parserStack.col === 5 && error.parserStack.line === 0)
+            .and.to.have.property('code', TokenError.missingOperator.code);
     });
 
-    it('should throws an error with bracketMustBeOpened ', () => {
+    it('should throws an bracketMustBeOpened error', () => {
         const data = ['2', '+', '3', ')', ')'];
         const tokenAnalyzer = new TokenAnalyzer(data);
 
-        expect(() => tokenAnalyzer.parse()).to
-            .throw('missing open bracket, you cannot close the bracket')
-            .and.satisfy((error: ParserError) => error.parserStack.col === 3 && error.parserStack.line === 0);
+        expect(() => tokenAnalyzer.parse())
+            .to.throw('missing open bracket, you cannot close the bracket')
+            .and.satisfy((error: ParserError) => error.parserStack.col === 3 && error.parserStack.line === 0)
+            .and.to.have.property('code', TokenError.missingOpenBracket.code);
     });
 
-    it('should throws an error with missingOperator ', () => {
+    it('should throws an bracketMustBeClosed error', () => {
         const data = ['(', '(', '1', '+', '2'];
         const tokenAnalyzer = new TokenAnalyzer(data);
 
-        expect(() => tokenAnalyzer.parse()).to
-            .throw('missing close bracket, the bracket must be closed')
-            .and.satisfy((error: ParserError) => error.parserStack.col === 5 && error.parserStack.line === 0);
+        expect(() => tokenAnalyzer.parse())
+            .to.throw('missing close bracket, the bracket must be closed')
+            .and.satisfy((error: ParserError) => error.parserStack.col === 5 && error.parserStack.line === 0)
+            .and.to.have.property('code', TokenError.missingCloseBracket.code);
+    });
+
+    it('should throws an emptyToken error with empty value', () => {
+        const data = [];
+        const tokenAnalyzer = new TokenAnalyzer(data);
+
+        expect(() => tokenAnalyzer.parse())
+            .to.throw('token is empty')
+            .and.satisfy((error: ParserError) => error.parserStack.col === 0 && error.parserStack.line === 0)
+            .and.to.have.property('code', TokenError.emptyToken.code);
+    });
+
+    it('should throws an emptyToken error with undefined value', () => {
+        const tokenAnalyzer = new TokenAnalyzer(undefined);
+
+        expect(() => tokenAnalyzer.parse())
+            .to.throw('token is empty')
+            .and.satisfy((error: ParserError) => error.parserStack.col === 0 && error.parserStack.line === 0)
+            .and.to.have.property('code', TokenError.emptyToken.code);
     });
 });

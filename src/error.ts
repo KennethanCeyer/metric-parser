@@ -2,10 +2,13 @@ import { ErrorValue } from './error.value';
 import { StringHelper } from './string.helper';
 import { ParserStack } from './parser/parser.result';
 
+export const success = 0;
+
 export class ParserError extends Error implements ErrorValue {
     public parserStack: ParserStack;
     public code: number;
     public text: string;
+    public static readonly defaultParserStack: ParserStack = { line: 0, col: 0 };
 
     constructor(public error: ErrorValue, ...args: string[]) {
         super();
