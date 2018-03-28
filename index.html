@@ -197,8 +197,10 @@ const isValid2 = metricParser.valid({expression | parseTree});
                 }
             },
             operand2: {
-                type: 'unit',
-                unit: 1
+                value {
+                    type: 'unit',
+                    unit: 1
+                }
             }
         },
         {
