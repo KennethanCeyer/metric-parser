@@ -29,7 +29,8 @@ export class TokenEnumerable {
     protected rewind() {
         this.cursor = 0;
         this.currentToken = undefined;
-        this._stack = {
+        this._stack = undefined;
+        this._nextStack = {
             col: 0,
             line: 0
         };

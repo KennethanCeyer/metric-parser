@@ -12,6 +12,17 @@ export class TokenValidator {
             return new ParserError(TokenError.invalidToken, token);
     }
 
+    public static validateValueToken(token: Token.Token, prevToken: Token.Token): ParserError | undefined {
+        if (!prevToken)
+            return undefined;
+
+        if (TokenHelper.isValue(prevToken))
+            return new ParserError(TokenError.missingOperator, prevToken);
+
+        if (!TokenHelper.isBracketOpen(prevToken) && !TokenHelper.isOperator(prevToken))
+            return new ParserError(TokenError.missingOperator, prevToken);
+    }
+
     private static extractTokenLevel(token: Token.Token) {
         const levelExtractors = [
             { predicate: TokenHelper.isUnkown, level: TokenValidateLevel.Fatal },

@@ -6,6 +6,7 @@ import { TokenEnumerable } from './token.enumerable';
 import { ParserError } from '../error';
 import { TokenError } from './token.error';
 import { TreeBuilder } from '../tree/simple.tree/builder';
+import { TokenValidator } from './token.validator';
 
 export class TokenAnalyzer extends TokenEnumerable {
     private ast: AbstractSyntaxTree;
@@ -35,13 +36,30 @@ export class TokenAnalyzer extends TokenEnumerable {
     private makeAst() {
         let token;
         while (token = this.next()) {
-            this.analyzeToken(token);
-            this.addStack(token);
+            this.tryAnalyzeToken(token);
         }
         this.ast = this.ast.removeClosestBracket().findRoot();
     }
 
+    private tryAnalyzeToken(token: Token.Token) {
+        try {
+            this.doAnalyzeToken(token);
+        } catch (error) {
+            this.handleError(error);
+        }
+    }
+
+    private handleError(error: ParserError) {
+        throw error.withStack(this.stack);
+    }
+
+    private doAnalyzeToken(token: Token.Token) {
+        this.analyzeToken(token);
+        this.addStack(token);
+    }
+
     private analyzeToken(token: Token.Token) {
+        const lastToken = this.popStack();
         if (TokenHelper.isBracket(token)) {
             this.analyzeBracketToken(token);
             return;
@@ -51,6 +69,10 @@ export class TokenAnalyzer extends TokenEnumerable {
             this.analyzeOperatorToken(token);
             return;
         }
+
+        const error = TokenValidator.validateValueToken(token, lastToken);
+        if (error)
+            throw error;
 
         this.currentTree.insertNode(token);
     }
@@ -76,13 +98,13 @@ export class TokenAnalyzer extends TokenEnumerable {
         const lastToken = this.popStack();
 
         if (TokenHelper.isOperator(lastToken))
-            throw new ParserError(TokenError.invalidTwoOperator, lastToken, token).withStack(this.stack);
+            throw new ParserError(TokenError.invalidTwoOperator, lastToken, token);
 
         if (!this.currentTree.value)
             this.currentTree.value = token;
         else {
             if (!TokenHelper.isBracket(this.currentTree.value) && !this.currentTree.rightNode)
-                throw new ParserError(TokenError.invalidTwoOperator, lastToken, token).withStack(this.stack);
+                throw new ParserError(TokenError.invalidTwoOperator, lastToken, token);
 
             this.currentTree = this.currentTree.insertNode(token);
             this.ast = this.ast.findRoot();

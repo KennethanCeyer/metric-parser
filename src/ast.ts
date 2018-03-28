@@ -1,5 +1,8 @@
 import { Token } from './token/token';
 import { TokenHelper } from './token/token.helper';
+import { TokenValidator } from './token/token.validator';
+import { ParserError } from './error';
+import { TokenError } from './token/token.error';
 
 export class AbstractSyntaxTree {
     private _value: Token.Token;
@@ -84,11 +87,22 @@ export class AbstractSyntaxTree {
         return this._parent.findOpenedBracket();
     }
 
+    public removeTopBracket(): AbstractSyntaxTree {
+        const rootNode = this.findRoot();
+
+        if (TokenHelper.isBracketOpen(rootNode.value)) {
+            rootNode.leftNode.removeParent();
+            return rootNode.leftNode;
+        }
+
+        return undefined;
+    }
+
     public removeClosestBracket(): AbstractSyntaxTree {
         const node = this.findOpenedBracket();
 
         if (!node)
-            return undefined;
+            throw new ParserError(TokenError.missingOpenBracket);
 
         const targetNode = node.leftNode;
         targetNode.subType = Token.SubType.Group;
