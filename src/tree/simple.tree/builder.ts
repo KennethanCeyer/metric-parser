@@ -1,16 +1,13 @@
-import { AbstractSyntaxTree } from './ast';
-import { Operand, OperandValue, TreeModel } from './tree.type';
-import { TokenHelper } from './token/token.helper';
-import { Token } from './token/token';
-import { AbstractSyntaxTreeHelper } from './ast.helper';
-import { TreeError } from './tree.error';
-import { ParserError } from './error';
+import { AbstractSyntaxTree } from '../../ast';
+import { TokenHelper } from '../../token/token.helper';
+import { Token } from '../../token/token';
+import { TreeError } from '../tree.error';
+import { ParserError } from '../../error';
+import { TreeBuilderBase } from '../tree.base';
+import { Operand, Tree, Node, Value } from './type'; './type';
 
-export class Tree {
-    public constructor(private ast: AbstractSyntaxTree) {
-    }
-
-    public makeTree(): TreeModel {
+export class TreeBuilder extends TreeBuilderBase<Tree> {
+    public makeTree(): Tree {
         if (!this.ast)
             throw new ParserError(TreeError.astIsEmpty);
 
@@ -18,16 +15,16 @@ export class Tree {
         if ((tree as Operand).value)
             throw new ParserError(TreeError.invalidParserTree);
 
-        return tree as TreeModel;
+        return tree as Tree;
     }
 
-    private makeNode(sourceNode: AbstractSyntaxTree): TreeModel | Operand {
+    private makeNode(sourceNode: AbstractSyntaxTree): Node {
         return sourceNode.type === Token.Type.Operator
             ? this.makeOperatorNode(sourceNode)
             : this.makeValueNode(sourceNode);
     }
 
-    private makeOperatorNode(sourceNode: AbstractSyntaxTree): TreeModel {
+    private makeOperatorNode(sourceNode: AbstractSyntaxTree): Tree {
         return {
             operator: sourceNode.value,
             operand1: this.makeNode(sourceNode.leftNode),
@@ -41,7 +38,7 @@ export class Tree {
         };
     }
 
-    private makeOperandValue(sourceNode: AbstractSyntaxTree): OperandValue {
+    private makeOperandValue(sourceNode: AbstractSyntaxTree): Value {
         const type = TokenHelper.isObject(sourceNode.value)
             ? 'item'
             : 'unit';

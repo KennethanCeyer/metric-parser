@@ -1,5 +1,5 @@
 import { ConvertData, ParseData } from './types';
-import { TreeModel } from './tree.type';
+import { Tree } from './tree/simple.tree/type';
 import { ParserGeneralResult, ParserResult } from './parser/parser.result';
 import { BuilderHelper } from './builder.helper';
 import { ParserHelper } from './parser/parser.helper';
@@ -21,14 +21,14 @@ export class Builder extends BuilderMessage {
         }
     }
 
-    parse(data: ParseData, pos = 0): ParserResult<TreeModel> {
+    parse(data: ParseData, pos = 0): ParserResult<Tree> {
         const tokenAnalyzer = new TokenAnalyzer(ParserHelper.getArray(data));
         const parseData = tokenAnalyzer.parse();
 
         return this.makeData(parseData);
     }
 
-    unparse(data: TreeModel): ParserGeneralResult {
+    unparse(data: Tree): ParserGeneralResult {
         return this.makeData(null);
     }
 
@@ -37,7 +37,7 @@ export class Builder extends BuilderMessage {
             return this.parse(this.data as ParseData);
 
         if (BuilderHelper.needUnparse(this.data))
-            return this.unparse(this.data as TreeModel);
+            return this.unparse(this.data as Tree);
     }
 
     private handleError(error: ParserError): ParserResult<string> {

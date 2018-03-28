@@ -1,8 +1,8 @@
-import { Operand, TreeModel } from './tree.type';
+import { Operand, Tree } from './tree/simple.tree/type';
 import { TokenHelper } from './token/token.helper';
 
 export class BuilderHelper {
-    public static isOperand(data: TreeModel | Operand) {
+    public static isOperand(data: Tree | Operand) {
         return !!(data as Operand).value;
     }
 

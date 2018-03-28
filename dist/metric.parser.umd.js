@@ -384,14 +384,12 @@
         return AbstractSyntaxTree;
     }());
 
-    /* tslint:disable:max-line-length */
-    var TreeError;
-    (function (TreeError) {
-        TreeError.id = 0x0200;
-        TreeError.astIsEmpty = { code: 0x0200, text: 'AST is empty' };
-        TreeError.invalidParserTree = { code: 0x0201, text: 'invalid parser tree' };
-    })(TreeError || (TreeError = {}));
-    /* tslint:enable:max-line-length */
+    var TokenValidateLevel;
+    (function (TokenValidateLevel) {
+        TokenValidateLevel[TokenValidateLevel["Pass"] = 0] = "Pass";
+        TokenValidateLevel[TokenValidateLevel["Escape"] = 1] = "Escape";
+        TokenValidateLevel[TokenValidateLevel["Fatal"] = 2] = "Fatal";
+    })(TokenValidateLevel || (TokenValidateLevel = {}));
 
     var StringHelper = /** @class */ (function () {
         function StringHelper() {
@@ -435,54 +433,6 @@
         };
         return ParserError;
     }(Error));
-
-    var Tree = /** @class */ (function () {
-        function Tree(ast) {
-            this.ast = ast;
-        }
-        Tree.prototype.makeTree = function () {
-            if (!this.ast)
-                throw new ParserError(TreeError.astIsEmpty);
-            var tree = this.makeNode(this.ast);
-            if (tree.value)
-                throw new ParserError(TreeError.invalidParserTree);
-            return tree;
-        };
-        Tree.prototype.makeNode = function (sourceNode) {
-            return sourceNode.type === Token.Type.Operator
-                ? this.makeOperatorNode(sourceNode)
-                : this.makeValueNode(sourceNode);
-        };
-        Tree.prototype.makeOperatorNode = function (sourceNode) {
-            return {
-                operator: sourceNode.value,
-                operand1: this.makeNode(sourceNode.leftNode),
-                operand2: this.makeNode(sourceNode.rightNode)
-            };
-        };
-        Tree.prototype.makeValueNode = function (sourceNode) {
-            return {
-                value: this.makeOperandValue(sourceNode)
-            };
-        };
-        Tree.prototype.makeOperandValue = function (sourceNode) {
-            var type = TokenHelper.isObject(sourceNode.value)
-                ? 'item'
-                : 'unit';
-            return _a = {
-                    type: type
-                }, _a[type] = sourceNode.value, _a;
-            var _a;
-        };
-        return Tree;
-    }());
-
-    var TokenValidateLevel;
-    (function (TokenValidateLevel) {
-        TokenValidateLevel[TokenValidateLevel["Pass"] = 0] = "Pass";
-        TokenValidateLevel[TokenValidateLevel["Escape"] = 1] = "Escape";
-        TokenValidateLevel[TokenValidateLevel["Fatal"] = 2] = "Fatal";
-    })(TokenValidateLevel || (TokenValidateLevel = {}));
 
     /* tslint:disable:max-line-length */
     var TokenError;
@@ -607,6 +557,67 @@
         return TokenEnumerable;
     }());
 
+    /* tslint:disable:max-line-length */
+    var TreeError;
+    (function (TreeError) {
+        TreeError.id = 0x0200;
+        TreeError.astIsEmpty = { code: 0x0200, text: 'AST is empty' };
+        TreeError.invalidParserTree = { code: 0x0201, text: 'invalid parser tree' };
+    })(TreeError || (TreeError = {}));
+    /* tslint:enable:max-line-length */
+
+    var TreeBuilderBase = /** @class */ (function () {
+        function TreeBuilderBase(ast) {
+            this.ast = ast;
+        }
+        TreeBuilderBase.prototype.makeTree = function (ast) {
+            throw new Error('method not implemented.');
+        };
+        return TreeBuilderBase;
+    }());
+
+    var TreeBuilder = /** @class */ (function (_super) {
+        __extends(TreeBuilder, _super);
+        function TreeBuilder() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        TreeBuilder.prototype.makeTree = function () {
+            if (!this.ast)
+                throw new ParserError(TreeError.astIsEmpty);
+            var tree = this.makeNode(this.ast);
+            if (tree.value)
+                throw new ParserError(TreeError.invalidParserTree);
+            return tree;
+        };
+        TreeBuilder.prototype.makeNode = function (sourceNode) {
+            return sourceNode.type === Token.Type.Operator
+                ? this.makeOperatorNode(sourceNode)
+                : this.makeValueNode(sourceNode);
+        };
+        TreeBuilder.prototype.makeOperatorNode = function (sourceNode) {
+            return {
+                operator: sourceNode.value,
+                operand1: this.makeNode(sourceNode.leftNode),
+                operand2: this.makeNode(sourceNode.rightNode)
+            };
+        };
+        TreeBuilder.prototype.makeValueNode = function (sourceNode) {
+            return {
+                value: this.makeOperandValue(sourceNode)
+            };
+        };
+        TreeBuilder.prototype.makeOperandValue = function (sourceNode) {
+            var type = TokenHelper.isObject(sourceNode.value)
+                ? 'item'
+                : 'unit';
+            return _a = {
+                    type: type
+                }, _a[type] = sourceNode.value, _a;
+            var _a;
+        };
+        return TreeBuilder;
+    }(TreeBuilderBase));
+
     var TokenAnalyzer = /** @class */ (function (_super) {
         __extends(TokenAnalyzer, _super);
         function TokenAnalyzer(token) {
@@ -677,7 +688,7 @@
             this.addStack(Token.literal.Multiplication);
         };
         TokenAnalyzer.prototype.makeTree = function () {
-            var treeParser = new Tree(this.ast);
+            var treeParser = new TreeBuilder(this.ast);
             return treeParser.makeTree();
         };
         return TokenAnalyzer;

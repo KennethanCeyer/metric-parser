@@ -1,15 +1,15 @@
 import { expect } from 'chai';
-import { AbstractSyntaxTree } from './ast';
-import { Token } from './token/token';
-import { Tree } from './tree';
-import { Operand, TreeModel } from './tree.type';
+import { AbstractSyntaxTree } from '../../ast';
+import { Token } from '../../token/token';
+import { Operand, Tree } from './type';
+import { TreeBuilder } from './builder';
 
 describe('case: make tree', () => {
     it('should return parser tree', () => {
         const ast = new AbstractSyntaxTree(Token.literal.Multiplication);
         ast.leftNode = new AbstractSyntaxTree('2');
         ast.rightNode = new AbstractSyntaxTree('3');
-        const treeBuilder = new Tree(ast);
+        const treeBuilder = new TreeBuilder(ast);
         const tree = treeBuilder.makeTree();
         const leftOperand = tree.operand1 as Operand;
         const rightOperand = tree.operand2 as Operand;
@@ -40,10 +40,10 @@ describe('case: make tree', () => {
         const ast = new AbstractSyntaxTree(Token.literal.Addition);
         ast.leftNode = new AbstractSyntaxTree(customInput);
         ast.rightNode = subNode;
-        const treeBuilder = new Tree(ast);
+        const treeBuilder = new TreeBuilder(ast);
         const tree = treeBuilder.makeTree();
         const leftOperand = tree.operand1 as Operand;
-        const rightOperand = tree.operand2 as TreeModel;
+        const rightOperand = tree.operand2 as Tree;
         const leftOperandOfRightNode = rightOperand.operand1 as Operand;
         const rightOperandOfRightNode = rightOperand.operand2 as Operand;
 

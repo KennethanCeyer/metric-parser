@@ -1,4 +1,4 @@
-import { TreeModel } from '../tree.type';
+import { Tree } from '../tree/simple.tree/type';
 import { Token } from './token';
 import { AbstractSyntaxTree } from '../ast';
 import { TokenEnumerable } from './token.enumerable';
@@ -6,7 +6,7 @@ export declare class TokenAnalyzer extends TokenEnumerable {
     private ast;
     private currentTree;
     constructor(token: Token.Token[]);
-    parse(): TreeModel;
+    parse(): Tree;
     private initialize();
     getAst(): AbstractSyntaxTree;
     private makeAst();

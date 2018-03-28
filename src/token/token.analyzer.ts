@@ -1,11 +1,11 @@
-import { TreeModel } from '../tree.type';
+import { Tree } from '../tree/simple.tree/type';
 import { TokenHelper } from './token.helper';
 import { Token } from './token';
 import { AbstractSyntaxTree } from '../ast';
-import { Tree } from '../tree';
 import { TokenEnumerable } from './token.enumerable';
 import { ParserError } from '../error';
 import { TokenError } from './token.error';
+import { TreeBuilder } from '../tree/simple.tree/builder';
 
 export class TokenAnalyzer extends TokenEnumerable {
     private ast: AbstractSyntaxTree;
@@ -15,7 +15,7 @@ export class TokenAnalyzer extends TokenEnumerable {
         super(token);
     }
 
-    public parse(): TreeModel {
+    public parse(): Tree {
         this.initialize();
         this.makeAst();
         return this.makeTree();
@@ -94,8 +94,8 @@ export class TokenAnalyzer extends TokenEnumerable {
         this.addStack(Token.literal.Multiplication);
     }
 
-    private makeTree(): TreeModel {
-        const treeParser = new Tree(this.ast);
+    private makeTree(): Tree {
+        const treeParser = new TreeBuilder(this.ast);
         return treeParser.makeTree();
     }
 }
