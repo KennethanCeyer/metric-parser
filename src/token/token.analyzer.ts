@@ -1,7 +1,7 @@
 import { Tree } from '../tree/simple.tree/type';
 import { TokenHelper } from './token.helper';
 import { Token } from './token';
-import { AbstractSyntaxTree } from '../ast';
+import { AbstractSyntaxTree } from '../ast/ast';
 import { TokenEnumerable } from './token.enumerable';
 import { ParserError } from '../error';
 import { TokenError } from './token.error';

@@ -1,4 +1,4 @@
-import { AbstractSyntaxTree } from '../../ast';
+import { AbstractSyntaxTree } from '../../ast/ast';
 import { TokenHelper } from '../../token/token.helper';
 import { Token } from '../../token/token';
 import { TreeError } from '../tree.error';

@@ -1,4 +1,4 @@
-import { AbstractSyntaxTree } from '../ast';
+import { AbstractSyntaxTree } from '../ast/ast';
 
 export interface TreeBuilderInterface<T> {
     makeTree(ast: AbstractSyntaxTree): T;

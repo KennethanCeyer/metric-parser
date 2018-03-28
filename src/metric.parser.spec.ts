@@ -1,11 +1,11 @@
 import { expect } from 'chai';
-import { convert, getVersion } from './metric.parser';
+import { convert, ConvertData, getVersion } from './metric.parser';
 import { Tree } from './tree/simple.tree/type';
 import { success } from './error';
 
 describe('test method: convert()', () => {
     it('should return an valid tree with 1 + 2', () => {
-        const data = '1 + 2';
+        const data: ConvertData = '1 + 2';
         const result = convert(data);
         expect(result.code).to.equal(success);
         expect(result.data).to.deep.equal({
@@ -16,7 +16,7 @@ describe('test method: convert()', () => {
     });
 
     it('should return an valid tree with 0', () => {
-        const data = '0';
+        const data: ConvertData = '0';
         const result = convert(data);
         expect(result.code).to.equal(success);
         expect(result.data).to.deep.equal({
@@ -25,7 +25,7 @@ describe('test method: convert()', () => {
     });
 
     it('should return an valid tree with 1.2 + 2.6', () => {
-        const data = '1.2 + 2.6';
+        const data: ConvertData = '1.2 + 2.6';
         const result = convert(data);
         expect(result.code).to.equal(success);
         expect(result.data).to.deep.equal({

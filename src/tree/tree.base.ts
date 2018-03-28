@@ -1,4 +1,4 @@
-import { AbstractSyntaxTree } from '../ast';
+import { AbstractSyntaxTree } from '../ast/ast';
 import { TreeBuilderInterface } from './tree.interface';
 import { GeneralError } from '../error.value';
 import { ParserError } from '../error';

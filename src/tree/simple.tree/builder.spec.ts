@@ -1,9 +1,9 @@
 import { expect } from 'chai';
-import { AbstractSyntaxTree } from '../../ast';
+import { AbstractSyntaxTree } from '../../ast/ast';
 import { Token } from '../../token/token';
 import { Operand, Tree } from './type';
 import { TreeBuilder } from './builder';
-import { AbstractSyntaxTreeHelper } from '../../ast.helper';
+import { AbstractSyntaxTreeHelper } from '../../ast/ast.helper';
 import { TreeError } from '../tree.error';
 
 describe('test method: SimpleTree.makeTree()', () => {

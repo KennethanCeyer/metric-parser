@@ -1,7 +1,7 @@
-import { Token } from './token/token';
-import { TokenHelper } from './token/token.helper';
-import { ParserError } from './error';
-import { TokenError } from './token/token.error';
+import { Token } from '../token/token';
+import { TokenHelper } from '../token/token.helper';
+import { ParserError } from '../error';
+import { TokenError } from '../token/token.error';
 
 export class AbstractSyntaxTreeBase {
     private _value: Token.Token;

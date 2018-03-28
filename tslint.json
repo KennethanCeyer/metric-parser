@@ -8,6 +8,7 @@
             "allowSingleLine": true
         }],
         "no-namespace": false,
+        "no-conditional-assignment": false,
         "max-line-length": [true, 120],
         "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"],
         "prefer-for-of": false,

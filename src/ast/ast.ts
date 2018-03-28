@@ -1,6 +1,6 @@
 import { AbstractSyntaxTreeBase } from './ast.base';
-import { TokenHelper } from './token/token.helper';
-import { Token } from './token/token';
+import { TokenHelper } from '../token/token.helper';
+import { Token } from '../token/token';
 
 export class AbstractSyntaxTree extends AbstractSyntaxTreeBase {
     get expression(): string[] {

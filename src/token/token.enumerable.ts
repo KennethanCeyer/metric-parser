@@ -115,18 +115,24 @@ export class TokenEnumerable {
         }
     }
 
+    private isTokenArrayNumeric(tokens: Token.Token[]): boolean {
+        return tokens.every(token => TokenHelper.isNumeric(token) || TokenHelper.isDot(token));
+    }
+
     private makeToken(tokens: Token.Token[]): Token.Token {
         if (!tokens.length)
             return undefined;
 
-        if (tokens.every(token => TokenHelper.isNumeric(token) || TokenHelper.isDot(token)))
+        if (this.isTokenArrayNumeric(tokens))
             return tokens.join('');
 
-        if (tokens.length > 1) {
-            const args = tokens.map(token => typeof token === 'object' ? JSON.stringify(token) : token);
-            throw new ParserError(TokenError.invalidNonNumericValue, args.join(''));
-        }
+        if (tokens.length > 1)
+            throw new ParserError(TokenError.invalidNonNumericValue, this.makeTokenString(tokens));
 
         return tokens[0];
+    }
+
+    private makeTokenString(tokens: Token.Token[]): string {
+        return tokens.map(token => typeof token === 'object' ? JSON.stringify(token) : token).join('');
     }
 }
