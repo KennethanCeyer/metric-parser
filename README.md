@@ -33,18 +33,23 @@
 - [x] support custom value (custom object as value)
 - [x] support implicit patterns (multiplication omitted, operator aliases)
 - [x] support reference docs
-- [ ] guidelines for developers
-- [ ] guidelines for contributors
-- [ ] support validation for many cases
 - [x] improve parser logic based [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree)
 - [x] improve validation error (parserStack, codes)
 - [x] add unit test with coverage rate over 90%
+- [x] support validation for many cases
 
-**v1.0.1**
+**v0.1.0**
+
+- [ ] guidelines for developers
+- [ ] guidelines for contributors
+
+**v0.2.0**
+
 - [ ] function expression `IF()`, `SUM()`, `AVG()`, `_CUSTOM_NAMED_FUNC_()`
 - [ ] support custom tree model declaration
 
-**v1.0.2**
+**v0.3.0**
+
 - [ ] declare variable (operator and value type)
 
 If you want join the contribution, Fork it and send a pull request.
