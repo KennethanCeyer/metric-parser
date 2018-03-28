@@ -10,6 +10,9 @@ export declare class TokenAnalyzer extends TokenEnumerable {
     private initialize();
     getAst(): AbstractSyntaxTree;
     private makeAst();
+    private tryAnalyzeToken(token);
+    private handleError(error);
+    private doAnalyzeToken(token);
     private analyzeToken(token);
     private analyzeBracketToken(token);
     private analyzeOperatorToken(token);

@@ -207,6 +207,61 @@
         return ParserHelper;
     }());
 
+    var StringHelper = /** @class */ (function () {
+        function StringHelper() {
+        }
+        StringHelper.format = function (value) {
+            var args = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args[_i - 1] = arguments[_i];
+            }
+            var targetValue = value;
+            if (args)
+                args.forEach(function (match, index) { return targetValue = StringHelper.replaceArg(index, targetValue, match); });
+            return targetValue;
+        };
+        StringHelper.replaceArg = function (match, target, value) {
+            return target.replace(new RegExp("\\{" + match + "\\}", 'g'), value);
+        };
+        return StringHelper;
+    }());
+
+    var ParserError = /** @class */ (function (_super) {
+        __extends(ParserError, _super);
+        function ParserError(error) {
+            var args = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args[_i - 1] = arguments[_i];
+            }
+            var _this = _super.call(this) || this;
+            _this.error = error;
+            Object.setPrototypeOf(_this, ParserError.prototype);
+            if (args.length)
+                _this.error = __assign({}, _this.error, { text: StringHelper.format.apply(StringHelper, [_this.error.text].concat(args)) });
+            _this.code = _this.error.code;
+            _this.text = _this.error.text;
+            _this.message = _this.text;
+            return _this;
+        }
+        ParserError.prototype.withStack = function (stack) {
+            this.parserStack = stack;
+            return this;
+        };
+        return ParserError;
+    }(Error));
+
+    /* tslint:disable:max-line-length */
+    var TokenError;
+    (function (TokenError) {
+        TokenError.id = 0x0100;
+        TokenError.invalidToken = { code: 0x0100, text: '`{0}` token is invalid token type' };
+        TokenError.invalidTwoOperator = { code: 0x0101, text: 'two operators `{0}`, `{1}` can not come together' };
+        TokenError.missingOperator = { code: 0x0112, text: 'the operator is missing after `{0}`' };
+        TokenError.missingOpenBracket = { code: 0x0120, text: 'missing open bracket, you cannot close the bracket' };
+        TokenError.missingCloseBracket = { code: 0x0121, text: 'missing close bracket, the bracket must be closed' };
+    })(TokenError || (TokenError = {}));
+    /* tslint:enable:max-line-length */
+
     var AbstractSyntaxTree = /** @class */ (function () {
         function AbstractSyntaxTree(value) {
             if (value)
@@ -279,21 +334,39 @@
             configurable: true
         });
         AbstractSyntaxTree.prototype.findRoot = function () {
-            if (!this._parent)
+            if (this.isRoot())
                 return this;
             return this._parent.findRoot();
         };
+        AbstractSyntaxTree.prototype.isRoot = function () {
+            return !this._parent;
+        };
+        AbstractSyntaxTree.prototype.hasOpenBracket = function () {
+            if (TokenHelper.isBracketOpen(this.value))
+                return true;
+            var leftNodeHasOpenBracket = this.leftNode ? this.leftNode.hasOpenBracket() : false;
+            var rightNodeHasOpenBracket = this.rightNode ? this.rightNode.hasOpenBracket() : false;
+            return leftNodeHasOpenBracket || rightNodeHasOpenBracket;
+        };
         AbstractSyntaxTree.prototype.findOpenedBracket = function () {
+            if (this.isRoot())
+                return undefined;
             if (TokenHelper.isBracketOpen(this._value))
                 return this;
-            if (!this._parent)
-                return undefined;
             return this._parent.findOpenedBracket();
+        };
+        AbstractSyntaxTree.prototype.removeRootBracket = function () {
+            var rootNode = this.findRoot();
+            if (TokenHelper.isBracketOpen(rootNode.value))
+                rootNode.leftNode.removeParent();
+            return this === rootNode
+                ? rootNode.leftNode
+                : this;
         };
         AbstractSyntaxTree.prototype.removeClosestBracket = function () {
             var node = this.findOpenedBracket();
             if (!node)
-                return undefined;
+                throw new ParserError(TokenError.missingOpenBracket);
             var targetNode = node.leftNode;
             targetNode.subType = Token.SubType.Group;
             if (!node.parent) {
@@ -391,58 +464,6 @@
         TokenValidateLevel[TokenValidateLevel["Fatal"] = 2] = "Fatal";
     })(TokenValidateLevel || (TokenValidateLevel = {}));
 
-    var StringHelper = /** @class */ (function () {
-        function StringHelper() {
-        }
-        StringHelper.format = function (value) {
-            var args = [];
-            for (var _i = 1; _i < arguments.length; _i++) {
-                args[_i - 1] = arguments[_i];
-            }
-            var targetValue = value;
-            if (args)
-                args.forEach(function (match, index) { return targetValue = StringHelper.replaceArg(index, targetValue, match); });
-            return targetValue;
-        };
-        StringHelper.replaceArg = function (match, target, value) {
-            return target.replace(new RegExp("\\{" + match + "\\}", 'g'), value);
-        };
-        return StringHelper;
-    }());
-
-    var ParserError = /** @class */ (function (_super) {
-        __extends(ParserError, _super);
-        function ParserError(error) {
-            var args = [];
-            for (var _i = 1; _i < arguments.length; _i++) {
-                args[_i - 1] = arguments[_i];
-            }
-            var _this = _super.call(this) || this;
-            _this.error = error;
-            Object.setPrototypeOf(_this, ParserError.prototype);
-            if (args.length)
-                _this.error = __assign({}, _this.error, { text: StringHelper.format.apply(StringHelper, [_this.error.text].concat(args)) });
-            _this.code = _this.error.code;
-            _this.text = _this.error.text;
-            _this.message = _this.text;
-            return _this;
-        }
-        ParserError.prototype.withStack = function (stack) {
-            this.parserStack = stack;
-            return this;
-        };
-        return ParserError;
-    }(Error));
-
-    /* tslint:disable:max-line-length */
-    var TokenError;
-    (function (TokenError) {
-        TokenError.id = 0x0100;
-        TokenError.invalidToken = { code: 0x0100, text: '`{0}` token is invalid token type' };
-        TokenError.invalidTwoOperator = { code: 0x0101, text: 'two operators `{0}`, `{1}` can not come together' };
-    })(TokenError || (TokenError = {}));
-    /* tslint:enable:max-line-length */
-
     var TokenValidator = /** @class */ (function () {
         function TokenValidator() {
         }
@@ -450,6 +471,14 @@
             var level = TokenValidator.extractTokenLevel(token);
             if (level === TokenValidateLevel.Fatal)
                 return new ParserError(TokenError.invalidToken, token);
+        };
+        TokenValidator.validateValueToken = function (token, prevToken) {
+            if (!prevToken)
+                return undefined;
+            if (TokenHelper.isValue(prevToken))
+                return new ParserError(TokenError.missingOperator, prevToken);
+            if (!TokenHelper.isBracketOpen(prevToken) && !TokenHelper.isOperator(prevToken))
+                return new ParserError(TokenError.missingOperator, prevToken);
         };
         TokenValidator.extractTokenLevel = function (token) {
             var levelExtractors = [
@@ -488,7 +517,8 @@
         TokenEnumerable.prototype.rewind = function () {
             this.cursor = 0;
             this.currentToken = undefined;
-            this._stack = {
+            this._stack = undefined;
+            this._nextStack = {
                 col: 0,
                 line: 0
             };
@@ -505,6 +535,9 @@
                 line: this._nextStack.line,
                 col: this._nextStack.col + 1
             };
+        };
+        TokenEnumerable.prototype.finalizeStack = function () {
+            this.stack = undefined;
         };
         TokenEnumerable.prototype.addStack = function (token) {
             this.tokenStack.push(token);
@@ -640,12 +673,30 @@
         TokenAnalyzer.prototype.makeAst = function () {
             var token;
             while (token = this.next()) {
-                this.analyzeToken(token);
-                this.addStack(token);
+                this.tryAnalyzeToken(token);
             }
-            this.ast = this.ast.removeClosestBracket().findRoot();
+            this.finalizeStack();
+            this.ast = this.ast.removeRootBracket().findRoot();
+            if (this.ast.hasOpenBracket())
+                this.handleError(new ParserError(TokenError.missingCloseBracket));
+        };
+        TokenAnalyzer.prototype.tryAnalyzeToken = function (token) {
+            try {
+                this.doAnalyzeToken(token);
+            }
+            catch (error) {
+                this.handleError(error);
+            }
+        };
+        TokenAnalyzer.prototype.handleError = function (error) {
+            throw error.withStack(this.stack);
+        };
+        TokenAnalyzer.prototype.doAnalyzeToken = function (token) {
+            this.analyzeToken(token);
+            this.addStack(token);
         };
         TokenAnalyzer.prototype.analyzeToken = function (token) {
+            var lastToken = this.popStack();
             if (TokenHelper.isBracket(token)) {
                 this.analyzeBracketToken(token);
                 return;
@@ -654,6 +705,9 @@
                 this.analyzeOperatorToken(token);
                 return;
             }
+            var error = TokenValidator.validateValueToken(token, lastToken);
+            if (error)
+                throw error;
             this.currentTree.insertNode(token);
         };
         TokenAnalyzer.prototype.analyzeBracketToken = function (token) {
@@ -673,12 +727,12 @@
         TokenAnalyzer.prototype.analyzeOperatorToken = function (token) {
             var lastToken = this.popStack();
             if (TokenHelper.isOperator(lastToken))
-                throw new ParserError(TokenError.invalidTwoOperator, lastToken, token).withStack(this.stack);
+                throw new ParserError(TokenError.invalidTwoOperator, lastToken, token);
             if (!this.currentTree.value)
                 this.currentTree.value = token;
             else {
                 if (!TokenHelper.isBracket(this.currentTree.value) && !this.currentTree.rightNode)
-                    throw new ParserError(TokenError.invalidTwoOperator, lastToken, token).withStack(this.stack);
+                    throw new ParserError(TokenError.invalidTwoOperator, lastToken, token);
                 this.currentTree = this.currentTree.insertNode(token);
                 this.ast = this.ast.findRoot();
             }

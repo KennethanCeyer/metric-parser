@@ -71,31 +71,46 @@ export class AbstractSyntaxTree {
     }
 
     public findRoot(): AbstractSyntaxTree {
-        if (!this._parent)
+        if (this.isRoot())
             return this;
 
         return this._parent.findRoot();
     }
 
+    public isRoot(): boolean {
+        return !this._parent;
+    }
+
+    public hasOpenBracket(): boolean {
+        if (TokenHelper.isBracketOpen(this.value))
+            return true;
+
+        const leftNodeHasOpenBracket = this.leftNode ? this.leftNode.hasOpenBracket() : false;
+        const rightNodeHasOpenBracket = this.rightNode ? this.rightNode.hasOpenBracket() : false;
+
+        return leftNodeHasOpenBracket || rightNodeHasOpenBracket;
+    }
+
     private findOpenedBracket(): AbstractSyntaxTree {
+        if (this.isRoot())
+            return undefined;
+
         if (TokenHelper.isBracketOpen(this._value))
             return this;
-
-        if (!this._parent)
-            return undefined;
 
         return this._parent.findOpenedBracket();
     }
 
-    public removeTopBracket(): AbstractSyntaxTree {
+    public removeRootBracket(): AbstractSyntaxTree {
         const rootNode = this.findRoot();
 
-        if (TokenHelper.isBracketOpen(rootNode.value)) {
-            rootNode.leftNode.removeParent();
-            return rootNode.leftNode;
-        }
 
-        return undefined;
+        if (TokenHelper.isBracketOpen(rootNode.value))
+            rootNode.leftNode.removeParent();
+
+        return this === rootNode
+            ? rootNode.leftNode
+            : this;
     }
 
     public removeClosestBracket(): AbstractSyntaxTree {

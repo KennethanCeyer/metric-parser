@@ -38,7 +38,11 @@ export class TokenAnalyzer extends TokenEnumerable {
         while (token = this.next()) {
             this.tryAnalyzeToken(token);
         }
-        this.ast = this.ast.removeClosestBracket().findRoot();
+        this.finalizeStack();
+        this.ast = this.ast.removeRootBracket().findRoot();
+
+        if (this.ast.hasOpenBracket())
+            this.handleError(new ParserError(TokenError.missingCloseBracket));
     }
 
     private tryAnalyzeToken(token: Token.Token) {

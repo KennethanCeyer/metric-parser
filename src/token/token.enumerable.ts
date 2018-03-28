@@ -35,6 +35,7 @@ export class TokenEnumerable {
             line: 0
         };
     }
+
     private calculateStack(token: Token.Token) {
         if (TokenHelper.isLineEscape(token)) {
             this.stack = {
@@ -48,6 +49,10 @@ export class TokenEnumerable {
             line: this._nextStack.line,
             col: this._nextStack.col + 1
         };
+    }
+
+    protected finalizeStack() {
+        this.stack = undefined;
     }
 
     protected addStack(token: Token.Token) {

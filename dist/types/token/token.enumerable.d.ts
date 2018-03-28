@@ -11,6 +11,7 @@ export declare class TokenEnumerable {
     constructor(token: Token.Token[]);
     protected rewind(): void;
     private calculateStack(token);
+    protected finalizeStack(): void;
     protected addStack(token: Token.Token): void;
     protected popStack(): Token.Token | undefined;
     next(): any;

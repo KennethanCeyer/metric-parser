@@ -314,25 +314,17 @@ describe('case: parse with invalid data', () => {
         const data = ['2', '+', '3', ')', ')'];
         const tokenAnalyzer = new TokenAnalyzer(data);
 
-        try {
-            tokenAnalyzer.parse();
-        } catch (error) {
-            console.log(error.parserStack);
-        }
-
         expect(() => tokenAnalyzer.parse()).to
             .throw('missing open bracket, you cannot close the bracket')
             .and.satisfy((error: ParserError) => error.parserStack.col === 3 && error.parserStack.line === 0);
     });
 
-    /*
     it('should throws an error with missingOperator ', () => {
         const data = ['(', '(', '1', '+', '2'];
         const tokenAnalyzer = new TokenAnalyzer(data);
 
         expect(() => tokenAnalyzer.parse()).to
-            .throw('the operator is missing after `)`')
+            .throw('missing close bracket, the bracket must be closed')
             .and.satisfy((error: ParserError) => error.parserStack.col === 5 && error.parserStack.line === 0);
     });
-    */
 });

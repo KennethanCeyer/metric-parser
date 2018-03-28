@@ -14,7 +14,10 @@ export declare class AbstractSyntaxTree {
     rightNode: AbstractSyntaxTree;
     constructor(value?: Token.Token);
     findRoot(): AbstractSyntaxTree;
+    isRoot(): boolean;
+    hasOpenBracket(): boolean;
     private findOpenedBracket();
+    removeRootBracket(): AbstractSyntaxTree;
     removeClosestBracket(): AbstractSyntaxTree;
     private climbUp(token);
     private isClimbTop(token);
