@@ -1,20 +1,9 @@
 import { Token } from '../token/token';
-export declare class AbstractSyntaxTreeBase {
-    private _value;
-    private _leftNode;
-    private _rightNode;
-    private _parent;
-    private _type;
-    private _subType;
-    value: Token.Token;
-    readonly type: Token.Type;
-    subType: Token.SubType;
-    parent: this;
-    leftNode: this;
-    rightNode: this;
-    constructor(value?: Token.Token);
+import { AbstractSyntaxTreeNode } from './ast.node';
+export declare abstract class AbstractSyntaxTreeBase extends AbstractSyntaxTreeNode {
     findRoot(): this;
     isRoot(): boolean;
+    isValid(): boolean;
     hasOpenBracket(): boolean;
     private findOpenedBracket();
     removeRootBracket(): this;

@@ -4,7 +4,7 @@ import { BuilderError } from './builder.error';
 import { TreeBuilder } from '../tree/simple.tree/builder';
 
 describe('test method: Builder.parse()', () => {
-    it('should throws an error result with undefined data', () => {
+    it('should throw an error result with undefined data', () => {
         const builder = new Builder(new TreeBuilder());
 
         expect(builder.build(undefined))

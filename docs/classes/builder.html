@@ -909,34 +909,37 @@ img { max-width: 100%; }
 </header>
 <nav class="tsd-navigation secondary">
 	<ul>
-		<li class="current tsd-kind-class">
+		<li class="current tsd-kind-class tsd-has-type-parameter">
 			<a href="builder.html" class="tsd-kind-icon">Builder</a>
 			<ul>
-				<li class=" tsd-kind-constructor tsd-parent-kind-class">
+				<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
 					<a href="builder.html#constructor" class="tsd-kind-icon">constructor</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a href="builder.html#data" class="tsd-kind-icon">data</a>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a href="builder.html#treebuilder" class="tsd-kind-icon">tree<wbr>Builder</a>
 				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class">
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a href="builder.html#build" class="tsd-kind-icon">build</a>
 				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a href="builder.html#handleerror" class="tsd-kind-icon">handle<wbr>Error</a>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+					<a href="builder.html#dobuild" class="tsd-kind-icon">do<wbr>Build</a>
 				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected">
-					<a href="builder.html#makedata" class="tsd-kind-icon">make<wbr>Data</a>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+					<a href="builder.html#doparse" class="tsd-kind-icon">do<wbr>Parse</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+					<a href="builder.html#dounparse" class="tsd-kind-icon">do<wbr>Unparse</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-					<a href="builder.html#makeerror" class="tsd-kind-icon">make<wbr>Error</a>
+					<a href="builder.html#handleerror" class="tsd-kind-icon">handle<wbr>Error</a>
 				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a href="builder.html#parse" class="tsd-kind-icon">parse</a>
 				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a href="builder.html#trybuild" class="tsd-kind-icon">try<wbr>Build</a>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected">
+					<a href="builder.html#try" class="tsd-kind-icon">try</a>
 				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a href="builder.html#unparse" class="tsd-kind-icon">unparse</a>
 				</li>
 			</ul>
@@ -945,11 +948,19 @@ img { max-width: 100%; }
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
+		<section class="tsd-panel tsd-type-parameters">
+			<h3>Type parameters</h3>
+			<ul class="tsd-type-parameters">
+				<li>
+					<h4>T</h4>
+				</li>
+			</ul>
+		</section>
 		<section class="tsd-panel tsd-hierarchy">
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<a href="buildermessage.html" class="tsd-signature-type">BuilderMessage</a>
+					<a href="builderbase.html" class="tsd-signature-type">BuilderBase</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>
 					<ul class="tsd-hierarchy">
 						<li>
 							<span class="target">Builder</span>
@@ -958,56 +969,64 @@ img { max-width: 100%; }
 				</li>
 			</ul>
 		</section>
+		<section class="tsd-panel">
+			<h3>Implements</h3>
+			<ul class="tsd-hierarchy">
+				<li><a href="../interfaces/builderinterface.html" class="tsd-signature-type">BuilderInterface</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+			</ul>
+		</section>
 		<section class="tsd-panel-group tsd-index-group">
 			<h2>Index</h2>
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
-					<section class="tsd-index-section ">
+					<section class="tsd-index-section tsd-is-inherited">
 						<h3>Constructors</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="builder.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><a href="builder.html#constructor" class="tsd-kind-icon">constructor</a></li>
 						</ul>
 					</section>
-					<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+					<section class="tsd-index-section tsd-is-inherited tsd-is-private-protected">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="builder.html#data" class="tsd-kind-icon">data</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="builder.html#treebuilder" class="tsd-kind-icon">tree<wbr>Builder</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section ">
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-method tsd-parent-kind-class"><a href="builder.html#build" class="tsd-kind-icon">build</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="builder.html#handleerror" class="tsd-kind-icon">handle<wbr>Error</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected"><a href="builder.html#makedata" class="tsd-kind-icon">make<wbr>Data</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="builder.html#makeerror" class="tsd-kind-icon">make<wbr>Error</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="builder.html#parse" class="tsd-kind-icon">parse</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="builder.html#trybuild" class="tsd-kind-icon">try<wbr>Build</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="builder.html#unparse" class="tsd-kind-icon">unparse</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="builder.html#build" class="tsd-kind-icon">build</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected"><a href="builder.html#dobuild" class="tsd-kind-icon">do<wbr>Build</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected"><a href="builder.html#doparse" class="tsd-kind-icon">do<wbr>Parse</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected"><a href="builder.html#dounparse" class="tsd-kind-icon">do<wbr>Unparse</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="builder.html#handleerror" class="tsd-kind-icon">handle<wbr>Error</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="builder.html#parse" class="tsd-kind-icon">parse</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected"><a href="builder.html#try" class="tsd-kind-icon">try</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="builder.html#unparse" class="tsd-kind-icon">unparse</a></li>
 						</ul>
 					</section>
 				</div>
 			</section>
 		</section>
-		<section class="tsd-panel-group tsd-member-group ">
+		<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
 			<h2>Constructors</h2>
-			<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+			<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
 				<a name="constructor" class="tsd-anchor"></a>
 				<h3>constructor</h3>
-				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">new <wbr>Builder<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><a href="../globals.html#convertdata" class="tsd-signature-type">ConvertData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="builder.html" class="tsd-signature-type">Builder</a></li>
+				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">new <wbr>Builder<span class="tsd-signature-symbol">(</span>treeBuilder<span class="tsd-signature-symbol">: </span><a href="treebuilderbase.html" class="tsd-signature-type">TreeBuilderBase</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="builder.html" class="tsd-signature-type">Builder</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
+							<p>Inherited from <a href="builderbase.html">BuilderBase</a>.<a href="builderbase.html#constructor">constructor</a></p>
 							<ul>
-								<li>Defined in builder.ts:12</li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/builder/builder.base.ts#L9">builder/builder.base.ts:9</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>data: <a href="../globals.html#convertdata" class="tsd-signature-type">ConvertData</a></h5>
+								<h5>treeBuilder: <a href="treebuilderbase.html" class="tsd-signature-type">TreeBuilderBase</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <a href="builder.html" class="tsd-signature-type">Builder</a></h4>
@@ -1015,129 +1034,89 @@ img { max-width: 100%; }
 				</ul>
 			</section>
 		</section>
-		<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+		<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-private-protected">
 			<h2>Properties</h2>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-				<a name="data" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> data</h3>
-				<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <a href="../globals.html#convertdata" class="tsd-signature-type">ConvertData</a></div>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+				<a name="treebuilder" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> tree<wbr>Builder</h3>
+				<div class="tsd-signature tsd-kind-icon">tree<wbr>Builder<span class="tsd-signature-symbol">:</span> <a href="treebuilderbase.html" class="tsd-signature-type">TreeBuilderBase</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
 				<aside class="tsd-sources">
+					<p>Inherited from <a href="builderbase.html">BuilderBase</a>.<a href="builderbase.html#treebuilder">treeBuilder</a></p>
 					<ul>
-						<li>Defined in builder.ts:13</li>
+						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/builder/builder.base.ts#L10">builder/builder.base.ts:10</a></li>
 					</ul>
 				</aside>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Methods</h2>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 				<a name="build" class="tsd-anchor"></a>
 				<h3>build</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">build<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/parsergeneralresult.html" class="tsd-signature-type">ParserGeneralResult</a></li>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">build<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><a href="../globals.html#parsedata" class="tsd-signature-type">ParseData</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#parsergeneralresult" class="tsd-signature-type">ParserGeneralResult</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/parserresult.html" class="tsd-signature-type">ParserResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
+							<p>Implementation of <a href="../interfaces/builderinterface.html">BuilderInterface</a>.<a href="../interfaces/builderinterface.html#build">build</a></p>
+							<p>Inherited from <a href="builderbase.html">BuilderBase</a>.<a href="builderbase.html#build">build</a></p>
 							<ul>
-								<li>Defined in builder.ts:17</li>
-							</ul>
-						</aside>
-						<h4 class="tsd-returns-title">Returns <a href="../interfaces/parsergeneralresult.html" class="tsd-signature-type">ParserGeneralResult</a></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-				<a name="handleerror" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> handle<wbr>Error</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<li class="tsd-signature tsd-kind-icon">handle<wbr>Error<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><a href="parsererror.html" class="tsd-signature-type">ParserError</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/parserresult.html" class="tsd-signature-type">ParserResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in builder.ts:50</li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/builder/builder.base.ts#L13">builder/builder.base.ts:13</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>error: <a href="parsererror.html" class="tsd-signature-type">ParserError</a></h5>
+								<h5>data: <a href="../globals.html#parsedata" class="tsd-signature-type">ParseData</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span></h5>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="../interfaces/parserresult.html" class="tsd-signature-type">ParserResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<h4 class="tsd-returns-title">Returns <a href="../globals.html#parsergeneralresult" class="tsd-signature-type">ParserGeneralResult</a>
+							<span class="tsd-signature-symbol"> | </span>
+							<a href="../interfaces/parserresult.html" class="tsd-signature-type">ParserResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>
+						</h4>
 					</li>
 				</ul>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected">
-				<a name="makedata" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagProtected">Protected</span> make<wbr>Data</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected">
-					<li class="tsd-signature tsd-kind-icon">make<wbr>Data&lt;T&gt;<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, code<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/parserresult.html" class="tsd-signature-type">ParserResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+				<a name="dobuild" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> do<wbr>Build</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+					<li class="tsd-signature tsd-kind-icon">do<wbr>Build<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><a href="../globals.html#parsedata" class="tsd-signature-type">ParseData</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/parserresult.html" class="tsd-signature-type">ParserResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="../globals.html#parsergeneralresult" class="tsd-signature-type">ParserGeneralResult</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
-							<p>Inherited from <a href="buildermessage.html">BuilderMessage</a>.<a href="buildermessage.html#makedata">makeData</a></p>
+							<p>Overrides <a href="builderbase.html">BuilderBase</a>.<a href="builderbase.html#dobuild">doBuild</a></p>
 							<ul>
-								<li>Defined in packer.ts:5</li>
-							</ul>
-						</aside>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>T</h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>data: <span class="tsd-signature-type">T</span></h5>
-							</li>
-							<li>
-								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> code: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;success</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="../interfaces/parserresult.html" class="tsd-signature-type">ParserResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-				<a name="makeerror" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagProtected">Protected</span> make<wbr>Error</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-					<li class="tsd-signature tsd-kind-icon">make<wbr>Error<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><a href="parsererror.html" class="tsd-signature-type">ParserError</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/parserresult.html" class="tsd-signature-type">ParserResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<p>Inherited from <a href="buildermessage.html">BuilderMessage</a>.<a href="buildermessage.html#makeerror">makeError</a></p>
-							<ul>
-								<li>Defined in packer.ts:9</li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/builder/builder.ts#L11">builder/builder.ts:11</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>error: <a href="parsererror.html" class="tsd-signature-type">ParserError</a></h5>
+								<h5>data: <a href="../globals.html#parsedata" class="tsd-signature-type">ParseData</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span></h5>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="../interfaces/parserresult.html" class="tsd-signature-type">ParserResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<h4 class="tsd-returns-title">Returns <a href="../interfaces/parserresult.html" class="tsd-signature-type">ParserResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>
+							<span class="tsd-signature-symbol"> | </span>
+							<a href="../globals.html#parsergeneralresult" class="tsd-signature-type">ParserGeneralResult</a>
+						</h4>
 					</li>
 				</ul>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-				<a name="parse" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> parse</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<li class="tsd-signature tsd-kind-icon">parse<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><a href="../globals.html#parsedata" class="tsd-signature-type">ParseData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/parserresult.html" class="tsd-signature-type">ParserResult</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/tree.html" class="tsd-signature-type">Tree</a><span class="tsd-signature-symbol">&gt;</span></li>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+				<a name="doparse" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> do<wbr>Parse</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+					<li class="tsd-signature tsd-kind-icon">do<wbr>Parse<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><a href="../globals.html#parsedata" class="tsd-signature-type">ParseData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/parserresult.html" class="tsd-signature-type">ParserResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
+							<p>Overrides <a href="builderbase.html">BuilderBase</a>.<a href="builderbase.html#doparse">doParse</a></p>
 							<ul>
-								<li>Defined in builder.ts:25</li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/builder/builder.ts#L22">builder/builder.ts:22</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1146,47 +1125,153 @@ img { max-width: 100%; }
 								<h5>data: <a href="../globals.html#parsedata" class="tsd-signature-type">ParseData</a></h5>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="../interfaces/parserresult.html" class="tsd-signature-type">ParserResult</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/tree.html" class="tsd-signature-type">Tree</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						<h4 class="tsd-returns-title">Returns <a href="../interfaces/parserresult.html" class="tsd-signature-type">ParserResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 					</li>
 				</ul>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-				<a name="trybuild" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> try<wbr>Build</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<li class="tsd-signature tsd-kind-icon">try<wbr>Build<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/parsergeneralresult.html" class="tsd-signature-type">ParserGeneralResult</a></li>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+				<a name="dounparse" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> do<wbr>Unparse</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+					<li class="tsd-signature tsd-kind-icon">do<wbr>Unparse<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#parsergeneralresult" class="tsd-signature-type">ParserGeneralResult</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
+							<p>Overrides <a href="builderbase.html">BuilderBase</a>.<a href="builderbase.html#dounparse">doUnparse</a></p>
 							<ul>
-								<li>Defined in builder.ts:38</li>
-							</ul>
-						</aside>
-						<h4 class="tsd-returns-title">Returns <a href="../interfaces/parsergeneralresult.html" class="tsd-signature-type">ParserGeneralResult</a></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-				<a name="unparse" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> unparse</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<li class="tsd-signature tsd-kind-icon">unparse<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><a href="../interfaces/tree.html" class="tsd-signature-type">Tree</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/parsergeneralresult.html" class="tsd-signature-type">ParserGeneralResult</a></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in builder.ts:32</li>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/builder/builder.ts#L28">builder/builder.ts:28</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>data: <a href="../interfaces/tree.html" class="tsd-signature-type">Tree</a></h5>
+								<h5>data: <span class="tsd-signature-type">T</span></h5>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="../interfaces/parsergeneralresult.html" class="tsd-signature-type">ParserGeneralResult</a></h4>
+						<h4 class="tsd-returns-title">Returns <a href="../globals.html#parsergeneralresult" class="tsd-signature-type">ParserGeneralResult</a></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+				<a name="handleerror" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> handle<wbr>Error</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<li class="tsd-signature tsd-kind-icon">handle<wbr>Error<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><a href="parsererror.html" class="tsd-signature-type">ParserError</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/parserresult.html" class="tsd-signature-type">ParserResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="builderbase.html">BuilderBase</a>.<a href="builderbase.html#handleerror">handleError</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/builder/builder.base.ts#L25">builder/builder.base.ts:25</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>error: <a href="parsererror.html" class="tsd-signature-type">ParserError</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="../interfaces/parserresult.html" class="tsd-signature-type">ParserResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<a name="parse" class="tsd-anchor"></a>
+				<h3>parse</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">parse<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><a href="../globals.html#parsedata" class="tsd-signature-type">ParseData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/parserresult.html" class="tsd-signature-type">ParserResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Implementation of <a href="../interfaces/builderinterface.html">BuilderInterface</a>.<a href="../interfaces/builderinterface.html#parse">parse</a></p>
+							<p>Inherited from <a href="builderbase.html">BuilderBase</a>.<a href="builderbase.html#parse">parse</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/builder/builder.base.ts#L17">builder/builder.base.ts:17</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>data: <a href="../globals.html#parsedata" class="tsd-signature-type">ParseData</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="../interfaces/parserresult.html" class="tsd-signature-type">ParserResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected">
+				<a name="try" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> try</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected">
+					<li class="tsd-signature tsd-kind-icon">try&lt;K&gt;<span class="tsd-signature-symbol">(</span>tryFunc<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="builderbase.html">BuilderBase</a>.<a href="builderbase.html#try">try</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/builder/builder.base.ts#L29">builder/builder.base.ts:29</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-type-parameters-title">Type parameters</h4>
+						<ul class="tsd-type-parameters">
+							<li>
+								<h4>K<span class="tsd-signature-symbol">: </span><a href="../globals.html#parsergeneralresult" class="tsd-signature-type">ParserGeneralResult</a></h4>
+							</li>
+						</ul>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>tryFunc: <span class="tsd-signature-type">function</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter-siganture">
+										<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span></li>
+										</ul>
+										<ul class="tsd-descriptions">
+											<li class="tsd-description">
+												<h4 class="tsd-parameters-title">Parameters</h4>
+												<ul class="tsd-parameters">
+													<li>
+														<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+													</li>
+												</ul>
+												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<a name="unparse" class="tsd-anchor"></a>
+				<h3>unparse</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">unparse<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#parsergeneralresult" class="tsd-signature-type">ParserGeneralResult</a></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Implementation of <a href="../interfaces/builderinterface.html">BuilderInterface</a>.<a href="../interfaces/builderinterface.html#unparse">unparse</a></p>
+							<p>Inherited from <a href="builderbase.html">BuilderBase</a>.<a href="builderbase.html#unparse">unparse</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/builder/builder.base.ts#L21">builder/builder.base.ts:21</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>data: <span class="tsd-signature-type">T</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="../globals.html#parsergeneralresult" class="tsd-signature-type">ParserGeneralResult</a></h4>
 					</li>
 				</ul>
 			</section>

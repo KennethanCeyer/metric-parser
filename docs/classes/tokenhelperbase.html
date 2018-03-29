@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BuilderError | metric-parser</title>
+	<title>TokenHelperBase | metric-parser</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -909,79 +909,618 @@ img { max-width: 100%; }
 </header>
 <nav class="tsd-navigation secondary">
 	<ul>
-		<li class=" tsd-kind-variable tsd-parent-kind-module">
-			<a href="buildererror.html#id" class="tsd-kind-icon">id</a>
-		</li>
-		<li class=" tsd-kind-object-literal tsd-parent-kind-module">
-			<a href="buildererror.html#emptydata" class="tsd-kind-icon">empty<wbr>Data</a>
+		<li class="current tsd-kind-class">
+			<a href="tokenhelperbase.html" class="tsd-kind-icon">Token<wbr>Helper<wbr>Base</a>
+			<ul>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="tokenhelperbase.html#isaddition" class="tsd-kind-icon">is<wbr>Addition</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+					<a href="tokenhelperbase.html#isarray" class="tsd-kind-icon">is<wbr>Array</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="tokenhelperbase.html#isbracket" class="tsd-kind-icon">is<wbr>Bracket</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="tokenhelperbase.html#isbracketclose" class="tsd-kind-icon">is<wbr>Bracket<wbr>Close</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="tokenhelperbase.html#isbracketopen" class="tsd-kind-icon">is<wbr>Bracket<wbr>Open</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="tokenhelperbase.html#isdivision" class="tsd-kind-icon">is<wbr>Division</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="tokenhelperbase.html#isdot" class="tsd-kind-icon">is<wbr>Dot</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="tokenhelperbase.html#islineescape" class="tsd-kind-icon">is<wbr>Line<wbr>Escape</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="tokenhelperbase.html#ismod" class="tsd-kind-icon">is<wbr>Mod</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="tokenhelperbase.html#ismultiplication" class="tsd-kind-icon">is<wbr>Multiplication</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+					<a href="tokenhelperbase.html#isnumeric" class="tsd-kind-icon">is<wbr>Numeric</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+					<a href="tokenhelperbase.html#isobject" class="tsd-kind-icon">is<wbr>Object</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="tokenhelperbase.html#isoperator" class="tsd-kind-icon">is<wbr>Operator</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="tokenhelperbase.html#ispow" class="tsd-kind-icon">is<wbr>Pow</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+					<a href="tokenhelperbase.html#isstring" class="tsd-kind-icon">is<wbr>String</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="tokenhelperbase.html#issubtraction" class="tsd-kind-icon">is<wbr>Subtraction</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="tokenhelperbase.html#issymbol" class="tsd-kind-icon">is<wbr>Symbol</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="tokenhelperbase.html#istoken" class="tsd-kind-icon">is<wbr>Token</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="tokenhelperbase.html#isunkown" class="tsd-kind-icon">is<wbr>Unkown</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+					<a href="tokenhelperbase.html#isvalue" class="tsd-kind-icon">is<wbr>Value</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="tokenhelperbase.html#iswhitespace" class="tsd-kind-icon">is<wbr>White<wbr>Space</a>
+				</li>
+			</ul>
 		</li>
 	</ul>
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
+		<section class="tsd-panel tsd-hierarchy">
+			<h3>Hierarchy</h3>
+			<ul class="tsd-hierarchy">
+				<li>
+					<a href="tokentypehelper.html" class="tsd-signature-type">TokenTypeHelper</a>
+					<ul class="tsd-hierarchy">
+						<li>
+							<span class="target">TokenHelperBase</span>
+							<ul class="tsd-hierarchy">
+								<li>
+									<a href="tokenhelper.html" class="tsd-signature-type">TokenHelper</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
 		<section class="tsd-panel-group tsd-index-group">
 			<h2>Index</h2>
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
 					<section class="tsd-index-section ">
-						<h3>Variables</h3>
+						<h3>Methods</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-variable tsd-parent-kind-module"><a href="buildererror.html#id" class="tsd-kind-icon">id</a></li>
-						</ul>
-					</section>
-					<section class="tsd-index-section ">
-						<h3>Object literals</h3>
-						<ul class="tsd-index-list">
-							<li class="tsd-kind-object-literal tsd-parent-kind-module"><a href="buildererror.html#emptydata" class="tsd-kind-icon">empty<wbr>Data</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelperbase.html#isaddition" class="tsd-kind-icon">is<wbr>Addition</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="tokenhelperbase.html#isarray" class="tsd-kind-icon">is<wbr>Array</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelperbase.html#isbracket" class="tsd-kind-icon">is<wbr>Bracket</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelperbase.html#isbracketclose" class="tsd-kind-icon">is<wbr>Bracket<wbr>Close</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelperbase.html#isbracketopen" class="tsd-kind-icon">is<wbr>Bracket<wbr>Open</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelperbase.html#isdivision" class="tsd-kind-icon">is<wbr>Division</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelperbase.html#isdot" class="tsd-kind-icon">is<wbr>Dot</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelperbase.html#islineescape" class="tsd-kind-icon">is<wbr>Line<wbr>Escape</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelperbase.html#ismod" class="tsd-kind-icon">is<wbr>Mod</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelperbase.html#ismultiplication" class="tsd-kind-icon">is<wbr>Multiplication</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="tokenhelperbase.html#isnumeric" class="tsd-kind-icon">is<wbr>Numeric</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="tokenhelperbase.html#isobject" class="tsd-kind-icon">is<wbr>Object</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelperbase.html#isoperator" class="tsd-kind-icon">is<wbr>Operator</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelperbase.html#ispow" class="tsd-kind-icon">is<wbr>Pow</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="tokenhelperbase.html#isstring" class="tsd-kind-icon">is<wbr>String</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelperbase.html#issubtraction" class="tsd-kind-icon">is<wbr>Subtraction</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelperbase.html#issymbol" class="tsd-kind-icon">is<wbr>Symbol</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelperbase.html#istoken" class="tsd-kind-icon">is<wbr>Token</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelperbase.html#isunkown" class="tsd-kind-icon">is<wbr>Unkown</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="tokenhelperbase.html#isvalue" class="tsd-kind-icon">is<wbr>Value</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="tokenhelperbase.html#iswhitespace" class="tsd-kind-icon">is<wbr>White<wbr>Space</a></li>
 						</ul>
 					</section>
 				</div>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
-			<h2>Variables</h2>
-			<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
-				<a name="id" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagConst">Const</span> id</h3>
-				<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">768</span><span class="tsd-signature-symbol"> =&nbsp;768</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/builder/builder.error.ts#L5">builder/builder.error.ts:5</a></li>
-					</ul>
-				</aside>
+			<h2>Methods</h2>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="isaddition" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Addition</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Addition<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/token/token.helper.base.ts#L30">token/token.helper.base.ts:30</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
 			</section>
-		</section>
-		<section class="tsd-panel-group tsd-member-group ">
-			<h2>Object literals</h2>
-			<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-module">
-				<a name="emptydata" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagConst">Const</span> empty<wbr>Data</h3>
-				<div class="tsd-signature tsd-kind-icon">empty<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/builder/builder.error.ts#L6">builder/builder.error.ts:6</a></li>
-					</ul>
-				</aside>
-				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-					<a name="emptydata.code" class="tsd-anchor"></a>
-					<h3>code</h3>
-					<div class="tsd-signature tsd-kind-icon">code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;768</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/builder/builder.error.ts#L6">builder/builder.error.ts:6</a></li>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+				<a name="isarray" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Array</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Array<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="tokentypehelper.html">TokenTypeHelper</a>.<a href="tokentypehelper.html#isarray">isArray</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/token/token.type.helper.ts#L8">token/token.type.helper.ts:8</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
 						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-					<a name="emptydata.text" class="tsd-anchor"></a>
-					<h3>text</h3>
-					<div class="tsd-signature tsd-kind-icon">text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;data is empty&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/builder/builder.error.ts#L6">builder/builder.error.ts:6</a></li>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="isbracket" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Bracket</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Bracket<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/token/token.helper.base.ts#L54">token/token.helper.base.ts:54</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
 						</ul>
-					</aside>
-				</section>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="isbracketclose" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Bracket<wbr>Close</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Bracket<wbr>Close<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/token/token.helper.base.ts#L62">token/token.helper.base.ts:62</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="isbracketopen" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Bracket<wbr>Open</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Bracket<wbr>Open<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/token/token.helper.base.ts#L58">token/token.helper.base.ts:58</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="isdivision" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Division</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Division<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/token/token.helper.base.ts#L42">token/token.helper.base.ts:42</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="isdot" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Dot</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Dot<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/token/token.helper.base.ts#L26">token/token.helper.base.ts:26</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="islineescape" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Line<wbr>Escape</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Line<wbr>Escape<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/token/token.helper.base.ts#L18">token/token.helper.base.ts:18</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="ismod" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Mod</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Mod<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/token/token.helper.base.ts#L46">token/token.helper.base.ts:46</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="ismultiplication" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Multiplication</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Multiplication<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/token/token.helper.base.ts#L38">token/token.helper.base.ts:38</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+				<a name="isnumeric" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Numeric</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Numeric<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="tokentypehelper.html">TokenTypeHelper</a>.<a href="tokentypehelper.html#isnumeric">isNumeric</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/token/token.type.helper.ts#L4">token/token.type.helper.ts:4</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>value: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+				<a name="isobject" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Object</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Object<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="tokentypehelper.html">TokenTypeHelper</a>.<a href="tokentypehelper.html#isobject">isObject</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/token/token.type.helper.ts#L16">token/token.type.helper.ts:16</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="isoperator" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Operator</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Operator<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/token/token.helper.base.ts#L70">token/token.helper.base.ts:70</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="ispow" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Pow</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Pow<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/token/token.helper.base.ts#L50">token/token.helper.base.ts:50</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+				<a name="isstring" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>String</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>String<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="tokentypehelper.html">TokenTypeHelper</a>.<a href="tokentypehelper.html#isstring">isString</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/token/token.type.helper.ts#L12">token/token.type.helper.ts:12</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="issubtraction" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Subtraction</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Subtraction<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/token/token.helper.base.ts#L34">token/token.helper.base.ts:34</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="issymbol" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Symbol</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Symbol<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/token/token.helper.base.ts#L66">token/token.helper.base.ts:66</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="istoken" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Token</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Token<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/token/token.helper.base.ts#L5">token/token.helper.base.ts:5</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="isunkown" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Unkown</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Unkown<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/token/token.helper.base.ts#L14">token/token.helper.base.ts:14</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+				<a name="isvalue" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Value</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Value<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="tokentypehelper.html">TokenTypeHelper</a>.<a href="tokentypehelper.html#isvalue">isValue</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/token/token.type.helper.ts#L20">token/token.type.helper.ts:20</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="iswhitespace" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>White<wbr>Space</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>White<wbr>Space<span class="tsd-signature-symbol">(</span>token<span class="tsd-signature-symbol">: </span><a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/KennethanCeyer/formula-parser/blob/024fb51/src/token/token.helper.base.ts#L22">token/token.helper.base.ts:22</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>token: <a href="../modules/token.html#token-1" class="tsd-signature-type">Token</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
 			</section>
 		</section>
 		<footer class="with-border-bottom">

@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { success } from './error';
 
 describe('integration: convert()', () => {
-    it ('should returns valid result', () => {
+    it ('should return valid result', () => {
         const parseResult = convert('1 + 2 * 3');
 
         expect(parseResult.code).to.equal(success);

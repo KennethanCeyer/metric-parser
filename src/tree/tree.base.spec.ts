@@ -9,7 +9,7 @@ class TreeBuilderTest extends TreeBuilderBase<any> {
 
 describe('test class: TreeBuilderBase', () => {
     describe('test method: TreeBuilderBase.makeTree()', () => {
-        it('should throws a methodNotImplemented error', () => {
+        it('should throw a methodNotImplemented error', () => {
             const ast = new AbstractSyntaxTree(Token.literal.Multiplication);
             ast.leftNode = new AbstractSyntaxTree('2');
             ast.rightNode = new AbstractSyntaxTree('3');
@@ -22,7 +22,7 @@ describe('test class: TreeBuilderBase', () => {
     });
 
     describe('test method: TreeBuilderBase.makeAst()', () => {
-        it('should throws a methodNotImplemented error', () => {
+        it('should throw a methodNotImplemented error', () => {
             const tree = {
                 value: '+',
                 leftNode: 1,

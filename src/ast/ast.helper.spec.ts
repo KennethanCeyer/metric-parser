@@ -3,7 +3,7 @@ import { AbstractSyntaxTreeHelper } from './ast.helper';
 import { expect } from 'chai';
 
 describe('test method: AbstractSyntaxTreeHelper.getNodeDisplay()', () => {
-    it('should returns valid string value', () => {
+    it('should return valid string value', () => {
         const ast = new AbstractSyntaxTree('+');
         ast.leftNode = new AbstractSyntaxTree(1);
         ast.rightNode = new AbstractSyntaxTree(2);

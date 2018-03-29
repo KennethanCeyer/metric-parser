@@ -63,7 +63,7 @@ describe('test method: SimpleTree.makeTree()', () => {
         expect(rightOperandOfRightNode.value.item).to.deep.equal(customInput2);
     });
 
-    it('should throws an emptyAst error with empty ast', () => {
+    it('should throw an emptyAst error with empty ast', () => {
         const treeBuilder = new TreeBuilder();
 
         expect(() => treeBuilder.makeTree(undefined))
@@ -71,7 +71,7 @@ describe('test method: SimpleTree.makeTree()', () => {
             .and.that.have.property('code', TreeError.emptyAst.code);
     });
 
-    it('should throws an invalidParserTree error with invalid ast', () => {
+    it('should throw an invalidParserTree error with invalid ast', () => {
         const ast = new AbstractSyntaxTree(Token.literal.Addition);
         const treeBuilder = new TreeBuilder();
         ast.leftNode = new AbstractSyntaxTree(1);
@@ -108,7 +108,7 @@ describe('test method: SimpleTree.makeAst()', () => {
         expect(ast.rightNode.value).to.equal(3);
     });
 
-    it('should throws an emptyTree error with empty tree', () => {
+    it('should throw an emptyTree error with empty tree', () => {
         const treeBuilder = new TreeBuilder();
 
         expect(() => treeBuilder.makeAst(undefined))

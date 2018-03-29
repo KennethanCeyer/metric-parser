@@ -87,76 +87,97 @@
         ];
     })(Token || (Token = {}));
 
-    var TokenHelper = /** @class */ (function () {
-        function TokenHelper() {
+    var TokenTypeHelper = /** @class */ (function () {
+        function TokenTypeHelper() {
         }
-        TokenHelper.isToken = function (token) {
-            return token && (TokenHelper.isNumeric(token) || TokenHelper.isSymbol(token) || TokenHelper.isObject(token));
-        };
-        TokenHelper.isUnkown = function (token) {
-            return token === undefined || token === null;
-        };
-        TokenHelper.isLineEscape = function (token) {
-            return token === '\n';
-        };
-        TokenHelper.isWhiteSpace = function (token) {
-            return Token.whiteSpace.includes(String(token));
-        };
-        TokenHelper.isNumeric = function (value) {
+        TokenTypeHelper.isNumeric = function (value) {
             return (/^[\+\-]?\d*\.?\d+(?:[Ee][\+\-]?\d+)?$/).test(String(value));
         };
-        TokenHelper.isArray = function (value) {
-            return Array.isArray(value);
+        TokenTypeHelper.isArray = function (token) {
+            return Array.isArray(token);
         };
-        TokenHelper.isString = function (value) {
-            return typeof value === 'string';
+        TokenTypeHelper.isString = function (token) {
+            return typeof token === 'string';
         };
-        TokenHelper.isObject = function (value) {
-            return typeof value === 'object';
+        TokenTypeHelper.isObject = function (token) {
+            return typeof token === 'object';
         };
-        TokenHelper.isValue = function (value) {
-            return TokenHelper.isObject(value) || TokenHelper.isNumeric(value);
+        TokenTypeHelper.isValue = function (token) {
+            return TokenTypeHelper.isObject(token) || TokenTypeHelper.isNumeric(token);
         };
-        TokenHelper.isDot = function (value) {
-            return value === Token.literal.Dot;
+        return TokenTypeHelper;
+    }());
+
+    var TokenHelperBase = /** @class */ (function (_super) {
+        __extends(TokenHelperBase, _super);
+        function TokenHelperBase() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        TokenHelperBase.isToken = function (token) {
+            var validators = [
+                TokenHelperBase.isNumeric,
+                TokenHelperBase.isSymbol,
+                TokenHelperBase.isObject
+            ];
+            return token && validators.some(function (validator) { return validator(token); });
         };
-        TokenHelper.isAddition = function (token) {
+        TokenHelperBase.isUnkown = function (token) {
+            return token === undefined || token === null;
+        };
+        TokenHelperBase.isLineEscape = function (token) {
+            return token === '\n';
+        };
+        TokenHelperBase.isWhiteSpace = function (token) {
+            return Token.whiteSpace.includes(String(token));
+        };
+        TokenHelperBase.isDot = function (token) {
+            return token === Token.literal.Dot;
+        };
+        TokenHelperBase.isAddition = function (token) {
             return Token.addition.includes(token);
         };
-        TokenHelper.isSubtraction = function (token) {
+        TokenHelperBase.isSubtraction = function (token) {
             return Token.subtraction.includes(token);
         };
-        TokenHelper.isMultiplication = function (token) {
+        TokenHelperBase.isMultiplication = function (token) {
             return Token.multiplication.includes(token);
         };
-        TokenHelper.isDivision = function (token) {
+        TokenHelperBase.isDivision = function (token) {
             return Token.division.includes(token);
         };
-        TokenHelper.isMod = function (token) {
+        TokenHelperBase.isMod = function (token) {
             return Token.mod.includes(token);
         };
-        TokenHelper.isPow = function (token) {
+        TokenHelperBase.isPow = function (token) {
             return Token.pow.includes(token);
         };
-        TokenHelper.isBracket = function (token) {
+        TokenHelperBase.isBracket = function (token) {
             return Token.bracket.includes(token);
         };
-        TokenHelper.isBracketOpen = function (token) {
+        TokenHelperBase.isBracketOpen = function (token) {
             return token === Token.bracketOpen;
         };
-        TokenHelper.isBracketClose = function (token) {
+        TokenHelperBase.isBracketClose = function (token) {
             return token === Token.bracketClose;
         };
-        TokenHelper.isSymbol = function (token) {
+        TokenHelperBase.isSymbol = function (token) {
             return Token.symbols.includes(String(token));
         };
-        TokenHelper.isOperator = function (token) {
+        TokenHelperBase.isOperator = function (token) {
             return Token.operators.includes(String(token));
         };
+        return TokenHelperBase;
+    }(TokenTypeHelper));
+
+    var TokenHelper = /** @class */ (function (_super) {
+        __extends(TokenHelper, _super);
+        function TokenHelper() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
         TokenHelper.isHigher = function (source, target) {
             return TokenHelper.getPrecedence(source) - TokenHelper.getPrecedence(target) > 0;
         };
-        TokenHelper.induceType = function (value) {
+        TokenHelper.induceType = function (token) {
             var typeInducers = [
                 { predicate: TokenHelper.isUnkown, type: Token.Type.Unknown },
                 { predicate: TokenHelper.isWhiteSpace, type: Token.Type.WhiteSpace },
@@ -165,7 +186,7 @@
                 { predicate: TokenHelper.isDot, type: Token.Type.Dot },
                 { predicate: TokenHelper.isValue, type: Token.Type.Value }
             ];
-            var extractedToken = typeInducers.find(function (inducer) { return inducer.predicate(value); });
+            var extractedToken = typeInducers.find(function (inducer) { return inducer.predicate(token); });
             return extractedToken
                 ? extractedToken.type
                 : Token.Type.Unknown;
@@ -179,7 +200,7 @@
             ].findIndex(function (predicate) { return predicate.some(function (func) { return func(token); }); });
         };
         return TokenHelper;
-    }());
+    }(TokenHelperBase));
 
     var BuilderHelper = /** @class */ (function () {
         function BuilderHelper() {
@@ -277,12 +298,12 @@
     })(exports.TokenError || (exports.TokenError = {}));
     /* tslint:enable:max-line-length */
 
-    var AbstractSyntaxTreeBase = /** @class */ (function () {
-        function AbstractSyntaxTreeBase(value) {
+    var AbstractSyntaxTreeNode = /** @class */ (function () {
+        function AbstractSyntaxTreeNode(value) {
             if (value)
                 this.value = value;
         }
-        Object.defineProperty(AbstractSyntaxTreeBase.prototype, "value", {
+        Object.defineProperty(AbstractSyntaxTreeNode.prototype, "value", {
             get: function () {
                 return this._value;
             },
@@ -295,14 +316,14 @@
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(AbstractSyntaxTreeBase.prototype, "type", {
+        Object.defineProperty(AbstractSyntaxTreeNode.prototype, "type", {
             get: function () {
                 return this._type;
             },
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(AbstractSyntaxTreeBase.prototype, "subType", {
+        Object.defineProperty(AbstractSyntaxTreeNode.prototype, "subType", {
             get: function () {
                 return this._subType;
             },
@@ -312,7 +333,7 @@
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(AbstractSyntaxTreeBase.prototype, "parent", {
+        Object.defineProperty(AbstractSyntaxTreeNode.prototype, "parent", {
             get: function () {
                 return this._parent;
             },
@@ -322,7 +343,7 @@
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(AbstractSyntaxTreeBase.prototype, "leftNode", {
+        Object.defineProperty(AbstractSyntaxTreeNode.prototype, "leftNode", {
             get: function () {
                 return this._leftNode;
             },
@@ -335,7 +356,7 @@
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(AbstractSyntaxTreeBase.prototype, "rightNode", {
+        Object.defineProperty(AbstractSyntaxTreeNode.prototype, "rightNode", {
             get: function () {
                 return this._rightNode;
             },
@@ -348,6 +369,14 @@
             enumerable: true,
             configurable: true
         });
+        return AbstractSyntaxTreeNode;
+    }());
+
+    var AbstractSyntaxTreeBase = /** @class */ (function (_super) {
+        __extends(AbstractSyntaxTreeBase, _super);
+        function AbstractSyntaxTreeBase() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
         AbstractSyntaxTreeBase.prototype.findRoot = function () {
             if (this.isRoot())
                 return this.value !== undefined || !this.leftNode
@@ -357,6 +386,9 @@
         };
         AbstractSyntaxTreeBase.prototype.isRoot = function () {
             return !this._parent;
+        };
+        AbstractSyntaxTreeBase.prototype.isValid = function () {
+            return this.value && (!this.leftNode && !this.rightNode) || (!!this.leftNode && !!this.rightNode);
         };
         AbstractSyntaxTreeBase.prototype.hasOpenBracket = function () {
             if (TokenHelper.isBracketOpen(this.value))
@@ -472,7 +504,7 @@
             this._parent = undefined;
         };
         return AbstractSyntaxTreeBase;
-    }());
+    }(AbstractSyntaxTreeNode));
 
     var AbstractSyntaxTree = /** @class */ (function (_super) {
         __extends(AbstractSyntaxTree, _super);
@@ -900,7 +932,10 @@
         TreeBuilder.prototype.makeAst = function (tree) {
             if (!tree)
                 throw new ParserError(exports.TreeError.emptyTree);
-            return this.makeAstNode(tree);
+            var ast = this.makeAstNode(tree);
+            if (!ast.isValid())
+                throw new ParserError(exports.TreeError.invalidParserTree);
+            return ast;
         };
         TreeBuilder.prototype.makeNode = function (node) {
             if (!node)
@@ -959,23 +994,29 @@
             return !!(tree.operator && tree.operand1 && tree.operand2) || operand.value !== undefined;
         };
         TreeBuilder.isValidOperand = function (operand) {
-            return operand && operand.value && operand.value.type && operand.value[operand.value.type];
+            return operand && operand.value && operand.value.type && operand.value[operand.value.type] !== undefined;
         };
         return TreeBuilder;
     }(TreeBuilderBase));
 
-    var _MODULE_VERSION_ = '0.0.4';
+    var _MODULE_VERSION_ = '0.0.5';
+    function getVersion() {
+        return _MODULE_VERSION_;
+    }
     function convert(data) {
         var builder = new Builder(new TreeBuilder());
         return builder.build(data);
     }
-    function getVersion() {
-        return _MODULE_VERSION_;
+    function valid(data) {
+        var builder = new Builder(new TreeBuilder());
+        return builder.build(data).code === success;
     }
 
-    exports.convert = convert;
     exports.getVersion = getVersion;
+    exports.convert = convert;
+    exports.valid = valid;
     exports.Builder = Builder;
+    exports.Parser = Parser;
     exports.AbstractSyntaxTree = AbstractSyntaxTree;
     exports.TokenAnalyzer = TokenAnalyzer;
     exports.TreeBuilder = TreeBuilder;

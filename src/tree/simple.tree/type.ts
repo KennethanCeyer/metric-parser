@@ -18,11 +18,6 @@ export interface ValueObject {
 
 export type Value  = ItemValue | UnitValue;
 
-export interface ItemValue {
-    table: string;
-    key: string;
-    name: string;
-    oper: string;
-}
+export type ItemValue = any;
 
 export type UnitValue = string | number;

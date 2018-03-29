@@ -285,7 +285,7 @@ describe('case: parse token with advanced feature', () => {
 });
 
 describe('case: parse with invalid data', () => {
-    it('should throws an invalidToken error with invalid operator', () => {
+    it('should throw an invalidToken error with invalid operator', () => {
         const data = ['1', '!', '2'];
         const tokenAnalyzer = new TokenAnalyzer(data);
         expect(() => tokenAnalyzer.parse())
@@ -294,7 +294,7 @@ describe('case: parse with invalid data', () => {
             .and.to.have.property('code', TokenError.invalidToken.code);
     });
 
-    it('should throws an invalidToken error with invalid number value', () => {
+    it('should throw an invalidToken error with invalid number value', () => {
         const data = ['1', '.', '2', '3', '.', '4'];
         const tokenAnalyzer = new TokenAnalyzer(data);
 
@@ -304,7 +304,7 @@ describe('case: parse with invalid data', () => {
             .and.to.have.property('code', TokenError.invalidToken.code);
     });
 
-    it('should throws an invalidTwoOperator error with duplicated operator expression', () => {
+    it('should throw an invalidTwoOperator error with duplicated operator expression', () => {
         const data = ['1', '+', '+', '4'];
         const tokenAnalyzer = new TokenAnalyzer(data);
         expect(() => tokenAnalyzer.parse())
@@ -313,7 +313,7 @@ describe('case: parse with invalid data', () => {
             .and.to.have.property('code', TokenError.invalidTwoOperator.code);
     });
 
-    it('should throws an missingOperator error', () => {
+    it('should throw an missingOperator error', () => {
         const data = ['(', '1', '+', '2', ')', '3'];
         const tokenAnalyzer = new TokenAnalyzer(data);
 
@@ -323,7 +323,7 @@ describe('case: parse with invalid data', () => {
             .and.to.have.property('code', TokenError.missingOperator.code);
     });
 
-    it('should throws an bracketMustBeOpened error', () => {
+    it('should throw an bracketMustBeOpened error', () => {
         const data = ['2', '+', '3', ')', ')'];
         const tokenAnalyzer = new TokenAnalyzer(data);
 
@@ -333,7 +333,7 @@ describe('case: parse with invalid data', () => {
             .and.to.have.property('code', TokenError.missingOpenBracket.code);
     });
 
-    it('should throws an bracketMustBeClosed error', () => {
+    it('should throw an bracketMustBeClosed error', () => {
         const data = ['(', '(', '1', '+', '2'];
         const tokenAnalyzer = new TokenAnalyzer(data);
 
@@ -343,7 +343,7 @@ describe('case: parse with invalid data', () => {
             .and.to.have.property('code', TokenError.missingCloseBracket.code);
     });
 
-    it('should throws an emptyToken error with empty value', () => {
+    it('should throw an emptyToken error with empty value', () => {
         const data = [];
         const tokenAnalyzer = new TokenAnalyzer(data);
 
@@ -353,7 +353,7 @@ describe('case: parse with invalid data', () => {
             .and.to.have.property('code', TokenError.emptyToken.code);
     });
 
-    it('should throws an emptyToken error with undefined value', () => {
+    it('should throw an emptyToken error with undefined value', () => {
         const tokenAnalyzer = new TokenAnalyzer(undefined);
 
         expect(() => tokenAnalyzer.parse())

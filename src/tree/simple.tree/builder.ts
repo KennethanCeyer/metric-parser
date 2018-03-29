@@ -15,14 +15,18 @@ export class TreeBuilder extends TreeBuilderBase<Tree> {
         if (!TreeBuilder.isValid(tree))
             throw new ParserError(TreeError.invalidParserTree);
 
-        return tree as Tree;
+        return <Tree>tree;
     }
 
     public makeAst(tree: Tree): AbstractSyntaxTree {
         if (!tree)
             throw new ParserError(TreeError.emptyTree);
 
-        return this.makeAstNode(tree);
+        const ast = this.makeAstNode(tree);
+        if (!ast.isValid())
+            throw new ParserError(TreeError.invalidParserTree);
+
+        return ast;
     }
 
     private makeNode(node: AbstractSyntaxTree): Node {
@@ -95,6 +99,6 @@ export class TreeBuilder extends TreeBuilderBase<Tree> {
     }
 
     private static isValidOperand(operand: Operand): boolean {
-        return operand && operand.value && operand.value.type && (<any>operand.value)[operand.value.type];
+        return operand && operand.value && operand.value.type && (<any>operand.value)[operand.value.type] !== undefined;
     }
 }

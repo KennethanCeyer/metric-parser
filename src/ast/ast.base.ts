@@ -18,6 +18,10 @@ export abstract class AbstractSyntaxTreeBase extends AbstractSyntaxTreeNode {
         return !this._parent;
     }
 
+    public isValid(): boolean {
+        return this.value && (!this.leftNode && !this.rightNode) || (!!this.leftNode && !!this.rightNode);
+    }
+
     public hasOpenBracket(): boolean {
         if (TokenHelper.isBracketOpen(this.value))
             return true;
