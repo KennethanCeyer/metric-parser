@@ -18,6 +18,6 @@ export abstract class TokenTypeHelper {
     }
 
     public static isValue(token: Token.Token): boolean {
-        return this.isObject(token) || this.isNumeric(token);
+        return TokenTypeHelper.isObject(token) || TokenTypeHelper.isNumeric(token);
     }
 }

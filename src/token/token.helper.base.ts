@@ -3,7 +3,12 @@ import { TokenTypeHelper } from './token.type.helper';
 
 export abstract class TokenHelperBase extends TokenTypeHelper {
     public static isToken(token: Token.Token): boolean {
-        return token && (this.isNumeric(token) || this.isSymbol(token) || this.isObject(token));
+        const validators = [
+            TokenHelperBase.isNumeric,
+            TokenHelperBase.isSymbol,
+            TokenHelperBase.isObject
+        ];
+        return token && validators.some(validator => validator(token));
     }
 
     public static isUnkown(token: Token.Token): boolean {
