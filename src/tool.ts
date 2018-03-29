@@ -1,18 +1,14 @@
 import { ParserGeneralResult } from './parser/parser.result';
 import { Builder } from './builder';
 import { Tree } from './tree/simple.tree/type';
+import { ParseData } from './parser/parser';
+import { TreeBuilder } from './tree/simple.tree/builder';
 
 const _MODULE_VERSION_ = '0.0.4';
 
-export type ConvertData = ParseData | UnparseData;
-
-export type ParseData = string | string[];
-
-export type UnparseData = Tree;
-
-export function convert(formula: ConvertData): ParserGeneralResult {
-    const builder = new Builder(formula);
-    return builder.build();
+export function convert(data: ParseData | Tree): ParserGeneralResult {
+    const builder = new Builder(new TreeBuilder());
+    return builder.build(data);
 }
 
 export function getVersion() {

@@ -17,12 +17,12 @@ export class TokenAnalyzer extends TokenEnumerable {
         super(token);
     }
 
-    public parse(): Tree {
+    public parse(): AbstractSyntaxTree {
         this.try(() => this.preValidate());
         this.initialize();
         this.try(() => this.makeAst());
         this.try(() => this.postValidate());
-        return this.try(() => this.makeTree());
+        return this.ast;
     }
 
     private initialize() {
@@ -68,7 +68,6 @@ export class TokenAnalyzer extends TokenEnumerable {
         if (error instanceof  ParserError)
             throw error.withStack(this.stack);
 
-        console.log(error);
         throw new ParserError(GeneralError.unknownError).withStack(this.stack);
     }
 
@@ -133,10 +132,5 @@ export class TokenAnalyzer extends TokenEnumerable {
     private insertImplicitMultiplication() {
         this.analyzeToken(Token.literal.Multiplication);
         this.addStack(Token.literal.Multiplication);
-    }
-
-    private makeTree(): Tree {
-        const treeParser = new TreeBuilder();
-        return treeParser.makeTree(this.ast);
     }
 }

@@ -1,12 +1,8 @@
-import { ParserGeneralResult } from './parser/parser.result';
-import { BuilderMessage } from './builder.message';
-import { ConvertData } from './metric.parser';
-export declare class Builder extends BuilderMessage {
-    private data;
-    constructor(data: ConvertData);
-    build(): ParserGeneralResult;
-    private parse(data);
-    private unparse(data);
-    private tryBuild();
-    private handleError(error);
+import { ParserGeneralResult, ParserResult } from './parser/parser.result';
+import { ParseData } from './parser/parser';
+import { BuilderBase } from './builder.base';
+export declare class Builder<T> extends BuilderBase<T> {
+    protected doBuild(data: ParseData | T): ParserResult<T> | ParserGeneralResult;
+    protected doParse(data: ParseData): ParserResult<T>;
+    protected doUnparse(data: T): ParserGeneralResult;
 }

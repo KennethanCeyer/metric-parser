@@ -1,4 +1,3 @@
-import { Tree } from '../tree/simple.tree/type';
 import { Token } from './token';
 import { AbstractSyntaxTree } from '../ast/ast';
 import { TokenEnumerable } from './token.enumerable';
@@ -6,7 +5,7 @@ export declare class TokenAnalyzer extends TokenEnumerable {
     private ast;
     private currentTree;
     constructor(token: Token.Token[]);
-    parse(): Tree;
+    parse(): AbstractSyntaxTree;
     private initialize();
     getAst(): AbstractSyntaxTree;
     private makeAst();
@@ -19,5 +18,4 @@ export declare class TokenAnalyzer extends TokenEnumerable {
     private analyzeBracketToken(token);
     private analyzeOperatorToken(token);
     private insertImplicitMultiplication();
-    private makeTree();
 }

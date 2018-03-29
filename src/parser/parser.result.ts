@@ -5,8 +5,7 @@ export interface ParserResult<T> {
     stack?: ParserStack;
 }
 
-export interface ParserGeneralResult extends ParserResult<any> {
-}
+export type ParserGeneralResult = ParserResult<any>;
 
 export interface ParserStack {
     line: number;

@@ -193,20 +193,6 @@ var BuilderHelper = /** @class */ (function () {
     return BuilderHelper;
 }());
 
-var ParserHelper = /** @class */ (function () {
-    function ParserHelper() {
-    }
-    ParserHelper.getArray = function (data) {
-        return typeof data === 'string'
-            ? this.stringToArray(data)
-            : data;
-    };
-    ParserHelper.stringToArray = function (value) {
-        return value.split('');
-    };
-    return ParserHelper;
-}());
-
 var StringHelper = /** @class */ (function () {
     function StringHelper() {
     }
@@ -251,6 +237,27 @@ var ParserError = /** @class */ (function (_super) {
     ParserError.defaultParserStack = { line: 0, col: 0 };
     return ParserError;
 }(Error));
+
+var Packer = /** @class */ (function () {
+    function Packer() {
+    }
+    Packer.makeData = function (data, code) {
+        if (code === void 0) { code = success; }
+        return { code: code, data: data };
+    };
+    Packer.makeError = function (error) {
+        return __assign({}, this.makeData(error.text, error.code), { stack: error.parserStack || __assign({}, ParserError.defaultParserStack) });
+    };
+    return Packer;
+}());
+
+/* tslint:disable:max-line-length */
+var BuilderError;
+(function (BuilderError) {
+    BuilderError.id = 0x0300;
+    BuilderError.emptyData = { code: 0x0300, text: 'data is empty' };
+})(BuilderError || (BuilderError = {}));
+/* tslint:enable:max-line-length */
 
 /* tslint:disable:max-line-length */
 var TokenError;
@@ -648,6 +655,210 @@ var TokenEnumerable = /** @class */ (function () {
     return TokenEnumerable;
 }());
 
+var GeneralError;
+(function (GeneralError) {
+    GeneralError.id = 0x1000;
+    GeneralError.unknownError = { code: 0x1000, text: 'unknown error is occurred' };
+    GeneralError.methodNotImplemented = { code: 0x1001, text: 'method not implemented' };
+})(GeneralError || (GeneralError = {}));
+
+var TokenAnalyzer = /** @class */ (function (_super) {
+    __extends(TokenAnalyzer, _super);
+    function TokenAnalyzer(token) {
+        return _super.call(this, token) || this;
+    }
+    TokenAnalyzer.prototype.parse = function () {
+        var _this = this;
+        this.try(function () { return _this.preValidate(); });
+        this.initialize();
+        this.try(function () { return _this.makeAst(); });
+        this.try(function () { return _this.postValidate(); });
+        return this.ast;
+    };
+    TokenAnalyzer.prototype.initialize = function () {
+        this.ast = new AbstractSyntaxTree(Token.literal.BracketOpen);
+        this.ast.leftNode = new AbstractSyntaxTree();
+        this.currentTree = this.ast.leftNode;
+        this.rewind();
+    };
+    TokenAnalyzer.prototype.getAst = function () {
+        return this.ast;
+    };
+    TokenAnalyzer.prototype.makeAst = function () {
+        var _this = this;
+        var token;
+        while (token = this.next()) {
+            this.try(function () { return _this.doAnalyzeToken(token); });
+        }
+        this.finalizeStack();
+        this.ast = this.ast.removeRootBracket().findRoot();
+    };
+    TokenAnalyzer.prototype.try = function (tryFunction) {
+        try {
+            return tryFunction();
+        }
+        catch (error) {
+            this.handleError(error);
+        }
+    };
+    TokenAnalyzer.prototype.preValidate = function () {
+        if (!this.token || !this.token.length)
+            throw new ParserError(TokenError.emptyToken);
+    };
+    TokenAnalyzer.prototype.postValidate = function () {
+        if (this.ast.hasOpenBracket())
+            throw new ParserError(TokenError.missingCloseBracket);
+    };
+    TokenAnalyzer.prototype.handleError = function (error) {
+        if (error instanceof ParserError)
+            throw error.withStack(this.stack);
+        throw new ParserError(GeneralError.unknownError).withStack(this.stack);
+    };
+    TokenAnalyzer.prototype.doAnalyzeToken = function (token) {
+        this.analyzeToken(token);
+        this.addStack(token);
+    };
+    TokenAnalyzer.prototype.analyzeToken = function (token) {
+        var lastToken = this.popStack();
+        if (TokenHelper.isBracket(token)) {
+            this.analyzeBracketToken(token);
+            return;
+        }
+        if (TokenHelper.isOperator(token)) {
+            this.analyzeOperatorToken(token);
+            return;
+        }
+        var error = TokenValidator.validateValueToken(token, lastToken);
+        if (error)
+            throw error;
+        this.currentTree.insertNode(token);
+    };
+    TokenAnalyzer.prototype.analyzeBracketToken = function (token) {
+        var lastToken = this.popStack();
+        if (TokenHelper.isBracketOpen(token)) {
+            if (lastToken && !TokenHelper.isSymbol(lastToken))
+                this.insertImplicitMultiplication();
+            this.currentTree = this.currentTree.insertNode(token);
+            return;
+        }
+        if (TokenHelper.isBracketClose(token)) {
+            this.currentTree = this.currentTree.removeClosestBracket();
+            this.ast = this.currentTree.findRoot();
+            return;
+        }
+    };
+    TokenAnalyzer.prototype.analyzeOperatorToken = function (token) {
+        var lastToken = this.popStack();
+        if (TokenHelper.isOperator(lastToken))
+            throw new ParserError(TokenError.invalidTwoOperator, lastToken, token);
+        if (!this.currentTree.value)
+            this.currentTree.value = token;
+        else {
+            if (!TokenHelper.isBracket(this.currentTree.value) && !this.currentTree.rightNode)
+                throw new ParserError(TokenError.invalidTwoOperator, lastToken, token);
+            this.currentTree = this.currentTree.insertNode(token);
+            this.ast = this.ast.findRoot();
+        }
+    };
+    TokenAnalyzer.prototype.insertImplicitMultiplication = function () {
+        this.analyzeToken(Token.literal.Multiplication);
+        this.addStack(Token.literal.Multiplication);
+    };
+    return TokenAnalyzer;
+}(TokenEnumerable));
+
+var ParserHelper = /** @class */ (function () {
+    function ParserHelper() {
+    }
+    ParserHelper.getArray = function (data) {
+        return typeof data === 'string'
+            ? this.stringToArray(data)
+            : data;
+    };
+    ParserHelper.stringToArray = function (value) {
+        return value.split('');
+    };
+    return ParserHelper;
+}());
+
+var Parser = /** @class */ (function () {
+    function Parser() {
+    }
+    Parser.parse = function (data) {
+        var analyzer = new TokenAnalyzer(ParserHelper.getArray(data));
+        return analyzer.parse();
+    };
+    Parser.unparse = function (ast) {
+        return ast.expression;
+    };
+    return Parser;
+}());
+
+var BuilderBase = /** @class */ (function () {
+    function BuilderBase(treeBuilder) {
+        this.treeBuilder = treeBuilder;
+    }
+    BuilderBase.prototype.build = function (data) {
+        var _this = this;
+        return this.try(function () { return _this.doBuild(data); });
+    };
+    BuilderBase.prototype.parse = function (data) {
+        var _this = this;
+        return this.try(function () { return _this.doParse(data); });
+    };
+    BuilderBase.prototype.unparse = function (data) {
+        var _this = this;
+        return this.try(function () { return _this.doUnparse(data); });
+    };
+    BuilderBase.prototype.handleError = function (error) {
+        return Packer.makeError(error);
+    };
+    BuilderBase.prototype.try = function (tryFunc) {
+        try {
+            return tryFunc();
+        }
+        catch (error) {
+            return this.handleError(error);
+        }
+    };
+    BuilderBase.prototype.doBuild = function (data) {
+        throw new ParserError(GeneralError.methodNotImplemented);
+    };
+    BuilderBase.prototype.doParse = function (data) {
+        throw new ParserError(GeneralError.methodNotImplemented);
+    };
+    BuilderBase.prototype.doUnparse = function (data) {
+        throw new ParserError(GeneralError.methodNotImplemented);
+    };
+    return BuilderBase;
+}());
+
+var Builder = /** @class */ (function (_super) {
+    __extends(Builder, _super);
+    function Builder() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Builder.prototype.doBuild = function (data) {
+        if (!data)
+            throw new ParserError(BuilderError.emptyData);
+        if (BuilderHelper.needParse(data))
+            return this.parse(data);
+        if (BuilderHelper.needUnparse(data))
+            return this.unparse(data);
+    };
+    Builder.prototype.doParse = function (data) {
+        var ast = Parser.parse(data);
+        var tree = this.treeBuilder.makeTree(ast);
+        return Packer.makeData(tree);
+    };
+    Builder.prototype.doUnparse = function (data) {
+        var ast = this.treeBuilder.makeAst(data);
+        var expression = Parser.unparse(ast);
+        return Packer.makeData(expression);
+    };
+    return Builder;
+}(BuilderBase));
+
 /* tslint:disable:max-line-length */
 var TreeError;
 (function (TreeError) {
@@ -657,13 +868,6 @@ var TreeError;
     TreeError.invalidParserTree = { code: 0x0220, text: 'invalid parser tree' };
 })(TreeError || (TreeError = {}));
 /* tslint:enable:max-line-length */
-
-var GeneralError;
-(function (GeneralError) {
-    GeneralError.id = 0x1000;
-    GeneralError.unknownError = { code: 0x1000, text: 'unknown error is occurred' };
-    GeneralError.methodNotImplemented = { code: 0x1001, text: 'method not implemented' };
-})(GeneralError || (GeneralError = {}));
 
 var TreeBuilderBase = /** @class */ (function () {
     function TreeBuilderBase() {
@@ -757,180 +961,10 @@ var TreeBuilder = /** @class */ (function (_super) {
     return TreeBuilder;
 }(TreeBuilderBase));
 
-var TokenAnalyzer = /** @class */ (function (_super) {
-    __extends(TokenAnalyzer, _super);
-    function TokenAnalyzer(token) {
-        return _super.call(this, token) || this;
-    }
-    TokenAnalyzer.prototype.parse = function () {
-        var _this = this;
-        this.try(function () { return _this.preValidate(); });
-        this.initialize();
-        this.try(function () { return _this.makeAst(); });
-        this.try(function () { return _this.postValidate(); });
-        return this.try(function () { return _this.makeTree(); });
-    };
-    TokenAnalyzer.prototype.initialize = function () {
-        this.ast = new AbstractSyntaxTree(Token.literal.BracketOpen);
-        this.ast.leftNode = new AbstractSyntaxTree();
-        this.currentTree = this.ast.leftNode;
-        this.rewind();
-    };
-    TokenAnalyzer.prototype.getAst = function () {
-        return this.ast;
-    };
-    TokenAnalyzer.prototype.makeAst = function () {
-        var _this = this;
-        var token;
-        while (token = this.next()) {
-            this.try(function () { return _this.doAnalyzeToken(token); });
-        }
-        this.finalizeStack();
-        this.ast = this.ast.removeRootBracket().findRoot();
-    };
-    TokenAnalyzer.prototype.try = function (tryFunction) {
-        try {
-            return tryFunction();
-        }
-        catch (error) {
-            this.handleError(error);
-        }
-    };
-    TokenAnalyzer.prototype.preValidate = function () {
-        if (!this.token || !this.token.length)
-            throw new ParserError(TokenError.emptyToken);
-    };
-    TokenAnalyzer.prototype.postValidate = function () {
-        if (this.ast.hasOpenBracket())
-            throw new ParserError(TokenError.missingCloseBracket);
-    };
-    TokenAnalyzer.prototype.handleError = function (error) {
-        if (error instanceof ParserError)
-            throw error.withStack(this.stack);
-        console.log(error);
-        throw new ParserError(GeneralError.unknownError).withStack(this.stack);
-    };
-    TokenAnalyzer.prototype.doAnalyzeToken = function (token) {
-        this.analyzeToken(token);
-        this.addStack(token);
-    };
-    TokenAnalyzer.prototype.analyzeToken = function (token) {
-        var lastToken = this.popStack();
-        if (TokenHelper.isBracket(token)) {
-            this.analyzeBracketToken(token);
-            return;
-        }
-        if (TokenHelper.isOperator(token)) {
-            this.analyzeOperatorToken(token);
-            return;
-        }
-        var error = TokenValidator.validateValueToken(token, lastToken);
-        if (error)
-            throw error;
-        this.currentTree.insertNode(token);
-    };
-    TokenAnalyzer.prototype.analyzeBracketToken = function (token) {
-        var lastToken = this.popStack();
-        if (TokenHelper.isBracketOpen(token)) {
-            if (lastToken && !TokenHelper.isSymbol(lastToken))
-                this.insertImplicitMultiplication();
-            this.currentTree = this.currentTree.insertNode(token);
-            return;
-        }
-        if (TokenHelper.isBracketClose(token)) {
-            this.currentTree = this.currentTree.removeClosestBracket();
-            this.ast = this.currentTree.findRoot();
-            return;
-        }
-    };
-    TokenAnalyzer.prototype.analyzeOperatorToken = function (token) {
-        var lastToken = this.popStack();
-        if (TokenHelper.isOperator(lastToken))
-            throw new ParserError(TokenError.invalidTwoOperator, lastToken, token);
-        if (!this.currentTree.value)
-            this.currentTree.value = token;
-        else {
-            if (!TokenHelper.isBracket(this.currentTree.value) && !this.currentTree.rightNode)
-                throw new ParserError(TokenError.invalidTwoOperator, lastToken, token);
-            this.currentTree = this.currentTree.insertNode(token);
-            this.ast = this.ast.findRoot();
-        }
-    };
-    TokenAnalyzer.prototype.insertImplicitMultiplication = function () {
-        this.analyzeToken(Token.literal.Multiplication);
-        this.addStack(Token.literal.Multiplication);
-    };
-    TokenAnalyzer.prototype.makeTree = function () {
-        var treeParser = new TreeBuilder();
-        return treeParser.makeTree(this.ast);
-    };
-    return TokenAnalyzer;
-}(TokenEnumerable));
-
-var BuilderMessage = /** @class */ (function () {
-    function BuilderMessage() {
-    }
-    BuilderMessage.prototype.makeData = function (data, code) {
-        if (code === void 0) { code = success; }
-        return { code: code, data: data };
-    };
-    BuilderMessage.prototype.makeError = function (error) {
-        return __assign({}, this.makeData(error.text, error.code), { stack: error.parserStack || __assign({}, ParserError.defaultParserStack) });
-    };
-    return BuilderMessage;
-}());
-
-/* tslint:disable:max-line-length */
-var BuilderError;
-(function (BuilderError) {
-    BuilderError.id = 0x0300;
-    BuilderError.emptyData = { code: 0x0300, text: 'data is empty' };
-})(BuilderError || (BuilderError = {}));
-/* tslint:enable:max-line-length */
-
-var Builder = /** @class */ (function (_super) {
-    __extends(Builder, _super);
-    function Builder(data) {
-        var _this = _super.call(this) || this;
-        _this.data = data;
-        return _this;
-    }
-    Builder.prototype.build = function () {
-        try {
-            return this.tryBuild();
-        }
-        catch (error) {
-            return this.handleError(error);
-        }
-    };
-    Builder.prototype.parse = function (data) {
-        var tokenAnalyzer = new TokenAnalyzer(ParserHelper.getArray(data));
-        var parseData = tokenAnalyzer.parse();
-        return this.makeData(parseData);
-    };
-    Builder.prototype.unparse = function (data) {
-        var treeBuilder = new TreeBuilder();
-        var ast = treeBuilder.makeAst(data);
-        return this.makeData(ast.expression);
-    };
-    Builder.prototype.tryBuild = function () {
-        if (!this.data)
-            throw new ParserError(BuilderError.emptyData);
-        if (BuilderHelper.needParse(this.data))
-            return this.parse(this.data);
-        if (BuilderHelper.needUnparse(this.data))
-            return this.unparse(this.data);
-    };
-    Builder.prototype.handleError = function (error) {
-        return this.makeError(error);
-    };
-    return Builder;
-}(BuilderMessage));
-
 var _MODULE_VERSION_ = '0.0.4';
-function convert(formula) {
-    var builder = new Builder(formula);
-    return builder.build();
+function convert(data) {
+    var builder = new Builder(new TreeBuilder());
+    return builder.build(data);
 }
 function getVersion() {
     return _MODULE_VERSION_;
