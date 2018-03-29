@@ -1,5 +1,5 @@
-import { Operand, Tree } from './tree/simple.tree/type';
-import { TokenHelper } from './token/token.helper';
+import { Operand, Tree } from '../tree/simple.tree/type';
+import { TokenHelper } from '../token/token.helper';
 
 export class BuilderHelper {
     public static isOperand(data: Tree | Operand) {

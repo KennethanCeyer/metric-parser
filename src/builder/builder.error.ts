@@ -1,4 +1,4 @@
-import { ErrorValue } from './error.value';
+import { ErrorValue } from '../error.value';
 
 /* tslint:disable:max-line-length */
 export namespace BuilderError {

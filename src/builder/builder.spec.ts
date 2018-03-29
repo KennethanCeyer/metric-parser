@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { Builder } from './builder';
 import { BuilderError } from './builder.error';
-import { TreeBuilder } from './tree/simple.tree/builder';
+import { TreeBuilder } from '../tree/simple.tree/builder';
 
 describe('test method: Builder.parse()', () => {
     it('should throws an error result with undefined data', () => {

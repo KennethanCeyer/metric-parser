@@ -1,5 +1,5 @@
 import { ParserGeneralResult } from './parser/parser.result';
-import { Builder } from './builder';
+import { Builder } from './builder/builder';
 import { Tree } from './tree/simple.tree/type';
 import { ParseData } from './parser/parser';
 import { TreeBuilder } from './tree/simple.tree/builder';

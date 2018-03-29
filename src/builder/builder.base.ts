@@ -1,10 +1,10 @@
-import { ParseData } from './parser/parser';
-import { ParserGeneralResult, ParserResult } from './parser/parser.result';
-import { ParserError } from './error';
-import { Packer } from './packer';
-import { TreeBuilderBase } from './tree/tree.base';
+import { ParseData } from '../parser/parser';
+import { ParserGeneralResult, ParserResult } from '../parser/parser.result';
+import { ParserError } from '../error';
+import { Packer } from '../packer';
+import { TreeBuilderBase } from '../tree/tree.base';
 import { BuilderInterface } from './builder.interface';
-import { GeneralError } from './error.value';
+import { GeneralError } from '../error.value';
 
 export class BuilderBase<T> implements BuilderInterface<T> {
     public constructor(protected treeBuilder: TreeBuilderBase<T>) {

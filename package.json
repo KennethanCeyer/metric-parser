@@ -27,6 +27,7 @@
     ],
     "exclude": [
       "**/*.spec.ts",
+      "**/*.interface.ts",
       "**/*.d.ts",
       "rollup.config.ts",
       "coverage",
