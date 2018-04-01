@@ -32,7 +32,7 @@ export class AbstractSyntaxTreeValidator {
             : new ParserError(TokenError.missingValueAfter, ast.value);
     }
 
-    private static validateChildMissingValue(ast: AbstractSyntaxTreeValidator): ParserError | undefined {
+    private static validateChildMissingValue(ast: AbstractSyntaxTree): ParserError | undefined {
         return [
             AbstractSyntaxTreeValidator.validateMissingValue(ast.leftNode),
             AbstractSyntaxTreeValidator.validateMissingValue(ast.rightNode)
