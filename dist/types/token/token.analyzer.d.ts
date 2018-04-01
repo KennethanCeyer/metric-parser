@@ -17,5 +17,6 @@ export declare class TokenAnalyzer extends TokenEnumerable {
     private analyzeToken(token);
     private analyzeBracketToken(token);
     private analyzeOperatorToken(token);
+    private analyzeImplicitToken();
     private insertImplicitMultiplication();
 }

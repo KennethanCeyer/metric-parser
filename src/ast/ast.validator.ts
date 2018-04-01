@@ -2,14 +2,16 @@ import { AbstractSyntaxTree } from './ast';
 import { ParserError } from '../error';
 import { TokenError } from '../token/token.error';
 import { Token } from '../token/token';
+import { TokenHelper } from '../token/token.helper';
 
 export class AbstractSyntaxTreeValidator {
-    public static validate(ast: AbstractSyntaxTree): ParserError | undefined {
-        return [
+    public static validate(ast: AbstractSyntaxTree, ...args: any[]): ParserError | undefined {
+        const validators: ((...args: any[]) => ParserError | undefined)[] = [
             this.validateMissingValue,
             this.validateMissingCloseBracket
-        ]
-            .map(validator => validator(ast))
+        ];
+        return validators
+            .map(validator => validator(ast, ...args))
             .find(validator => validator !== undefined);
     }
 
@@ -26,18 +28,25 @@ export class AbstractSyntaxTreeValidator {
         if (childError)
             return childError;
 
-        if (ast.type !== Token.Type.Operator)
+        if (ast.type !== Token.Type.Operator || ast.leftNode && ast.rightNode)
             return;
 
-        if (!ast.leftNode)
-            return new ParserError(TokenError.missingValueBefore, ast.value);
-
-        if (!ast.rightNode)
-            return new ParserError(TokenError.missingValueAfter, ast.value);
+        return !ast.leftNode
+            ? new ParserError(TokenError.missingValueBefore, ast.value)
+            : new ParserError(TokenError.missingValueAfter, ast.value);
     }
 
     public static validateMissingCloseBracket(ast: AbstractSyntaxTree): ParserError | undefined {
         if (ast.hasOpenBracket())
             return new ParserError(TokenError.missingCloseBracket);
+    }
+
+    public static validateInvalidTwoOperator(
+        ast: AbstractSyntaxTree,
+        token: string,
+        lastToken: string
+    ): ParserError | undefined {
+        if (!TokenHelper.isBracket(ast.value) && !ast.rightNode)
+            return new ParserError(TokenError.invalidTwoOperator, lastToken, token);
     }
 }

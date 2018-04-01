@@ -702,6 +702,49 @@
         GeneralError.methodNotImplemented = { code: 0x1001, text: 'method not implemented' };
     })(GeneralError || (GeneralError = {}));
 
+    var AbstractSyntaxTreeValidator = /** @class */ (function () {
+        function AbstractSyntaxTreeValidator() {
+        }
+        AbstractSyntaxTreeValidator.validate = function (ast) {
+            var args = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args[_i - 1] = arguments[_i];
+            }
+            var validators = [
+                this.validateMissingValue,
+                this.validateMissingCloseBracket
+            ];
+            return validators
+                .map(function (validator) { return validator.apply(void 0, [ast].concat(args)); })
+                .find(function (validator) { return validator !== undefined; });
+        };
+        AbstractSyntaxTreeValidator.validateMissingValue = function (ast) {
+            if (!ast)
+                return;
+            var childError = [
+                AbstractSyntaxTreeValidator.validateMissingValue(ast.leftNode),
+                AbstractSyntaxTreeValidator.validateMissingValue(ast.rightNode)
+            ]
+                .find(function (error) { return error !== undefined; });
+            if (childError)
+                return childError;
+            if (ast.type !== Token.Type.Operator || ast.leftNode && ast.rightNode)
+                return;
+            return !ast.leftNode
+                ? new ParserError(TokenError.missingValueBefore, ast.value)
+                : new ParserError(TokenError.missingValueAfter, ast.value);
+        };
+        AbstractSyntaxTreeValidator.validateMissingCloseBracket = function (ast) {
+            if (ast.hasOpenBracket())
+                return new ParserError(TokenError.missingCloseBracket);
+        };
+        AbstractSyntaxTreeValidator.validateInvalidTwoOperator = function (ast, token, lastToken) {
+            if (!TokenHelper.isBracket(ast.value) && !ast.rightNode)
+                return new ParserError(TokenError.invalidTwoOperator, lastToken, token);
+        };
+        return AbstractSyntaxTreeValidator;
+    }());
+
     var TokenAnalyzer = /** @class */ (function (_super) {
         __extends(TokenAnalyzer, _super);
         function TokenAnalyzer(token) {
@@ -746,13 +789,9 @@
                 throw new ParserError(TokenError.emptyToken);
         };
         TokenAnalyzer.prototype.postValidate = function () {
-            if (this.currentTree.type === Token.Type.Operator && (!this.currentTree.leftNode ||
-                !this.currentTree.rightNode))
-                throw new ParserError(!this.currentTree.leftNode
-                    ? TokenError.missingValueBefore
-                    : TokenError.missingValueAfter, this.currentTree.value);
-            if (this.ast.hasOpenBracket())
-                throw new ParserError(TokenError.missingCloseBracket);
+            var error = AbstractSyntaxTreeValidator.validate(this.ast);
+            if (error)
+                throw error;
         };
         TokenAnalyzer.prototype.handleError = function (error) {
             if (error instanceof ParserError)
@@ -779,10 +818,8 @@
             this.currentTree.insertNode(token);
         };
         TokenAnalyzer.prototype.analyzeBracketToken = function (token) {
-            var lastToken = this.popStack();
             if (TokenHelper.isBracketOpen(token)) {
-                if (lastToken && !TokenHelper.isSymbol(lastToken))
-                    this.insertImplicitMultiplication();
+                this.analyzeImplicitToken();
                 this.currentTree = this.currentTree.insertNode(token);
                 return;
             }
@@ -796,14 +833,20 @@
             var lastToken = this.popStack();
             if (TokenHelper.isOperator(lastToken))
                 throw new ParserError(TokenError.invalidTwoOperator, lastToken, token);
-            if (!this.currentTree.value)
+            if (!this.currentTree.value) {
                 this.currentTree.value = token;
-            else {
-                if (!TokenHelper.isBracket(this.currentTree.value) && !this.currentTree.rightNode)
-                    throw new ParserError(TokenError.invalidTwoOperator, lastToken, token);
-                this.currentTree = this.currentTree.insertNode(token);
-                this.ast = this.ast.findRoot();
+                return;
             }
+            var error = AbstractSyntaxTreeValidator.validateInvalidTwoOperator(this.currentTree, token, lastToken);
+            if (error)
+                throw error;
+            this.currentTree = this.currentTree.insertNode(token);
+            this.ast = this.ast.findRoot();
+        };
+        TokenAnalyzer.prototype.analyzeImplicitToken = function () {
+            var lastToken = this.popStack();
+            if (lastToken && !TokenHelper.isSymbol(lastToken) || TokenHelper.isBracketClose(lastToken))
+                this.insertImplicitMultiplication();
         };
         TokenAnalyzer.prototype.insertImplicitMultiplication = function () {
             this.analyzeToken(Token.literal.Multiplication);
