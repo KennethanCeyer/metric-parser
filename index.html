@@ -2,25 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="AST-based advanced mathematical parser written by Typescript..">
     <meta property="og:url" content="http://www.pigno.se/barn/PIGNOSE-FormulaParser">
     <meta property="og:type" content="product"/>
     <meta property="og:title" content="PIGNOSE FormulaParser"/>
-    <meta property="og:description" content="AST-based advanced mathematical parser written by Typescript.">
+    <meta property="og:description" content="AST-based advanced mathematical parser written by Typescript">
     <meta property="og:image" content="http://www.pigno.se/barn/PIGNOSE-FormulaParser/demo/img/cover@250.png">
     <meta property="og:site_name" content="PIGNOSE"/>
-    <title>Metric Parser</title>
+    <title>metric-parser</title>
+    <meta name="description" content="AST-based advanced mathematical parser written by Typescript">
     <link rel="shortcut icon" type="image/x-icon" href="demo/img/pignose-ico.ico">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/themes/prism.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/components/icon.min.css">
     <link rel="stylesheet" type="text/css" href="demo/css/style.css">
+    <link rel="stylesheet" type="text/css" href="demo/css/ui.css">
 </head>
 
 <body>
 <div id="wrapper">
     <div class="header">
-        <h1>Metric Parser</h1>
+        <h1 class="center"><img width="200" src="https://www.pigno.se/static/assets/images/metric-parser-logo.svg" /></h1>
         <a href="https://github.com/KennethanCeyer/metric-parser" target="_blank" class="ui button black">View project
             on Github</a>
         <a href="https://github.com/KennethanCeyer/metric-parser/archive/master.zip" target="_blank"
@@ -30,7 +33,7 @@
     </div>
     <div class="article formula-parsing">
         <h3>
-            <span>Formula Parsing</span>
+            <span>⚡ Formula Parsing</span>
         </h3>
 
         <div class="formula-expression formula-expression-01"></div>
@@ -44,7 +47,7 @@
 
     <div class="article">
         <h3>
-            <span>Formula Unparsing</span>
+            <span>⚡ Formula Unparsing</span>
         </h3>
 
         <div class="formula-expression formula-expression-07"></div>
@@ -55,7 +58,7 @@
 
     <div class="article">
         <h3>
-            <span>Validation</span>
+            <span>⚡ Validation</span>
         </h3>
 
         <div class="formula-expression formula-expression-11"></div>
@@ -65,23 +68,26 @@
         <div class="formula-expression formula-expression-15"></div>
     </div>
 </div>
-<div id="bower" class="article">
-    <h3><span>bower</span></h3>
-    <blockquote><p>If you use bower.</p></blockquote>
-    <pre><code class="language-bash">$ bower install metric-parser</code></pre>
-</div>
 <div id="npm" class="article">
-    <h3><span>npm</span></h3>
-    <blockquote><p>If you use npm.</p></blockquote>
+    <h3><span>📦 npm</span></h3>
     <pre><code class="language-bash">$ npm install metric-parser</code></pre>
 </div>
 <div id="yarn" class="article">
-    <h3><span>yarn</span></h3>
-    <blockquote><p>If you use yarn.</p></blockquote>
+    <h3><span>📦 yarn</span></h3>
     <pre><code class="language-bash">$ yarn add metric-parser</code></pre>
 </div>
-<div id="sample" class="article">
-    <h3><span>Example</span></h3>
+<div id="star" class="article">
+    <h3>
+        <span>😗 do star it!</span>
+    </h3>
+    <p>If you enjoyed it, please just click the star into below github link</p>
+    <a href="https://github.com/KennethanCeyer/metric-parser" target="_blank" class="ui black button thin">
+        <i class="fab fa-github-alt"></i>
+        GitHub
+    </a>
+</div>
+<div id="example" class="article">
+    <h3><span>📖 Example</span></h3>
     <br/>
     <ul class="ui top pointing secondary menu">
         <a role="presentation" class="item active" data-tab="web">Web</a>
@@ -347,5 +353,6 @@ const isValid2: boolean = valid({expression | parseTree});
         src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/components/prism-typescript.min.js"></script>
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/components/prism-json.min.js"></script>
+<script type="text/javascript" src="https://twemoji.maxcdn.com/2/twemoji.min.js?2.5"></script>
 </body>
 </html>

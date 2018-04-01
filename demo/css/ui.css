@@ -1,0 +1,104 @@
+.formula-expression,
+.formula-display {
+    text-align: left;
+    padding: 2em 2.4em;
+    background-color: #f8f8f8;
+    margin-bottom: 1em;
+    font-family: Consolas, sans-serif;
+    position: relative;
+}
+
+.formula-expression .formula-result,
+.formula-display .formula-result {
+    min-width: 10em;
+    text-align: center;
+    display: block;
+    position: absolute;
+    padding: .4em .6em;
+    border: 1px solid #dadada;
+    border-right: 0;
+    border-top: 0;
+    background-color: #f0f0f0;
+    right: 0;
+    top: 0;
+    font-family: 'Raleway', sans-serif;
+    font-size: 85%;
+    font-weight: 600;
+}
+
+.formula-result span {
+    vertical-align: middle;
+}
+
+.formula-result .formula-status {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: .4em;
+    height: .4em;
+    border-radius: 50%;
+    background-color: #d8d8d8;
+    margin-left: .6em;
+}
+
+.formula-expression {
+    font-weight: 600;
+    color: #000000;
+}
+
+.formula-display {
+    margin-bottom: 6em;
+}
+
+.formula-display.formula-display-success {
+    background-color: #f5f6f8;
+
+}
+
+.formula-display.formula-display-success .formula-status {
+    background-color: #60abac;
+}
+
+.formula-display.formula-display-error {
+    background-color: #f9f7f7;
+}
+
+.formula-display.formula-display-error .formula-status {
+    background-color: #e28080;
+}
+
+.formula-display:last-child {
+    margin-bottom: 0;
+}
+
+.formula-expression-char,
+.formula-expression-bar {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 .2em;
+    line-height: 1;
+}
+
+.formula-expression-bar {
+    width: .4em;
+    height: 1em;
+    background-color: #ff5656;
+    -webkit-animation: blink .5s ease alternate infinite;
+    -moz-animation: blink .5s ease alternate infinite;
+    -o-animation: blink .5s ease alternate infinite;
+}
+
+@-webkit-keyframes blink {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@-moz-keyframes blink {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+ }
+
+@keyframes blink {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
