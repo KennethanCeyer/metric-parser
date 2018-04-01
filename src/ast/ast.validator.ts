@@ -20,10 +20,10 @@ export class AbstractSyntaxTreeValidator {
             return;
 
         const childError = AbstractSyntaxTreeValidator.validateChildMissingValue(ast);
+        return childError || AbstractSyntaxTreeValidator.validateCurrentMissingValue(ast);
+    }
 
-        if (childError)
-            return childError;
-
+    private static validateCurrentMissingValue(ast: AbstractSyntaxTree): ParserError | undefined {
         if (ast.type !== Token.Type.Operator || ast.leftNode && ast.rightNode)
             return;
 
