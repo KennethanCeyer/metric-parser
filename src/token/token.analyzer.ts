@@ -60,6 +60,18 @@ export class TokenAnalyzer extends TokenEnumerable {
     }
 
     private postValidate() {
+        if (
+            this.currentTree.type === Token.Type.Operator && (
+            !this.currentTree.leftNode ||
+            !this.currentTree.rightNode)
+        )
+            throw new ParserError(
+                !this.currentTree.leftNode
+                    ? TokenError.missingValueBefore
+                    : TokenError.missingValueAfter,
+                this.currentTree.value
+            );
+
         if (this.ast.hasOpenBracket())
             throw new ParserError(TokenError.missingCloseBracket);
     }

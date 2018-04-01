@@ -304,6 +304,16 @@ describe('case: parse with invalid data', () => {
             .and.to.have.property('code', TokenError.invalidToken.code);
     });
 
+    it('should throw an missingValueAfter error with invalid expression', () => {
+        const data = ['1', '+', '2', '/'];
+        const tokenAnalyzer = new TokenAnalyzer(data);
+
+        expect(() => tokenAnalyzer.parse())
+            .to.throw('missing value after `/` token')
+            .and.satisfy((error: ParserError) => error.parserStack.col === 4 && error.parserStack.line === 0)
+            .and.to.have.property('code', TokenError.missingValueAfter.code);
+    });
+
     it('should throw an invalidTwoOperator error with duplicated operator expression', () => {
         const data = ['1', '+', '+', '4'];
         const tokenAnalyzer = new TokenAnalyzer(data);
