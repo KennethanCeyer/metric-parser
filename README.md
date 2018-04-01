@@ -1,4 +1,4 @@
-# metric parser
+<p align="center"><img width="200" src="https://www.pigno.se/static/assets/images/metric-parser-logo.svg" /></p>
 
 <p align="center"><a href="https://nodei.co/npm/metric-parser/"><img src="https://nodei.co/npm/metric-parser.png" alt="NPM"></a></p>
 
