@@ -1,6 +1,6 @@
 {
   "name": "metric-parser",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "AST-based advanced mathematical parser written by Typescript.",
   "main": "dist/metric.parser.umd.js",
   "module": "dist/metric.parser.es5.js",
