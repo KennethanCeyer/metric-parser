@@ -7,5 +7,7 @@ export declare namespace TokenError {
     const missingOperator: ErrorValue;
     const missingOpenBracket: ErrorValue;
     const missingCloseBracket: ErrorValue;
+    const missingValueBefore: ErrorValue;
+    const missingValueAfter: ErrorValue;
     const emptyToken: ErrorValue;
 }

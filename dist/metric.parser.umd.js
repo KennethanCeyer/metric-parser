@@ -296,6 +296,8 @@
         TokenError.missingOperator = { code: 0x0112, text: 'the operator is missing after `{0}`' };
         TokenError.missingOpenBracket = { code: 0x0120, text: 'missing open bracket, you cannot close the bracket' };
         TokenError.missingCloseBracket = { code: 0x0121, text: 'missing close bracket, the bracket must be closed' };
+        TokenError.missingValueBefore = { code: 0x0122, text: 'missing value before `{0}` token' };
+        TokenError.missingValueAfter = { code: 0x0123, text: 'missing value after `{0}` token' };
         TokenError.emptyToken = { code: 0x0150, text: 'token is empty' };
     })(TokenError || (TokenError = {}));
     /* tslint:enable:max-line-length */
@@ -744,6 +746,11 @@
                 throw new ParserError(TokenError.emptyToken);
         };
         TokenAnalyzer.prototype.postValidate = function () {
+            if (this.currentTree.type === Token.Type.Operator && (!this.currentTree.leftNode ||
+                !this.currentTree.rightNode))
+                throw new ParserError(!this.currentTree.leftNode
+                    ? TokenError.missingValueBefore
+                    : TokenError.missingValueAfter, this.currentTree.value);
             if (this.ast.hasOpenBracket())
                 throw new ParserError(TokenError.missingCloseBracket);
         };
@@ -1002,7 +1009,7 @@
         return TreeBuilder;
     }(TreeBuilderBase));
 
-    var _MODULE_VERSION_ = '0.0.7';
+    var _MODULE_VERSION_ = '0.0.8';
     function getVersion() {
         return _MODULE_VERSION_;
     }
