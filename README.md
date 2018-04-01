@@ -199,7 +199,9 @@ const ast = convert('1 + (2 + 3)', true);
 
 ----
 
-### License
+### :mag: License
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FKennethanCeyer%2Fmetric-parser.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FKennethanCeyer%2Fmetric-parser?ref=badge_large)
 
 The MIT License (MIT)
 
