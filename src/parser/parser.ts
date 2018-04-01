@@ -2,7 +2,7 @@ import { AbstractSyntaxTree } from '../ast/ast';
 import { TokenAnalyzer } from '../token/token.analyzer';
 import { ParserHelper } from './parser.helper';
 
-export type ParseData = string | string[];
+export type ParseData = any | any[];
 
 export class Parser {
     public static parse(data: ParseData): AbstractSyntaxTree {
