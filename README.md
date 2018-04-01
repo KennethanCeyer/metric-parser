@@ -1,6 +1,7 @@
 # metric parser
 
 [![NPM](https://nodei.co/npm/metric-parser.png)](https://nodei.co/npm/metric-parser/)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FKennethanCeyer%2Fmetric-parser.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FKennethanCeyer%2Fmetric-parser?ref=badge_shield)
 
 [![npm version](https://badge.fury.io/js/metric-parser.svg)](https://badge.fury.io/js/metric-parser) [![Bower version](https://badge.fury.io/bo/metric-parser.svg)](https://badge.fury.io/bo/metric-parser) [![Join the chat at https://gitter.im/KennethanCeyer/PIGNOSE](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/KennethanCeyer/PIGNOSE?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![GitHub forks](https://img.shields.io/github/forks/KennethanCeyer/metric-parser.svg)](https://github.com/KennethanCeyer/metric-parser/network) [![GitHub license](https://img.shields.io/github/license/KennethanCeyer/metric-parser.svg)](https://github.com/KennethanCeyer/metric-parser/blob/master/LICENSE)
 
@@ -199,3 +200,7 @@ Do you have any question?
 I'd like to help your issue.
 
 Please contact to me to use either [gitter](https://gitter.im/KennethanCeyer/PIGNOSE) or [GitHub issues page](https://github.com/KennethanCeyer/metric-parser/issues)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FKennethanCeyer%2Fmetric-parser.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FKennethanCeyer%2Fmetric-parser?ref=badge_large)
