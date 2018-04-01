@@ -45,7 +45,6 @@ export abstract class AbstractSyntaxTreeBase extends AbstractSyntaxTreeNode {
     public removeRootBracket(): this {
         const rootNode = this.findRoot();
 
-
         if (TokenHelper.isBracketOpen(rootNode.value))
             rootNode.leftNode.removeParent();
 

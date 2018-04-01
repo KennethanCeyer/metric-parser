@@ -29,6 +29,7 @@ describe('test method: convert()', () => {
     it('should return an valid tree with 1 + 2', () => {
         const data: ConvertData = '1 + 2';
         const result = convert(data);
+
         expect(result.code).to.equal(success);
         expect(result.data).to.deep.equal({
             operator: '+',
@@ -40,6 +41,7 @@ describe('test method: convert()', () => {
     it('should return an valid tree with 0', () => {
         const data: ConvertData = '0';
         const result = convert(data);
+
         expect(result.code).to.equal(success);
         expect(result.data).to.deep.equal({
             value: { type: 'unit', unit: 0 }
@@ -49,11 +51,32 @@ describe('test method: convert()', () => {
     it('should return an valid tree with 1.2 + 2.6', () => {
         const data: ConvertData = '1.2 + 2.6';
         const result = convert(data);
+
         expect(result.code).to.equal(success);
         expect(result.data).to.deep.equal({
             operator: '+',
             operand1: { value: { type: 'unit', unit: 1.2 } },
             operand2: { value: { type: 'unit', unit: 2.6 } }
+        });
+    });
+
+    it('should return an valid tree with (1.2 + 4.6) (2.6 / 1.4)', () => {
+        const data: ConvertData = '(1.2 + 4.6) (2.6 / 1.4)';
+        const result = convert(data);
+
+        expect(result.code).to.equal(success);
+        expect(result.data).to.deep.equal({
+            operator: '*',
+            operand1: {
+                operator: '+',
+                operand1: { value: { type: 'unit', unit: 1.2 } },
+                operand2: { value: { type: 'unit', unit: 4.6 } }
+            },
+            operand2: {
+                operator: '/',
+                operand1: { value: { type: 'unit', unit: 2.6 } },
+                operand2: { value: { type: 'unit', unit: 1.4 } }
+            }
         });
     });
 
@@ -68,6 +91,7 @@ describe('test method: convert()', () => {
             operand2: { value: { type: 'unit', unit: 3 } }
         };
         const result = convert(data);
+
         expect(result.code).to.equal(success);
         expect(result.data).to.be.an('array').and.that.deep.equal(['(', 1, '+', 2, ')', '*', 3]);
     });
@@ -95,6 +119,7 @@ describe('test method: convert()', () => {
             }
         };
         const result = convert(data);
+
         expect(result.code).to.equal(success);
         expect(result.data).to.be.an('array').and.that.deep.equal([
             2.652, '*', 3.44, '+', 4.0, '^', 2.2, '^', '(', 6, '+', 2.01, ')'
