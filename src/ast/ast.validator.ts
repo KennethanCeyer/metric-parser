@@ -19,11 +19,7 @@ export class AbstractSyntaxTreeValidator {
         if (!ast)
             return;
 
-        const childError = [
-            AbstractSyntaxTreeValidator.validateMissingValue(ast.leftNode),
-            AbstractSyntaxTreeValidator.validateMissingValue(ast.rightNode)
-        ]
-            .find(error => error !== undefined);
+        const childError = AbstractSyntaxTreeValidator.validateChildMissingValue(ast);
 
         if (childError)
             return childError;
@@ -34,6 +30,14 @@ export class AbstractSyntaxTreeValidator {
         return !ast.leftNode
             ? new ParserError(TokenError.missingValueBefore, ast.value)
             : new ParserError(TokenError.missingValueAfter, ast.value);
+    }
+
+    private static validateChildMissingValue(ast: AbstractSyntaxTreeValidator): ParserError | undefined {
+        return [
+            AbstractSyntaxTreeValidator.validateMissingValue(ast.leftNode),
+            AbstractSyntaxTreeValidator.validateMissingValue(ast.rightNode)
+        ]
+            .find(error => error !== undefined);
     }
 
     public static validateMissingCloseBracket(ast: AbstractSyntaxTree): ParserError | undefined {
