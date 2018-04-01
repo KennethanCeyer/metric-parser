@@ -721,18 +721,22 @@
         AbstractSyntaxTreeValidator.validateMissingValue = function (ast) {
             if (!ast)
                 return;
-            var childError = [
-                AbstractSyntaxTreeValidator.validateMissingValue(ast.leftNode),
-                AbstractSyntaxTreeValidator.validateMissingValue(ast.rightNode)
-            ]
-                .find(function (error) { return error !== undefined; });
-            if (childError)
-                return childError;
+            var childError = AbstractSyntaxTreeValidator.validateChildMissingValue(ast);
+            return childError || AbstractSyntaxTreeValidator.validateCurrentMissingValue(ast);
+        };
+        AbstractSyntaxTreeValidator.validateCurrentMissingValue = function (ast) {
             if (ast.type !== Token.Type.Operator || ast.leftNode && ast.rightNode)
                 return;
             return !ast.leftNode
                 ? new ParserError(TokenError.missingValueBefore, ast.value)
                 : new ParserError(TokenError.missingValueAfter, ast.value);
+        };
+        AbstractSyntaxTreeValidator.validateChildMissingValue = function (ast) {
+            return [
+                AbstractSyntaxTreeValidator.validateMissingValue(ast.leftNode),
+                AbstractSyntaxTreeValidator.validateMissingValue(ast.rightNode)
+            ]
+                .find(function (error) { return error !== undefined; });
         };
         AbstractSyntaxTreeValidator.validateMissingCloseBracket = function (ast) {
             if (ast.hasOpenBracket())

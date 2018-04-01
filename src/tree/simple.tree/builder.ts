@@ -4,7 +4,7 @@ import { Token } from '../../token/token';
 import { TreeError } from '../tree.error';
 import { ParserError } from '../../error';
 import { TreeBuilderBase } from '../tree.base';
-import { Operand, Tree, Node, ValueObject, Value } from './type'; './type';
+import { Node, Operand, Tree, Value, ValueObject } from './type';
 
 export class TreeBuilder extends TreeBuilderBase<Tree> {
     public makeTree(ast: AbstractSyntaxTree): Tree {

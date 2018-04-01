@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import { TokenEnumerable } from './token.enumerable';
-import { ParserError } from '../error';
 
 describe('test method: TokenEnumerable.next()', () => {
     it('should throw an error with tokenInvalid', () => {
