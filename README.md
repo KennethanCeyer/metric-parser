@@ -32,7 +32,7 @@
 
 ----
 
-### Example
+### :clap: Example
 
 [See demo](http://www.pigno.se/barn/PIGNOSE-FormulaParser/)
 
@@ -40,22 +40,12 @@
 
 ----
 
-### Installation
-
-#### zip
-
-[zip download link](https://github.com/KennethanCeyer/metric-parser/archive/master.zip)
+### :package: Installation
 
 #### git
 
 ```bash
 $ git clone git@github.com:KennethanCeyer/metric-parser.git
-```
-
-#### bower
-
-```bash
-$ bower install metric-parser
 ```
 
 #### npm
@@ -72,7 +62,7 @@ $ yarn add metric-parser
 
 ----
 
-### Getting started
+### :page_with_curl: Getting started
 
 #### Javascript (Web)
 
@@ -121,7 +111,7 @@ const valid = parser.valid(result.data);
 
 ----
 
-### DataType
+### :zap: Type
 
 #### Tree
 > Tree is a simple object that converted from AST. 
@@ -178,7 +168,7 @@ const ast = convert('1 + (2 + 3)', true);
 
 ----
 
-### Roadmap
+### :triangular_flag_on_post: Roadmap
 
 **v0.0.1**
 
@@ -209,8 +199,12 @@ const ast = convert('1 + (2 + 3)', true);
 
 ----
 
-Do you have any question?
+### License
 
-I'd like to help your issue.
+The MIT License (MIT)
 
-Please contact to me to use either [gitter](https://gitter.im/KennethanCeyer/PIGNOSE) or [GitHub issues page](https://github.com/KennethanCeyer/metric-parser/issues)
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
