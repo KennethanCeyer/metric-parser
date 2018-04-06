@@ -722,12 +722,11 @@
         TokenEnumerable.prototype.getAliasToken = function (token) {
             if (!TokenHelper.isOperator(token))
                 return token;
-            for (var operatorType in Token.value) {
-                var tokenValue = Token.value[operatorType];
-                if (tokenValue.symbols.includes(token))
-                    return tokenValue.alias;
-            }
-            return token;
+            return Object.keys(Token.value)
+                .map(function (operatorType) { return Token.value[operatorType].symbols.includes(token)
+                ? Token.value[operatorType].alias
+                : undefined; })
+                .find(function (alias) { return alias !== undefined; }) || token;
         };
         TokenEnumerable.prototype.isTokenArrayNumeric = function (tokens) {
             return tokens.every(function (token) { return TokenHelper.isNumeric(token) || TokenHelper.isDot(token); });
@@ -1108,7 +1107,7 @@
         return TreeBuilder;
     }(TreeBuilderBase));
 
-    var _MODULE_VERSION_ = '0.0.9';
+    var _MODULE_VERSION_ = '0.0.10';
     function getVersion() {
         return _MODULE_VERSION_;
     }
