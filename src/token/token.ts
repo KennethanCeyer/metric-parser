@@ -11,6 +11,11 @@ export namespace Token {
     export type BracketClose = ')';
     export type Operator = Addition | Subtraction | Multiplication | MultiplicationLiteral | Division | Mod | Pow;
 
+    export interface TokenValue {
+        symbols: string[];
+        alias: string;
+    }
+
     export enum Type {
         Unknown,
         Value,
@@ -39,6 +44,45 @@ export namespace Token {
         Dot: '.'
     };
 
+    export const value: { [key: string]: TokenValue } = {
+        Addition: {
+            symbols: [literal.Addition],
+            alias: literal.Addition
+        },
+        Subtraction: {
+            symbols: [literal.Subtraction],
+            alias: literal.Subtraction
+        },
+        Multiplication: {
+            symbols: [literal.Multiplication, literal.MultiplicationLiteral],
+            alias: literal.Multiplication
+        },
+        Division: {
+            symbols: [literal.Division],
+            alias: literal.Division
+        },
+        Mod: {
+            symbols: [literal.Mod],
+            alias: literal.Mod
+        },
+        Pow: {
+            symbols: [literal.Pow],
+            alias: literal.Pow
+        },
+        BracketOpen: {
+            symbols: [literal.BracketOpen],
+            alias: literal.BracketOpen
+        },
+        BracketClose: {
+            symbols: [literal.BracketClose],
+            alias: literal.BracketOpen
+        },
+        Dot: {
+            symbols: [literal.Dot],
+            alias: literal.Dot
+        }
+    };
+
     export const addition = [literal.Addition];
     export const subtraction = [literal.Subtraction];
     export const multiplication = [literal.Multiplication, literal.MultiplicationLiteral];
@@ -55,7 +99,7 @@ export namespace Token {
         ...Token.division,
         ...Token.pow,
         ...Token.mod,
-        ...Token.bracket,
+        ...Token.bracket
     ];
     export const operators = [
         ...Token.addition,
@@ -73,6 +117,6 @@ export namespace Token {
         ' ',
         '',
         null,
-        undefined,
+        undefined
     ];
 }
