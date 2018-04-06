@@ -10,6 +10,10 @@ export declare namespace Token {
     type BracketOpen = '(';
     type BracketClose = ')';
     type Operator = Addition | Subtraction | Multiplication | MultiplicationLiteral | Division | Mod | Pow;
+    interface TokenValue {
+        symbols: string[];
+        alias: string;
+    }
     enum Type {
         Unknown = 0,
         Value = 1,
@@ -34,6 +38,9 @@ export declare namespace Token {
         BracketOpen: string;
         BracketClose: string;
         Dot: string;
+    };
+    const value: {
+        [key: string]: TokenValue;
     };
     const addition: string[];
     const subtraction: string[];

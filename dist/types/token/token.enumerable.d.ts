@@ -18,6 +18,8 @@ export declare class TokenEnumerable {
     private proceedNext();
     private isSequentialValue(token, nextToken);
     private findToken();
+    private getToken();
+    private getAliasToken(token);
     private isTokenArrayNumeric(tokens);
     private makeToken(tokens);
     private makeTokenString(tokens);
