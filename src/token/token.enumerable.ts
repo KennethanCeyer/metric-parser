@@ -124,13 +124,11 @@ export class TokenEnumerable {
         if (!TokenHelper.isOperator(token))
             return token;
 
-        for (const operatorType in Token.value) {
-            const tokenValue = Token.value[operatorType];
-            if (tokenValue.symbols.includes(token))
-                return tokenValue.alias;
-        }
-
-        return token;
+        return Object.keys(Token.value)
+            .map(operatorType => Token.value[operatorType].symbols.includes(token)
+                ? Token.value[operatorType].alias
+                : undefined)
+            .find(alias => alias !== undefined) || token;
     }
 
     private isTokenArrayNumeric(tokens: Token.Token[]): boolean {
