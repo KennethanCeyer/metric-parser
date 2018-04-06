@@ -57,6 +57,25 @@ describe('case: basic parse token', () => {
         expect(rightNode.rightNode.value).to.equal(3);
     });
 
+    it('should return ast correctly from `1 x 2 / 3`', () => {
+        const data = ['1', 'x', '2', '/', '3'];
+        const tokenAnalyzer = new TokenAnalyzer(data);
+        tokenAnalyzer.parse();
+        const ast = tokenAnalyzer.getAst();
+        const leftNode = ast.leftNode;
+
+        expect(ast.type).to.equal(Token.Type.Operator);
+        expect(ast.value).to.equal(Token.literal.Division);
+        expect(leftNode.type).to.equal(Token.Type.Operator);
+        expect(leftNode.value).to.equal(Token.literal.Multiplication);
+        expect(leftNode.leftNode.type).to.equal(Token.Type.Value);
+        expect(leftNode.leftNode.value).to.equal(1);
+        expect(leftNode.rightNode.type).to.equal(Token.Type.Value);
+        expect(leftNode.rightNode.value).to.equal(2);
+        expect(ast.rightNode.type).to.equal(Token.Type.Value);
+        expect(ast.rightNode.value).to.equal(3);
+    });
+
     it('should return ast correctly from `1 * 2 + 3`', () => {
         const data = ['1', '*', '2', '+', '3'];
         const tokenAnalyzer = new TokenAnalyzer(data);
