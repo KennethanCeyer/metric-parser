@@ -5,7 +5,7 @@ import { ParseData } from './parser/parser';
 import { TreeBuilder } from './tree/simple.tree/builder';
 import { success } from './error';
 
-const _MODULE_VERSION_ = '0.0.10';
+const _MODULE_VERSION_ = '0.0.11';
 
 export function getVersion() {
     return _MODULE_VERSION_;

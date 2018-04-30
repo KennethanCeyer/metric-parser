@@ -1,6 +1,6 @@
 {
   "name": "metric-parser",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "AST-based advanced mathematical parser written by Typescript.",
   "main": "dist/metric.parser.umd.js",
   "module": "dist/metric.parser.es5.js",
@@ -67,19 +67,19 @@
     "nyc": "^11.6.0",
     "ts-lint": "^4.5.1",
     "ts-loader": "^4.1.0",
-    "ts-node": "^5.0.1",
+    "ts-node": "^6.0.2",
     "tslint": "^5.9.1",
     "tslint-config-airbnb": "^5.8.0",
     "typescript": "^2.7.2",
     "webpack": "^4.3.0",
     "rimraf": "^2.6.1",
     "lodash.camelcase": "^4.3.0",
-    "rollup": "^0.57.0",
+    "rollup": "^0.58.2",
     "rollup-plugin-commonjs": "^9.0.0",
     "rollup-plugin-json": "^2.3.0",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
-    "rollup-plugin-typescript2": "^0.12.0",
+    "rollup-plugin-typescript2": "^0.13.0",
     "typedoc": "^0.11.0"
   }
 }

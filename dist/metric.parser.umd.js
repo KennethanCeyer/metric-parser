@@ -1107,7 +1107,7 @@
         return TreeBuilder;
     }(TreeBuilderBase));
 
-    var _MODULE_VERSION_ = '0.0.10';
+    var _MODULE_VERSION_ = '0.0.11';
     function getVersion() {
         return _MODULE_VERSION_;
     }
