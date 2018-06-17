@@ -2,18 +2,6 @@ import { Token } from './token';
 import { TokenHelperBase } from './token.helper.base';
 
 export class TokenHelper extends TokenHelperBase {
-    private static getPrecedenceDiff(source: Token.Token, target: Token.Token): number {
-        return TokenHelper.getPrecedence(source) - TokenHelper.getPrecedence(target);
-    }
-
-    public static isHigher(source: Token.Token, target: Token.Token): boolean {
-        return TokenHelper.getPrecedenceDiff(source, target) > 0;
-    }
-
-    public static isHigherOrEqual(source: Token.Token, target: Token.Token): boolean {
-        return TokenHelper.getPrecedenceDiff(source, target) >= 0;
-    }
-
     public static induceType(token: Token.Token): Token.Type {
         const typeInducers = [
             { predicate: TokenHelper.isUnkown, type: Token.Type.Unknown },
@@ -37,5 +25,9 @@ export class TokenHelper extends TokenHelperBase {
             [TokenHelper.isMod, TokenHelper.isPow],
             [TokenHelper.isBracket]
         ].findIndex(predicate => predicate.some(func => func(token)));
+    }
+
+    public static getPrecedenceDiff(source: Token.Token, target: Token.Token): number {
+        return TokenHelper.getPrecedence(source) - TokenHelper.getPrecedence(target);
     }
 }

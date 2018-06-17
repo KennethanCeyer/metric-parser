@@ -34,9 +34,3 @@ describe('test method: TokenHelper.getPrecedence()', () => {
         expect(TokenHelper.getPrecedence(Token.literal.BracketClose)).to.equal(3);
     });
 });
-
-describe('test method: TokenHelper.isHigher(source, target)', () => {
-    it('should return false compare multiplication, division', () => {
-        expect(TokenHelper.isHigher(Token.literal.Multiplication, Token.literal.Division)).to.be.false;
-    });
-});

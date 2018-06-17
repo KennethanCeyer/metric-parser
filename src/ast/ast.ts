@@ -18,8 +18,8 @@ export class AbstractSyntaxTree extends AbstractSyntaxTreeBase {
         const parentOperator = this.getParentOperator();
         return parentOperator &&
         (
-            TokenHelper.isHigher(parentOperator.value, this.value) ||
-            TokenHelper.isHigherOrEqual(parentOperator.value, this.value) &&
+            TokenHelper.getPrecedenceDiff(parentOperator.value, this.value) > 0 ||
+            TokenHelper.getPrecedenceDiff(parentOperator.value, this.value) >= 0 &&
             this.parent.rightNode === this
         );
     }

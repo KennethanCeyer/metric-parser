@@ -88,7 +88,7 @@ export abstract class AbstractSyntaxTreeBase extends AbstractSyntaxTreeNode {
     }
 
     private isTokenHighest(token: Token.Token) {
-        return TokenHelper.isHigher(token, this.value) && this.subType !== Token.SubType.Group;
+        return TokenHelper.getPrecedenceDiff(token, this.value) > 0 && this.subType !== Token.SubType.Group;
     }
 
     private createChildNode(value?: Token.Token): this {

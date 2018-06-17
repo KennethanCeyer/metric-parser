@@ -212,15 +212,6 @@
         function TokenHelper() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        TokenHelper.getPrecedenceDiff = function (source, target) {
-            return TokenHelper.getPrecedence(source) - TokenHelper.getPrecedence(target);
-        };
-        TokenHelper.isHigher = function (source, target) {
-            return TokenHelper.getPrecedenceDiff(source, target) > 0;
-        };
-        TokenHelper.isHigherOrEqual = function (source, target) {
-            return TokenHelper.getPrecedenceDiff(source, target) >= 0;
-        };
         TokenHelper.induceType = function (token) {
             var typeInducers = [
                 { predicate: TokenHelper.isUnkown, type: Token.Type.Unknown },
@@ -242,6 +233,9 @@
                 [TokenHelper.isMod, TokenHelper.isPow],
                 [TokenHelper.isBracket]
             ].findIndex(function (predicate) { return predicate.some(function (func) { return func(token); }); });
+        };
+        TokenHelper.getPrecedenceDiff = function (source, target) {
+            return TokenHelper.getPrecedence(source) - TokenHelper.getPrecedence(target);
         };
         return TokenHelper;
     }(TokenHelperBase));
@@ -487,7 +481,7 @@
                 TokenHelper.isBracketOpen(this.value);
         };
         AbstractSyntaxTreeBase.prototype.isTokenHighest = function (token) {
-            return TokenHelper.isHigher(token, this.value) && this.subType !== Token.SubType.Group;
+            return TokenHelper.getPrecedenceDiff(token, this.value) > 0 && this.subType !== Token.SubType.Group;
         };
         AbstractSyntaxTreeBase.prototype.createChildNode = function (value) {
             var node = new this.constructor(value);
@@ -574,8 +568,8 @@
         AbstractSyntaxTree.prototype.isNeededBracket = function () {
             var parentOperator = this.getParentOperator();
             return parentOperator &&
-                (TokenHelper.isHigher(parentOperator.value, this.value) ||
-                    TokenHelper.isHigherOrEqual(parentOperator.value, this.value) &&
+                (TokenHelper.getPrecedenceDiff(parentOperator.value, this.value) > 0 ||
+                    TokenHelper.getPrecedenceDiff(parentOperator.value, this.value) >= 0 &&
                         this.parent.rightNode === this);
         };
         AbstractSyntaxTree.prototype.findOperator = function () {
