@@ -222,4 +222,3 @@ describe('test method: getVersion()', () => {
             .and.that.satisfies((array: string[]) => array.every(value => !isNaN(Number(value))));
     });
 });
-
