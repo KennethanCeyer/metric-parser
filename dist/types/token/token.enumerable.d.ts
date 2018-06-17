@@ -10,17 +10,17 @@ export declare class TokenEnumerable {
     protected stack: ParserStack;
     constructor(token: Token.Token[]);
     protected rewind(): void;
-    private calculateStack(token);
+    private calculateStack;
     protected finalizeStack(): void;
     protected addStack(token: Token.Token): void;
     protected popStack(): Token.Token | undefined;
     next(): any;
-    private proceedNext();
-    private isSequentialValue(token, nextToken);
-    private findToken();
-    private getToken();
-    private getAliasToken(token);
-    private isTokenArrayNumeric(tokens);
-    private makeToken(tokens);
-    private makeTokenString(tokens);
+    private proceedNext;
+    private isSequentialValue;
+    private findToken;
+    private getToken;
+    private getAliasToken;
+    private isTokenArrayNumeric;
+    private makeToken;
+    private makeTokenString;
 }

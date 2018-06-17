@@ -1059,13 +1059,15 @@ var TreeBuilder = /** @class */ (function (_super) {
         };
     };
     TreeBuilder.prototype.makeOperandValue = function (sourceNode) {
+        var _a;
         var type = TokenHelper.isObject(sourceNode.value)
             ? 'item'
             : 'unit';
         return _a = {
                 type: type
-            }, _a[type] = sourceNode.value, _a;
-        var _a;
+            },
+            _a[type] = sourceNode.value,
+            _a;
     };
     TreeBuilder.prototype.makeAstNode = function (node) {
         if (!node)

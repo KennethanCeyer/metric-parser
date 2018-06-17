@@ -22,10 +22,10 @@ export declare namespace Token {
         Bracket = 4,
         Function = 5,
         WhiteSpace = 6,
-        CompareToken = 7,
+        CompareToken = 7
     }
     enum SubType {
-        Group = 0,
+        Group = 0
     }
     const literal: {
         Addition: string;
