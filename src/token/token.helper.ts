@@ -6,6 +6,10 @@ export class TokenHelper extends TokenHelperBase {
         return TokenHelper.getPrecedence(source) - TokenHelper.getPrecedence(target) > 0;
     }
 
+    public static isHigherOrEqual(source: Token.Token, target: Token.Token) {
+        return TokenHelper.getPrecedence(source) - TokenHelper.getPrecedence(target) >= 0;
+    }
+
     public static induceType(token: Token.Token) {
         const typeInducers = [
             { predicate: TokenHelper.isUnkown, type: Token.Type.Unknown },

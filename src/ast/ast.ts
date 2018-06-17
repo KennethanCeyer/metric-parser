@@ -35,13 +35,22 @@ export class AbstractSyntaxTree extends AbstractSyntaxTreeBase {
         ];
 
         const parentOperator = this.getParentOperator();
-        return parentOperator && TokenHelper.isHigher(parentOperator.value, this.value)
-            ? [Token.literal.BracketOpen, ...expression, Token.literal.BracketClose]
-            : expression;
+        return parentOperator &&
+            (
+                TokenHelper.isHigher(parentOperator.value, this.value) ||
+                TokenHelper.isHigherOrEqual(parentOperator.value, this.value) &&
+                this.parent.rightNode === this
+            )
+                ? this.wrapBracket(expression)
+                : expression;
 
     }
 
     private makeValueExpression(): string[] {
         return [this.value];
+    }
+
+    private wrapBracket(expression: string[]): string[] {
+        return [Token.literal.BracketOpen, ...expression, Token.literal.BracketClose];
     }
 }
