@@ -14,6 +14,16 @@ export class AbstractSyntaxTree extends AbstractSyntaxTreeBase {
         return this.parent.findOperator();
     }
 
+    private isNeededBracket(): boolean {
+        const parentOperator = this.getParentOperator();
+        return parentOperator &&
+        (
+            TokenHelper.isHigher(parentOperator.value, this.value) ||
+            TokenHelper.isHigherOrEqual(parentOperator.value, this.value) &&
+            this.parent.rightNode === this
+        );
+    }
+
     private findOperator(): AbstractSyntaxTree {
         if (this.type === Token.Type.Operator)
             return this;
@@ -27,23 +37,19 @@ export class AbstractSyntaxTree extends AbstractSyntaxTreeBase {
             : this.makeValueExpression();
     }
 
-    private makeOperatorExpression(): string[] {
-        const expression = [
+    private makeOperatorClause(): string[] {
+        return [
             ...this.leftNode ? this.leftNode.expression : [],
             this.value,
             ...this.rightNode ? this.rightNode.expression : []
         ];
+    }
 
-        const parentOperator = this.getParentOperator();
-        return parentOperator &&
-            (
-                TokenHelper.isHigher(parentOperator.value, this.value) ||
-                TokenHelper.isHigherOrEqual(parentOperator.value, this.value) &&
-                this.parent.rightNode === this
-            )
-                ? this.wrapBracket(expression)
-                : expression;
-
+    private makeOperatorExpression(): string[] {
+        const expression = this.makeOperatorClause();
+        return this.isNeededBracket()
+            ? this.wrapBracket(expression)
+            : expression;
     }
 
     private makeValueExpression(): string[] {

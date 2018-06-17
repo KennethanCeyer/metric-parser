@@ -212,8 +212,14 @@
         function TokenHelper() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
+        TokenHelper.getPrecedenceDiff = function (source, target) {
+            return TokenHelper.getPrecedence(source) - TokenHelper.getPrecedence(target);
+        };
         TokenHelper.isHigher = function (source, target) {
-            return TokenHelper.getPrecedence(source) - TokenHelper.getPrecedence(target) > 0;
+            return TokenHelper.getPrecedenceDiff(source, target) > 0;
+        };
+        TokenHelper.isHigherOrEqual = function (source, target) {
+            return TokenHelper.getPrecedenceDiff(source, target) >= 0;
         };
         TokenHelper.induceType = function (token) {
             var typeInducers = [
@@ -565,6 +571,13 @@
                 return undefined;
             return this.parent.findOperator();
         };
+        AbstractSyntaxTree.prototype.isNeededBracket = function () {
+            var parentOperator = this.getParentOperator();
+            return parentOperator &&
+                (TokenHelper.isHigher(parentOperator.value, this.value) ||
+                    TokenHelper.isHigherOrEqual(parentOperator.value, this.value) &&
+                        this.parent.rightNode === this);
+        };
         AbstractSyntaxTree.prototype.findOperator = function () {
             if (this.type === Token.Type.Operator)
                 return this;
@@ -575,16 +588,22 @@
                 ? this.makeOperatorExpression()
                 : this.makeValueExpression();
         };
-        AbstractSyntaxTree.prototype.makeOperatorExpression = function () {
-            var expression = (this.leftNode ? this.leftNode.expression : []).concat([
+        AbstractSyntaxTree.prototype.makeOperatorClause = function () {
+            return (this.leftNode ? this.leftNode.expression : []).concat([
                 this.value
             ], this.rightNode ? this.rightNode.expression : []);
-            var parentOperator = this.getParentOperator();
-            return parentOperator && TokenHelper.isHigher(parentOperator.value, this.value)
-                ? [Token.literal.BracketOpen].concat(expression, [Token.literal.BracketClose]) : expression;
+        };
+        AbstractSyntaxTree.prototype.makeOperatorExpression = function () {
+            var expression = this.makeOperatorClause();
+            return this.isNeededBracket()
+                ? this.wrapBracket(expression)
+                : expression;
         };
         AbstractSyntaxTree.prototype.makeValueExpression = function () {
             return [this.value];
+        };
+        AbstractSyntaxTree.prototype.wrapBracket = function (expression) {
+            return [Token.literal.BracketOpen].concat(expression, [Token.literal.BracketClose]);
         };
         return AbstractSyntaxTree;
     }(AbstractSyntaxTreeBase));
