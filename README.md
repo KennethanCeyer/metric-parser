@@ -18,11 +18,6 @@
     <a href="https://www.codefactor.io/repository/github/kennethanceyer/metric-parser"><img src="https://www.codefactor.io/repository/github/kennethanceyer/metric-parser/badge" alt="CodeFactor"></a>
 </p>
 
-<p align="center">
-    <a href="https://david-dm.org/KennethanCeyer/metric-parser"><img src="https://david-dm.org/KennethanCeyer/metric-parser/status.svg" alt="dependencies Status"></a>
-    <a href="https://david-dm.org/KennethanCeyer/metric-parser?type=dev"><img src="https://david-dm.org/KennethanCeyer/metric-parser/dev-status.svg" alt="devDependencies Status"></a>
-</p>
-
 ----
 
 ### Special lovers :heart:
